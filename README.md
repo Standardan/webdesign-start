@@ -38,6 +38,8 @@ webdesign-start/
     ├── typography.md            # 32 font pairings by personality + scale/fluid-type systems
     ├── layouts.md               # hero patterns + section formulas per product type
     ├── industries.md            # ~28 product-type playbooks with anti-patterns
+    ├── anti-slop.md             # AI-tell bans: violet-gradient dark mode, glow orbs, em dashes,
+    │                            #   hype copy ("elevate", "seamless"), template heroes
     ├── ux-rules.md              # priority-tiered accessibility & UX rulebook
     ├── build-standards.md       # implementation standards + pre-delivery checklist + self-review
     └── brief-template.md        # the DESIGN-BRIEF.md template

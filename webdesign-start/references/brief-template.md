@@ -34,6 +34,7 @@ _Produced by the webdesign-start discovery process. Read fully before any visual
 
 **Never-list (from user + industry anti-patterns):**
 - [e.g., no stock-photo corporate feel; no carousel hero; no red as primary (medical)]
+- The anti-slop defaults (references/anti-slop.md) are always on this list implicitly; add any that this project is especially at risk of.
 
 ## 3. Style direction
 **Dominant style:** [name from styles.md] — [one-sentence essence]

@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "smoke-test-sites",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8893", "--directory", "webdesign-start-workspace/iteration-1/eval-0-vague-barbershop"],
+      "port": 8893
+    }
+  ]
+}

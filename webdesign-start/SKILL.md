@@ -87,22 +87,24 @@ Synthesize Discovery Summary + Reference DNA + industry playbook into `DESIGN-BR
 - `references/color.md` — build the full token set (light *and* dark if in scope) from the closest industry palette, adjusted toward the approved references.
 - `references/typography.md` — pick a pairing whose personality matches; include weights and fallbacks.
 - `references/layouts.md` — choose the page/section formulas for every page in scope.
+- `references/anti-slop.md` — before finalizing, verify the brief doesn't encode AI-default choices (violet-gradient dark mode, template heroes) that no discovery answer asked for.
 
 Then present the brief to the user as a **short digest** (direction in one paragraph, palette swatch list, fonts, page list — not the whole file) and ask for approval or edits. **This is the gate.** Do not write site code before an explicit yes. Small edit requests → update the brief, restate only the changed part, proceed.
 
 ## Phase 4 — Build
 
-Read `references/build-standards.md` and `references/ux-rules.md` before writing code. Non-negotiables:
+Read `references/build-standards.md`, `references/ux-rules.md`, and `references/anti-slop.md` before writing code. Non-negotiables:
 
 - Express every brief token as CSS custom properties (or the detected styling system's theme). Components consume tokens, never raw hex/px.
 - Build mobile-first; verify the widths in the build-standards protocol.
 - The UX rulebook's Priority 1-2 tiers (accessibility, touch/interaction) are never traded away for aesthetics.
 - Real content where the user provided it; honest, well-shaped placeholders where they didn't (flag every placeholder in the final report).
+- All copy you write follows the anti-slop writing rules: no em dashes in site copy, no hype lexicon, specifics over adjectives, the client's own phrases from discovery wherever possible.
 - Work page by page in brief order; after the first page, pause and show it — the first page catches token-level misreads cheaply before they multiply across the site.
 
 ## Phase 5 — Self-review
 
-Follow the self-review protocol at the end of `references/build-standards.md`: re-read `DESIGN-BRIEF.md`, audit the built pages against it section by section, then walk the pre-delivery checklist. Fix what you find. Then report to the user:
+Follow the self-review protocol at the end of `references/build-standards.md`: re-read `DESIGN-BRIEF.md`, audit the built pages against it section by section, run the slop audit from `references/anti-slop.md`, then walk the pre-delivery checklist. Fix what you find. Then report to the user:
 
 - What was built (pages, components).
 - Checklist results — **honestly**, including anything that failed or was skipped and why.
@@ -121,6 +123,7 @@ Follow the self-review protocol at the end of `references/build-standards.md`: r
 | `references/typography.md` | Phase 3, choosing type |
 | `references/layouts.md` | Phase 3 (page map) and Phase 4 (building sections) |
 | `references/brief-template.md` | Phase 3, writing the brief |
+| `references/anti-slop.md` | Phase 3 (brief sanity check) and Phase 4 (copy + CSS rules); audited in Phase 5 |
 | `references/ux-rules.md` | Before and during Phase 4 |
 | `references/build-standards.md` | Phase 4 and Phase 5 |
 

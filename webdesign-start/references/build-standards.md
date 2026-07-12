@@ -315,6 +315,13 @@ Walk every item before presenting work. Check items honestly — an unchecked it
 - [ ] Headings front-load meaning and work as a standalone outline
 - [ ] Dates, numbers, currency formatted for humans
 
+### Anti-slop (see `references/anti-slop.md` for the full catalog)
+
+- [ ] Site copy contains zero em dashes, hype-lexicon words, emoji, or "Get Started"/"Learn More" buttons where a specific label exists
+- [ ] No headline or section could be pasted onto an unrelated business's site unchanged (the specificity test)
+- [ ] Palette, hero pattern, and section anatomy each trace to the brief — no violet-gradient defaults, glow orbs, or template three-card grids that nobody chose
+- [ ] The client's own phrases from discovery appear in the copy where they had good ones
+
 ### Performance
 
 - [ ] Images in WebP/AVIF with `srcset`; dimensions declared on all media (zero CLS)
@@ -343,6 +350,8 @@ Run this after the build is complete and *before* telling the user it's done. It
 **Step 3 — Walk the pre-delivery checklist above**, at the four protocol widths, in both themes, with one full keyboard pass. Fix violations as you find them; re-verify anything the fix could have disturbed.
 
 **Step 4 — Cross-check against the UX rulebook's Critical 15** (`references/ux-rules.md`). Any hit is a blocker: fix before delivery.
+
+**Step 4b — Run the slop audit** (`references/anti-slop.md`): grep the content files for em dashes, hype-lexicon words, and generic button labels; check the palette and section anatomy against the "banned by default" list; read the headlines in sequence for the specificity test. Include the audit outcome in the report.
 
 **Step 5 — Report honestly.** Tell the user what was verified and what the outcome was, in three buckets:
 
