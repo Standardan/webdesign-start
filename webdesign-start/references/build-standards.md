@@ -135,6 +135,26 @@ Users often have no assets ready at build time. The standard here is: the page m
 
 ---
 
+## Modern CSS defaults (2026 baseline)
+
+These are cross-engine and safe to use as defaults — reaching for JavaScript or viewport hacks where these exist marks the code as dated:
+
+- **Container queries** for any component that must adapt to its slot rather than the viewport (cards that appear in both a sidebar and a main column). `container-type: inline-size` on the wrapper, `@container (min-width: 400px)` in the component.
+- **`:has()`** for state-aware styling without JS class bookkeeping (`.field:has(input:invalid)`, `.card:has(img)` variants).
+- **Subgrid** to align content across sibling cards (equal-height titles/footers in a grid row).
+- **`text-wrap: balance` on headings** by default — one declaration, outsized polish; `text-wrap: pretty` on prose where supported.
+- **Native `<dialog>` for modals and Popover API for menus/disclosures** — top-layer stacking, Escape, focus handling, and light dismiss come free and correct; custom overlay plumbing is where a11y bugs live.
+- **Cascade layers** (`@layer reset, tokens, components, utilities`) so override order is explicit rather than specificity warfare.
+- **Enhancement-only tier (must degrade gracefully):** scroll-driven animations (`animation-timeline: view()`) and View Transitions — support is still uneven, so normal scrolling and navigation must work identically without them. Anchor positioning needs a fallback.
+
+## Performance gates
+
+Treat Core Web Vitals thresholds as delivery gates, not aspirations: **LCP ≤ 2.5s, INP ≤ 200ms, CLS ≤ 0.1**.
+
+- The LCP image lives in the initial HTML (never lazy-loaded, never CSS-background-injected), with `srcset`/`sizes` and a single `fetchpriority="high"` — one, not sprinkled everywhere, or the hint means nothing.
+- AVIF as the default photographic format inside `<picture>` with WebP/JPEG fallback.
+- For INP: show visual feedback before doing expensive work on interaction, and split long tasks.
+
 ## Motion implementation
 
 CSS-first: CSS transitions and animations run on the compositor, survive JS failures, and are trivially gated on user preference. Reach for JS animation libraries only when motion is genuinely interactive (dragging, physics, gesture-driven) — not for reveals and hovers.
@@ -223,7 +243,7 @@ Note the order: elements carry only a `data-reveal` attribute in markup; the `.r
 
 ### General motion rules
 
-- Animate only `transform` and `opacity` (compositor-friendly — see UX rulebook P7 for the reasoning and duration table: 150–300ms micro, 400ms max).
+- Animate only `transform` and `opacity` (compositor-friendly — see UX rulebook P7 for the role-based duration table: instant feedback, 80–150ms states, ~160ms small entrances, ~240ms overlays, 400ms ceiling).
 - `will-change` only on elements about to animate, removed after — permanent `will-change` wastes GPU memory.
 - Hover transitions: apply the transition to the base state, not the `:hover` state, so the exit animates too.
 

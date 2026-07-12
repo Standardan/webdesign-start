@@ -33,9 +33,20 @@ These are defaults, not choices. Each is allowed **only** if the discovery answe
 | Every section title centered, with one word in the accent color | Rhythm without reason | Title alignment and accent use follow the chosen style's recipe |
 | Inter + white background + blue/purple CTA with zero further decisions | Not wrong — just nothing | If minimal is the direction, execute *refined* minimalism per styles.md: tuned spacing, real type scale, one deliberate accent |
 
+### Structural tells (2026 update, from detection research)
+
+- **Over-containerization.** Generated sites wrap nearly every sentence, icon, and metric in a rounded, bordered card, often nesting cards inside cards. Start with unboxed content on the page surface; add a container only when it communicates grouping, interaction, comparison, or elevation. If removing a card's border changes nothing, the card shouldn't exist.
+- **Fabricated evidence.** Invented testimonials with stock-photo-adjacent names, fictional client logos, axisless charts, and implausibly tidy metrics ("10x faster · 99.9% uptime · 4.9★") are now actively recognized and destroy trust. Every person, quote, number, and logo must come from the client or be clearly flagged placeholder in the delivery report. Never invent a named human.
+- **Success-state-only design.** AI designs the populated, happy screenshot. Real products have empty states, long names, errors, loading. For app UIs, design the lifecycle states; for marketing screenshots, show plausibly imperfect data (a normal Tuesday, not a record quarter).
+- **Mobile = desktop stacked.** Auto-stacking every desktop row into one long column (all cards, all decoration retained) is a builder fingerprint. Recompose for mobile: reprioritize, collapse secondary content, drop decorative surfaces.
+- **The component-catalog silhouette.** Default shadcn/ui anatomy (its exact card, badge, dialog, radius, and icon proportions) is recognizable even after a palette swap, because AI builders like v0 emit it verbatim. When using a component library, change the *anatomy* — radii, spacing rhythm, borders, type roles — not just the colors.
+- **Tomorrow's cliché.** When a new "anti-generic" bundle trends (the 2026 wave: liquid glass, liquid metal, oversized framed canvases), adopting the entire bundle without a brand reason just joins the next wave of sameness. Take at most one element, and only if the brief motivates it.
+
 ### The deeper rule
 
 Slop is recognizable because every choice is uncorrelated with the client. A cocktail bar's site and a CRM's site should not share a palette, a hero, and a feature grid. Before styling any section, ask: *would this choice survive if the client were sitting next to you pointing at their approved reference sites?* If you can't connect a visual choice to the brief, you're generating, not designing.
+
+**The positive requirement.** Prohibitions alone produce competent-but-anonymous. Every project must also have **one signature element** — a single distinctive, ownable move derived from the client's brand or references (a characteristic hover, a custom divider motif, an unexpected accent placement, a type treatment). Name it in the brief. One is enough; three signature elements is noise.
 
 ## Writing slop
 
@@ -45,6 +56,7 @@ Website copy is where AI authorship is most instantly detected. These rules appl
 
 - **Em dashes.** None. Restructure the sentence, use a period, comma, or colon. (This document uses them; *site copy may not.* They are now a primary AI tell in short-form marketing text.)
 - **The hype lexicon:** elevate, unlock, unleash, empower, supercharge, seamless, effortless, game-changing, cutting-edge, next-level, revolutionize, transform (as a verb for the product's effect), harness, delve, robust, streamline, "take your X to the next level," "look no further," "in today's fast-paced world," "whether you're a X or a Y," "we've got you covered," "your one-stop shop."
+- **The suspect cluster (treat a hit as a sentence-level rewrite trigger, not a synonym swap):** pivotal, intricate, meticulous, curated, vibrant, foster, navigate (metaphorical), resonate, underscore, moreover, "in a world where," "a testament to." Detection research shows models that dodge banned words keep the same AI cadence, so rewrite the sentence from the underlying fact instead of substituting words.
 - **Emoji in copy.** Any.
 - **Exclamation points** beyond at most one per page, and zero for premium/serious brands.
 
@@ -60,6 +72,8 @@ Website copy is where AI authorship is most instantly detected. These rules appl
 | Capitalized Value Words | "our Commitment to Quality" | Nothing earns mid-sentence capitals |
 | Vague benefit-speak | "Solutions tailored to your unique needs" | Zero information; any business could claim it |
 | Overqualified hedging | "can help you potentially achieve" | Copy should commit or cut |
+| Bold-label-colon bullets | "**Fast:** our platform is quick" repeated down a list | The single most-cited AI formatting tell; use plain bullets, prose, or a real table |
+| Uniform paragraph rhythm | Every paragraph 2-3 sentences, same shape, relentlessly positive, neat recap at the end | Cadence survives word-swaps; vary sentence length and let some points be short |
 
 ### What good copy does instead
 
@@ -81,4 +95,8 @@ Run this as part of Phase 5 self-review (build-standards.md), before the pre-del
 2. **Palette check.** If the site's primary is in the violet range (#6D28D9–#8B5CF6 territory) or an accent is neon on dark, confirm the brief chose it from discovery/references. If the brief itself defaulted there without a traceable reason, flag it to the user rather than shipping it.
 3. **Template scan.** Look at the page zoomed out (or read the section list): centered-hero + 3-cards + testimonial + CTA-band with no deviation is the template silhouette. At least the sections' *anatomy* should vary per the layouts.md formulas chosen in the brief.
 4. **Voice check.** Read every headline in sequence, alone. If they could be shuffled between sections (or between clients) without anyone noticing, rewrite for specificity.
-5. **Report.** The self-review report includes a "slop audit" line: what was caught, what was fixed, anything deliberately kept and why.
+5. **Container census.** Count the boxes in each viewport. If most content sits in rounded bordered cards, un-box everything that isn't grouping, comparing, or interactive.
+6. **Evidence check.** Every testimonial, logo, statistic, and chart: client-provided, or flagged as placeholder in the report. Zero invented named humans.
+7. **Mobile recomposition check.** At 375px, confirm the page was re-prioritized, not just stacked: secondary decoration dropped, comparisons simplified, nothing surviving purely because it existed on desktop.
+8. **Signature element check.** The brief names one signature element; confirm it exists in the build and actually reads as distinctive.
+9. **Report.** The self-review report includes a "slop audit" line: what was caught, what was fixed, anything deliberately kept and why.

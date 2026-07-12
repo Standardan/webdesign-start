@@ -178,7 +178,17 @@ Animation exists to explain cause and effect — where a panel came from, what t
 
 ### Rules
 
-- **Durations: 150–300ms for micro-interactions (hover, toggle, button feedback); 400ms absolute maximum for larger transitions (page, modal).** Below 150ms motion isn't perceived as motion; above 400ms it's perceived as waiting.
+- **Durations scale with the motion's role** (synthesized from Material, Carbon, and Atlassian's published standards). Name the tokens by behavior (`--motion-state`, `--motion-overlay`), not speed, so components pick correctly:
+
+  | Motion role | Duration |
+  |---|---|
+  | Focus, error, selection feedback | instant — never animated slowly |
+  | Interaction states (hover, press, toggle) | 80–150ms |
+  | Small entrances (dropdown, tooltip, toast) | ~160ms |
+  | Overlays (modal, drawer) | ~240ms |
+  | Large/expressive transitions (page, hero reveal) | ≤400ms — above this reads as waiting |
+
+- **One leading motion event per viewport.** A section gets one animated focal moment, a few subordinate responses, and plenty of static elements. The uniform fade-up on every heading and card is the AI default; hierarchy in motion is what reads as design.
 - **Animate only `transform` and `opacity`.** These composite on the GPU without triggering layout or paint. Animating `width`, `height`, `top`, `left`, or `margin` forces layout recalculation every frame and stutters on mid-range devices.
 - **Motion must convey cause and effect.** A modal scales up from the button that opened it; a deleted item collapses; a drawer slides from its edge. Motion disconnected from user action (ambient floating, perpetual pulsing) is noise.
 - **Exit animations run at ~60–70% of entrance duration.** Users have already decided to leave; making them watch a full-length exit is friction. Enter 300ms → exit ~200ms.
@@ -207,6 +217,8 @@ Forms are where users do work and where they abandon. Every rule here reduces th
 - **Destructive actions get undo, not just confirmation dialogs.** Users click through confirmations on autopilot ("Are you sure?" → yes, always). An undo window (toast with "Undo", 5–10s) protects against the errors confirmations were supposed to prevent. Reserve blocking confirmations for truly irreversible bulk operations, and make those type-to-confirm.
 - **Use correct input types and autocomplete attributes.** `type="email"`, `inputmode="numeric"`, `autocomplete="postal-code"` give mobile users the right keyboard and let browsers autofill — removing entire categories of typos for free.
 - **Never clear a form on failed validation.** Discarding the user's typed input because one field failed is the single fastest way to lose a submission permanently.
+- **Long forms get an error summary AND inline errors.** On submit failure, show a focused summary at the top (linking each error to its field) plus the inline messages — GOV.UK's tested pattern. Error text repeats the field's own label language and says how to fix it.
+- **Every field must justify its existence.** Baymard found checkout abandonment tracks field count (average stores show ~11 fields; ~8 suffice) and 17% of users abandon flows that merely *feel* complicated. Cut optional fields ruthlessly; a clear multi-step flow beats a crammed single screen.
 
 ### Smell tests
 
@@ -272,6 +284,8 @@ Words are interface. Users don't read — they scan, decide, and act; every stri
 - **Headings must be scannable as an outline.** A user reading *only* the headings should understand the page's argument. If a heading is generic ("Features", "About"), the section under it is invisible to scanners.
 - **Button labels state the action's outcome, never "Submit", "Click here", or "Learn more" alone.** "Create account", "Save changes", "Download report (PDF)". The label is the user's last confirmation of what's about to happen — vague labels cause hesitation and errors. This also serves screen reader users navigating by a list of buttons, where context-free labels are indistinguishable.
 - **Empty, error, and loading states are first-class screens — design all three for every data-driven view.** Every list, table, chart, and feed will at some point be empty, failed, or loading. An unhandled empty state looks broken; a good one ("No projects yet — create your first") teaches the interface. Error states must say what happened and what to do next, in human language ("Couldn't save — check your connection and try again", never a raw status code).
+- **Empty states have causes; design for the actual cause.** First use ("create your first…"), no search results ("try broader terms"), cleared/completed (celebrate, suggest next), missing permission (say who to ask), and system failure (apologize + retry) each need different copy and one clear next action — a generic illustration with three competing buttons serves none of them.
+- **Interactive colors ship as complete state families.** Default, hover, pressed, focus-visible, selected, and disabled are designed together in the tokens — not improvised per component — or dark mode and edge states develop gaps.
 - **Write in the user's vocabulary, not the system's.** "Your changes are saved" not "Persistence operation successful". Error copy blames the system, not the user.
 - **Numbers, dates, and quantities get formatted for humans.** "2 hours ago" or "Mar 4" per context, thousands separators, currency symbols — raw ISO timestamps or unformatted floats are a tell of an unfinished interface.
 - **Microcopy for consequences.** Before a destructive or costly action, one line of plain-language consequence ("This removes the project for all 4 members") outperforms any warning icon.
@@ -370,7 +384,7 @@ In a traditional multi-page site, navigation resets focus to the top of the new 
 
 ## WCAG 2.2 additions
 
-WCAG 2.2 (2023) added criteria that specifically target patterns generated interfaces get wrong. These are current legal-compliance baseline in many jurisdictions — treat them as P1-adjacent.
+WCAG 2.2 (2023) added criteria that specifically target patterns generated interfaces get wrong. Treat them as P1-adjacent. On legal weight, be precise rather than scary: WCAG 2.2 is the current W3C target but which version is *legally* required varies by jurisdiction and sector. The EU's European Accessibility Act has applied since June 2025 and covers e-commerce, though qualifying microenterprises providing services are exempt — if a user asks about compliance obligations, state what's known and recommend they verify their specific case rather than asserting a blanket rule.
 
 ### Rules
 

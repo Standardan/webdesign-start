@@ -552,3 +552,12 @@ Common typography mistakes on generated sites, and the fix. Audit the finished b
 | 10 | Full-width paragraphs (90–120ch lines) | Eye loses the return sweep; text feels like a wall | `max-width: 65ch` on every prose block |
 | 11 | Same line-height everywhere (e.g. 1.5 on the hero) | Multi-line display type drifts apart into separate strips | 1.05–1.2 on display, 1.5–1.7 on body |
 | 12 | Display font used for body / body font used for hero | Display faces exhaust at paragraph length; body faces look generic huge | One job per face: display ≥20px, body for copy — as specified per pairing above |
+
+---
+
+## Modern type engineering (2026 addendum)
+
+- **Fluid type must survive zoom.** A `clamp()` whose preferred value is dominated by `vw` fights browser zoom and can fail WCAG 1.4.4 (resize text — see technique F94). Keep a meaningful rem term: `clamp(2rem, 1.2rem + 2.6vw, 3.5rem)`, never `clamp(2rem, 5vw, 3.5rem)`. Test at 200% zoom.
+- **Use variable-font axes deliberately.** ~40% of sites now load a variable font but most touch only weight. Worth using: `opsz` (optical sizing — auto with `font-optical-sizing: auto` — makes display cuts genuinely different from text cuts), `GRAD` (emphasis without reflow, great for dark-mode weight compensation), `wdth` (headline fitting without scale transforms). One well-used variable font can replace both families in tight-budget builds.
+- **Role-based pairing framing.** Modern pairings are one *voice* (distinctive display face carrying brand recognition) + one *face* (quiet, capable text/UI family). The failure mode is two near-identical grotesques; the fix is structural contrast, not more fonts.
+- **Fresh alternatives to the default stack** (all verified open/free): Google Sans Flex (wide-axis variable flagship), Mozilla Headline + Mozilla Text (characterful open pairing), Atkinson Hyperlegible Next (accessibility-first with real personality), Nata Sans, Asta Sans, Savate (display), Google Sans Code (mono). Reach for these when a brief risks producing "another Inter/Space Grotesk site" — but the catalog pairings remain safe defaults.

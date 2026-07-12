@@ -52,6 +52,9 @@ Follow the answer with one clarifier if the category is broad (A → "what does 
 **Q2. Who is the main visitor, and what do they already know?**
 Free-text with prompts: "e.g., 'developers evaluating tools,' 'local homeowners who found us on Google,' 'brides comparing photographers.'" Audience drives formality, density, and how much explaining the site must do.
 
+**Q2b. Why now?** (fold into Q2's batch)
+"What's making this website happen now, and what should be different for you three months after launch?" The answer converts an aesthetic request into an outcome the design can be judged against (more bookings, credibility for a funding round, escaping an embarrassing old site). If there's an existing brand, also ask the **gap question**: "How do people describe you today, and how do you WANT to be described after the redesign?" The distance between those two answers is the real assignment.
+
 **Q3. When a visitor lands, what is the ONE action that matters most?**
 - Buy / book / order
 - Sign up or start a trial
@@ -116,6 +119,11 @@ This is where "I can't describe what I want" gets solved. Use contrast pairs —
 
 **Q12. Anti-preferences (always ask, free-text):**
 "Any websites or styles you *hate*? Anything your site must never look like (a competitor, a trend, 'corporate stock-photo' feel…)?" A strong negative constrains the space better than three positives.
+
+**Q12b. Three traits, three anti-traits (strongest single exercise — use when Round 2 answers feel thin):**
+"Pick exactly three words for what the site should feel like, and three for what it must NOT feel like." Then, for any ambiguous trait, have them complete: "For us, [trait] means ___, but not ___." ("Premium means considered and unhurried, but not unapproachable.") Forcing exactly three of each prevents the incoherent everything-list, and the "but not" clause disambiguates words like *bold* or *premium* that point in multiple directions.
+
+**Question hygiene:** each scale measures ONE variable. Never bundle ("dark and dramatic or light and friendly?" conflates mode with energy — someone can want dark *and* friendly). If two Round 2 answers seem to conflict, that's signal, not error; ask which wins.
 
 Where useful, add the **anchor question**: "Any sites you already admire — even from unrelated industries?" A named URL here can short-circuit half of Phase 2.
 
@@ -191,6 +199,9 @@ Usually 3 questions; fold into Round 3's message if short.
 
 **Q16. Extras in scope?** Dark-mode toggle, blog/CMS, contact form handling, multilingual, analytics. Each is scope; confirm rather than assume.
 
+**Q17. Who decides?** (only when the client isn't obviously solo)
+"Is anyone else approving this — a partner, a boss, a board?" If yes, get their veto concerns NOW and note who breaks ties. The classic project-killer is a late-arriving stakeholder invalidating an approved direction; a one-line decision model in the summary prevents it.
+
 ---
 
 ## The vague-answer decoder
@@ -243,9 +254,12 @@ End Phase 1 by mirroring this back and getting explicit confirmation. Keep it un
 ## Discovery Summary — [Project name]
 
 **Building:** [product type + one-line description]
+**Why now / success looks like:** [the trigger + what's different 3 months post-launch]
 **For:** [audience + what they already know/want]
 **#1 visitor action:** [the conversion]
+**Perception gap:** [described as X today → should read as Y]
 **Exists already:** [brand assets / current site / content status]
+**Decides:** [solo / +who else, and who breaks ties]
 
 **Direction signals:**
 - Energy: [e.g., calm-premium, leaning quiet-gallery]
@@ -263,5 +277,7 @@ End Phase 1 by mirroring this back and getting explicit confirmation. Keep it un
 
 Candidate style directions for research: [2-3 internal style names]
 ```
+
+Mark each direction signal with its evidence grade where it matters: answers the user actually gave vs your inferences vs defaults. Inferences and defaults are the lines to watch in Phase 2 — the example sites will confirm or overturn them cheaply.
 
 Once confirmed, proceed to Phase 2 with `references/research.md`.

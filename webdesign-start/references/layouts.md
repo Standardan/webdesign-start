@@ -595,3 +595,28 @@ Run through this after drafting the page structure and before writing styles:
 8. **The page works image-free:** headline, section headings, and CTAs alone still tell the full story if every asset fails to load.
 9. **Scroll length is proportionate:** a landing page is typically 6–11 sections; if the draft has 15, merge or cut — every extra section costs finishers.
 10. **Empty, loading, and error states are specified** for any app shell or dynamic list before build starts.
+
+---
+
+## Evidence-backed conversion notes
+
+Findings from published research (Baymard Institute, NN/g, GoodUI's experiment aggregation, academic meta-analyses) that override design folklore when they conflict:
+
+- **Hero clarity beats hero cleverness.** Headline changes move conversion more than button changes (+4.3% vs +2.5% median in aggregated experiments). The hero must answer: what is this, for whom, what outcome, what next step — at a glance.
+- **The CTA repeats the headline's promise in the same words.** A field experiment measured 58% click-through with verbatim message continuity vs 44% with a new message at the button. Don't paraphrase between headline and CTA.
+- **There is no magic CTA color.** Contrast and prominence against the surrounding palette are what matter. "Red beats green" does not generalize.
+- **Reviews convert most between 4.0 and 4.7 stars.** A flawless 5.0 reads as fake. Display real ratings with counts; the first ~5 reviews carry the largest effect.
+- **Reduce uncertainty before polishing buttons.** The top measured abandonment causes are unexpected costs (39%), forced account creation (19%), and payment distrust (19%) — show total costs early, allow guest paths, use recognizable payment/trust marks.
+- **Product pages answer physical and financial doubt near the buy box:** size/scale imagery (42% of users try to judge size from photos), shipping estimate, and return summary (60% look for it on the product page).
+- **Pricing-page formulas are hypotheses, not laws.** The three-tier + highlighted-middle + decoy pattern rests on choice-overload research whose meta-analysis shows a near-zero average effect. Use it as a sane default, but don't contort a product's real pricing to fit it.
+- **Substance beats micro-optimization.** Across thousands of e-commerce A/B tests the median change moved conversion ~0.1pp; the big wins came from offer clarity, cost transparency, and friction removal. Spend design effort there, not on button tints.
+
+## Craft notes from elite sites
+
+What separates award-tier sites from competent ones, distilled from studio write-ups and teardowns:
+
+- **One governing idea.** The memorable sites are authored by a single metaphor or thesis that imagery, motion, and tone all serve (the brief's "governing idea" field exists for this). Combining fashionable components without one produces competence, not identity.
+- **Design for the 10% reader.** Most visitors read headlines, captions, numbers, and buttons at a fast scroll. The page must make its complete argument through those elements alone; body copy is for the minority who slow down.
+- **A proof object beats decoration.** Show the real interface, the real product, a real result, or a working demo where a generic illustration or blob would otherwise go. Proof explains and convinces; decoration only fills.
+- **Restraint frames spectacle.** If one element is extraordinary (a hero video, a 3D moment, dramatic type), everything around it goes quiet: narrow palette, calm nav, generous space. Two spectacles compete; one spectacle framed by restraint reads as intent.
+- **Scroll controls progress, never access.** Scroll-linked effects are welcome only while the user can move freely both directions and reach any content without waiting out a sequence. Trapping content behind scroll cinematics is hostile on every device and unusable on some.

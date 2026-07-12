@@ -638,3 +638,13 @@ Working rules distilled from the table:
 - In dark mode, muted text must be *lighter* than intuition suggests; slate-500 fails where slate-400 passes.
 - Input borders and icons that convey state need 3:1 like large text; purely decorative dividers do not.
 - After finalizing any palette — including every palette in §4 after modification — recheck each text/background pair numerically. Eyeballing is a filter, not a verification.
+
+---
+
+## Modern color engineering (2026 addendum)
+
+- **Author tokens in OKLCH.** Its lightness/chroma/hue channels are perceptually independent, so ramps and theme shifts behave predictably: `--primary: oklch(0.65 0.15 250)`; a hover step is just a lightness nudge. Reduce chroma as lightness approaches white or black to avoid gamut clipping. Hex remains fine as output; OKLCH is the *thinking* space.
+- **Derive related colors with `color-mix()` instead of maintaining disconnected hex variants.** Hover fills, tinted callouts, and soft borders stay coherent when computed: `background: color-mix(in oklab, var(--primary) 12%, var(--surface))`. Mix in `oklab`/`oklch` for perceptually even results.
+- **Use `light-dark()` and `color-scheme` when both modes ship.** `color-scheme: light dark` on `:root` makes native controls (scrollbars, form widgets) follow the theme; `color: light-dark(#1A1815, #F5F2EA)` collapses paired tokens.
+- **APCA is a useful second opinion, not the standard.** It models polarity and font size/weight better than WCAG 2's ratio, so use it diagnostically for borderline dark-mode text — but WCAG 2.x ratios remain the compliance requirement (WCAG 3 is still a draft). When the two disagree, satisfy WCAG and use APCA to pick the *better-reading* of the passing options.
+- **The ownable-accent principle.** Current strong systems pair restrained paper/earth/ink neutrals with one singular accent (vermilion, chartreuse, cobalt, warm gold) instead of gradient identities. A gradient is only an identity if its specific behavior is designed; otherwise it's the default costume (see anti-slop.md).

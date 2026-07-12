@@ -48,8 +48,13 @@ Announce phase transitions briefly ("Discovery is done — moving to research. I
 
 Before asking anything:
 
-1. **Harvest the opening message.** Product type, industry, audience, style hints, stack, existing brand — mark each as known/unknown.
-2. **Check for prior state.** If `DESIGN-BRIEF.md` exists in the project, read it and ask whether this is a continuation (build/extend against it) or a fresh direction (archive it, restart discovery). If a codebase exists, note the stack and any existing design tokens/CSS.
+1. **Route by task size.** Full discovery exists for new sites and new design directions. Don't impose it on small work:
+   - **New site / redesign / "no idea how it should look"** → full workflow, Phase 1 onward.
+   - **Project already has an approved `DESIGN-BRIEF.md`** → read it and go straight to Phase 4 for the requested work; the brief is the discovery.
+   - **Small change to an existing site** (one component, one section, a restyle of something specific) → skip discovery and research; infer the design system from the existing code, confirm your reading in one message, make the change, run the relevant slice of Phase 5.
+   - **Audit/review request** → skip to Phase 5's checklists and report findings without building.
+2. **Harvest the opening message.** Product type, industry, audience, style hints, stack, existing brand — mark each as known/unknown.
+3. **Check for prior state.** If `DESIGN-BRIEF.md` exists in the project, read it and ask whether this is a continuation (build/extend against it) or a fresh direction (archive it, restart discovery). If a codebase exists, note the stack and any existing design tokens/CSS.
 3. **Frame the engagement in 2-3 sentences.** Tell the user what's about to happen: a few short rounds of questions, then you'll bring them real websites to react to, then a written plan, then the build. Users cooperate with questionnaires when they know why and how long.
 
 If the user says some version of "just build it, surprise me": still run Phase 1 Round 1 (the four fundamentals — you cannot build for an unknown audience), compress Rounds 2-3 into one batch of the three highest-leverage taste questions, and do a single lightweight research round. Never skip research entirely; one round of "which of these three directions?" costs a minute and prevents a full rebuild.
@@ -100,11 +105,14 @@ Read `references/build-standards.md`, `references/ux-rules.md`, and `references/
 - The UX rulebook's Priority 1-2 tiers (accessibility, touch/interaction) are never traded away for aesthetics.
 - Real content where the user provided it; honest, well-shaped placeholders where they didn't (flag every placeholder in the final report).
 - All copy you write follows the anti-slop writing rules: no em dashes in site copy, no hype lexicon, specifics over adjectives, the client's own phrases from discovery wherever possible.
-- Work page by page in brief order; after the first page, pause and show it — the first page catches token-level misreads cheaply before they multiply across the site.
+- **Build a style sample before the first full page:** the hero plus one content section, real tokens, real type, one representative button and card. Show it. Agencies moved from moodboards to "style tiles" because clients react far more accurately to a rendered sample than to abstract swatches — this catches direction-level misreads at one-tenth the cost of a built site. Then work page by page in brief order.
+- One more layer of intent while building: the site should have **one governing idea** (from the brief) that every section serves, and each viewport gets **one leading motion event** at most — uniform fade-ups on everything is noise, not craft.
 
 ## Phase 5 — Self-review
 
-Follow the self-review protocol at the end of `references/build-standards.md`: re-read `DESIGN-BRIEF.md`, audit the built pages against it section by section, run the slop audit from `references/anti-slop.md`, then walk the pre-delivery checklist. Fix what you find. Then report to the user:
+Follow the self-review protocol at the end of `references/build-standards.md`: re-read `DESIGN-BRIEF.md`, audit the built pages against it section by section, run the slop audit from `references/anti-slop.md`, then walk the pre-delivery checklist. **If your environment can render pages (a browser tool, screenshot capability, or a dev server preview), use it**: view the built pages at 375px and 1440px and inspect what's actually on screen rather than trusting the code — spacing collisions, text overflow, and dead-looking sections only show up rendered. Fix what you find.
+
+Elite sites budget the final stretch for polish, not new ideas: awkward heading line-breaks, section-to-section spacing seams, focus states, image loading behavior, reduced-motion. Spend a real pass on these before reporting. Then report to the user:
 
 - What was built (pages, components).
 - Checklist results — **honestly**, including anything that failed or was skipped and why.

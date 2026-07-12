@@ -37,6 +37,11 @@ _Produced by the webdesign-start discovery process. Read fully before any visual
 - The anti-slop defaults (references/anti-slop.md) are always on this list implicitly; add any that this project is especially at risk of.
 
 ## 3. Style direction
+**Governing idea:** [ONE sentence every section must serve — e.g., "the shop at night:
+noir ground, photos carry the light." Memorable sites are authored by a single idea;
+if a section doesn't express it, the section is wrong or the idea is.]
+**Signature element:** [the one distinctive, ownable move this site ships with —
+a motif, a hover behavior, a type treatment. Exactly one; named so the build can't skip it.]
 **Dominant style:** [name from styles.md] — [one-sentence essence]
 **Accent influence (max one):** [name or "none"]
 **In practice:** [3-5 bullets of what this means concretely for THIS site]

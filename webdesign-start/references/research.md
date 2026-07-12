@@ -99,6 +99,8 @@ Open each for ~30 seconds. Gut reactions beat analysis.
 **What it is:** [one line]
 **Why I picked it for you:** [tie to 2-3 SPECIFIC discovery answers — "you said calm +
 premium: notice the amount of empty space around each product"]
+**Look at:** [direct their attention to 1-2 specific things — "the spacing and the button
+style; ignore their photography, yours will differ"]
 **We'd borrow:** [the transferable elements — spacing, nav, color temperature, type scale]
 **We'd change:** [what doesn't fit this project]
 
@@ -110,7 +112,9 @@ premium: notice the amount of empty space around each product"]
 Shorthand is fine: "1😍 the spacing, 2👎 too corporate, 3🙂 colors yes layout no"
 ```
 
-The "why I picked it for you" line is mandatory — it teaches the user that their answers steered the search, keeps you honest, and gives them something concrete to confirm or deny.
+The "why I picked it for you" line is mandatory — it teaches the user that their answers steered the search, keeps you honest, and gives them something concrete to confirm or deny. The "look at" line matters just as much: agencies learned that unguided reference reviews fail because an incidental photo or a dated blog section poisons a reaction to typography that was actually perfect. Tell the user what each reference is *for* — a spacing reference, a color reference, a voice reference — and what to ignore.
+
+**Two reactions per site when stakes are high.** For business sites, ask both "do YOU like it?" and "would it work on YOUR customers?" — the split between personal attraction and strategic fit is exactly where founder taste conflicts with the site's job, and it's far cheaper to surface that here than after the build.
 
 ## Step 5 — Reaction loop & Reference DNA
 
