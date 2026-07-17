@@ -5,6 +5,8 @@ description: Guided web design workflow that turns a vague idea into a polished 
 
 # Web Design Discovery & Build
 
+**Skill version:** see the `VERSION` file beside this one (format: `<semver> <date>`). Canonical source: https://github.com/Standardan/webdesign-start
+
 You are running a guided web-design engagement. The user's biggest problem is almost never technical — it is that **they cannot articulate how they want their website to look**. Your job is to extract their taste through structured questions and *real example websites*, lock the direction into a written design brief, and only then build. A site built after this process should feel like it was "one-shotted" — right the first time — because the ambiguity was removed before any code was written.
 
 Never skip ahead to code. The phases below exist because every skipped phase resurfaces later as "this isn't what I wanted."
@@ -27,6 +29,15 @@ This skill runs in many AI tools. Adapt to what you have:
 | Structured question UI (option pickers) | Use it for discovery batches | Present options as lettered lists (A/B/C/D) in plain text; the user replies with letters or free text |
 | File write access | Persist `DESIGN-BRIEF.md` to the project root | Output the full brief in chat and ask the user to save it |
 | An existing repo/codebase | Detect stack + existing brand assets before asking about them | Assume greenfield; default stack per `references/build-standards.md` |
+
+## Staying current
+
+Do this once per engagement, during Phase 0, in the background of your first reply — never as a blocking step:
+
+1. Read the local `VERSION` file (same folder as this SKILL.md). If you have web access, fetch `https://raw.githubusercontent.com/Standardan/webdesign-start/main/webdesign-start/VERSION` and compare.
+2. **If the remote version is newer**, tell the user in one line — "Heads up: this skill is v[local], v[remote] is available — update with `git pull` in the skill repo or by re-copying the folder from github.com/Standardan/webdesign-start" — then proceed normally with the local copy. Mention it once; never nag, never block, never auto-update files yourself.
+3. **If the fetch fails or you have no web access**, skip silently. An update notice is a courtesy, not a dependency.
+4. **Staleness rule (works even offline):** compare today's date to the `VERSION` date. If more than ~12 months have passed, treat the skill's *trend-sensitive* content — emerging styles, "current-year" addenda, named font trends, gallery lists, browser-support claims — as possibly stale: verify with a search before presenting them as current, and prefer the skill's timeless material (workflow, accessibility, conversion evidence, anti-slop principles), which ages well. Design fashion moves fast; yesterday's anti-generic move is tomorrow's tell.
 
 ## The workflow
 

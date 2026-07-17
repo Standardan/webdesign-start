@@ -86,6 +86,12 @@ Put the `webdesign-start` folder where the assistant can read it, then paste the
 
 The design-principles layer (style catalog, industry anti-patterns, priority-tiered UX rules, pre-delivery checklist) is inspired by and extends [ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill). What this skill adds is the front half that data can't provide: **structured taste extraction** (the discovery interview + vague-answer decoder) and **verified visual references** (the internet research + reaction loop) — so the design system that gets generated is *yours*, not a statistically plausible one.
 
+## Updating
+
+The skill checks its own freshness: `webdesign-start/VERSION` travels with every copy, and at the start of an engagement the assistant compares it against this repo (when it has web access) and mentions — once, non-blocking — if your copy is behind. It also treats trend-sensitive content as suspect once the version date is over a year old, verifying trends by search instead of asserting stale ones.
+
+To update a copied install, re-copy the `webdesign-start` folder from this repo (or `git pull` if you cloned it). See [CHANGELOG.md](CHANGELOG.md) for what changed between versions.
+
 ## Tips for best results
 
 - **Give the opening message real information** ("a site for my two-chair barbershop in Austin, we're booked out weeks") — Phase 0 harvests it and skips those questions.
