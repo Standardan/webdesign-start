@@ -42,11 +42,39 @@ These are defaults, not choices. Each is allowed **only** if the discovery answe
 - **The component-catalog silhouette.** Default shadcn/ui anatomy (its exact card, badge, dialog, radius, and icon proportions) is recognizable even after a palette swap, because AI builders like v0 emit it verbatim. When using a component library, change the *anatomy* — radii, spacing rhythm, borders, type roles — not just the colors.
 - **Tomorrow's cliché.** When a new "anti-generic" bundle trends (the 2026 wave: liquid glass, liquid metal, oversized framed canvases), adopting the entire bundle without a brand reason just joins the next wave of sameness. Take at most one element, and only if the brief motivates it.
 
+### Micro-tells: component level
+
+Idea credit: many of these were first cataloged in the pols.dev "Anti-Slop Design Law" (https://pols.dev/slop.md — no reuse license, so the ideas are restated here in this project's own words; the original is worth reading in full). Each is a small default that, repeated across the ecosystem, now reads as machine-made:
+
+- **The default CTA pair** — solid primary + ghost secondary, side by side, every hero. If two actions truly matter, differentiate them by role (one button, one text link with specific wording), not by filled/unfilled versions of the same pill.
+- **Glowing pill buttons and gradient pills with icon + text** — decoration announcing "template." A button earns attention through placement and label, not bloom.
+- **Eyebrow badges** (the little pill above the headline saying "✦ New") as a reflex on every section.
+- **Quote-mark testimonial cards with gradient-initial avatars** — doubly fake: the giant decorative quotation mark is filler, and generated-initials avatars advertise that no real person was available. Real photo and full name, or a plainer text treatment.
+- **The pre-footer CTA banner** — the identical rounded rectangle ("Ready to get started?") before every footer. If the page did its job, the final CTA can be a sentence in the flow, not a billboard.
+- **Gradient icon-tile + wordmark logo lockups** — the placeholder logo aesthetic. A text wordmark set well in the display face is more honest and looks better.
+- **Fake browser/macOS windows and fake code snippets** as decoration. If a product screenshot exists, show it populated with plausible data; if it doesn't, don't fabricate chrome.
+- **Grid/graph-paper backgrounds, floating corner glows, hairline light borders on every box, uniform card hover-lifts, the dot under the active nav item, arrows (→) appended to every link** — each fine once, as a considered choice; as an ensemble they are the template signature.
+
+### Micro-tells: execution bugs
+
+Sloppier than style choices — these are the *bugs* that mark generated output, and several are invisible in code review but obvious on screen (check rendered pages):
+
+- **The invisible-content trap:** scroll-reveal animations whose initial state is `opacity: 0` — when the trigger misfires (or JS fails), content simply never appears. Reveals must fail visible (see build-standards' fail-safe observer pattern).
+- **Content cut by an edge:** headlines clipped by `overflow: hidden`, descenders sliced, text jammed against container edges without padding.
+- **Misaligned parallel columns:** pricing tiers or comparison cards whose rows don't line up because each card wraps independently — use a shared grid (subgrid exists for exactly this).
+- **The not-quite-centered element:** optical centering failures — an icon visually off-center in its circle, a hero block centered by margin but skewed by an uneven decoration.
+- **Color seams:** adjacent sections with hard, unrelated background changes; and text sitting on backgrounds it can't be read against.
+- **Botched glass/shadows:** backdrop-blur over nothing (blur needs something behind it to blur), the same soft all-around shadow on every element regardless of its height, or a "glow" that is just the element itself blurred behind itself.
+
 ### The deeper rule
 
 Slop is recognizable because every choice is uncorrelated with the client. A cocktail bar's site and a CRM's site should not share a palette, a hero, and a feature grid. Before styling any section, ask: *would this choice survive if the client were sitting next to you pointing at their approved reference sites?* If you can't connect a visual choice to the brief, you're generating, not designing.
 
 **The positive requirement.** Prohibitions alone produce competent-but-anonymous. Every project must also have **one signature element** — a single distinctive, ownable move derived from the client's brand or references (a characteristic hover, a custom divider motif, an unexpected accent placement, a type treatment). Name it in the brief. One is enough; three signature elements is noise.
+
+**Clean is the floor, not the achievement.** A page with no slop tells is merely not-embarrassing. What reads as designed, beyond the signature element: atmosphere instead of flat fills (subtle grain, a tinted vignette, one soft light source — grainy gradients, never banded ones); some layered depth on the z-axis rather than everything sitting on one plane; a nav that received actual design attention instead of the default logo-links-button row; and cohesion — the radii, stroke weights, type roles, and motion character all agreeing, so every element looks like it came from the same hand. And "professional" never excuses "dead": a page can be restrained and still have one moment of life.
+
+**Watch the font tell.** The default rotation (Inter or Space Grotesk everywhere, Sora, Syne, Cormorant Garamond, the Fraunces + Work Sans combo) now reads as generated *when used as the signature display voice*. These faces are still fine as body/UI workhorses — the tell is reaching for them as the brand's personality without a decision. For display type, prefer a face chosen deliberately from the catalog's less-default options or a self-hosted open face outside the rotation (see typography.md's 2026 addendum).
 
 ## Writing slop
 
@@ -99,4 +127,5 @@ Run this as part of Phase 5 self-review (build-standards.md), before the pre-del
 6. **Evidence check.** Every testimonial, logo, statistic, and chart: client-provided, or flagged as placeholder in the report. Zero invented named humans.
 7. **Mobile recomposition check.** At 375px, confirm the page was re-prioritized, not just stacked: secondary decoration dropped, comparisons simplified, nothing surviving purely because it existed on desktop.
 8. **Signature element check.** The brief names one signature element; confirm it exists in the build and actually reads as distinctive.
+9. **Execution-bug sweep (on rendered pages, not code).** Walk the execution-bug list: no content that stays invisible if a reveal misfires, no clipped or edge-jammed text, comparison columns aligned on a shared grid, optical centering verified, no color seams or unreadable text, no blur/shadow/glow applied where it has nothing to act on.
 9. **Report.** The self-review report includes a "slop audit" line: what was caught, what was fixed, anything deliberately kept and why.
