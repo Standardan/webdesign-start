@@ -2,6 +2,15 @@
 
 All notable changes to the webdesign-start skill. Versions follow semver: major = workflow-breaking restructure, minor = new rules/sections/capabilities, patch = fixes and wording.
 
+## 1.2.0 — 2026-07-29
+
+- Made the assistant reopen positively rated sites from its 4-6 Phase 2 examples and inspect them beyond the initial candidate search.
+- Replaced loose "Reference DNA" summaries with a user-approved Reference Translation Matrix: observed evidence, user signal, original project adaptation, exact target, and fidelity check; rejected examples become explicit avoidances.
+- Made user-provided example sites first-class inputs that are inspected before any broader reference search.
+- Added an explicit reference-driven style-sample checkpoint before the full build.
+- Added reference priority rules so approved examples outrank generic style/layout catalogs unless accessibility or project goals require a deviation.
+- Added a rendered reference-fidelity audit and reference-coverage report to pre-delivery review.
+
 ## 1.1.0 — 2026-07-16
 
 - Version + update-check system: `webdesign-start/VERSION`, Phase 0 freshness check, staleness rule for trend-sensitive content.

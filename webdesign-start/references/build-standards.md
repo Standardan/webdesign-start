@@ -7,13 +7,14 @@ This file defines how to implement designs for this project: the HTML foundation
 ## Table of contents
 
 1. [Semantic HTML foundations](#semantic-html-foundations)
-2. [Design-token implementation](#design-token-implementation)
-3. [Stack detection & adaptation](#stack-detection--adaptation)
-4. [Asset handling](#asset-handling)
-5. [Motion implementation](#motion-implementation)
-6. [Responsive verification protocol](#responsive-verification-protocol)
-7. [Pre-delivery checklist](#pre-delivery-checklist)
-8. [Self-review protocol](#self-review-protocol)
+2. [Reference implementation workflow](#reference-implementation-workflow)
+3. [Design-token implementation](#design-token-implementation)
+4. [Stack detection & adaptation](#stack-detection--adaptation)
+5. [Asset handling](#asset-handling)
+6. [Motion implementation](#motion-implementation)
+7. [Responsive verification protocol](#responsive-verification-protocol)
+8. [Pre-delivery checklist](#pre-delivery-checklist)
+9. [Self-review protocol](#self-review-protocol)
 
 ---
 
@@ -35,6 +36,35 @@ Semantic HTML is the cheapest quality multiplier available. It gives screen read
 ### The litmus test for any element choice
 
 Strip all CSS mentally. Does the bare markup still communicate what everything *is* — headings, navigation, a list of six features, a form with labeled fields? If the unstyled page would be an undifferentiated soup of text, the markup is failing its half of the job, and every future edit (styling, theming, accessibility fixes, AI-assisted refactors) gets harder because intent must be reverse-engineered from class names.
+
+---
+
+## Reference implementation workflow
+
+The approved references are not a moodboard to forget once coding starts. Before writing components:
+
+1. Read the Reference Translation Matrix in `DESIGN-BRIEF.md`.
+2. Turn every P1/P2 row into a build checklist item with its named target and fidelity check.
+3. Resolve conflicts in this order: accessibility and task success → explicit user decisions → approved reference obligations → industry guidance → generic style/layout catalogs → personal preference.
+4. Do not let a convenient starter component, framework default, or formula from `layouts.md` override an approved reference obligation.
+
+### Style-sample checkpoint
+
+Build the hero plus one representative content section before the full page. Use the real token layer, fonts, button, card/content treatment, imagery strategy, and responsive behavior. The sample must exercise every P1 row that can reasonably appear above the fold and at least one P2 row.
+
+Render it at 375px and 1440px. Present it with a short carry-through note:
+
+```markdown
+- [Source A trait] → [visible implementation in the sample]
+- [Source B trait] → [visible implementation in the sample]
+- [Rejected trait] → [what the sample does instead]
+```
+
+Pause for confirmation before expanding the full site unless the user explicitly waived the checkpoint. If the user says the sample does not feel like the reference, diagnose the specific mismatch (silhouette, density, type, color, component shape, imagery, or motion), revise the brief's matrix if their interpretation changed, and rebuild the sample. Do not paper over a direction mismatch with small cosmetic tweaks.
+
+### Originality boundary
+
+Match systems and relationships, not brand-identifiable expression. Preserve the approved trait while changing copy, assets, exact measurements, and composition to fit this project's content. Never reproduce a distinctive page section wholesale. "Inspired by" should be explainable as a design rule, not demonstrable as a pixel overlay.
 
 ---
 
@@ -278,6 +308,8 @@ Walk every item before presenting work. Check items honestly — an unchecked it
 
 ### Visual quality
 
+- [ ] Every P1/P2 Reference Translation Matrix row is implemented at its named target or documented as a user-approved deviation
+- [ ] The finished page carries the approved references in its silhouette, spacing, type, color, and components—not only in minor decorative details
 - [ ] All spacing values come from the 4/8px scale — no arbitrary margins/paddings
 - [ ] Consistent border radii from tokens across cards, inputs, buttons, modals
 - [ ] One icon family, one size, one stroke width throughout; no emoji as icons
@@ -359,7 +391,17 @@ Run this after the build is complete and *before* telling the user it's done. It
 
 **Step 1 — Re-read DESIGN-BRIEF.md in full.** Not from memory: open the file and read it. Builds drift; memory of the brief drifts faster.
 
-**Step 2 — Audit the build against the brief, section by section.** For each section of the brief, answer concretely:
+**Step 2 — Run the reference fidelity audit on rendered pages.** Reopen the approved references (or use the inspected screenshots if a live page changed) and check every Reference Translation Matrix row:
+
+- Is the named target present?
+- Does it preserve the observed relationship the user approved, or only a superficial detail?
+- Is the P1 influence visible in the page silhouette, type hierarchy, spacing/density, color distribution, or primary components?
+- Did a framework default or generic layout formula replace it?
+- Is any deviation required by accessibility, content, feasibility, or a later user decision? Record the reason.
+
+Do not score success by pixel similarity. Score whether the intended transferable trait is clearly present. Fix unapproved drift before continuing.
+
+**Step 3 — Audit the build against the rest of the brief, section by section.** For each section of the brief, answer concretely:
 
 - Does the hero (layout, imagery, tone, copy) match the approved reference direction — not just "a nice hero", but *that* direction?
 - Are the brief's tokens actually used in the code, or did parallel values creep in? Grep for hex literals and raw px values in components as an objective check.
@@ -367,13 +409,13 @@ Run this after the build is complete and *before* telling the user it's done. It
 - Does the typography match the brief's specified families and scale?
 - Do interactive behaviors described in the brief (nav style, animations, theme toggle) exist as described?
 
-**Step 3 — Walk the pre-delivery checklist above**, at the four protocol widths, in both themes, with one full keyboard pass. Fix violations as you find them; re-verify anything the fix could have disturbed.
+**Step 4 — Walk the pre-delivery checklist above**, at the four protocol widths, in both themes, with one full keyboard pass. Fix violations as you find them; re-verify anything the fix could have disturbed.
 
-**Step 4 — Cross-check against the UX rulebook's Critical 15** (`references/ux-rules.md`). Any hit is a blocker: fix before delivery.
+**Step 5 — Cross-check against the UX rulebook's Critical 15** (`references/ux-rules.md`). Any hit is a blocker: fix before delivery.
 
-**Step 4b — Run the slop audit** (`references/anti-slop.md`): grep the content files for em dashes, hype-lexicon words, and generic button labels; check the palette and section anatomy against the "banned by default" list; read the headlines in sequence for the specificity test. Include the audit outcome in the report.
+**Step 5b — Run the slop audit** (`references/anti-slop.md`): grep the content files for em dashes, hype-lexicon words, and generic button labels; check the palette and section anatomy against the "banned by default" list; read the headlines in sequence for the specificity test. Include the audit outcome in the report.
 
-**Step 5 — Report honestly.** Tell the user what was verified and what the outcome was, in three buckets:
+**Step 6 — Report honestly.** Start with a short **Reference coverage** list mapping each approved source to the visible result and naming any deliberate deviation. Then report the rest in three buckets:
 
 - **Passed:** what you checked and confirmed (be specific: "keyboard pass at all four widths, both themes").
 - **Fixed during review:** violations found and corrected — this builds trust, don't hide them.

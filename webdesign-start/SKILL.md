@@ -15,9 +15,10 @@ Never skip ahead to code. The phases below exist because every skipped phase res
 
 1. **The user is not a designer.** Never ask "do you want glassmorphism or neo-brutalism?" — ask in plain language, offer concrete options with vivid descriptions, and anchor to famous websites they may know. Translate their answers into design vocabulary yourself.
 2. **Examples beat adjectives.** "Clean and modern" means fifty different things. A URL the user says "yes, like THAT" to means exactly one thing. The research phase is therefore mandatory, not decorative.
-3. **One decision-maker: the brief.** Every visual decision made during build must trace to `DESIGN-BRIEF.md`. If the brief doesn't answer a question, either the answer is obvious from the approved references, or you ask.
-4. **Progress is visible.** Tell the user which phase you're in and what's left. This is a multi-step engagement; don't let it feel like an interrogation without a destination.
-5. **Respect answered questions.** If the user already told you something (in their first message, in an existing brief, in the repo), never ask again. Every phase starts by harvesting what is already known.
+3. **References must survive contact with the build.** Do not reduce approved sites to mood words. Inspect them, extract observable traits, map those traits to named sections/components in this project, and verify the mapping in the rendered result.
+4. **One decision-maker: the brief.** Every visual decision made during build must trace to `DESIGN-BRIEF.md`. If the brief doesn't answer a question, either the answer is obvious from the approved references, or you ask.
+5. **Progress is visible.** Tell the user which phase you're in and what's left. This is a multi-step engagement; don't let it feel like an interrogation without a destination.
+6. **Respect answered questions.** If the user already told you something (in their first message, in an existing brief, in the repo), never ask again. Every phase starts by harvesting what is already known.
 
 ## Environment adaptation (read once, then proceed)
 
@@ -44,10 +45,11 @@ Do this once per engagement, during Phase 0, in the background of your first rep
 ```
 Phase 0: Intake        — harvest what's already known, frame the engagement
 Phase 1: Discovery     — adaptive question batches           → Discovery Summary
-Phase 2: Research      — find real websites, verify w/ user  → Reference DNA
+Phase 2: Research      — inspect real websites, verify w/ user → Reference Translation Matrix
 Phase 3: Brief         — synthesize everything               → DESIGN-BRIEF.md
    [GATE: user approves brief]
 Phase 4: Build         — implement against the brief
+   [CHECKPOINT: user confirms reference-driven style sample]
 Phase 5: Review        — self-audit vs brief + checklist, report honestly
 ```
 
@@ -64,7 +66,7 @@ Before asking anything:
    - **Project already has an approved `DESIGN-BRIEF.md`** → read it and go straight to Phase 4 for the requested work; the brief is the discovery.
    - **Small change to an existing site** (one component, one section, a restyle of something specific) → skip discovery and research; infer the design system from the existing code, confirm your reading in one message, make the change, run the relevant slice of Phase 5.
    - **Audit/review request** → skip to Phase 5's checklists and report findings without building.
-2. **Harvest the opening message.** Product type, industry, audience, style hints, stack, existing brand — mark each as known/unknown.
+2. **Harvest the opening message.** Product type, industry, audience, style hints, stack, existing brand, and every example URL/screenshot the user supplied — mark each as known/unknown. User-supplied references are first-class inputs, not merely candidates to mix into a later search.
 3. **Check for prior state.** If `DESIGN-BRIEF.md` exists in the project, read it and ask whether this is a continuation (build/extend against it) or a fresh direction (archive it, restart discovery). If a codebase exists, note the stack and any existing design tokens/CSS.
 3. **Frame the engagement in 2-3 sentences.** Tell the user what's about to happen: a few short rounds of questions, then you'll bring them real websites to react to, then a written plan, then the build. Users cooperate with questionnaires when they know why and how long.
 
@@ -83,23 +85,25 @@ Read `references/discovery.md` **now** — it contains the full question flows, 
 
 ## Phase 2 — Research (the phase that makes this skill work)
 
-Read `references/research.md` **now**. This phase turns the Discovery Summary into 2-3 user-approved real websites — the "Reference DNA" that anchors every later decision.
+Read `references/research.md` **now**. This phase turns the Discovery Summary into 2-3 user-approved real websites and a concrete **Reference Translation Matrix** that anchors every later decision.
 
 The shape of it:
 
-1. **Search** for live sites matching the discovery profile (query recipes and curated gallery sources are in the reference file). Aim for candidates that are *actually reachable and reasonably current*.
-2. **Present 4-6 candidates** as links with rich descriptions — for each: what the site is, *why it matches specific discovery answers* ("you said calm + premium; notice how much whitespace they leave around the product"), what you'd borrow, and what you'd do differently for this project. Do not present screenshots or attempt to browse — the user opens the links themselves.
-3. **Collect reactions** per site: love / close-but / no, and *what specifically* drew or repelled them. The "what specifically" is the gold — a "no" with a reason is worth more than an unexplained "love."
-4. **Iterate if needed.** Fewer than two strong positives → run one refined round using the reaction reasons as new search constraints. Cap at three rounds; if taste still won't converge, fall back to presenting 2-3 named *directions* built from the strongest partial signals and let the user pick.
-5. **Synthesize Reference DNA**: "Layout generosity and nav from site A; color temperature and button personality from site B; avoid the density of site C." Confirm it with the user in one message.
+1. **Start with user-supplied examples.** Inspect each reachable URL (or attached screenshot) before searching for more. If the user already supplied enough good references, search only to resolve a missing dimension or do not search at all.
+2. **Search** for additional live sites matching the discovery profile when needed (query recipes and curated gallery sources are in the reference file). Search results discover candidates; they are not evidence about a site's design.
+3. **Inspect before describing.** Open each candidate you present. Observe the actual page silhouette, spacing/density, typography, color distribution, components, imagery, and motion. Candidate-presentation notes and memory are not enough: reopen positively rated sites after the user's reaction and record page-specific evidence before building the matrix. If visual browsing is unavailable, state the limitation and do not invent detailed observations from a search snippet.
+4. **Present 4-6 candidates** as links with rich descriptions — for each: what the site is, *why it matches specific discovery answers* ("you said calm + premium; notice how much whitespace they leave around the product"), what to inspect, what you'd borrow, and what you'd do differently for this project.
+5. **Collect reactions** per site: love / close-but / no, and *what specifically* drew or repelled them. The "what specifically" is the gold — a "no" with a reason is worth more than an unexplained "love."
+6. **Iterate if needed.** Fewer than two strong positives → run one refined round using the reaction reasons as new search constraints. Cap at three rounds; if taste still won't converge, fall back to presenting 2-3 named *directions* built from the strongest partial signals and let the user pick.
+7. **Translate, don't summarize.** Build a Reference Translation Matrix: each approved trait must name its source, the observed evidence, its original adaptation for this project, and the exact target section/component. Every approved reference contributes at least one implementation obligation or is explicitly labeled "mood only." Confirm this matrix with the user in one message.
 
 Guardrail: references are for *direction* — structure, mood, spacing philosophy, color temperature. Never copy a reference's layout wholesale, its copy, logos, images, or distinctive brand elements. The user should get a site that belongs in the same room as their references, not a clone.
 
 ## Phase 3 — The Design Brief
 
-Synthesize Discovery Summary + Reference DNA + industry playbook into `DESIGN-BRIEF.md` at the project root, using the template in `references/brief-template.md`. To fill it well, consult:
+Synthesize Discovery Summary + Reference Translation Matrix + industry playbook into `DESIGN-BRIEF.md` at the project root, using the template in `references/brief-template.md`. The approved reference matrix outranks generic catalog defaults; use the catalogs to complete unanswered details, not to overwrite the examples the user chose. To fill it well, consult:
 
-- `references/styles.md` — pick the dominant style (and at most one accent influence) that matches the Reference DNA; the entry gives you the visual recipe.
+- `references/styles.md` — pick the dominant style (and at most one accent influence) that matches the approved Reference Translation Matrix; the entry gives you the visual recipe.
 - `references/color.md` — build the full token set (light *and* dark if in scope) from the closest industry palette, adjusted toward the approved references.
 - `references/typography.md` — pick a pairing whose personality matches; include weights and fallbacks.
 - `references/layouts.md` — choose the page/section formulas for every page in scope.
@@ -116,16 +120,18 @@ Read `references/build-standards.md`, `references/ux-rules.md`, and `references/
 - The UX rulebook's Priority 1-2 tiers (accessibility, touch/interaction) are never traded away for aesthetics.
 - Real content where the user provided it; honest, well-shaped placeholders where they didn't (flag every placeholder in the final report).
 - All copy you write follows the anti-slop writing rules: no em dashes in site copy, no hype lexicon, specifics over adjectives, the client's own phrases from discovery wherever possible.
-- **Build a style sample before the first full page:** the hero plus one content section, real tokens, real type, one representative button and card. Show it. Agencies moved from moodboards to "style tiles" because clients react far more accurately to a rendered sample than to abstract swatches — this catches direction-level misreads at one-tenth the cost of a built site. Then work page by page in brief order.
+- Before coding, turn the brief's Reference Translation Matrix into a build checklist. Do not choose a convenient stock hero, card grid, or component treatment that conflicts with it.
+- **Build a reference-driven style sample before the first full page:** the hero plus one content section, real tokens, real type, one representative button and card. It must visibly exercise the 3-5 highest-priority reference obligations. Render it, show it, and identify which observed trait informed each major choice. Pause for the user's confirmation before expanding the rest of the site unless they explicitly waived this checkpoint. Then work page by page in brief order.
 - One more layer of intent while building: the site should have **one governing idea** (from the brief) that every section serves, and each viewport gets **one leading motion event** at most — uniform fade-ups on everything is noise, not craft.
 
 ## Phase 5 — Self-review
 
-Follow the self-review protocol at the end of `references/build-standards.md`: re-read `DESIGN-BRIEF.md`, audit the built pages against it section by section, run the slop audit from `references/anti-slop.md`, then walk the pre-delivery checklist. **If your environment can render pages (a browser tool, screenshot capability, or a dev server preview), use it**: view the built pages at 375px and 1440px and inspect what's actually on screen rather than trusting the code — spacing collisions, text overflow, and dead-looking sections only show up rendered. Fix what you find.
+Follow the self-review protocol at the end of `references/build-standards.md`: re-read `DESIGN-BRIEF.md`, audit every Reference Translation Matrix row against the rendered pages, audit the built pages section by section, run the slop audit from `references/anti-slop.md`, then walk the pre-delivery checklist. **If your environment can render pages (a browser tool, screenshot capability, or a dev server preview), use it**: view the built pages at 375px and 1440px and inspect what's actually on screen rather than trusting the code — spacing collisions, text overflow, reference drift, and dead-looking sections only show up rendered. Fix what you find.
 
 Elite sites budget the final stretch for polish, not new ideas: awkward heading line-breaks, section-to-section spacing seams, focus states, image loading behavior, reduced-motion. Spend a real pass on these before reporting. Then report to the user:
 
 - What was built (pages, components).
+- Reference coverage — which approved examples shaped which visible parts of the site, plus any deliberate deviations and why.
 - Checklist results — **honestly**, including anything that failed or was skipped and why.
 - Every placeholder awaiting real content.
 - Suggested next steps (real copy, imagery, deployment) — as offers, not questions blocking completion.

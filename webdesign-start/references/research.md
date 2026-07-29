@@ -1,6 +1,6 @@
 # Research — Finding Real Websites the User Can Point At
 
-This file defines Phase 2: turning the Discovery Summary into 2-3 **user-approved live websites** ("Reference DNA"). Users who cannot describe what they want can instantly recognize it — this phase exists to put recognizable things in front of them. Do not skip it, and do not treat it as decoration: the approved references become the strongest constraint on the build.
+This file defines Phase 2: turning the Discovery Summary into 2-3 **user-approved live websites** and a **Reference Translation Matrix**. Users who cannot describe what they want can instantly recognize it — this phase exists to put recognizable things in front of them, inspect what they chose, and convert it into implementation obligations. Do not skip it, and do not treat it as decoration: approved references become the strongest visual constraint on the build.
 
 **When to read this file:** at the start of Phase 2, with a confirmed Discovery Summary in hand.
 
@@ -11,7 +11,9 @@ This file defines Phase 2: turning the Discovery Summary into 2-3 **user-approve
 - [Step 2 — Where to look: gallery sources](#step-2--where-to-look-gallery-sources)
 - [Step 3 — Vet before presenting](#step-3--vet-before-presenting)
 - [Step 4 — Presentation format](#step-4--presentation-format)
-- [Step 5 — Reaction loop & Reference DNA](#step-5--reaction-loop--reference-dna)
+- [Step 5 — Reaction loop](#step-5--reaction-loop)
+- [Step 6 — Inspect approved references](#step-6--inspect-approved-references)
+- [Step 7 — Build the Reference Translation Matrix](#step-7--build-the-reference-translation-matrix)
 - [The anchor library (no-search fallback)](#the-anchor-library-no-search-fallback)
 - [Guardrails](#guardrails)
 
@@ -21,16 +23,21 @@ This file defines Phase 2: turning the Discovery Summary into 2-3 **user-approve
 
 ```
 Discovery Summary
+   → inspect user-supplied examples first
    → compose 3-5 search queries          (Step 1)
    → search web + galleries + anchors    (Step 2)
    → vet candidates, keep 4-6            (Step 3)
    → present with "why it matches you"   (Step 4)
    → collect per-site reactions          (Step 5)
-   → converged? → write Reference DNA, confirm, exit to Phase 3
+   → converged? → inspect approved sites deeply (Step 6)
+   → map observed traits to this project (Step 7)
+   → confirm matrix, exit to Phase 3
    → not converged? → refine and rerun once or twice (3 rounds max)
 ```
 
-Target one round; expect two; cap at three. Mix candidate *sources*: 1-2 famous anchors the user may already know, 2-3 search/gallery finds, and — if the user named an admired site or competitor in discovery — always include it or its best-in-class sibling.
+**User-supplied examples come first.** Open every URL or screenshot the user provided before composing searches. Treat these as pre-qualified candidates, not as one more source to dilute among assistant choices. If they already cover the needed dimensions, skip broad discovery search; search only for a missing dimension or a more achievable sibling.
+
+When more candidates are needed, target one round; expect two; cap at three. Mix candidate *sources*: 1-2 famous anchors the user may already know and 2-3 search/gallery finds.
 
 Aim for a spread, not six clones: if discovery says "calm premium serif," present four takes on that plus one deliberate outlier a notch bolder. The outlier calibrates the boundary — users often discover their real taste by rejecting (or unexpectedly loving) it.
 
@@ -80,15 +87,16 @@ Practical approach with web search: search `site:godly.website dark saas` or fet
 
 Every candidate must pass:
 
-1. **Reachable.** Prefer sites you've confirmed are live (search snippets from the current year, or a successful fetch). A dead link torches trust in the whole exercise. If you can't verify liveness, present only well-known sites likely to be stable.
-2. **Actually matches ≥3 discovery signals.** Write the mapping down before presenting — if you can't name which answers a site matches, it's filler.
-3. **Respects the anti-preferences.** A candidate that trips a "never" is only allowed as the calibration outlier, explicitly labeled.
-4. **Not grossly out of budget-league** unless flagged: showing a $200k agency masterpiece to a solo café owner is fine *if* you say "we'd borrow the mood, not the production values."
-5. **Diverse set.** No two near-identical candidates; each earns its slot by testing a different variable (color temperature, density, type voice…).
+1. **Reachable.** Open the actual destination, not only a search result or gallery listing. A dead link torches trust in the whole exercise.
+2. **Visually inspected.** Search snippets discover candidates; they do not support claims about layout, spacing, type, imagery, or motion. Inspect the live page or an attached screenshot before describing those traits. If you lack visual browsing, say so and keep observations limited to what you can verify.
+3. **Actually matches ≥3 discovery signals.** Write the mapping down before presenting — if you can't name which answers a site matches, it's filler.
+4. **Respects the anti-preferences.** A candidate that trips a "never" is only allowed as the calibration outlier, explicitly labeled.
+5. **Not grossly out of budget-league** unless flagged: showing a $200k agency masterpiece to a solo café owner is fine *if* you say "we'd borrow the mood, not the production values."
+6. **Diverse set.** No two near-identical candidates; each earns its slot by testing a different variable (color temperature, density, type voice…).
 
 ## Step 4 — Presentation format
 
-Present as links with rich descriptions (do not attempt screenshots — the user opens links in their own browser). Use exactly this shape:
+Present as links with rich descriptions. The user should still open the links; your inspection tells them where to look. Include a screenshot only when it materially clarifies a transient state, a long page, or a user-provided reference they cannot reopen. Use exactly this shape:
 
 ```markdown
 ## Round [N]: React to these [5] sites
@@ -116,7 +124,7 @@ The "why I picked it for you" line is mandatory — it teaches the user that the
 
 **Two reactions per site when stakes are high.** For business sites, ask both "do YOU like it?" and "would it work on YOUR customers?" — the split between personal attraction and strategic fit is exactly where founder taste conflicts with the site's job, and it's far cheaper to surface that here than after the build.
 
-## Step 5 — Reaction loop & Reference DNA
+## Step 5 — Reaction loop
 
 **Interpreting reactions:**
 - A reasoned 👎 is high-value data — it eliminates a whole region ("too corporate" kills corporate-refined even if other signals pointed there).
@@ -124,18 +132,56 @@ The "why I picked it for you" line is mandatory — it teaches the user that the
 - Unexplained 😍 → one follow-up: "what's the first thing you liked?" Don't interrogate further.
 - Contradictions (loves an airy site AND a dense one) → surface it: "these two pull opposite directions on density — which matters more on YOUR site?"
 
-**Converged** = at least two strong positives with known reasons. Then write the Reference DNA and confirm it in one message:
-
-```markdown
-## Reference DNA (locked after your 👍)
-
-- **Overall mood from [Site A]:** [e.g., generous spacing, one idea per screen]
-- **Color & warmth from [Site B]:** [e.g., cream background, ink text, one persimmon accent]
-- **[Component] treatment from [Site A]:** [e.g., understated nav, pill CTA]
-- **Explicitly avoiding:** [from the 👎s — e.g., stock-photo corporate feel of Site C]
-```
+**Converged** = at least two strong positives with known reasons. From the 4-6 sites you presented, positive and "close-but" traits become implementation candidates; rejected traits become explicit avoidances. Do not jump directly from these reactions to generic mood words. Proceed to deep inspection and translation.
 
 **Not converged after round 1** → build round 2 from the reaction reasons (new constraints in, dead regions out). **Still stuck after round 3** → stop searching; present 2-3 named *directions* (mini mood descriptions synthesized from every positive fragment) and have the user pick one. Do not loop forever; decision fatigue is real and Phase 3's brief digest is another checkpoint anyway.
+
+## Step 6 — Inspect approved references
+
+Reopen each positively rated site from the presented set after the user explains what they like. This second inspection is required even if you opened it while vetting candidates: now you know which traits the user meant. Inspect the homepage plus any page/state that contains the liked feature. When a visual browser or screenshots are available, use them and check desktop and mobile because responsive behavior is part of the design. Do not draft the matrix from memory, search snippets, or the candidate-presentation copy. Capture observations in these buckets:
+
+1. **Page silhouette:** section order, hero proportion, density shifts, full-bleed vs contained areas.
+2. **Layout rhythm:** container width, whitespace, alignment, grid behavior, text measure.
+3. **Typography:** serif/sans/mono roles, scale contrast, weight, casing, line height.
+4. **Color distribution:** background/surface relationship, accent frequency, contrast, warmth.
+5. **Shape and depth:** radii, borders, shadows, dividers, card containment.
+6. **Components:** nav, CTA, cards, forms, footer, repeated content patterns.
+7. **Media:** photography/illustration/product UI role, crop, aspect ratio, placement.
+8. **Motion and interaction:** entrance hierarchy, hover behavior, sticky/scroll treatment.
+
+Record only observable details. Do not infer exact CSS values unless you can inspect them. Distinguish what the user explicitly liked from what you merely observed: approval of one trait is not approval of the whole site.
+
+If a reference cannot be reached:
+
+- Ask for a screenshot only if that reference is important and no equivalent evidence is available.
+- Otherwise mark it uninspected and do not make detailed claims about it.
+- Never quietly substitute your memory of a past version of the site.
+
+## Step 7 — Build the Reference Translation Matrix
+
+Translate each approved trait into an original project decision. Use this format:
+
+```markdown
+## Reference Translation Matrix (locked after your 👍)
+
+| Priority | Source + observed evidence | User's signal | Original translation for this project | Target in our site | Fidelity check |
+|---|---|---|---|---|---|
+| P1 | [Site A]: oversized left-aligned serif hero, narrow copy measure, product image enters below fold | "Love the breathing room and type" | Editorial hero with our headline in a 10-column grid; distinct typeface and proportions | Home hero | At 1440px the headline dominates; first supporting section only peeks below fold |
+| P1 | [Site B]: warm off-white field with dark ink and rare orange CTA | "These colors feel right" | Accessible cream/ink palette with our brand accent reserved for actions | Global tokens, buttons | Accent appears on primary actions only; contrast passes |
+| P2 | [Site A]: restrained text nav with one compact CTA | "Nav feels simple" | Six-item maximum nav with one bordered booking action | Global header | No mega-menu; CTA is visually secondary to hero |
+| Avoid | [Site C]: dense three-column card wall | "Too busy" | Use alternating editorial sections; never more than two peer cards above fold | Home sections 2-4 | No generic three-card feature row |
+```
+
+Rules:
+
+- Use all six columns shown above; do not collapse **Source + observed evidence** into a generic label such as "Site A: clean." Name the page/region and the concrete trait you inspected.
+- Every approved reference must contribute at least one row, or be labeled **mood only** with a reason.
+- Every positive row must name a concrete target: token, component, section, page, or interaction.
+- Include 3-7 obligations, ranked P1/P2. More rows dilute the signal.
+- Add explicit avoidances from negative reactions.
+- Translation must preserve the trait without reproducing proprietary copy, assets, logos, or a distinctive composition wholesale.
+- If references conflict, surface the conflict and ask which trait wins; do not average them into generic design.
+- Confirm the matrix with the user. This confirmation locks what the references actually mean before the brief is written.
 
 ## The anchor library (no-search fallback)
 

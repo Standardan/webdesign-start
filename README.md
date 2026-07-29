@@ -12,12 +12,12 @@ Works with **Claude Code, Cursor, Codex, Windsurf, Grok, and any assistant that 
 Phase 0  Intake      — reads what you already said; never re-asks
 Phase 1  Discovery   — 3-ish rounds of 3-4 multiple-choice questions,
                        plain language, famous-site comparisons, no jargon
-Phase 2  Research    — searches the web for 4-6 real sites matching your answers,
-                       presents links + "why this matches you" — you react to each
+Phase 2  Research    — inspects your example sites first, then finds more only if needed;
+                       you react, then each approved trait is mapped to this project
 Phase 3  Brief       — everything becomes DESIGN-BRIEF.md; you approve a short digest
    ── hard gate: no code before your approval ──
-Phase 4  Build       — implements against the brief, mobile-first, token-driven
-Phase 5  Review      — audits itself against the brief + a 40-item checklist,
+Phase 4  Build       — shows a reference-driven style sample, then implements the brief
+Phase 5  Review      — audits reference carry-through + the brief + a 40-item checklist,
                        reports honestly what passed, failed, and is placeholder
 ```
 
@@ -31,8 +31,8 @@ webdesign-start/
 └── references/                  # loaded progressively, only when a phase needs them
     ├── discovery.md             # adaptive questionnaire, branches per product type,
     │                            #   + the "vague answer decoder" (what 'modern & clean' hides)
-    ├── research.md              # search recipes, 16 curated design galleries,
-    │                            #   presentation format, reaction loop, no-search fallback
+    ├── research.md              # user-reference inspection, search recipes, galleries,
+    │                            #   reaction loop, Reference Translation Matrix
     ├── styles.md                # 46 UI styles in 10 families, each with CSS recipe + real examples
     ├── color.md                 # token architecture + ~28 industry palettes with hex
     ├── typography.md            # 32 font pairings by personality + scale/fluid-type systems
@@ -84,7 +84,7 @@ Put the `webdesign-start` folder where the assistant can read it, then paste the
 
 ## Design lineage
 
-The design-principles layer (style catalog, industry anti-patterns, priority-tiered UX rules, pre-delivery checklist) is inspired by and extends [ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill). What this skill adds is the front half that data can't provide: **structured taste extraction** (the discovery interview + vague-answer decoder) and **verified visual references** (the internet research + reaction loop) — so the design system that gets generated is *yours*, not a statistically plausible one.
+The design-principles layer (style catalog, industry anti-patterns, priority-tiered UX rules, pre-delivery checklist) is inspired by and extends [ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill). What this skill adds is the front half that data can't provide: **structured taste extraction** (the discovery interview + vague-answer decoder) and **verified visual references** (inspection + reaction + explicit mapping into the build) — so the design system that gets generated is *yours*, not a statistically plausible one.
 
 ## Updating
 
@@ -96,5 +96,5 @@ To update a copied install, re-copy the `webdesign-start` folder from this repo 
 
 - **Give the opening message real information** ("a site for my two-chair barbershop in Austin, we're booked out weeks") — Phase 0 harvests it and skips those questions.
 - **React honestly in the research phase.** A "no, too corporate" is worth more than three polite "loves."
-- **Name sites you already admire**, even from unrelated industries — it short-circuits half the search.
+- **Name sites you already admire**, even from unrelated industries — the skill inspects these first and maps the parts you like to specific parts of your project.
 - **Keep `DESIGN-BRIEF.md` in the repo.** It's the memory. Future "add a pricing page" requests will match the existing design because the brief says how.

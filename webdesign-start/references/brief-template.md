@@ -2,13 +2,13 @@
 
 This file defines `DESIGN-BRIEF.md`, the single source of truth produced in Phase 3 and consumed by every later phase (and by future sessions in any AI tool). A good brief means a session that starts six weeks from now — in a different assistant — can extend the site without re-interviewing the user.
 
-**When to read this file:** entering Phase 3, after Reference DNA is confirmed.
+**When to read this file:** entering Phase 3, after the Reference Translation Matrix is confirmed.
 
 ## Usage rules
 
 1. **Location:** write to `DESIGN-BRIEF.md` at the project root. If you cannot write files, output the full brief in chat, fenced, and ask the user to save it at the project root under that exact name.
 2. **Fill every section.** An empty section means an undecided decision that will be improvised inconsistently at build time. If something is genuinely open, write it in **Open questions** rather than leaving silence.
-3. **Traceability.** Every choice should trace to a discovery answer, an approved reference, or an industry-playbook rule — the *Why* column/notes exist so future sessions (and the user) can distinguish "decided for a reason" from "arbitrary, feel free to change."
+3. **Traceability.** Every choice should trace to a discovery answer, an approved reference, or an industry-playbook rule — the *Why* column/notes exist so future sessions (and the user) can distinguish "decided for a reason" from "arbitrary, feel free to change." Approved references outrank generic catalog defaults unless accessibility or the project's stated goal requires a deviation.
 4. **Present as a digest, not the file.** After writing, show the user: direction paragraph, palette as a labeled list, the two fonts, the page list, and anything you flagged. Ask for approval. Do not paste the whole brief into chat unless asked.
 5. **The brief is law during build** — but living law. When the user requests changes mid-build, update the brief first, then the code, so the two never diverge.
 6. **Page-level overrides.** If one page needs different rules (e.g., a dark landing page for a launch inside a light site), add a subsection under **Page map** rather than forking the token set.
@@ -26,11 +26,14 @@ _Produced by the webdesign-start discovery process. Read fully before any visual
 - **#1 visitor action:** [the conversion this site optimizes for]
 - **Positioning:** [premium/mid/budget · established/challenger · local/global]
 
-## 2. Reference DNA (user-approved)
-| Source site | What we take | What we explicitly don't |
-|---|---|---|
-| [URL] | [spacing philosophy, nav treatment…] | [its density, its palette…] |
-| [URL] | […] | […] |
+## 2. Reference Translation Matrix (user-approved)
+| Priority | Source + observed evidence | User's signal | Original translation for this project | Target in our site | Fidelity check |
+|---|---|---|---|---|---|
+| P1 | [URL + exact observed trait/location] | [what the user said they liked] | [how we preserve the trait without copying] | [token/component/section/page] | [observable pass condition] |
+| P2 | […] | […] | […] | […] | […] |
+| Avoid | [URL + rejected trait] | [what the user disliked] | [what replaces it] | [affected areas] | [observable absence/presence] |
+
+**Coverage rule:** Every approved reference contributes at least one implementation row or is explicitly labeled **mood only** with a reason. P1 rows must appear in the style sample.
 
 **Never-list (from user + industry anti-patterns):**
 - [e.g., no stock-photo corporate feel; no carousel hero; no red as primary (medical)]
@@ -91,12 +94,16 @@ Mode: [light-only | dark-only | light + dark toggle]
 - Nav: [pattern, sticky behavior, mobile pattern]
 - Cards: […] · Forms: […] · Footer: […] · [etc.]
 
+**Reference obligations by component:**
+- [Component]: [matrix row/source → exact trait to preserve]
+
 ## 9. Page map
 [One block per page, in build order.]
 
 ### [Page name] — `/route`
 Purpose: […] · Formula: [from layouts.md, e.g., "SaaS landing 10-section"]
 Sections: [ordered list, one line each with content status (real/placeholder)]
+[For each section that carries a reference obligation, append: `Reference: [matrix row/source + trait]`.]
 [Optional: **Overrides:** any page-specific deviations from global tokens]
 
 ## 10. Content status
@@ -128,6 +135,7 @@ persimmon accent, serif headlines, soft-rounded buttons, subtle scroll reveals."
 persimmon #E8552F for buttons/links"]
 **Type:** [Display] for headlines, [Body] for text
 **Pages:** [list] · **Motion:** [one line] · **Mode:** [light/dark]
+**Reference carry-through:** [3-5 P1/P2 mappings in plain language: "Site A's editorial hero → home hero; Site B's restrained color use → global tokens"]
 **Flagged:** [anything defaulted or in tension, e.g., "you said X but the industry norm is Y — I went with…"]
 
 Approve to start the build, or tell me what to adjust. (Full details: DESIGN-BRIEF.md)
