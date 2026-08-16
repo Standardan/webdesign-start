@@ -12,6 +12,7 @@ This file defines `DESIGN-BRIEF.md`, the single source of truth produced in Phas
 4. **Present as a digest, not the file.** After writing, show the user: direction paragraph, palette as a labeled list, the two fonts, the page list, and anything you flagged. Ask for approval. Do not paste the whole brief into chat unless asked.
 5. **The brief is law during build** — but living law. When the user requests changes mid-build, update the brief first, then the code, so the two never diverge.
 6. **Page-level overrides.** If one page needs different rules (e.g., a dark landing page for a launch inside a light site), add a subsection under **Page map** rather than forking the token set.
+7. **Live components.** Read `beui.md`, fetch the current registry, and complete the Component Opportunity Map before approval. Never fill it from memory or a stale static list.
 
 ## Template
 
@@ -97,6 +98,15 @@ Mode: [light-only | dark-only | light + dark toggle]
 **Reference obligations by component:**
 - [Component]: [matrix row/source → exact trait to preserve]
 
+### Component Opportunity Map (live beUI check)
+_Registry checked: [timestamp] · Upstream main SHA: [SHA if available, otherwise unavailable]_
+
+| Feature need | Live beUI candidates checked | Selected implementation | Target | Adaptation and reason | Constraint/fallback |
+|---|---|---|---|---|---|
+| [functional need] | [@beui/slug-a, @beui/slug-b] | [@beui/slug-a] | [component/section/page] | [how it serves the approved direction] | [stack/a11y/performance/no-match note] |
+
+**Selection rule:** Recheck the relevant live item before implementation and automatically use the strongest compatible beUI component. Never overwrite local customizations, introduce an incompatible stack silently, or sacrifice accessibility/performance to force a match.
+
 ## 9. Page map
 [One block per page, in build order.]
 
@@ -135,6 +145,7 @@ persimmon accent, serif headlines, soft-rounded buttons, subtle scroll reveals."
 persimmon #E8552F for buttons/links"]
 **Type:** [Display] for headlines, [Body] for text
 **Pages:** [list] · **Motion:** [one line] · **Mode:** [light/dark]
+**Live components:** [1-3 automatically selected high-impact beUI implementations or native-stack adaptations the user should notice]
 **Reference carry-through:** [3-5 P1/P2 mappings in plain language: "Site A's editorial hero → home hero; Site B's restrained color use → global tokens"]
 **Flagged:** [anything defaulted or in tension, e.g., "you said X but the industry norm is Y — I went with…"]
 

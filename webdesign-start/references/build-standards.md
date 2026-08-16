@@ -8,13 +8,14 @@ This file defines how to implement designs for this project: the HTML foundation
 
 1. [Semantic HTML foundations](#semantic-html-foundations)
 2. [Reference implementation workflow](#reference-implementation-workflow)
-3. [Design-token implementation](#design-token-implementation)
-4. [Stack detection & adaptation](#stack-detection--adaptation)
-5. [Asset handling](#asset-handling)
-6. [Motion implementation](#motion-implementation)
-7. [Responsive verification protocol](#responsive-verification-protocol)
-8. [Pre-delivery checklist](#pre-delivery-checklist)
-9. [Self-review protocol](#self-review-protocol)
+3. [Live component implementation](#live-component-implementation)
+4. [Design-token implementation](#design-token-implementation)
+5. [Stack detection & adaptation](#stack-detection--adaptation)
+6. [Asset handling](#asset-handling)
+7. [Motion implementation](#motion-implementation)
+8. [Responsive verification protocol](#responsive-verification-protocol)
+9. [Pre-delivery checklist](#pre-delivery-checklist)
+10. [Self-review protocol](#self-review-protocol)
 
 ---
 
@@ -65,6 +66,20 @@ Pause for confirmation before expanding the full site unless the user explicitly
 ### Originality boundary
 
 Match systems and relationships, not brand-identifiable expression. Preserve the approved trait while changing copy, assets, exact measurements, and composition to fit this project's content. Never reproduce a distinctive page section wholesale. "Inspired by" should be explainable as a design rule, not demonstrable as a pixel overlay.
+
+---
+
+## Live component implementation
+
+Read `beui.md` and the brief's Component Opportunity Map before coding. For each feature:
+
+1. Re-query the live registry and inspect the selected item's current detail/source.
+2. Compare the live files with any installed copy. Merge upstream accessibility or behavior improvements without erasing local tokens, content, or project-specific fixes.
+3. Install directly only when the stack is compatible. Otherwise implement the approved native-stack adaptation; do not add a parallel framework silently.
+4. Preserve the component's interaction semantics while replacing demo colors, type, spacing, radii, and copy with the approved design system.
+5. Verify its dependencies are necessary, current enough for the host project, and recorded in the final report.
+
+The style sample includes the highest-impact automatically selected component. Present the implemented result, not alternatives. If the user critiques it, turn the feedback into a constraint, recheck the registry, and revise before full expansion. Small affordances may be batched into the overall motion system.
 
 ---
 
@@ -126,7 +141,7 @@ Before writing code, detect what exists. Check for `package.json` (and its depen
 | **Tailwind absent** | Do not add it to an existing project unprompted. Write plain CSS with custom properties; use BEM-ish or component-scoped class naming consistent with whatever the project already does. |
 | **shadcn/ui present** (`components.json`, `components/ui/`) | Use existing `components/ui` primitives instead of hand-rolling buttons/dialogs/dropdowns — they already handle focus traps, keyboard nav, and ARIA. Style via the CSS-variable theme (`--primary`, `--radius`, etc. in `globals.css`), which is where the brief's tokens map in. Add new primitives via the established pattern rather than inventing parallel ones. |
 
-**Greenfield default (nothing detected):** Static-first, minimal dependencies. Plain HTML + CSS custom properties + small vanilla JS is the default recommendation for marketing sites, portfolios, landing pages, and docs — it loads fastest, has zero build fragility, and remains editable by anyone (human or AI) without toolchain knowledge. Escalate to a framework only when you discover genuinely app-like requirements: client-side state shared across many views, auth-gated dashboards, real-time data, complex form wizards. When escalating, say why — "this needs X, which justifies Y" — rather than defaulting to a framework out of habit. A framework you didn't need is permanent complexity purchased for nothing.
+**Greenfield default (nothing detected):** Let the approved Component Opportunity Map decide. When several high-value beUI interactions are central to the experience, prefer a React/Next.js + Tailwind/shadcn-compatible foundation and explain the dependency cost in the brief. When the site is mostly static prose and imagery, use a static-first stack and adapt only the selected interaction patterns natively. Do not buy a framework solely to animate content, but do not choose a minimal stack that prevents the approved interaction direction either.
 
 ---
 
@@ -309,6 +324,7 @@ Walk every item before presenting work. Check items honestly — an unchecked it
 ### Visual quality
 
 - [ ] Every P1/P2 Reference Translation Matrix row is implemented at its named target or documented as a user-approved deviation
+- [ ] Every Component Opportunity Map row is implemented, intentionally deferred, or rejected with a documented reason
 - [ ] The finished page carries the approved references in its silhouette, spacing, type, color, and components—not only in minor decorative details
 - [ ] All spacing values come from the 4/8px scale — no arbitrary margins/paddings
 - [ ] Consistent border radii from tokens across cards, inputs, buttons, modals
@@ -321,6 +337,8 @@ Walk every item before presenting work. Check items honestly — an unchecked it
 
 ### Interaction
 
+- [ ] The current live beUI registry was checked for every new or changed feature; exact slugs/source adaptations are recorded
+- [ ] Imported or adapted beUI components use project tokens and do not carry demo styling unchanged
 - [ ] Every interactive element has visible hover (pointer devices), focus-visible, and active states
 - [ ] Pressed/active states don't shift layout
 - [ ] Touch targets ≥44px with ≥8px gaps at mobile widths
@@ -401,7 +419,15 @@ Run this after the build is complete and *before* telling the user it's done. It
 
 Do not score success by pixel similarity. Score whether the intended transferable trait is clearly present. Fix unapproved drift before continuing.
 
-**Step 3 — Audit the build against the rest of the brief, section by section.** For each section of the brief, answer concretely:
+**Step 3 — Audit live component coverage.** Re-fetch the relevant beUI registry items and walk every Component Opportunity Map row:
+
+- Was the selected current component, slug, or native-stack adaptation used at the named target?
+- Does the installed code preserve local design tokens and project-specific fixes?
+- Did upstream change after selection? If so, assess and merge relevant accessibility/behavior fixes without blind overwrite.
+- Do reduced motion, keyboard, touch, focus, and dependency checks pass?
+- Is any no-match, rejection, or deferral explained honestly?
+
+**Step 4 — Audit the build against the rest of the brief, section by section.** For each section of the brief, answer concretely:
 
 - Does the hero (layout, imagery, tone, copy) match the approved reference direction — not just "a nice hero", but *that* direction?
 - Are the brief's tokens actually used in the code, or did parallel values creep in? Grep for hex literals and raw px values in components as an objective check.
@@ -409,13 +435,13 @@ Do not score success by pixel similarity. Score whether the intended transferabl
 - Does the typography match the brief's specified families and scale?
 - Do interactive behaviors described in the brief (nav style, animations, theme toggle) exist as described?
 
-**Step 4 — Walk the pre-delivery checklist above**, at the four protocol widths, in both themes, with one full keyboard pass. Fix violations as you find them; re-verify anything the fix could have disturbed.
+**Step 5 — Walk the pre-delivery checklist above**, at the four protocol widths, in both themes, with one full keyboard pass. Fix violations as you find them; re-verify anything the fix could have disturbed.
 
-**Step 5 — Cross-check against the UX rulebook's Critical 15** (`references/ux-rules.md`). Any hit is a blocker: fix before delivery.
+**Step 6 — Cross-check against the UX rulebook's Critical 15** (`references/ux-rules.md`). Any hit is a blocker: fix before delivery.
 
-**Step 5b — Run the slop audit** (`references/anti-slop.md`): grep the content files for em dashes, hype-lexicon words, and generic button labels; check the palette and section anatomy against the "banned by default" list; read the headlines in sequence for the specificity test. Include the audit outcome in the report.
+**Step 7 — Run the slop audit** (`references/anti-slop.md`): grep the content files for em dashes, hype-lexicon words, and generic button labels; check the palette and section anatomy against the "banned by default" list; read the headlines in sequence for the specificity test. Include the audit outcome in the report.
 
-**Step 6 — Report honestly.** Start with a short **Reference coverage** list mapping each approved source to the visible result and naming any deliberate deviation. Then report the rest in three buckets:
+**Step 8 — Report honestly.** Start with short **Reference coverage** and **Component coverage** lists mapping approved sources and live component choices to visible results, including deliberate deviations. Then report the rest in three buckets:
 
 - **Passed:** what you checked and confirmed (be specific: "keyboard pass at all four widths, both themes").
 - **Fixed during review:** violations found and corrected — this builds trust, don't hide them.

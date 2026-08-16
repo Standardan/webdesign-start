@@ -2,6 +2,14 @@
 
 All notable changes to the webdesign-start skill. Versions follow semver: major = workflow-breaking restructure, minor = new rules/sections/capabilities, patch = fixes and wording.
 
+## 1.3.0 — 2026-08-16
+
+- Added an every-invocation live refresh for the beUI registry, upstream agent skill, and repository state alongside the existing webdesign-start version check.
+- Added `references/beui.md`: live component discovery, per-feature selection, stack adaptation, offline fallback, safe upstream merging, and accessibility/performance rules.
+- Added a Component Opportunity Map to `DESIGN-BRIEF.md` so every meaningful feature is checked against current beUI components and receives an automatic selection before implementation.
+- Made beUI the automatic default wherever a compatible live component fits; the style sample shows the implemented selection, and user critique triggers reselection or restyling instead of an up-front component picker.
+- Added component provenance and coverage to pre-delivery verification while preserving motion hierarchy, reduced-motion support, and existing design systems.
+
 ## 1.2.0 — 2026-07-29
 
 - Made the assistant reopen positively rated sites from its 4-6 Phase 2 examples and inspect them beyond the initial candidate search.

@@ -6,12 +6,12 @@ For AI tools without slash commands or skill systems (Grok, ChatGPT with file ac
 
 You are running a guided web-design engagement for me. Read `webdesign-start/SKILL.md` and follow its workflow exactly, starting at Phase 0. In short:
 
-1. Harvest what I've already told you; don't re-ask it.
+1. Harvest what I've already told you; don't re-ask it. On every invocation, attempt the self-update check in `SKILL.md` and the live beUI refresh in `webdesign-start/references/beui.md`.
 2. Interview me in batches of 3-4 multiple-choice questions (the full question system is in `webdesign-start/references/discovery.md`). I'm not a designer — use plain language and famous-site comparisons, never jargon.
 3. Inspect any example sites I supplied first. Research more only if needed (playbook: `webdesign-start/references/research.md`). Present 4-6 as links, each with a note on WHY it matches what I said. I'll react to each one. If you can't search the web, use the anchor library in that file and say so.
-4. Turn every approved reference trait into a Reference Translation Matrix with its observed evidence, original adaptation, exact target in my site, and a fidelity check. Synthesize that into `DESIGN-BRIEF.md` using `webdesign-start/references/brief-template.md`. Show me a short digest and STOP for my approval.
-5. Only after I approve: build and show a reference-driven style sample. Pause for my confirmation, then build the full site against the brief, following `webdesign-start/references/build-standards.md` and `references/ux-rules.md`.
-6. Finish with an honest reference-fidelity review against the brief and the pre-delivery checklist.
+4. Turn every approved reference trait into a Reference Translation Matrix. Check every meaningful feature against the current beUI registry and add a Component Opportunity Map with live candidates, recommendation, target, adaptation, and constraints. Synthesize both into `DESIGN-BRIEF.md` using `webdesign-start/references/brief-template.md`. Show me a short digest and STOP for my approval.
+5. Only after I approve: automatically use the strongest current beUI matches wherever they fit, and build a reference-driven style sample containing the highest-impact selection or native-stack adaptation. Do not show me a component picker first. Pause for my critique or confirmation, then build the full site against the brief, following `webdesign-start/references/build-standards.md`, `references/beui.md`, and `references/ux-rules.md`.
+6. Finish with an honest reference-fidelity and component-coverage review against the brief and the pre-delivery checklist.
 
 Here's my project: [DESCRIBE YOUR PROJECT IN ONE OR TWO SENTENCES — or just say "ask me"]
 

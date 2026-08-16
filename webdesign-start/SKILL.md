@@ -19,6 +19,7 @@ Never skip ahead to code. The phases below exist because every skipped phase res
 4. **One decision-maker: the brief.** Every visual decision made during build must trace to `DESIGN-BRIEF.md`. If the brief doesn't answer a question, either the answer is obvious from the approved references, or you ask.
 5. **Progress is visible.** Tell the user which phase you're in and what's left. This is a multi-step engagement; don't let it feel like an interrogation without a destination.
 6. **Respect answered questions.** If the user already told you something (in their first message, in an existing brief, in the repo), never ask again. Every phase starts by harvesting what is already known.
+7. **Check the live component library before inventing UI.** For every new or changed feature, inspect the current beUI registry and automatically use the strongest compatible upstream component or intentional native-stack adaptation. A plain hand-rolled equivalent is the fallback, not the default. Read `references/beui.md` before implementing components.
 
 ## Environment adaptation (read once, then proceed)
 
@@ -33,12 +34,13 @@ This skill runs in many AI tools. Adapt to what you have:
 
 ## Staying current
 
-Do this once per engagement, during Phase 0, in the background of your first reply — never as a blocking step:
+Do this on **every invocation**, including small edits and audit-only requests, during Phase 0 and in the background of the first reply — never as a blocking step:
 
 1. Read the local `VERSION` file (same folder as this SKILL.md). If you have web access, fetch `https://raw.githubusercontent.com/Standardan/webdesign-start/main/webdesign-start/VERSION` and compare.
 2. **If the remote version is newer**, tell the user in one line — "Heads up: this skill is v[local], v[remote] is available — update with `git pull` in the skill repo or by re-copying the folder from github.com/Standardan/webdesign-start" — then proceed normally with the local copy. Mention it once; never nag, never block, never auto-update files yourself.
-3. **If the fetch fails or you have no web access**, skip silently. An update notice is a courtesy, not a dependency.
-4. **Staleness rule (works even offline):** compare today's date to the `VERSION` date. If more than ~12 months have passed, treat the skill's *trend-sensitive* content — emerging styles, "current-year" addenda, named font trends, gallery lists, browser-support claims — as possibly stale: verify with a search before presenting them as current, and prefer the skill's timeless material (workflow, accessibility, conversion evidence, anti-slop principles), which ages well. Design fashion moves fast; yesterday's anti-generic move is tomorrow's tell.
+3. Read `references/beui.md` and attempt its live refresh: fetch the current beUI registry, agent instructions, and repository state. Use the fetched catalog for this run; never rely on a remembered or copied component list when live access works.
+4. **If either fetch fails or you have no web access**, follow that source's offline fallback. The attempt is mandatory; failure is not a reason to stall the engagement or invent claims about current components.
+5. **Staleness rule (works even offline):** compare today's date to the `VERSION` date. If more than ~12 months have passed, treat the skill's *trend-sensitive* content — emerging styles, "current-year" addenda, named font trends, gallery lists, browser-support claims — as possibly stale: verify with a search before presenting them as current, and prefer the skill's timeless material (workflow, accessibility, conversion evidence, anti-slop principles), which ages well. Design fashion moves fast; yesterday's anti-generic move is tomorrow's tell.
 
 ## The workflow
 
@@ -64,7 +66,7 @@ Before asking anything:
 1. **Route by task size.** Full discovery exists for new sites and new design directions. Don't impose it on small work:
    - **New site / redesign / "no idea how it should look"** → full workflow, Phase 1 onward.
    - **Project already has an approved `DESIGN-BRIEF.md`** → read it and go straight to Phase 4 for the requested work; the brief is the discovery.
-   - **Small change to an existing site** (one component, one section, a restyle of something specific) → skip discovery and research; infer the design system from the existing code, confirm your reading in one message, make the change, run the relevant slice of Phase 5.
+   - **Small change to an existing site** (one component, one section, a restyle of something specific) → skip discovery and research; infer the design system from the existing code, run the live beUI feature check for the requested change, confirm your design-system reading and component recommendation in one message, make the change, then run the relevant slice of Phase 5.
    - **Audit/review request** → skip to Phase 5's checklists and report findings without building.
 2. **Harvest the opening message.** Product type, industry, audience, style hints, stack, existing brand, and every example URL/screenshot the user supplied — mark each as known/unknown. User-supplied references are first-class inputs, not merely candidates to mix into a later search.
 3. **Check for prior state.** If `DESIGN-BRIEF.md` exists in the project, read it and ask whether this is a continuation (build/extend against it) or a fresh direction (archive it, restart discovery). If a codebase exists, note the stack and any existing design tokens/CSS.
@@ -111,6 +113,8 @@ Synthesize Discovery Summary + Reference Translation Matrix + industry playbook 
 
 Then present the brief to the user as a **short digest** (direction in one paragraph, palette swatch list, fonts, page list — not the whole file) and ask for approval or edits. **This is the gate.** Do not write site code before an explicit yes. Small edit requests → update the brief, restate only the changed part, proceed.
 
+Before presenting the digest, read `references/beui.md` and add a **Component Opportunity Map** to the brief. For every meaningful interaction or feature, record the current live-registry candidates checked, the automatically selected component, its target, and any stack or accessibility constraint. Do not ask the user to pre-select components. Choose the strongest match to the approved direction, implement it, and let the rendered style sample provide the critique point.
+
 ## Phase 4 — Build
 
 Read `references/build-standards.md`, `references/ux-rules.md`, and `references/anti-slop.md` before writing code. Non-negotiables:
@@ -120,9 +124,10 @@ Read `references/build-standards.md`, `references/ux-rules.md`, and `references/
 - The UX rulebook's Priority 1-2 tiers (accessibility, touch/interaction) are never traded away for aesthetics.
 - Real content where the user provided it; honest, well-shaped placeholders where they didn't (flag every placeholder in the final report).
 - All copy you write follows the anti-slop writing rules: no em dashes in site copy, no hype lexicon, specifics over adjectives, the client's own phrases from discovery wherever possible.
-- Before coding, turn the brief's Reference Translation Matrix into a build checklist. Do not choose a convenient stock hero, card grid, or component treatment that conflicts with it.
-- **Build a reference-driven style sample before the first full page:** the hero plus one content section, real tokens, real type, one representative button and card. It must visibly exercise the 3-5 highest-priority reference obligations. Render it, show it, and identify which observed trait informed each major choice. Pause for the user's confirmation before expanding the rest of the site unless they explicitly waived this checkpoint. Then work page by page in brief order.
-- One more layer of intent while building: the site should have **one governing idea** (from the brief) that every section serves, and each viewport gets **one leading motion event** at most — uniform fade-ups on everything is noise, not craft.
+- Before coding, turn the brief's Reference Translation Matrix and Component Opportunity Map into one build checklist. Do not choose a convenient stock hero, card grid, or component treatment that conflicts with either.
+- **Recheck beUI at feature time.** The Phase 0 snapshot is discovery, not a permanent cache. Immediately before implementing each new feature, query the live registry for that need, inspect the selected component's current files/dependencies, and compare it with any installed local copy. Merge deliberately; never overwrite project-specific changes just because upstream moved.
+- **Build a reference-driven style sample before the first full page:** the hero plus one content section, real tokens, real type, one representative button and card, and the automatically selected beUI-driven interaction. It must visibly exercise the 3-5 highest-priority reference obligations. Render the sample, show it, and identify which observed trait and live component informed each major choice. Do not present a component picker. If the user dislikes the result, treat the critique as a new constraint, recheck the live registry, and replace or restyle the component. Pause for the user's confirmation before expanding the rest of the site unless they explicitly waived this checkpoint. Then work page by page in brief order.
+- Motion should be present across the experience as a coherent system: state feedback on interactive controls, purposeful transitions on changing surfaces, and 1-3 memorable signature interactions per page when the content supports them. Each viewport still gets **one leading motion event** at most; hierarchy makes the motion feel authored, while equal-intensity animation everywhere becomes noise. Every effect must have a reduced-motion path.
 
 ## Phase 5 — Self-review
 
@@ -130,8 +135,9 @@ Follow the self-review protocol at the end of `references/build-standards.md`: r
 
 Elite sites budget the final stretch for polish, not new ideas: awkward heading line-breaks, section-to-section spacing seams, focus states, image loading behavior, reduced-motion. Spend a real pass on these before reporting. Then report to the user:
 
-- What was built (pages, components).
+- What was built (pages, components), including the beUI slugs or live-source adaptations used.
 - Reference coverage — which approved examples shaped which visible parts of the site, plus any deliberate deviations and why.
+- Component coverage — which feature needs were checked against the current beUI registry, what was selected or rejected, and why.
 - Checklist results — **honestly**, including anything that failed or was skipped and why.
 - Every placeholder awaiting real content.
 - Suggested next steps (real copy, imagery, deployment) — as offers, not questions blocking completion.
@@ -151,5 +157,6 @@ Elite sites budget the final stretch for polish, not new ideas: awkward heading 
 | `references/anti-slop.md` | Phase 3 (brief sanity check) and Phase 4 (copy + CSS rules); audited in Phase 5 |
 | `references/ux-rules.md` | Before and during Phase 4 |
 | `references/build-standards.md` | Phase 4 and Phase 5 |
+| `references/beui.md` | Every invocation in Phase 0; again in Phase 3 and before implementing every feature |
 
 If a reference file is missing or unreadable, say so and proceed with best judgment rather than stalling — the workflow's phases and gates matter more than any single catalog.
