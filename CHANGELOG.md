@@ -2,6 +2,12 @@
 
 All notable changes to the webdesign-start skill. Versions follow semver: major = workflow-breaking restructure, minor = new rules/sections/capabilities, patch = fixes and wording.
 
+## 1.4.0 — 2026-08-19
+
+- Made the Step 2 reference-fidelity self-review a hard gate instead of a checklist: every Reference Translation Matrix row (P1/P2/Avoid) must be reprinted with a PASS/FAIL/PARTIAL verdict and page-level evidence, and shown to the user in the delivery report — not just reasoned about silently.
+- Added an explicit re-check for rule-shaped matrix rows ("never," "only ever," "no X"): these must be re-scanned against every section built after the style-sample checkpoint, not just the component they were first implemented for. Root cause: an agent can correctly implement a constraint once (e.g. "accent color only as glow, never a flat fill") and then violate it in a later section (a CTA band) built without re-checking the rule, and nothing in the prior self-review flow caught that until the user did.
+- Step 8 delivery report now opens with the pasted verdict table and Component Opportunity Map coverage as receipts, rather than a prose summary of them.
+
 ## 1.3.0 — 2026-08-16
 
 - Added an every-invocation live refresh for the beUI registry, upstream agent skill, and repository state alongside the existing webdesign-start version check.

@@ -409,15 +409,25 @@ Run this after the build is complete and *before* telling the user it's done. It
 
 **Step 1 — Re-read DESIGN-BRIEF.md in full.** Not from memory: open the file and read it. Builds drift; memory of the brief drifts faster.
 
-**Step 2 — Run the reference fidelity audit on rendered pages.** Reopen the approved references (or use the inspected screenshots if a live page changed) and check every Reference Translation Matrix row:
+**Step 2 — Run the reference fidelity audit on rendered pages. This is a hard gate, not a checklist to skim.** A matrix row is easy to satisfy in code and violate in the finished page — writing the CSS for a rule is not the same as the rule surviving contact with every section you build afterward. Do not proceed to Step 3 until this gate is printed and passes.
 
-- Is the named target present?
+Reopen the approved references (or use the inspected screenshots if a live page changed). Then, for **every single row** of the Reference Translation Matrix — P1, P2, and Avoid — literally reprint the row with a verdict, in this exact shape, and show it to the user as part of the delivery report (not just reasoned about silently):
+
+```
+| Row | Verdict | Evidence |
+|---|---|---|
+| [P1: source + trait] | PASS / FAIL / PARTIAL | [what you observed on the rendered page — a specific element, section, or absence] |
+```
+
+For each row:
+- Is the named target present, on the actual rendered page, right now — not "the code exists for it somewhere"?
 - Does it preserve the observed relationship the user approved, or only a superficial detail?
 - Is the P1 influence visible in the page silhouette, type hierarchy, spacing/density, color distribution, or primary components?
 - Did a framework default or generic layout formula replace it?
-- Is any deviation required by accessibility, content, feasibility, or a later user decision? Record the reason.
+- **For any row phrased as a rule rather than an inclusion** (contains "never," "only ever," "always," "not a flat X," "no Y") — treat it as a constraint that every later section must obey, not a one-time decision. Explicitly re-scan every section/component you built *after* the style-sample checkpoint for a violation of that specific rule. This is the failure mode that slips through most often: the rule is correctly implemented in the first component that needed it (a button, a hero), then silently broken in a later one (a CTA band, a footer, a card grid) built under time pressure without re-checking the rule. Grep or visually inspect for the literal forbidden pattern (e.g. a rule banning flat color fills → search the CSS/markup for full-bleed solid-background sections using the constrained hue).
+- Is any deviation required by accessibility, content, feasibility, or a later user decision? Record the reason in the Evidence column.
 
-Do not score success by pixel similarity. Score whether the intended transferable trait is clearly present. Fix unapproved drift before continuing.
+Do not score success by pixel similarity. Score whether the intended transferable trait is clearly present, **on every page and section it applies to, not just the one it was first built for.** A single FAIL or PARTIAL row means the work is not done — fix it and re-run the row before moving on, not after the user points it out.
 
 **Step 3 — Audit live component coverage.** Re-fetch the relevant beUI registry items and walk every Component Opportunity Map row:
 
@@ -441,7 +451,7 @@ Do not score success by pixel similarity. Score whether the intended transferabl
 
 **Step 7 — Run the slop audit** (`references/anti-slop.md`): grep the content files for em dashes, hype-lexicon words, and generic button labels; check the palette and section anatomy against the "banned by default" list; read the headlines in sequence for the specificity test. Include the audit outcome in the report.
 
-**Step 8 — Report honestly.** Start with short **Reference coverage** and **Component coverage** lists mapping approved sources and live component choices to visible results, including deliberate deviations. Then report the rest in three buckets:
+**Step 8 — Report honestly.** Start by pasting the full Step 2 verdict table (every matrix row, PASS/FAIL/PARTIAL, with evidence) and the Component Opportunity Map coverage from Step 3 — these are the receipts, show them, don't summarize them away. Then report the rest in three buckets:
 
 - **Passed:** what you checked and confirmed (be specific: "keyboard pass at all four widths, both themes").
 - **Fixed during review:** violations found and corrected — this builds trust, don't hide them.
