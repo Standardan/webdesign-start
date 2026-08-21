@@ -2,6 +2,11 @@
 
 All notable changes to the webdesign-start skill. Versions follow semver: major = workflow-breaking restructure, minor = new rules/sections/capabilities, patch = fixes and wording.
 
+## 1.9.0 — 2026-08-20
+
+- Expanded the component protocol from beUI-only to a multi-catalog sourcing protocol: beUI (first look, animated React), Uiverse via the machine-readable `uiverse-io/galaxy` repo (micro-element treatments: buttons, cards, checkboxes, loaders, switches...), and Material Components Web (Material-direction builds and behavior/accessibility reference). All fetched fresh every run; the Component Inventory now spans all three (beUI item-by-item, Uiverse as a category census browsed live at selection time, MDC as a package list); the covered-pattern FAIL applies across every catalog; every shipped component names its catalog of origin or is marked custom-built.
+- Added live companions fetched fresh each engagement: the taste-skill (MIT) as a second anti-generic pass composed with anti-slop.md (design read, variance/motion/density dials, aesthetic variants — brief and accessibility still win on conflict), and the design-resources-for-developers index as the first stop for fonts, illustrations, photography, and icon sourcing.
+
 ## 1.8.0 — 2026-08-20
 
 - Added the measured **Reference Teardown** to Phase 2: every user-approved site gets hard values captured from the live page (grounds, borders, accent census, display size/weight/tracking, third voice, nav spec, container, radius/shadows, hero anatomy, section rhythm, motion) via computed styles when a browser exists, estimates flagged otherwise; teardowns are pasted into the brief under the matrix. Root cause: qualitative notes ("big serif hero") let the build silently substitute model defaults for every unspecified value, which is exactly how approved references were getting ignored.

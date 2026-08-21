@@ -1,6 +1,17 @@
-# Live beUI Component Protocol
+# Live Component Sourcing Protocol (beUI + partner catalogs)
 
-beUI is the required first-look component source for this skill. It is an MIT-licensed, shadcn-compatible library of animated React and Next.js components. The catalog changes frequently, so this file defines a live lookup protocol rather than freezing a component list.
+This file defines the live component-sourcing protocol for the skill. Building a UI surface from scratch when a live catalog already covers it is a failure mode, not a neutral choice: the catalogs below hold designed, animated, accessibility-worked components, and the plain hand-rolled version the model produces instead is precisely what reads as generated. Every catalog changes frequently, so this file defines live lookup protocols rather than freezing component lists. **Never assume a catalog's contents — always fetch and check before building.**
+
+The catalogs, in first-look order:
+
+1. **beUI** — MIT, shadcn-compatible animated React/Next.js components (~117 items). The primary source for interactions, motion components, blocks, and agent/AI surfaces.
+2. **Uiverse** — the largest open-source UI element library (community-made CSS/Tailwind micro-elements: buttons, cards, checkboxes, forms, inputs, loaders, notifications, patterns, radio buttons, switches, tooltips). The source for distinctive micro-element treatments a design-system library won't have.
+3. **Material Components Web (MDC-web)** — Google's production web components. The source when the brief's direction is Material or Material-adjacent, and otherwise a behavior/accessibility reference for hard widgets (dialogs, menus, ripple states, focus management).
+
+Plus two non-component companions fetched fresh alongside them:
+
+4. **design-resources-for-developers** (bradtraversy) — a maintained index of asset and tool sources: fonts, color tools, illustrations, stock photography, icons, inspiration galleries. The first stop when the brief needs an asset (a typeface source, an illustration style, photography) rather than a component.
+5. **taste-skill** (Leonxlnx) — an MIT portable anti-generic frontend skill (design-read + variance/motion/density dials + contextual rules). Read alongside `anti-slop.md`; see that file for how the two compose.
 
 **Read this file:** on every invocation during Phase 0, while writing the Component Opportunity Map in Phase 3, and immediately before implementing any new or changed feature.
 
@@ -19,7 +30,7 @@ beUI is the required first-look component source for this skill. It is an MIT-li
 
 ## Live sources
 
-Use these sources in order:
+**beUI** (in order):
 
 1. Registry index: `https://beui.dev/r/registry.json`
 2. Agent-oriented catalog: `https://beui.dev/llms.txt`
@@ -27,14 +38,31 @@ Use these sources in order:
 4. Repository: `https://github.com/starc007/ui-components`
 5. Component detail/source: `https://beui.dev/r/{slug}.json` or `https://beui.dev/r/{slug}/raw`
 
-The registry index is the component source of truth. Search snippets, memory, and this file are not catalogs.
+**Uiverse** — the machine-readable catalog is the GitHub repo `uiverse-io/galaxy` (the website may block automated fetches; the repo does not):
+
+1. Category listing: `https://api.github.com/repos/uiverse-io/galaxy/contents/` (folders: Buttons, Cards, Checkboxes, Forms, Inputs, Loaders, Notifications, Patterns, Radio-buttons, Toggle-switches, Tooltips)
+2. Elements in a category: `https://api.github.com/repos/uiverse-io/galaxy/contents/{Category}`
+3. Element source: raw files under `https://raw.githubusercontent.com/uiverse-io/galaxy/main/{Category}/{element}/`
+4. Browsable site (when reachable): `https://uiverse.io/`
+
+**MDC-web:**
+
+1. Repository + package list: `https://github.com/material-components/material-components-web` (`packages/` directory is the component catalog: `mdc-dialog`, `mdc-menu`, `mdc-textfield`, ...)
+2. Docs per component live beside each package's README.
+
+**Companions:**
+
+- Asset/tool index: `https://raw.githubusercontent.com/bradtraversy/design-resources-for-developers/master/readme.md`
+- taste-skill: `https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/skills/taste-skill/SKILL.md` (repo `https://github.com/Leonxlnx/taste-skill` also carries aesthetic variants — brutalist, minimalist, soft, redesign — usable when the brief matches one)
+
+The live indexes are the component source of truth. Search snippets, memory, and this file are not catalogs. All three component sources are MIT (or equivalently permissive) — keep any required license notice when substantial source is copied, per each repo's LICENSE.
 
 ## Mandatory refresh on every run
 
 Attempt all of the following in the background during Phase 0, even for a small edit or audit:
 
-1. Fetch the live registry and `llms.txt`. A shell-capable environment may use `curl -fsSL`; a browsing-capable environment should open the URLs directly.
-2. Fetch the current upstream beUI skill so its latest selection and installation rules inform this run.
+1. Fetch the live beUI registry and `llms.txt`, the Uiverse `galaxy` category listing, and the MDC-web package list. A shell-capable environment may use `curl -fsSL`; a browsing-capable environment should open the URLs directly. Fetch fresh every run — never carry a previous engagement's catalog forward.
+2. Fetch the current upstream beUI skill and the current taste-skill so their latest rules inform this run.
 3. If the environment permits, record the current `main` SHA using the GitHub API or `git ls-remote https://github.com/starc007/ui-components.git refs/heads/main`. This identifies the source examined; it is not a reason to clone the whole repository into the user's project.
 4. Use the fetched catalog for the entire engagement, but re-fetch or query the relevant item immediately before implementing a feature because the upstream can change mid-engagement.
 
@@ -51,9 +79,15 @@ If the registry is unreachable, try the raw upstream skill and repository files.
 
 ## Know the whole catalog
 
-Keyword-searching the registry per feature is not enough: you miss every component you didn't think to search for, and the misses are exactly the premium patterns (a morphing modal, a dynamic island, a number ticker, a command palette) that separate a designed site from a plain one. The catalog is roughly 100–150 items — small enough to actually learn.
+Keyword-searching a registry per feature is not enough: you miss every component you didn't think to search for, and the misses are exactly the premium patterns (a morphing modal, a dynamic island, a number ticker, a command palette) that separate a designed site from a plain one.
 
-At Phase 0, after the refresh, **read the entire registry index** (every item's `name`, `title`, `description`) and write a one-screen **Component Inventory** grouped by function — inputs/forms, navigation, overlays, text/number animation, tables/data, scroll effects, blocks/patterns, agent/AI surfaces, loaders/feedback. Keep it for the whole engagement and rebuild it each run from the live fetch, never from memory. This inventory is what lets selection be *recognition* ("the pricing section wants Number Ticker; the nav wants Dock or Morphing Tabs") instead of guesswork.
+At Phase 0, after the refresh, write a one-screen **Component Inventory** covering all three catalogs, and rebuild it each run from the live fetches, never from memory:
+
+- **beUI:** read the entire registry index (every item's `name`, `title`, `description`) — roughly 100–150 items, small enough to learn item by item. Group by function: inputs/forms, navigation, overlays, text/number animation, tables/data, scroll effects, blocks/patterns, agent/AI surfaces, loaders/feedback.
+- **Uiverse:** it holds thousands of elements, so the inventory records the *category census* (each category folder and what lives there) rather than every item; when a need maps to a category, browse that category live at selection time.
+- **MDC-web:** read the `packages/` list once into a line of available widgets.
+
+This inventory is what lets selection be *recognition* ("the pricing section wants Number Ticker; the toggle wants a Uiverse switch treatment; the menu's focus behavior should follow mdc-menu") instead of guesswork.
 
 Then, while planning in Phase 3, sweep **every page and section in the brief** — not only obviously interactive features — against the full inventory and record the matches in the Component Opportunity Map. A section with no match is fine; a match that was never noticed is the failure this section exists to prevent.
 
@@ -62,11 +96,11 @@ Then, while planning in Phase 3, sweep **every page and section in the brief** �
 Run this sequence for every new or changed feature, not only for obviously animated widgets:
 
 1. State the user need in functional terms: submit with status, compare options, open mobile navigation, reveal details, upload files, browse media, switch views, or show progress.
-2. Check the need against the full Component Inventory first, then search the live registry's `items[].name`, `title`, and `description` to confirm and find anything the inventory summary compressed away.
-3. Inspect the closest item's detail JSON, files, dependencies, accessibility behavior, reduced-motion handling, and current usage example.
+2. Check the need against the full Component Inventory first, then confirm against the live catalogs in first-look order: search beUI's registry (`items[].name`, `title`, `description`); if beUI has no strong match, browse the matching Uiverse category; consult MDC-web when the direction is Material or the widget's behavior/accessibility is the hard part.
+3. Inspect the closest item's detail/source files, dependencies, accessibility behavior, reduced-motion handling, and current usage example.
 4. Select the strongest current match using functional fit, approved references, stack compatibility, accessibility, and performance. Inspect another candidate internally only when needed to resolve ambiguity; do not turn implementation into a component-selection questionnaire.
-5. Use the compatible beUI component automatically instead of a basic hand-rolled motion widget. Adapt its styling to the approved tokens and reference obligations; do not paste its demo aesthetic unchanged.
-6. **A covered pattern implemented plainly is a defect, not a style choice.** If the catalog has an item whose function matches the need and you ship a bare hand-rolled version anyway (a plain `<select>` where the catalog has a designed select, a static number where it has a ticker, a default dialog where it has a morphing modal), that is a FAIL in the pre-delivery component audit — unless a concrete recorded constraint (stack cost, accessibility regression, performance budget, or a brief rule) justifies it in the Opportunity Map row.
+5. Use the selected catalog component automatically instead of a basic hand-rolled widget. Adapt its styling to the approved tokens and reference obligations; do not paste its demo aesthetic unchanged — Uiverse elements especially arrive with strong opinions that must be re-tokened to the brief, and MDC components must not drag Material's visual identity into a non-Material brief (take the behavior, restyle the skin).
+6. **A covered pattern implemented plainly is a defect, not a style choice.** If *any* of the three catalogs has an item whose function matches the need and you ship a bare hand-rolled version anyway (a plain `<select>` where a designed select exists, a static number where a ticker exists, a default checkbox where Uiverse has a hundred designed ones), that is a FAIL in the pre-delivery component audit — unless a concrete recorded constraint (stack cost, accessibility regression, performance budget, or a brief rule) justifies it in the Opportunity Map row.
 7. If no component fits, do not fall back to a plain implementation: build a custom component at catalog grade (next section) and record "no suitable live match — custom built" rather than stretching an unrelated component into the job.
 
 ## Custom components at catalog grade
@@ -150,7 +184,7 @@ Before delivery:
 - Confirm each Component Opportunity Map row was implemented, intentionally deferred, or rejected with a reason.
 - **Covered-pattern sweep:** walk the rendered pages against the Component Inventory one last time. Any surface that shipped as a plain implementation of a pattern the catalog covers — without a recorded constraint — is a FAIL: replace it or record the justification before delivery.
 - **Custom-grade check:** every custom-built component passes the catalog-grade bar (token-driven anatomy, full state life, one motion idea with a reduced-motion path, complete keyboard/touch support) — a custom component is not exempt from the standard just because it has no slug.
-- Record the exact installed `@beui/<slug>` or source URL for adaptations.
+- Record the exact installed `@beui/<slug>`, Uiverse element path, MDC package, or source URL for adaptations — every shipped component names its catalog of origin or is marked custom-built.
 - Test keyboard, touch, focus management, reduced motion, and responsive behavior for every imported interaction.
 - Check that installed code consumes project tokens rather than carrying the demo's palette and spacing unchanged.
 - List a live source as checked only after a successful fetch, and copy its URL exactly from this file or the returned response; never reconstruct or guess an endpoint in the report.

@@ -10,7 +10,7 @@ Works with **Claude Code, Cursor, Codex, Windsurf, Grok, and any assistant that 
 /webdesign-start
    ↓
 Phase 0  Intake      — reads what you already said; never re-asks
-                       checks this skill + the live beUI component registry for updates
+                       checks this skill + the live component catalogs (beUI, Uiverse, MDC-web) for updates
 Phase 1  Discovery   — 3-ish rounds of 3-4 multiple-choice questions,
                        plain language, famous-site comparisons, no jargon
 Phase 2  Research    — inspects your example sites first, then finds more only if needed;
@@ -46,6 +46,8 @@ webdesign-start/
     ├── industries.md            # ~28 product-type playbooks with anti-patterns
     ├── anti-slop.md             # AI-tell bans: violet-gradient dark mode, glow orbs, em dashes,
     │                            #   hype copy ("elevate", "seamless"), template heroes
+    ├── finishing.md             # generative recipes: tinted neutrals, type conviction,
+    │                            #   accent discipline, the Foundation Gate
     ├── ux-rules.md              # priority-tiered accessibility & UX rulebook
     ├── build-standards.md       # implementation standards + pre-delivery checklist + self-review
     └── brief-template.md        # the DESIGN-BRIEF.md template
@@ -90,11 +92,11 @@ Put the `webdesign-start` folder where the assistant can read it, then paste the
 
 ## Design lineage
 
-The design-principles layer (style catalog, industry anti-patterns, priority-tiered UX rules, pre-delivery checklist) is inspired by and extends [ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill). The live animated-component layer uses the MIT-licensed [beUI repository](https://github.com/starc007/ui-components) and its shadcn registry as an update-aware first-look source rather than freezing a copied catalog. What this skill adds is the front half that data can't provide: **structured taste extraction** (the discovery interview + vague-answer decoder), **verified visual references** (inspection + reaction + explicit mapping into the build), and an automatic mapping from feature needs to current component implementations.
+The design-principles layer (style catalog, industry anti-patterns, priority-tiered UX rules, pre-delivery checklist) is inspired by and extends [ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill). The live component layer sources from three update-aware catalogs rather than freezing copied lists: the MIT-licensed [beUI repository](https://github.com/starc007/ui-components) and its shadcn registry as the first-look source, the community element library [Uiverse](https://github.com/uiverse-io/galaxy) for micro-element treatments, and [Material Components Web](https://github.com/material-components/material-components-web) for Material-direction builds and widget behavior. Two live companions ride along: the [taste-skill](https://github.com/Leonxlnx/taste-skill) as a second anti-generic pass beside the built-in anti-slop rules, and [design-resources-for-developers](https://github.com/bradtraversy/design-resources-for-developers) for sourcing fonts, illustrations, photography, and icons. What this skill adds is the front half that data can't provide: **structured taste extraction** (the discovery interview + vague-answer decoder), **verified visual references** (inspection + reaction + explicit mapping into the build), and an automatic mapping from feature needs to current component implementations.
 
 ## Updating
 
-The skill updates itself at the start of an engagement when Python 3, network access, and write permission are available. A clean canonical checkout fast-forwards with Git; copied installs download the canonical archive, validate it, replace the skill atomically, and restore the previous copy if installation fails. If automatic updating is unavailable, the engagement continues with the local version and says why. The skill also refreshes the live beUI registry and agent instructions against the current upstream, so newly published components can enter feature selection without waiting for this repository to copy a static list; if web access is unavailable, it reports that component freshness could not be verified and continues with an explicit offline fallback.
+The skill updates itself at the start of an engagement when Python 3, network access, and write permission are available. A clean canonical checkout fast-forwards with Git; copied installs download the canonical archive, validate it, replace the skill atomically, and restore the previous copy if installation fails. If automatic updating is unavailable, the engagement continues with the local version and says why. The skill also refreshes the live component catalogs (beUI, Uiverse, MDC-web), the taste-skill, and the asset index against their current upstreams, so newly published components can enter feature selection without waiting for this repository to copy a static list; if web access is unavailable, it reports that component freshness could not be verified and continues with an explicit offline fallback.
 
 `webdesign-start/VERSION` travels with every copy. The skill also treats trend-sensitive content as suspect once the version date is over a year old, verifying trends by search instead of asserting stale ones. See [CHANGELOG.md](CHANGELOG.md) for release history.
 

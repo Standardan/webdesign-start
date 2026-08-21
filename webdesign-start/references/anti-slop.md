@@ -4,6 +4,8 @@ AI-generated websites fail in a recognizable way: they regress to the mean of ev
 
 **When to read this file:** at Phase 3 (before writing the brief — the brief must not encode slop) and again at Phase 4 (before writing copy or CSS). The self-review in Phase 5 audits against it.
 
+**Live companion — taste-skill.** Alongside this file, fetch the current taste-skill fresh each engagement (`https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/skills/taste-skill/SKILL.md`, MIT) and apply it as a second anti-generic pass. It composes with this skill rather than replacing any part of it: its "design read" is a cross-check on the Discovery Summary, its variance/motion/density dials give the brief a compact way to record the intended energy level, and its contextual layout/motion rules add moves this catalog doesn't cover. Where the two disagree, this skill's brief, approved references, and accessibility rules win — the taste-skill is seasoning, not a second decision-maker. Its aesthetic variants (brutalist, minimalist, soft, redesign) may be pulled in when the approved direction matches one. If the fetch fails, note it once and continue with this file alone.
+
 ## Contents
 
 - [Visual slop](#visual-slop)
