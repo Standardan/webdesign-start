@@ -2,6 +2,31 @@
 
 All notable changes to the webdesign-start skill. Versions follow semver: major = workflow-breaking restructure, minor = new rules/sections/capabilities, patch = fixes and wording.
 
+## 1.8.0 — 2026-08-20
+
+- Added the measured **Reference Teardown** to Phase 2: every user-approved site gets hard values captured from the live page (grounds, borders, accent census, display size/weight/tracking, third voice, nav spec, container, radius/shadows, hero anatomy, section rhythm, motion) via computed styles when a browser exists, estimates flagged otherwise; teardowns are pasted into the brief under the matrix. Root cause: qualitative notes ("big serif hero") let the build silently substitute model defaults for every unspecified value, which is exactly how approved references were getting ignored.
+- Phase 4 must now **design from the teardowns**: core tokens, type spec, nav, container, and section rhythm each derive from a named teardown value (own hue/face, preserved relationship), with derivations recorded in the Foundation Gate table; inventing from priors is allowed only where no teardown speaks. Sections with matrix obligations are built with the reference region reopened in view.
+- The owner's-eyes pass now requires a side-by-side loop (rendered page next to each approved reference) checking that measured relationships survived; matrix evidence must cite teardown values; P1 fidelity checks must be measurable; the Phase 5 audit judges verdicts against teardown numbers, not memory of the site.
+
+## 1.7.0 — 2026-08-20
+
+- Made catalog knowledge mandatory: Phase 0 now reads the entire live beUI registry (~117 items) into a grouped Component Inventory, and the Component Opportunity Map is built by sweeping every page and section against that full inventory — selection by recognition instead of per-feature keyword guesses.
+- Made covered patterns binding: shipping a plain hand-rolled version of a pattern the catalog covers is now a pre-delivery FAIL unless a concrete constraint is recorded; added a covered-pattern sweep to verification.
+- Added "Custom components at catalog grade": where no live component fits, custom builds must match the catalog's craft bar (token-driven anatomy, full state life, one motion idea with reduced-motion path, complete keyboard/touch), studying the nearest catalog item's source first; signature moments (hero demos, domain visualizations) are explicitly custom-built to this standard.
+
+## 1.6.0 — 2026-08-20
+
+- Added `references/finishing.md`: generative recipes with committed numeric ranges — tinted neutrals (no S=0 grays, tinted grounds, brand-named tokens), display type conviction (size/weight/tracking bands), a mandatory written accent-discipline sentence, the third type voice for labels/stats, tinted shadows, quiet designed chrome, evidence-based heroes, and deliberate density modulation. Prohibition catalogs audit slop after the fact; these recipes replace the timid defaults at generation time.
+- Added the Foundation Gate to Phase 4: the token/theme file and type spec are written first, alone, and verified against a printed pass/fail table before any component consumes a token — foundation timidity propagated into components was the main way builds still ended up looking generated despite passing later audits.
+- Added the "owner's-eyes pass" to Phase 4: at least two internal render-critique-fix loops at 375px/1440px before the user sees the style sample or delivery, replicating the manual tweaking loop that separates first generations from finished sites; loop count and findings go in the report.
+- Brief now must carry a chosen value for every finishing-recipe parameter; added a token-ownership check to the slop audit (framework grayscale ramps with generic names = no color decision made); fixed duplicate step numbering in the audit protocol.
+
+## 1.5.0 — 2026-08-20
+
+- Replaced the update-only notice with automatic Phase 0 self-updating.
+- Added `scripts/update_skill.py`: standard-library Python, canonical-version check, clean git fast-forward support, validated archive installation for copied skills, atomic replacement, and rollback on failure.
+- Updated the workflow to re-read `SKILL.md` after an update and continue non-blockingly on unavailable network, runtime, or permissions.
+
 ## 1.4.0 — 2026-08-19
 
 - Made the Step 2 reference-fidelity self-review a hard gate instead of a checklist: every Reference Translation Matrix row (P1/P2/Avoid) must be reprinted with a PASS/FAIL/PARTIAL verdict and page-level evidence, and shown to the user in the delivery report — not just reasoned about silently.

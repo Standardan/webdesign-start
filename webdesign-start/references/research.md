@@ -149,7 +149,31 @@ Reopen each positively rated site from the presented set after the user explains
 7. **Media:** photography/illustration/product UI role, crop, aspect ratio, placement.
 8. **Motion and interaction:** entrance hierarchy, hover behavior, sticky/scroll treatment.
 
-Record only observable details. Do not infer exact CSS values unless you can inspect them. Distinguish what the user explicitly liked from what you merely observed: approval of one trait is not approval of the whole site.
+Record only observable details. Distinguish what the user explicitly liked from what you merely observed: approval of one trait is not approval of the whole site.
+
+### Measure, don't vibe: the Reference Teardown
+
+A qualitative note ("big serif hero, warm palette") is not enough to build from — at build time the model will quietly substitute its own defaults for every value the note left unspecified, and the user will correctly say the reference was ignored. So for each approved reference, when any inspection capability exists, produce a **Reference Teardown** of hard values. With a browser tool, read computed styles directly (a small script over `getComputedStyle` on the hero heading, body text, a label, the nav, a primary button, and two section wrappers covers most of it). With only screenshots, estimate and mark every value `~est`. Capture at minimum:
+
+```markdown
+### Teardown — [site] ([page], [date])
+- Ground: bg [value] · text [value] · temperature [warm/cool/neutral]
+- Borders/hairlines: [value, weight]
+- Accent: [value] · appears as [fill/glow/underline/text] on [elements] · roughly [N] solid instances per viewport
+- Display type: [face or closest classification], [weight], hero ~[px], tracking [normal/tight/−n%], line-height ~[n]
+- Body: [face class], [size]/[line-height], measure ~[n]ch
+- Label/third voice: [treatment, size, casing, tracking] or "none"
+- Nav: height ~[px], [solid/translucent+blur], [border?], [n] links + [CTA?]
+- Container: ~[px] max · section vertical padding ~[px] desktop
+- Radius: [values seen] · Shadows: [none / recipe]
+- Hero anatomy: [what actually occupies it — text %, media %, what the media is]
+- Section rhythm: [order + density shifts, e.g. "spacious statement → dense spec table → spacious"]
+- Motion: [entrance style, hover style, sticky behavior, or "none observed"]
+```
+
+Attach each teardown beneath the Reference Translation Matrix in the brief. These numbers are *calibration*, not a clone kit: the build adapts them (different hue, different face, own content) while preserving the measured **relationships** — the scale contrast, the density, the temperature, the accent discipline. The line between the two: a stranger comparing the sites should say "same league, same taste," never "same site reskinned."
+
+If no inspection capability exists at all, say so, write the teardown from the user's screenshots or skip to qualitative notes marked as such — and never present unverifiable numbers as measured.
 
 If a reference cannot be reached:
 
@@ -174,7 +198,8 @@ Translate each approved trait into an original project decision. Use this format
 
 Rules:
 
-- Use all six columns shown above; do not collapse **Source + observed evidence** into a generic label such as "Site A: clean." Name the page/region and the concrete trait you inspected.
+- Use all six columns shown above; do not collapse **Source + observed evidence** into a generic label such as "Site A: clean." Name the page/region and the concrete trait you inspected, citing teardown values where they exist ("hero ~96px/800 at −2.5% tracking", not "big bold type").
+- Every P1 row's **Fidelity check** must be verifiable against the teardown: a pass condition someone could measure on the built site and compare to the measured reference relationship.
 - Every approved reference must contribute at least one row, or be labeled **mood only** with a reason.
 - Every positive row must name a concrete target: token, component, section, page, or interaction.
 - Include 3-7 obligations, ranked P1/P2. More rows dilute the signal.

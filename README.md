@@ -2,7 +2,7 @@
 
 **The problem this solves:** you know a good website when you see one, but you can't describe it — so your AI one-shots the *wrong* website. This skill makes the AI earn the build: it interviews you in plain language, goes and finds **real websites** that match your answers, lets you react to them ("yes, like THAT one"), locks the direction into a written design brief, and only then writes code.
 
-Works with **Claude Code, Cursor, Codex, Windsurf, Grok, and any assistant that can read files** — the skill is pure markdown, zero scripts, zero dependencies.
+Works with **Claude Code, Cursor, Codex, Windsurf, Grok, and any assistant that can read files**. The design workflow is markdown; automatic updates use one bundled Python 3 standard-library script with no third-party dependencies.
 
 ## The workflow
 
@@ -31,6 +31,7 @@ The brief persists in your project, so any future session — in any tool — pi
 ```
 webdesign-start/
 ├── SKILL.md                     # the orchestrator — phases, gates, environment fallbacks
+├── scripts/update_skill.py      # safe Phase 0 updater: validates, swaps, rolls back on failure
 └── references/                  # loaded progressively, only when a phase needs them
     ├── discovery.md             # adaptive questionnaire, branches per product type,
     │                            #   + the "vague answer decoder" (what 'modern & clean' hides)
@@ -93,9 +94,9 @@ The design-principles layer (style catalog, industry anti-patterns, priority-tie
 
 ## Updating
 
-On every invocation, the skill checks two moving sources: its own `VERSION` against this repository and the live beUI registry/agent instructions against the current upstream. It uses the live component catalog during feature selection, so newly published components can enter the workflow without waiting for this repository to copy a static list. If web access is unavailable, the skill reports that component freshness could not be verified and continues with an explicit offline fallback.
+The skill updates itself at the start of an engagement when Python 3, network access, and write permission are available. A clean canonical checkout fast-forwards with Git; copied installs download the canonical archive, validate it, replace the skill atomically, and restore the previous copy if installation fails. If automatic updating is unavailable, the engagement continues with the local version and says why. The skill also refreshes the live beUI registry and agent instructions against the current upstream, so newly published components can enter feature selection without waiting for this repository to copy a static list; if web access is unavailable, it reports that component freshness could not be verified and continues with an explicit offline fallback.
 
-To update a copied install, re-copy the `webdesign-start` folder from this repo (or `git pull` if you cloned it). See [CHANGELOG.md](CHANGELOG.md) for what changed between versions.
+`webdesign-start/VERSION` travels with every copy. The skill also treats trend-sensitive content as suspect once the version date is over a year old, verifying trends by search instead of asserting stale ones. See [CHANGELOG.md](CHANGELOG.md) for release history.
 
 ## Tips for best results
 

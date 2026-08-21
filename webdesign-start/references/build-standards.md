@@ -411,7 +411,7 @@ Run this after the build is complete and *before* telling the user it's done. It
 
 **Step 2 — Run the reference fidelity audit on rendered pages. This is a hard gate, not a checklist to skim.** A matrix row is easy to satisfy in code and violate in the finished page — writing the CSS for a rule is not the same as the rule surviving contact with every section you build afterward. Do not proceed to Step 3 until this gate is printed and passes.
 
-Reopen the approved references (or use the inspected screenshots if a live page changed). Then, for **every single row** of the Reference Translation Matrix — P1, P2, and Avoid — literally reprint the row with a verdict, in this exact shape, and show it to the user as part of the delivery report (not just reasoned about silently):
+Reopen the approved references (or use the inspected screenshots if a live page changed) and the brief's Reference Teardowns — the measured values are the standard a verdict is judged against, not your memory of the site. Then, for **every single row** of the Reference Translation Matrix — P1, P2, and Avoid — literally reprint the row with a verdict, in this exact shape, and show it to the user as part of the delivery report (not just reasoned about silently):
 
 ```
 | Row | Verdict | Evidence |

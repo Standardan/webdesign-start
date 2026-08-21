@@ -36,6 +36,8 @@ _Produced by the webdesign-start discovery process. Read fully before any visual
 
 **Coverage rule:** Every approved reference contributes at least one implementation row or is explicitly labeled **mood only** with a reason. P1 rows must appear in the style sample.
 
+**Reference Teardowns:** paste the measured teardown block for each approved reference here (format in `references/research.md`, Step 6). These are the values Phase 4 derives its tokens and type spec from; a matrix without teardowns forces the build back onto model defaults, which is the failure this brief exists to prevent.
+
 **Never-list (from user + industry anti-patterns):**
 - [e.g., no stock-photo corporate feel; no carousel hero; no red as primary (medical)]
 - The anti-slop defaults (references/anti-slop.md) are always on this list implicitly; add any that this project is especially at risk of.
@@ -68,11 +70,19 @@ Mode: [light-only | dark-only | light + dark toggle]
 
 **Gradients (if any):** [stops + where allowed]
 **Distribution:** [e.g., 60% background neutrals / 30% surface+text / 10% primary+accent]
+**Neutral temperature:** [the hue and saturation band the neutrals are tinted with, per
+finishing.md Recipe 1 — e.g., "all neutrals carry H 30 (warm brown) at S 6–18%; no S=0 values"]
+**Accent discipline (the sentence, per finishing.md Recipe 3):** ["The accent appears as
+[form] on [named elements], at most [N] solid-fill instance(s) per viewport, and never as
+[named exclusions]." This sentence is a rule-row for the fidelity audit.]
 
 ## 5. Typography
 - **Display:** [font], weights [x, y] — [source: Google Fonts / self-host note]
+- **Display conviction (per finishing.md Recipe 2):** [hero size target + committed weight +
+  letter-spacing at display sizes + hero line-height — actual values, not "large and bold"]
 - **Body:** [font], weights [x, y]
-- **Mono (if used):** [font]
+- **Third voice (labels/stats/eyebrows):** [the one treatment used site-wide — a mono face,
+  or body face at 11–13px caps with widened tracking; name the font and values]
 - **Scale:** [ratio + the actual px/rem ladder, incl. clamp() for hero/h1/h2]
 - **Rules:** [line-heights, letter-spacing notes, max measure]
 

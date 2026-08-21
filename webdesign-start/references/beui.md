@@ -8,12 +8,14 @@ beUI is the required first-look component source for this skill. It is an MIT-li
 
 1. [Live sources](#live-sources)
 2. [Mandatory refresh on every run](#mandatory-refresh-on-every-run)
-3. [Feature-first selection](#feature-first-selection)
-4. [Component Opportunity Map](#component-opportunity-map)
-5. [Installation and stack adaptation](#installation-and-stack-adaptation)
-6. [Motion system, not motion clutter](#motion-system-not-motion-clutter)
-7. [Style-sample checkpoint](#style-sample-checkpoint)
-8. [Verification and reporting](#verification-and-reporting)
+3. [Know the whole catalog](#know-the-whole-catalog)
+4. [Feature-first selection](#feature-first-selection)
+5. [Custom components at catalog grade](#custom-components-at-catalog-grade)
+6. [Component Opportunity Map](#component-opportunity-map)
+7. [Installation and stack adaptation](#installation-and-stack-adaptation)
+8. [Motion system, not motion clutter](#motion-system-not-motion-clutter)
+9. [Style-sample checkpoint](#style-sample-checkpoint)
+10. [Verification and reporting](#verification-and-reporting)
 
 ## Live sources
 
@@ -47,16 +49,37 @@ If the registry is unreachable, try the raw upstream skill and repository files.
 - Do not claim a remembered slug is current and do not add an unverified package or command.
 - Record the unverified check in the final review.
 
+## Know the whole catalog
+
+Keyword-searching the registry per feature is not enough: you miss every component you didn't think to search for, and the misses are exactly the premium patterns (a morphing modal, a dynamic island, a number ticker, a command palette) that separate a designed site from a plain one. The catalog is roughly 100–150 items — small enough to actually learn.
+
+At Phase 0, after the refresh, **read the entire registry index** (every item's `name`, `title`, `description`) and write a one-screen **Component Inventory** grouped by function — inputs/forms, navigation, overlays, text/number animation, tables/data, scroll effects, blocks/patterns, agent/AI surfaces, loaders/feedback. Keep it for the whole engagement and rebuild it each run from the live fetch, never from memory. This inventory is what lets selection be *recognition* ("the pricing section wants Number Ticker; the nav wants Dock or Morphing Tabs") instead of guesswork.
+
+Then, while planning in Phase 3, sweep **every page and section in the brief** — not only obviously interactive features — against the full inventory and record the matches in the Component Opportunity Map. A section with no match is fine; a match that was never noticed is the failure this section exists to prevent.
+
 ## Feature-first selection
 
 Run this sequence for every new or changed feature, not only for obviously animated widgets:
 
 1. State the user need in functional terms: submit with status, compare options, open mobile navigation, reveal details, upload files, browse media, switch views, or show progress.
-2. Search the live registry's `items[].name`, `title`, and `description` for matching behavior.
+2. Check the need against the full Component Inventory first, then search the live registry's `items[].name`, `title`, and `description` to confirm and find anything the inventory summary compressed away.
 3. Inspect the closest item's detail JSON, files, dependencies, accessibility behavior, reduced-motion handling, and current usage example.
 4. Select the strongest current match using functional fit, approved references, stack compatibility, accessibility, and performance. Inspect another candidate internally only when needed to resolve ambiguity; do not turn implementation into a component-selection questionnaire.
 5. Use the compatible beUI component automatically instead of a basic hand-rolled motion widget. Adapt its styling to the approved tokens and reference obligations; do not paste its demo aesthetic unchanged.
-6. If no component fits, implement natively using the project's established design system and the motion rules in `ux-rules.md`. Record “no suitable live match” rather than stretching an unrelated component into the job.
+6. **A covered pattern implemented plainly is a defect, not a style choice.** If the catalog has an item whose function matches the need and you ship a bare hand-rolled version anyway (a plain `<select>` where the catalog has a designed select, a static number where it has a ticker, a default dialog where it has a morphing modal), that is a FAIL in the pre-delivery component audit — unless a concrete recorded constraint (stack cost, accessibility regression, performance budget, or a brief rule) justifies it in the Opportunity Map row.
+7. If no component fits, do not fall back to a plain implementation: build a custom component at catalog grade (next section) and record "no suitable live match — custom built" rather than stretching an unrelated component into the job.
+
+## Custom components at catalog grade
+
+The catalog is a *floor of craft*, not just a parts bin. Whenever a needed surface has no live match — or the stack is non-React and behavior is being reproduced natively — build a **custom component to the same standard the catalog holds its own items to**:
+
+- **Designed, not default:** the component consumes project tokens, follows the brief's radius/border/shadow system, and has an intentional anatomy — never framework-default styling with content poured in.
+- **Full state life:** hover, focus-visible, active, disabled, loading, empty, and error states all designed, not just the happy state.
+- **Purposeful motion:** one clear motion idea per component (a morph, a spring, a stagger, a reveal), executed with transform/opacity and a `prefers-reduced-motion` path — the same motion character as the rest of the site, per `ux-rules.md`.
+- **Complete input support:** keyboard, touch, and pointer all first-class; focus managed on open/close; drag gestures have non-drag alternatives.
+- **Learn from the nearest neighbor:** before building, open the source of the closest catalog item and study *how* it achieves its quality — its state handling, its easing values, its accessibility wiring — then apply that craft to the custom need. Cite the studied item in the Opportunity Map row.
+
+Signature moments deserve this most: the hero product demo, a domain-specific visualization, the one interaction a visitor will describe to someone else. Those are almost always custom — build them as first-class catalog-grade components, and give them the project's best engineering, because they carry more of the perceived quality than any installed widget.
 
 Do not ask permission merely to use beUI. The approved brief supplies the direction; the rendered style sample supplies the critique point. If the user rejects the result, convert the critique into a concrete constraint, recheck the live catalog, and replace or restyle the selection.
 
@@ -68,7 +91,7 @@ Add this table to `DESIGN-BRIEF.md` before build approval:
 |---|---|---|---|---|---|
 | [functional need] | [`@beui/slug-a`, `@beui/slug-b`] | [`@beui/slug-a`] | [component/section/page] | [how it serves the brief] | [stack, a11y, performance, or no-match note] |
 
-Each meaningful interactive feature gets a row. Static text, ordinary layout containers, and purely editorial prose do not need manufactured component rows.
+Each meaningful interactive feature gets a row, and the map is built by sweeping every page and section in the brief against the full Component Inventory (see "Know the whole catalog") — not by listing only the features that already sounded interactive. Custom builds get a row too, with the studied neighbor item recorded in the adaptation column. Static text, ordinary layout containers, and purely editorial prose do not need manufactured component rows.
 
 ## Installation and stack adaptation
 
@@ -125,6 +148,8 @@ The style sample must include the automatically selected live beUI component or 
 Before delivery:
 
 - Confirm each Component Opportunity Map row was implemented, intentionally deferred, or rejected with a reason.
+- **Covered-pattern sweep:** walk the rendered pages against the Component Inventory one last time. Any surface that shipped as a plain implementation of a pattern the catalog covers — without a recorded constraint — is a FAIL: replace it or record the justification before delivery.
+- **Custom-grade check:** every custom-built component passes the catalog-grade bar (token-driven anatomy, full state life, one motion idea with a reduced-motion path, complete keyboard/touch support) — a custom component is not exempt from the standard just because it has no slug.
 - Record the exact installed `@beui/<slug>` or source URL for adaptations.
 - Test keyboard, touch, focus management, reduced motion, and responsive behavior for every imported interaction.
 - Check that installed code consumes project tokens rather than carrying the demo's palette and spacing unchanged.

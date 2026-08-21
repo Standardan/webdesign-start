@@ -126,6 +126,7 @@ Run this as part of Phase 5 self-review (build-standards.md), before the pre-del
 5. **Container census.** Count the boxes in each viewport. If most content sits in rounded bordered cards, un-box everything that isn't grouping, comparing, or interactive.
 6. **Evidence check.** Every testimonial, logo, statistic, and chart: client-provided, or flagged as placeholder in the report. Zero invented named humans.
 7. **Mobile recomposition check.** At 375px, confirm the page was re-prioritized, not just stacked: secondary decoration dropped, comparisons simplified, nothing surviving purely because it existed on desktop.
-8. **Signature element check.** The brief names one signature element; confirm it exists in the build and actually reads as distinctive.
-9. **Execution-bug sweep (on rendered pages, not code).** Walk the execution-bug list: no content that stays invisible if a reveal misfires, no clipped or edge-jammed text, comparison columns aligned on a shared grid, optical centering verified, no color seams or unreadable text, no blur/shadow/glow applied where it has nothing to act on.
-9. **Report.** The self-review report includes a "slop audit" line: what was caught, what was fixed, anything deliberately kept and why.
+8. **Token-ownership check.** Read the project's token/theme file. If the palette is still a framework grayscale ramp with generic names (`--gray-100`, slate/zinc scales) and neutral temperature, no color decision was actually made — re-run the Foundation Gate from `references/finishing.md` and fix before delivery.
+9. **Signature element check.** The brief names one signature element; confirm it exists in the build and actually reads as distinctive.
+10. **Execution-bug sweep (on rendered pages, not code).** Walk the execution-bug list: no content that stays invisible if a reveal misfires, no clipped or edge-jammed text, comparison columns aligned on a shared grid, optical centering verified, no color seams or unreadable text, no blur/shadow/glow applied where it has nothing to act on.
+11. **Report.** The self-review report includes a "slop audit" line: what was caught, what was fixed, anything deliberately kept and why.

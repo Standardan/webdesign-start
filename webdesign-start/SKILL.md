@@ -19,7 +19,7 @@ Never skip ahead to code. The phases below exist because every skipped phase res
 4. **One decision-maker: the brief.** Every visual decision made during build must trace to `DESIGN-BRIEF.md`. If the brief doesn't answer a question, either the answer is obvious from the approved references, or you ask.
 5. **Progress is visible.** Tell the user which phase you're in and what's left. This is a multi-step engagement; don't let it feel like an interrogation without a destination.
 6. **Respect answered questions.** If the user already told you something (in their first message, in an existing brief, in the repo), never ask again. Every phase starts by harvesting what is already known.
-7. **Check the live component library before inventing UI.** For every new or changed feature, inspect the current beUI registry and automatically use the strongest compatible upstream component or intentional native-stack adaptation. A plain hand-rolled equivalent is the fallback, not the default. Read `references/beui.md` before implementing components.
+7. **Know the component catalog; never ship plain what it covers.** At Phase 0, read the entire live beUI registry into a Component Inventory and select against that full knowledge, not per-feature keyword guesses. Every surface that matches a catalog item uses that component (adapted to the project's tokens); a plain hand-rolled version of a covered pattern is a review FAIL, not a fallback. Where nothing matches, build a custom component at catalog grade — designed states, one motion idea, reduced-motion path, full keyboard/touch — never a bare default. Read `references/beui.md` before implementing components.
 
 ## Environment adaptation (read once, then proceed)
 
@@ -34,13 +34,14 @@ This skill runs in many AI tools. Adapt to what you have:
 
 ## Staying current
 
-Do this on **every invocation**, including small edits and audit-only requests, during Phase 0 and in the background of the first reply — never as a blocking step:
+Do this once per engagement, during Phase 0, before discovery:
 
-1. Read the local `VERSION` file (same folder as this SKILL.md). If you have web access, fetch `https://raw.githubusercontent.com/Standardan/webdesign-start/main/webdesign-start/VERSION` and compare.
-2. **If the remote version is newer**, tell the user in one line — "Heads up: this skill is v[local], v[remote] is available — update with `git pull` in the skill repo or by re-copying the folder from github.com/Standardan/webdesign-start" — then proceed normally with the local copy. Mention it once; never nag, never block, never auto-update files yourself.
-3. Read `references/beui.md` and attempt its live refresh: fetch the current beUI registry, agent instructions, and repository state. Use the fetched catalog for this run; never rely on a remembered or copied component list when live access works.
-4. **If either fetch fails or you have no web access**, follow that source's offline fallback. The attempt is mandatory; failure is not a reason to stall the engagement or invent claims about current components.
-5. **Staleness rule (works even offline):** compare today's date to the `VERSION` date. If more than ~12 months have passed, treat the skill's *trend-sensitive* content — emerging styles, "current-year" addenda, named font trends, gallery lists, browser-support claims — as possibly stale: verify with a search before presenting them as current, and prefer the skill's timeless material (workflow, accessibility, conversion evidence, anti-slop principles), which ages well. Design fashion moves fast; yesterday's anti-generic move is tomorrow's tell.
+1. Run `scripts/update_skill.py` with an available Python 3 launcher (`python`, `python3`, or `py -3`). Do not merely check and tell the user to update. The updater compares `VERSION` with the canonical repository, fast-forwards a clean canonical checkout or performs a validated atomic swap for a copied install, and restores the previous copy if installation fails.
+2. **If it reports `updated`**, tell the user in one line — "Updated webdesign-start from v[old] to v[new]." Then re-read the updated `SKILL.md` before continuing because its workflow may have changed.
+3. **If it reports `up-to-date`**, say nothing and continue.
+4. **If Python, network access, or write permission is unavailable, or the updater reports `error`**, continue with the local copy and give one concise non-blocking notice with the reason. Never replace the skill with ad-hoc shell commands and never ask the user to perform the normal update manually.
+5. Read `references/beui.md` and attempt its live refresh: fetch the current beUI registry, agent instructions, and repository state, then read the whole registry index and build the Component Inventory it describes. Use the fetched catalog for this run; never rely on a remembered or copied component list when live access works. **If the fetch fails or you have no web access**, follow that source's offline fallback. The attempt is mandatory; failure is not a reason to stall the engagement or invent claims about current components.
+6. **Staleness rule (works even offline):** compare today's date to the local `VERSION` date. If more than ~12 months have passed, treat the skill's *trend-sensitive* content — emerging styles, "current-year" addenda, named font trends, gallery lists, browser-support claims — as possibly stale: verify with a search before presenting them as current, and prefer the skill's timeless material (workflow, accessibility, conversion evidence, anti-slop principles), which ages well. Design fashion moves fast; yesterday's anti-generic move is tomorrow's tell.
 
 ## The workflow
 
@@ -97,7 +98,7 @@ The shape of it:
 4. **Present 4-6 candidates** as links with rich descriptions — for each: what the site is, *why it matches specific discovery answers* ("you said calm + premium; notice how much whitespace they leave around the product"), what to inspect, what you'd borrow, and what you'd do differently for this project.
 5. **Collect reactions** per site: love / close-but / no, and *what specifically* drew or repelled them. The "what specifically" is the gold — a "no" with a reason is worth more than an unexplained "love."
 6. **Iterate if needed.** Fewer than two strong positives → run one refined round using the reaction reasons as new search constraints. Cap at three rounds; if taste still won't converge, fall back to presenting 2-3 named *directions* built from the strongest partial signals and let the user pick.
-7. **Translate, don't summarize.** Build a Reference Translation Matrix: each approved trait must name its source, the observed evidence, its original adaptation for this project, and the exact target section/component. Every approved reference contributes at least one implementation obligation or is explicitly labeled "mood only." Confirm this matrix with the user in one message.
+7. **Translate, don't summarize.** For each approved site, first capture the measured Reference Teardown (hard values: grounds, type sizes/weights/tracking, nav spec, spacing, accent census — per `references/research.md`), then build a Reference Translation Matrix: each approved trait must name its source, the observed evidence with teardown values, its original adaptation for this project, and the exact target section/component. Every approved reference contributes at least one implementation obligation or is explicitly labeled "mood only." Confirm this matrix with the user in one message.
 
 Guardrail: references are for *direction* — structure, mood, spacing philosophy, color temperature. Never copy a reference's layout wholesale, its copy, logos, images, or distinctive brand elements. The user should get a site that belongs in the same room as their references, not a clone.
 
@@ -110,6 +111,7 @@ Synthesize Discovery Summary + Reference Translation Matrix + industry playbook 
 - `references/typography.md` — pick a pairing whose personality matches; include weights and fallbacks.
 - `references/layouts.md` — choose the page/section formulas for every page in scope.
 - `references/anti-slop.md` — before finalizing, verify the brief doesn't encode AI-default choices (violet-gradient dark mode, template heroes) that no discovery answer asked for.
+- `references/finishing.md` — the generative recipes (tinted neutrals, display conviction, the accent-discipline sentence, the third type voice, hero evidence). The brief must contain a chosen value for each recipe's parameter, including the written accent sentence — a brief that leaves these to build-time defaults will produce a generated-looking site no matter how good the audits are.
 
 Then present the brief to the user as a **short digest** (direction in one paragraph, palette swatch list, fonts, page list — not the whole file) and ask for approval or edits. **This is the gate.** Do not write site code before an explicit yes. Small edit requests → update the brief, restate only the changed part, proceed.
 
@@ -117,7 +119,10 @@ Before presenting the digest, read `references/beui.md` and add a **Component Op
 
 ## Phase 4 — Build
 
-Read `references/build-standards.md`, `references/ux-rules.md`, and `references/anti-slop.md` before writing code. Non-negotiables:
+Read `references/build-standards.md`, `references/ux-rules.md`, `references/anti-slop.md`, and `references/finishing.md` before writing code. Non-negotiables:
+
+- **Foundation first, and gate it.** The first file written is the token/theme file plus the type spec, alone. Run the Foundation Gate table from `references/finishing.md` on it — print the verdicts — and fix every failure *before any component consumes a token*. A timid foundation propagated into twenty components is the primary way builds end up looking generated despite passing every later audit.
+- **Design from the teardowns, not from your head.** The approved references were measured in Phase 2 (the Reference Teardowns in the brief); those numbers are where design values come from. The token file's grounds, borders, accent behavior, type sizes/weights/tracking, nav spec, container width, and section rhythm each start as an *adaptation of a measured teardown value* (own hue, own face, preserved relationship) — inventing a value from priors is allowed only where no teardown speaks, and the Foundation Gate's verdict table must say which teardown value each core token derives from. The same applies per section: before building any section with a matrix obligation, reopen that reference region (or its screenshot) and build with it in view.
 
 - Express every brief token as CSS custom properties (or the detected styling system's theme). Components consume tokens, never raw hex/px.
 - Build mobile-first; verify the widths in the build-standards protocol.
@@ -125,7 +130,8 @@ Read `references/build-standards.md`, `references/ux-rules.md`, and `references/
 - Real content where the user provided it; honest, well-shaped placeholders where they didn't (flag every placeholder in the final report).
 - All copy you write follows the anti-slop writing rules: no em dashes in site copy, no hype lexicon, specifics over adjectives, the client's own phrases from discovery wherever possible.
 - Before coding, turn the brief's Reference Translation Matrix and Component Opportunity Map into one build checklist. Do not choose a convenient stock hero, card grid, or component treatment that conflicts with either.
-- **Recheck beUI at feature time.** The Phase 0 snapshot is discovery, not a permanent cache. Immediately before implementing each new feature, query the live registry for that need, inspect the selected component's current files/dependencies, and compare it with any installed local copy. Merge deliberately; never overwrite project-specific changes just because upstream moved.
+- **Recheck beUI at feature time.** The Phase 0 snapshot is discovery, not a permanent cache. Immediately before implementing each new feature, check the Component Inventory and query the live registry for that need, inspect the selected component's current files/dependencies, and compare it with any installed local copy. Merge deliberately; never overwrite project-specific changes just because upstream moved. Shipping a plain implementation of a pattern the catalog covers, without a recorded constraint, is a defect the Phase 5 covered-pattern sweep will fail; where no component fits, build a custom one at catalog grade per `references/beui.md`.
+- **Never show a first render — run the owner's-eyes pass first.** The gap between a first generation and a site its owner is proud of is closed by small render-look-fix loops, and those loops are this skill's job, not the user's. Before presenting the style sample, and again before delivery, run at least two full loops: render at 375px and 1440px, then critique the *rendered* result as the site's owner would — the one thing that most reads as generated, the weakest spacing seam, any timid type, any accent leaking outside its stated discipline sentence, any section a stranger would call template — fix the worst finding, and re-render. At least one loop must be a **side-by-side pass**: put the rendered page next to each approved reference (or its teardown screenshot) and ask whether the measured relationship each P1 row promised actually survived — same scale contrast, same density, same accent restraint — because this comparison, not memory of the matrix, is what catches "we said apple.com and shipped a template." Stop only when a loop finds nothing worth fixing, and note in the report how many loops ran and what they caught. If no rendering capability exists, say so explicitly and do the loops on the code against the recipes in `references/finishing.md` instead.
 - **Build a reference-driven style sample before the first full page:** the hero plus one content section, real tokens, real type, one representative button and card, and the automatically selected beUI-driven interaction. It must visibly exercise the 3-5 highest-priority reference obligations. Render the sample, show it, and identify which observed trait and live component informed each major choice. Do not present a component picker. If the user dislikes the result, treat the critique as a new constraint, recheck the live registry, and replace or restyle the component. Pause for the user's confirmation before expanding the rest of the site unless they explicitly waived this checkpoint. Then work page by page in brief order.
 - Motion should be present across the experience as a coherent system: state feedback on interactive controls, purposeful transitions on changing surfaces, and 1-3 memorable signature interactions per page when the content supports them. Each viewport still gets **one leading motion event** at most; hierarchy makes the motion feel authored, while equal-intensity animation everywhere becomes noise. Every effect must have a reduced-motion path.
 
@@ -155,8 +161,11 @@ Elite sites budget the final stretch for polish, not new ideas: awkward heading 
 | `references/layouts.md` | Phase 3 (page map) and Phase 4 (building sections) |
 | `references/brief-template.md` | Phase 3, writing the brief |
 | `references/anti-slop.md` | Phase 3 (brief sanity check) and Phase 4 (copy + CSS rules); audited in Phase 5 |
+| `references/finishing.md` | Phase 3 (recipe parameters into the brief) and the start of Phase 4 (Foundation Gate before any CSS) |
 | `references/ux-rules.md` | Before and during Phase 4 |
 | `references/build-standards.md` | Phase 4 and Phase 5 |
 | `references/beui.md` | Every invocation in Phase 0; again in Phase 3 and before implementing every feature |
+
+Bundled automation: run `scripts/update_skill.py` only for the Phase 0 self-update described above. Do not edit it into project deliverables.
 
 If a reference file is missing or unreadable, say so and proceed with best judgment rather than stalling — the workflow's phases and gates matter more than any single catalog.
