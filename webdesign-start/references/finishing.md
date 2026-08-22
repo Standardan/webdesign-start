@@ -57,7 +57,7 @@ Then obey the sentence everywhere, including sections built late (CTA bands and 
 
 ## Recipe 6 — The hero shows evidence
 
-For products and services, the strongest hero visual is the real thing doing its most impressive trick: a working interactive demo with plausible domain data, a real photograph, a real artifact. Build the demo as a first-class component (this is exactly where the premium/beUI component budget belongs — the hero demo, not decorative cards). Absolute bans regardless of direction: fabricated browser chrome, invented dashboards with impossible numbers, abstract 3D blobs standing in for a product that has a face.
+For products and services, the strongest hero visual is the real thing doing its most impressive trick: a working interactive demo with plausible domain data, a real photograph, a real artifact. Build the demo as a first-class component (this is where the premium live-component budget belongs — the hero demo, not decorative cards). ThreeUI can carry the hero when the approved concept genuinely calls for place, atmosphere, generative visualization, or a 3D artifact; it cannot replace evidence for a product that already has a face. Absolute bans regardless of direction: fabricated browser chrome, invented dashboards with impossible numbers, abstract 3D blobs standing in for real product proof.
 
 Copy carries the same rule: the hero subhead states countable facts ("27 tools", "three chairs on East Sixth", "read-only by default") — see anti-slop's writing rules.
 

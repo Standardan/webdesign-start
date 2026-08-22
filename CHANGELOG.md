@@ -2,6 +2,13 @@
 
 All notable changes to the webdesign-start skill. Versions follow semver: major = workflow-breaking restructure, minor = new rules/sections/capabilities, patch = fixes and wording.
 
+## 1.10.0 — 2026-08-21
+
+- Added ThreeUI Community as a live component source with complete Community parent/route/variant inventory, package/source integration paths, and explicit WebGL lifecycle, accessibility, performance, fallback, asset, and licensing gates.
+- Replaced the beUI-centered protocol with the neutral `component-sourcing.md`: beUI, ThreeUI, Uiverse, and MDC-web now form one equal-weight candidate pool with no default, primary, first-look, or fallback provider.
+- Made every-invocation inventory exhaustive and persistent: exact reconciled per-source counts, every current component identifier/capability, resource links, provenance, and freshness are retained in `.webdesign-start/component-inventory.json` when file writes are available.
+- Made premium component lineage a hard build and review contract. Every designed surface must compare the strongest viable finalist from every catalog and visibly use the winner directly, through a faithful native-stack adaptation, or in a composition; plain or unattributed custom UI fails review.
+
 ## 1.9.0 — 2026-08-20
 
 - Expanded the component protocol from beUI-only to a multi-catalog sourcing protocol: beUI (first look, animated React), Uiverse via the machine-readable `uiverse-io/galaxy` repo (micro-element treatments: buttons, cards, checkboxes, loaders, switches...), and Material Components Web (Material-direction builds and behavior/accessibility reference). All fetched fresh every run; the Component Inventory now spans all three (beUI item-by-item, Uiverse as a category census browsed live at selection time, MDC as a package list); the covered-pattern FAIL applies across every catalog; every shipped component names its catalog of origin or is marked custom-built.

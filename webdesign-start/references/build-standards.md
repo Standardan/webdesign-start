@@ -71,15 +71,15 @@ Match systems and relationships, not brand-identifiable expression. Preserve the
 
 ## Live component implementation
 
-Read `beui.md` and the brief's Component Opportunity Map before coding. For each feature:
+Read `component-sourcing.md`, the brief's Complete Resource Inventory snapshot and Component Opportunity Map, and `threeui.md` when a ThreeUI finalist is in scope. For each designed surface:
 
-1. Re-query the live registry and inspect the selected item's current detail/source.
+1. Search the complete retained inventory, retain the strongest viable finalist from every catalog, and inspect each finalist's current detail/source. Apply the neutral rubric; do not stop at a familiar source. For ThreeUI, record the Community ID/import, package version or source commit, runtime, assets, and fallback.
 2. Compare the live files with any installed copy. Merge upstream accessibility or behavior improvements without erasing local tokens, content, or project-specific fixes.
-3. Install directly only when the stack is compatible. Otherwise implement the approved native-stack adaptation; do not add a parallel framework silently.
+3. Install the winner directly only when the stack is compatible. Otherwise implement the approved faithful native-stack adaptation or composition; do not add a parallel framework silently and do not fall back to plain UI.
 4. Preserve the component's interaction semantics while replacing demo colors, type, spacing, radii, and copy with the approved design system.
 5. Verify its dependencies are necessary, current enough for the host project, and recorded in the final report.
 
-The style sample includes the highest-impact automatically selected component. Present the implemented result, not alternatives. If the user critiques it, turn the feedback into a constraint, recheck the registry, and revise before full expansion. Small affordances may be batched into the overall motion system.
+The style sample includes the highest-impact automatically selected component and representative premium treatment for its visible primitives. Present the implemented winners, not alternatives. A ThreeUI selection includes its actual renderer and intentional static/no-WebGL/reduced-motion path. If the user critiques the result, turn the feedback into a constraint, search the full equal-weight collection again, and revise before full expansion. Small affordances may be batched into the overall motion system.
 
 ---
 
@@ -141,7 +141,7 @@ Before writing code, detect what exists. Check for `package.json` (and its depen
 | **Tailwind absent** | Do not add it to an existing project unprompted. Write plain CSS with custom properties; use BEM-ish or component-scoped class naming consistent with whatever the project already does. |
 | **shadcn/ui present** (`components.json`, `components/ui/`) | Use existing `components/ui` primitives instead of hand-rolling buttons/dialogs/dropdowns — they already handle focus traps, keyboard nav, and ARIA. Style via the CSS-variable theme (`--primary`, `--radius`, etc. in `globals.css`), which is where the brief's tokens map in. Add new primitives via the established pattern rather than inventing parallel ones. |
 
-**Greenfield default (nothing detected):** Let the approved Component Opportunity Map decide. When several high-value beUI interactions are central to the experience, prefer a React/Next.js + Tailwind/shadcn-compatible foundation and explain the dependency cost in the brief. When the site is mostly static prose and imagery, use a static-first stack and adapt only the selected interaction patterns natively. Do not buy a framework solely to animate content, but do not choose a minimal stack that prevents the approved interaction direction either.
+**Greenfield default (nothing detected):** Let the approved collection of selected components decide. No catalog decides the stack by name. Choose the lightest coherent foundation that can faithfully support the highest-value winners, explain its dependency/runtime cost in the brief, and adapt remaining selections natively. Do not buy a framework for one decorative effect, but do not choose a minimal stack that prevents the approved premium-component direction either.
 
 ---
 
@@ -337,8 +337,12 @@ Walk every item before presenting work. Check items honestly — an unchecked it
 
 ### Interaction
 
-- [ ] The current live beUI registry was checked for every new or changed feature; exact slugs/source adaptations are recorded
-- [ ] Imported or adapted beUI components use project tokens and do not carry demo styling unchanged
+- [ ] The Complete Resource Inventory was rebuilt this invocation with exact reconciled counts, all identifiers, provenance, and freshness for every required source
+- [ ] Every designed surface compares the strongest viable finalist from every catalog without source priority; exact slugs/IDs/imports/paths and `no viable candidate` results are recorded
+- [ ] Every designed surface has observable catalog lineage through direct use, faithful adaptation, or composition; no plain or unattributed custom UI remains
+- [ ] Imported or adapted catalog components use project tokens and do not carry demo styling unchanged
+- [ ] Every selected ThreeUI visual records its Community ID/variant, import, package version or source commit, runtime/fallback, and required license/asset notices
+- [ ] ThreeUI/WebGL scenes pass reduced-motion, no-WebGL fallback, visibility pause, resize, teardown, context-loss, and low-power mobile checks where applicable
 - [ ] Every interactive element has visible hover (pointer devices), focus-visible, and active states
 - [ ] Pressed/active states don't shift layout
 - [ ] Touch targets ≥44px with ≥8px gaps at mobile widths
@@ -429,13 +433,15 @@ For each row:
 
 Do not score success by pixel similarity. Score whether the intended transferable trait is clearly present, **on every page and section it applies to, not just the one it was first built for.** A single FAIL or PARTIAL row means the work is not done — fix it and re-run the row before moving on, not after the user points it out.
 
-**Step 3 — Audit live component coverage.** Re-fetch the relevant beUI registry items and walk every Component Opportunity Map row:
+**Step 3 — Audit the complete inventory and component lineage.** Verify the invocation's exact per-source counts, identifiers, provenance, reconciliation, and freshness, then walk every Component Opportunity Map row. Re-fetch every finalist and the winner; for ThreeUI rows, also apply the runtime and license gates in `threeui.md`:
 
-- Was the selected current component, slug, or native-stack adaptation used at the named target?
+- Does the row name the strongest viable finalist from every catalog or explicitly record `no viable candidate`, with no source favored by default?
+- Was the selected current component used directly, faithfully adapted, or composed at the named target, with its craft visibly present?
+- Does every designed surface on the rendered page have a row and catalog lineage, including sections, backgrounds, feedback states, and ordinary controls?
 - Does the installed code preserve local design tokens and project-specific fixes?
-- Did upstream change after selection? If so, assess and merge relevant accessibility/behavior fixes without blind overwrite.
+- Did upstream change after selection? If so, assess and merge relevant accessibility/behavior/runtime fixes without blind overwrite.
 - Do reduced motion, keyboard, touch, focus, and dependency checks pass?
-- Is any no-match, rejection, or deferral explained honestly?
+- Is any no-match, rejection, stale source, or deferral explained honestly? A no-match must still lead to a catalog-derived adaptation rather than plain custom UI.
 
 **Step 4 — Audit the build against the rest of the brief, section by section.** For each section of the brief, answer concretely:
 

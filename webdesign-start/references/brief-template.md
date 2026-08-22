@@ -8,11 +8,11 @@ This file defines `DESIGN-BRIEF.md`, the single source of truth produced in Phas
 
 1. **Location:** write to `DESIGN-BRIEF.md` at the project root. If you cannot write files, output the full brief in chat, fenced, and ask the user to save it at the project root under that exact name.
 2. **Fill every section.** An empty section means an undecided decision that will be improvised inconsistently at build time. If something is genuinely open, write it in **Open questions** rather than leaving silence.
-3. **Traceability.** Every choice should trace to a discovery answer, an approved reference, or an industry-playbook rule — the *Why* column/notes exist so future sessions (and the user) can distinguish "decided for a reason" from "arbitrary, feel free to change." Approved references outrank generic catalog defaults unless accessibility or the project's stated goal requires a deviation.
+3. **Traceability.** Every choice should trace to a discovery answer, an approved reference, or an industry-playbook rule — the *Why* column/notes exist so future sessions (and the user) can distinguish "decided for a reason" from "arbitrary, feel free to change." Approved references govern how selected catalog components are adapted; no catalog's demo aesthetic becomes a default.
 4. **Present as a digest, not the file.** After writing, show the user: direction paragraph, palette as a labeled list, the two fonts, the page list, and anything you flagged. Ask for approval. Do not paste the whole brief into chat unless asked.
 5. **The brief is law during build** — but living law. When the user requests changes mid-build, update the brief first, then the code, so the two never diverge.
 6. **Page-level overrides.** If one page needs different rules (e.g., a dark landing page for a launch inside a light site), add a subsection under **Page map** rather than forking the token set.
-7. **Live components.** Read `beui.md`, fetch the current registry, and complete the Component Opportunity Map before approval. Never fill it from memory or a stale static list.
+7. **Live components.** Read `component-sourcing.md` and `threeui.md`, rebuild the Complete Resource Inventory with exact counts and all identifiers, and complete the Component Opportunity Map before approval. Give every catalog equal consideration and never fill the map from memory or a stale snapshot.
 
 ## Template
 
@@ -108,14 +108,27 @@ finishing.md Recipe 1 — e.g., "all neutrals carry H 30 (warm brown) at S 6–1
 **Reference obligations by component:**
 - [Component]: [matrix row/source → exact trait to preserve]
 
-### Component Opportunity Map (live beUI check)
-_Registry checked: [timestamp] · Upstream main SHA: [SHA if available, otherwise unavailable]_
+### Complete Resource Inventory snapshot
+_Refreshed: [timestamp] · Full searchable manifest: [.webdesign-start/component-inventory.json or in-memory fallback]_
 
-| Feature need | Live beUI candidates checked | Selected implementation | Target | Adaptation and reason | Constraint/fallback |
-|---|---|---|---|---|---|
-| [functional need] | [@beui/slug-a, @beui/slug-b] | [@beui/slug-a] | [component/section/page] | [how it serves the approved direction] | [stack/a11y/performance/no-match note] |
+| Source | Exact current counts | Provenance/version | Freshness/failure note |
+|---|---|---|---|
+| beUI | [unique registry items + category subtotals] | [SHA/source] | [current/stale + reason] |
+| ThreeUI Community | [parents/routes/singletons/variants] | [SHA/package] | [current/stale + reason] |
+| Uiverse | [elements + category subtotals] | [SHA/source] | [current/stale + truncation check] |
+| MDC-web | [all packages + user-facing subtotal] | [SHA/source] | [current/stale + reason] |
+| design resources | [categories + links] | [SHA/source] | [current/stale + reason] |
+| taste-skill | [guidance capabilities; no invented component count] | [SHA/source] | [current/stale + reason] |
 
-**Selection rule:** Recheck the relevant live item before implementation and automatically use the strongest compatible beUI component. Never overwrite local customizations, introduce an incompatible stack silently, or sacrifice accessibility/performance to force a match.
+### Component Opportunity Map (equal-weight live comparison)
+
+| Surface/job | Best candidate from each catalog | Selected lineage | Mode | Target | Reference fit and adaptation | Constraints/fallback |
+|---|---|---|---|---|---|---|
+| [job] | [beUI item/none · ThreeUI item/none · Uiverse item/none · MDC item/none] | [exact slug/Community ID/import/path/package] | [direct/adapted/composed] | [component/section/page] | [why it best fits this website and what visibly carries through] | [stack/a11y/performance/license/fallback] |
+
+**Selection rule:** Every catalog receives equal consideration for every designed surface. Recheck all finalists and the winning live item before implementation, then automatically use the strongest contextual fit through direct integration, faithful adaptation, or composition. Plain UI or an unqualified custom component with no observable catalog lineage is prohibited. Never overwrite local customizations, introduce an incompatible stack silently, or sacrifice accessibility, performance, or license safety to force a package.
+
+**ThreeUI provenance (when selected):** [Community ID + variant · `importName` · package version or source commit · runtime/dependencies · fallback/reduced-motion plan · asset/license notes]
 
 ## 9. Page map
 [One block per page, in build order.]
@@ -155,7 +168,7 @@ persimmon accent, serif headlines, soft-rounded buttons, subtle scroll reveals."
 persimmon #E8552F for buttons/links"]
 **Type:** [Display] for headlines, [Body] for text
 **Pages:** [list] · **Motion:** [one line] · **Mode:** [light/dark]
-**Live components:** [1-3 automatically selected high-impact beUI implementations or native-stack adaptations the user should notice]
+**Live collection:** [exact per-source counts/freshness in one compact line] · **Selected components:** [1-3 high-impact direct/adapted/composed implementations the user should notice]
 **Reference carry-through:** [3-5 P1/P2 mappings in plain language: "Site A's editorial hero → home hero; Site B's restrained color use → global tokens"]
 **Flagged:** [anything defaulted or in tension, e.g., "you said X but the industry norm is Y — I went with…"]
 

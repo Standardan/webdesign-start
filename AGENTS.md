@@ -10,7 +10,8 @@ This file is a living contributor guide. Update it whenever the repository struc
 
 - `webdesign-start/SKILL.md`: canonical workflow and orchestration rules.
 - `webdesign-start/references/`: progressively loaded guidance for each workflow phase.
-- `webdesign-start/references/beui.md`: live upstream component refresh and integration contract.
+- `webdesign-start/references/component-sourcing.md`: neutral, complete live resource inventory and cross-catalog component-selection contract.
+- `webdesign-start/references/threeui.md`: live ThreeUI Community sourcing, runtime, licensing, and verification contract for 3D/WebGL/visual components.
 - `webdesign-start/VERSION`: release version and date in `<semver> <YYYY-MM-DD>` format.
 - `adapters/`: thin entry points for specific assistants plus the universal prompt.
 - `README.md`: public overview, installation instructions, and workflow summary.
@@ -25,7 +26,8 @@ This file is a living contributor guide. Update it whenever the repository struc
 5. Avoid duplicating detailed guidance across files. Keep orchestration in `SKILL.md`; keep phase-specific detail in the relevant reference file; link between them clearly.
 6. Preserve progressive disclosure. A change should not force the assistant to load every reference file up front.
 7. Treat user approval gates, accessibility requirements, reference inspection, and honest placeholder reporting as behavioral contracts.
-8. Treat beUI as a live upstream and the default component source: query its current registry on every skill invocation and before feature implementation, then automatically use the strongest compatible match. Do not vendor a static catalog or ask users to pre-select components unless they explicitly request that workflow.
+8. Treat every component catalog as an equal live source. On every invocation, build and retain a complete inventory with exact per-source counts and every current identifier; at each designed surface, compare the strongest viable candidates from every catalog and use the best fit for that website. Never encode a default, primary, first-look, or fallback catalog.
+9. Every designed surface must have observable catalog lineage through a direct component, faithful native-stack adaptation, or composition. Do not ship plain hand-built UI or use a source as a citation without materially incorporating its craft. Stack compatibility, accessibility, performance, licensing, the approved brief, and real product evidence still constrain which catalog component wins.
 
 ## Editing conventions
 
@@ -44,7 +46,7 @@ When changing the workflow, check all of the following for drift:
 - `README.md` workflow diagram and feature description.
 - `webdesign-start/SKILL.md` phase summary, detailed phase, and reference index.
 - The affected file under `webdesign-start/references/`.
-- `webdesign-start/references/beui.md` and the Component Opportunity Map when component-selection behavior changes.
+- `webdesign-start/references/component-sourcing.md`, `webdesign-start/references/threeui.md`, and the Component Opportunity Map when component-selection behavior changes.
 - Tool-specific adapters under `adapters/`.
 - `CHANGELOG.md` and `webdesign-start/VERSION` when preparing a release.
 
