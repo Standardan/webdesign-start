@@ -37,6 +37,8 @@ Discovery Summary
 
 **User-supplied examples come first.** Open every URL or screenshot the user provided before composing searches. Treat these as pre-qualified candidates, not as one more source to dilute among assistant choices. If they already cover the needed dimensions, skip broad discovery search; search only for a missing dimension or a more achievable sibling.
 
+**Competitor intelligence is separate and mandatory when competitors/category leaders are known.** Open their actual current pages and record: first-three-second message, one promise, above-fold evidence, primary action, scroll argument, trust signals, motion restraint, and the clearest friction or unanswered question. End with one concrete way this project will outperform each competitor (clearer, more credible, faster, more premium, or more distinctive). A competitor does not become an aesthetic reference unless the user separately approves its traits. If a page cannot be reached, mark it unverified rather than describing it from reputation or a snippet. Feed this sweep into the Creative Direction Blueprint and Conversion-Critical Section Spec in `strategic-loops.md`.
+
 When more candidates are needed, target one round; expect two; cap at three. Mix candidate *sources*: 1-2 famous anchors the user may already know and 2-3 search/gallery finds.
 
 Aim for a spread, not six clones: if discovery says "calm premium serif," present four takes on that plus one deliberate outlier a notch bolder. The outlier calibrates the boundary — users often discover their real taste by rejecting (or unexpectedly loving) it.

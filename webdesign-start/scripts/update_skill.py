@@ -31,6 +31,7 @@ REQUIRED_PATHS = (
     "references/research.md",
     "references/brief-template.md",
     "references/build-standards.md",
+    "references/strategic-loops.md",
     "scripts/update_skill.py",
 )
 VERSION_RE = re.compile(

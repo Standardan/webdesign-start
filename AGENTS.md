@@ -12,6 +12,7 @@ This file is a living contributor guide. Update it whenever the repository struc
 - `webdesign-start/references/`: progressively loaded guidance for each workflow phase.
 - `webdesign-start/references/component-sourcing.md`: neutral, complete live resource inventory and cross-catalog component-selection contract.
 - `webdesign-start/references/threeui.md`: live ThreeUI Community sourcing, runtime, licensing, and verification contract for 3D/WebGL/visual components.
+- `webdesign-start/references/strategic-loops.md`: seven required strategic, conversion, motion, copy, technical, audit, and launch loops.
 - `webdesign-start/VERSION`: release version and date in `<semver> <YYYY-MM-DD>` format.
 - `adapters/`: thin entry points for specific assistants plus the universal prompt.
 - `README.md`: public overview, installation instructions, and workflow summary.
@@ -28,6 +29,7 @@ This file is a living contributor guide. Update it whenever the repository struc
 7. Treat user approval gates, accessibility requirements, reference inspection, and honest placeholder reporting as behavioral contracts.
 8. Treat every component catalog as an equal live source. On every invocation, build and retain a complete inventory with exact per-source counts and every current identifier; at each designed surface, compare the strongest viable candidates from every catalog and use the best fit for that website. Never encode a default, primary, first-look, or fallback catalog.
 9. Every designed surface must have observable catalog lineage through a direct component, faithful native-stack adaptation, or composition. Do not ship plain hand-built UI or use a source as a citation without materially incorporating its craft. Stack compatibility, accessibility, performance, licensing, the approved brief, and real product evidence still constrain which catalog component wins.
+10. Every full site/redesign must execute all seven loops in `strategic-loops.md`. Loops 1–5 live in `DESIGN-BRIEF.md`; Loop 6 produces `CONVERSION-AUDIT.md`; Loop 7 produces `LAUNCH-PLAN.md`. Treat missing artifacts, fabricated evidence/results, and unverified loop failures as incomplete work.
 
 ## Editing conventions
 
@@ -47,6 +49,7 @@ When changing the workflow, check all of the following for drift:
 - `webdesign-start/SKILL.md` phase summary, detailed phase, and reference index.
 - The affected file under `webdesign-start/references/`.
 - `webdesign-start/references/component-sourcing.md`, `webdesign-start/references/threeui.md`, and the Component Opportunity Map when component-selection behavior changes.
+- `webdesign-start/references/strategic-loops.md`, the strategic brief sections, conversion audit, and launch handoff when strategy/conversion behavior changes.
 - Tool-specific adapters under `adapters/`.
 - `CHANGELOG.md` and `webdesign-start/VERSION` when preparing a release.
 

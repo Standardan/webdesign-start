@@ -13,6 +13,7 @@ This file defines `DESIGN-BRIEF.md`, the single source of truth produced in Phas
 5. **The brief is law during build** — but living law. When the user requests changes mid-build, update the brief first, then the code, so the two never diverge.
 6. **Page-level overrides.** If one page needs different rules (e.g., a dark landing page for a launch inside a light site), add a subsection under **Page map** rather than forking the token set.
 7. **Live components.** Read `component-sourcing.md` and `threeui.md`, rebuild the Complete Resource Inventory with exact counts and all identifiers, and complete the Component Opportunity Map before approval. Give every catalog equal consideration and never fill the map from memory or a stale snapshot.
+8. **Seven loops.** Read `strategic-loops.md`. A full site/redesign brief is incomplete without the Creative Direction Blueprint, Conversion-Critical Section Spec, Motion Contract, Scroll-Depth Copy Map, and Technical Build Plan. Missing evidence must be labeled; never fill the template with invented proof, customer language, metrics, or test outcomes.
 
 ## Template
 
@@ -24,8 +25,12 @@ _Produced by the webdesign-start discovery process. Read fully before any visual
 ## 1. Project snapshot
 - **What:** [product type + one-liner]
 - **Audience:** [who arrives, what they know, what they fear]
+- **Arrival context:** [where they were immediately before this page; known vs assumed]
 - **#1 visitor action:** [the conversion this site optimizes for]
 - **Positioning:** [premium/mid/budget · established/challenger · local/global]
+- **Brand truth:** [what is actually sold/proved + what the brand refuses to be]
+- **Competitors/category leaders:** [names/URLs + what “outperform” means]
+- **First three seconds:** [visitor should feel X, conclude Y, and see signals Z]
 
 ## 2. Reference Translation Matrix (user-approved)
 | Priority | Source + observed evidence | User's signal | Original translation for this project | Target in our site | Fidelity check |
@@ -43,6 +48,8 @@ _Produced by the webdesign-start discovery process. Read fully before any visual
 - The anti-slop defaults (references/anti-slop.md) are always on this list implicitly; add any that this project is especially at risk of.
 
 ## 3. Style direction
+### Creative Direction Blueprint
+
 **Governing idea:** [ONE sentence every section must serve — e.g., "the shop at night:
 noir ground, photos carry the light." Memorable sites are authored by a single idea;
 if a section doesn't express it, the section is wrong or the idea is.]
@@ -51,6 +58,12 @@ a motif, a hover behavior, a type treatment. Exactly one; named so the build can
 **Dominant style:** [name from styles.md] — [one-sentence essence]
 **Accent influence (max one):** [name or "none"]
 **In practice:** [3-5 bullets of what this means concretely for THIS site]
+**Competitive advantage:** [what this site makes clearer/more credible/faster/more distinctive]
+**Visual identity:** [type character · color temperature · imagery/art direction · shape · depth · density]
+**Page architecture:** [pages and their strategic jobs]
+**Scroll story:** [stage-by-stage: what the visitor learns, feels, and can do]
+**Technology direction:** [stack/runtime direction + why it serves the experience]
+**Build order:** [foundation → riskiest proof/conversion sample → shared system → pages → integration/review]
 
 ## 4. Color system
 Mode: [light-only | dark-only | light + dark toggle]
@@ -94,10 +107,18 @@ finishing.md Recipe 1 — e.g., "all neutrals carry H 30 (warm brown) at S 6–1
 - **Borders:** [weight + when]
 
 ## 7. Motion
+### Motion Contract
+
 - **Appetite:** [none / subtle / rich]
+- **Personality:** [precise / restrained / elastic / physical / cinematic / playful / immediate]
+- **Principles:** [what motion communicates for this brand]
 - **Vocabulary:** [e.g., 16px fade-up reveals on scroll, 150ms hover transitions,
   stagger 60ms, easing cubic-bezier(0.22, 1, 0.36, 1)]
-- **Always:** respect prefers-reduced-motion; transform/opacity only.
+- **Meaning map:** [trigger → purpose → target → role token/duration/easing → reduced-motion behavior]
+- **Entry / scroll / hover-focus / press / state / overlay / page transition:** [rule for each]
+- **Never moves:** [content/controls/static baseline + no-JS/no-WebGL behavior]
+- **Mobile performance budget:** [runtime/dependency ceiling, leading-motion count, compositor rule, low-power fallback, checks]
+- **Always:** respect prefers-reduced-motion; transform/opacity only unless a measured component-specific exception is documented.
 
 ## 8. Components inventory
 [Only components this site needs. For each: one line of treatment.]
@@ -130,7 +151,41 @@ _Refreshed: [timestamp] · Full searchable manifest: [.webdesign-start/component
 
 **ThreeUI provenance (when selected):** [Community ID + variant · `importName` · package version or source commit · runtime/dependencies · fallback/reduced-motion plan · asset/license notes]
 
-## 9. Page map
+## 9. Conversion system
+
+### Conversion-Critical Section Spec
+
+- **Named section:** [hero/pricing/booking/configurator/etc.]
+- **Entry context:** [what the visitor was doing immediately before arrival]
+- **One promise:** [the only promise that must land first]
+- **Above-fold evidence:** [real proof/artifact/fact + real/placeholder status]
+- **Ten-second action:** [action + destination/behavior + instrumented success event]
+- **Supporting visual:** [real product/artifact/photo/demo + why it proves the promise]
+- **Primary action:** [specific label + destination/behavior]
+- **Secondary action:** [distinct lower-commitment need, or omitted with reason]
+
+**Copy variants worth testing (hypotheses, not results):**
+
+| Variant | Angle | Headline | Subheadline | Hypothesis | Primary metric / guardrail |
+|---|---|---|---|---|---|
+| A | Direct/clarity | […] | […] | […] | […] |
+| B | Outcome | […] | […] | […] | […] |
+| C | Proof/differentiation | […] | […] | […] | […] |
+
+**Selected baseline:** [A/B/C + evidence-based reason]
+
+### Scroll-Depth Copy Map
+
+| Stage/section | Visitor question or objection | Evidence available | Message job | Actual heading/body | CTA/form/error/reassurance microcopy |
+|---|---|---|---|---|---|
+| [entry/hero] | […] | […] | […] | […] | […] |
+| [next stage] | […] | […] | […] | […] | […] |
+| [final CTA] | […] | […] | […] | […] | […] |
+
+**Awareness level:** [unaware/problem-aware/solution-aware/product-aware/ready]
+**Verified customer language:** [phrases + source, or missing-research task]
+
+## 10. Page map
 [One block per page, in build order.]
 
 ### [Page name] — `/route`
@@ -139,17 +194,40 @@ Sections: [ordered list, one line each with content status (real/placeholder)]
 [For each section that carries a reference obligation, append: `Reference: [matrix row/source + trait]`.]
 [Optional: **Overrides:** any page-specific deviations from global tokens]
 
-## 10. Content status
+## 11. Content status
 - Copy: [real / AI-drafted placeholder (sounds real, flagged) / mixed — per page]
 - Imagery: [available / placeholder strategy from build-standards.md]
 - Logo: [exists / text-wordmark placeholder]
 
-## 11. Build settings
+## 12. Build settings
 - **Stack:** [detected or chosen + why] · **Styling:** [vanilla CSS custom props / Tailwind / …]
 - **In scope:** [dark mode? blog? forms→where do submissions go? analytics?]
 - **Out of scope (explicitly):** […]
 
-## 12. Open questions
+## 13. Technical Build Plan
+
+- **Routes/pages:** [route list + purpose]
+- **Repeated components:** [component → responsibility → variants/states]
+- **Folder structure:** [tree matching the detected stack]
+- **Content/data ownership:** [what changes often · owner · code/data/CMS/external source]
+- **System boundaries:** [tokens/theme · content/data · state · forms · media · animation · analytics]
+- **Live-component dependencies:** [direct/adapted/composed lineage + runtime/dependency notes]
+- **Build order/dependencies:** [ordered tasks; foundation and critical sample first]
+- **Performance budgets:** [LCP/INP/CLS + JS/GPU/media/font constraints]
+- **Accessibility acceptance:** [keyboard/touch/zoom/reduced motion/semantics/form/fallback requirements]
+- **Measurement plan:** [events for primary action, funnel steps, errors, experiment exposure, consent boundary]
+- **Verification plan:** [widths/themes/devices/states/content edges/tests]
+
+## 14. Launch and measurement assumptions
+
+- **Controlled traffic sources:** [email/outreach/social/community/partners/search/ads/in-product]
+- **Priority pages/actions:** [first attention after launch]
+- **Low-cost feedback:** [method + owner]
+- **Low-volume useful metrics:** [qualified actions/completion/errors/replies/objection patterns/time-to-value]
+- **Known baseline:** [value/source/date, or unknown]
+- **Experiment constraints:** [minimum observation window/sample condition + guardrails]
+
+## 15. Open questions
 - [Anything unresolved, with the current working assumption]
 ````
 
@@ -160,14 +238,18 @@ After writing the file, present approval like this — short enough to read in 3
 ```markdown
 The design brief is written. The short version:
 
-**Direction:** [2-3 sentences weaving style + references: "A quiet, editorial site in the
+**Direction + first 3 seconds:** [2-3 sentences weaving style + references: "A quiet, editorial site in the
 spirit of [Site A]'s spacing and [Site B]'s warmth — cream background, ink text, one
-persimmon accent, serif headlines, soft-rounded buttons, subtle scroll reveals."]
+persimmon accent, serif headlines, soft-rounded buttons, subtle scroll reveals. Visitors should feel X and immediately conclude Y."]
+
+**Critical section:** [one promise] · **Evidence:** [proof] · **Action:** [primary CTA/event]
+**Baseline copy:** [selected A/B/C headline; note that all three hypotheses are recorded in the brief]
 
 **Palette:** [name each core color plainly: "cream #FAF7F2 background · ink #1A1815 text ·
 persimmon #E8552F for buttons/links"]
 **Type:** [Display] for headlines, [Body] for text
-**Pages:** [list] · **Motion:** [one line] · **Mode:** [light/dark]
+**Pages:** [list] · **Motion + mobile budget:** [one line] · **Mode:** [light/dark]
+**Build order:** [one compact line]
 **Live collection:** [exact per-source counts/freshness in one compact line] · **Selected components:** [1-3 high-impact direct/adapted/composed implementations the user should notice]
 **Reference carry-through:** [3-5 P1/P2 mappings in plain language: "Site A's editorial hero → home hero; Site B's restrained color use → global tokens"]
 **Flagged:** [anything defaulted or in tension, e.g., "you said X but the industry norm is Y — I went with…"]

@@ -5,10 +5,10 @@ description: Guided web design discovery & build — questionnaire, real-site re
 Read the file `webdesign-start/SKILL.md` in this project (locate the `webdesign-start` folder if it is not at the root) and follow its workflow exactly, starting at Phase 0:
 
 1. **Intake** — harvest what the user already said; never re-ask known answers; rebuild a complete live inventory with exact counts and every current identifier from all component/resource sources on every invocation.
-2. **Discovery** — adaptive batches of 3-4 multiple-choice questions (see `references/discovery.md`).
+2. **Discovery** — adaptive batches of 3-4 multiple-choice questions that gather the evidence required by `references/strategic-loops.md` without re-asking known facts.
 3. **Research** — inspect user-provided examples first, find more only if needed, collect reactions, and map approved traits to specific project targets (see `references/research.md`).
-4. **Brief** — write the Reference Translation Matrix and equal-weight Component Opportunity Map into `DESIGN-BRIEF.md`, including the strongest viable candidate from every catalog for every designed surface; show a digest and get explicit approval. Hard gate.
-5. **Build** — give no catalog priority; implement the best contextual fit for every designed surface through direct use, faithful adaptation, or composition, with no plain UI lacking observable catalog lineage. Render and confirm the result in a reference-driven style sample, then implement against the brief and `references/build-standards.md` + `references/ux-rules.md`. Do not present a component picker; revise after user critique.
-6. **Review** — self-audit reference and component carry-through, the brief, and the pre-delivery checklist; report honestly.
+4. **Brief** — complete strategic Loops 1–5 (creative direction, conversion-critical section with three testable copy variants and a chosen baseline, motion contract, scroll-depth copy map, technical build plan), plus the Reference Translation Matrix and equal-weight Component Opportunity Map in `DESIGN-BRIEF.md`; show a digest and get explicit approval. Hard gate.
+5. **Build** — give no catalog priority; implement the best contextual fit for every designed surface through direct use, faithful adaptation, or composition. Follow the approved technical plan, copy map, motion contract, and instrumented conversion-critical section. Render and confirm the result in a reference-driven style sample, then implement against the brief.
+6. **Review and launch** — self-audit reference, component, and strategic-loop carry-through; run Loop 6 against the rendered path and write `CONVERSION-AUDIT.md`; for a full site/redesign, run Loop 7 and write the thirty-day `LAUNCH-PLAN.md`. Never invent evidence or results.
 
 Do not skip the questionnaire, the research phase, or the brief-approval gate.

@@ -2,6 +2,14 @@
 
 All notable changes to the webdesign-start skill. Versions follow semver: major = workflow-breaking restructure, minor = new rules/sections/capabilities, patch = fixes and wording.
 
+## 1.11.0 — 2026-08-22
+
+- Added `references/strategic-loops.md`, adapting the owner-supplied Farhan prompt framework into seven mandatory analyze→decide→record→verify loops: creative direction, conversion-critical section, motion system, conversion copy, technical build plan, conversion audit, and thirty-day launch plan.
+- Expanded discovery and `DESIGN-BRIEF.md` to persist first-three-second intent, competitor advantage, arrival context, one promise/evidence/action, three honest copy-test variants with a selected baseline, scroll-depth objections/copy, a motion/static-baseline/mobile-budget contract, and an implementation-ready technical plan.
+- Added hard rendered-site checks for three-second direction, five-second comprehension, ten-second action, objection/evidence coverage, motion purpose/fallbacks, technical-plan drift, and truthful measurement.
+- Made `CONVERSION-AUDIT.md` and `LAUNCH-PLAN.md` required full-site/redesign handoff artifacts with prioritized fixes, ordered experiments, metrics/events, guardrails, owners, a thirty-day cadence, and stopping rules.
+- Explicitly prohibited fabricated evidence, customer language, metrics, competitor claims, uplift estimates, and test results throughout the new loops.
+
 ## 1.10.0 — 2026-08-21
 
 - Added ThreeUI Community as a live component source with complete Community parent/route/variant inventory, package/source integration paths, and explicit WebGL lifecycle, accessibility, performance, fallback, asset, and licensing gates.

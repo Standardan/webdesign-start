@@ -10,6 +10,7 @@ This file is the complete question system for extracting a design direction from
 - [Round 1 — Fundamentals (always)](#round-1--fundamentals-always)
 - [Round 2 — Taste extraction (always)](#round-2--taste-extraction-always)
 - [Round 3 — Product-type branches](#round-3--product-type-branches)
+- [Strategic evidence coverage](#strategic-evidence-coverage)
 - [Round 4 — Scope & practicals](#round-4--scope--practicals)
 - [The vague-answer decoder](#the-vague-answer-decoder)
 - [Answer-to-style mapping](#answer-to-style-mapping)
@@ -27,6 +28,7 @@ This file is the complete question system for extracting a design direction from
 6. **Never let an answer pass that you can't act on.** "Modern and clean" is not actionable — run it through the [decoder](#the-vague-answer-decoder) and ask the follow-up in the same or next batch.
 7. **Silence on a question is a decision for the default.** If the user skips something, choose the industry-typical default, and record it in the summary as `(defaulted)` so they can veto it cheaply.
 8. **Watch for expertise signals.** If the user starts speaking fluent design ("I want something like Swiss typography with a single accent"), drop the plain-language scaffolding and meet them at their level — but still confirm with examples in Phase 2.
+9. **Cover the seven strategic loops without adding seven interviews.** Read `strategic-loops.md`, harvest its inputs from the opening request and answers below, then weave only the missing high-leverage questions into the normal batches. Mark low-risk assumptions; never invent evidence.
 
 ---
 
@@ -187,6 +189,19 @@ Ask 3-4 from the branch matching Q1. These surface content and conversion facts 
 
 ---
 
+## Strategic evidence coverage
+
+Before ending discovery, cover these inputs from `strategic-loops.md`. Do not create a separate fifth round; fold missing items into the most relevant Round 1, 3, or 4 batch.
+
+1. **Arrival, promise, evidence, action:** “Where will the main visitor usually come from, what is the one promise they need to understand, what real proof can we show immediately, and what should they be able to start within ten seconds?” Separate unknown traffic from known sources; never fabricate proof.
+2. **Competitive and first-impression target:** “Which competitors or category leaders should this outperform, and what should a visitor feel and conclude in the first three seconds?” Ask what “outperform” means: clearer, more credible, more premium, faster, or more distinctive.
+3. **Awareness, objections, language:** “How aware are visitors when they arrive, what stops them from acting, and what exact phrases do customers use for the problem or outcome?” Request real reviews, call notes, search terms, emails, or testimonials when available. Otherwise mark voice-of-customer language as missing research.
+4. **Launch and measurement:** “Which traffic sources do you control, what low-cost feedback can you collect, and what result or event would prove the site is working even at low volume?” This supplies the launch plan without pretending early numbers are statistically conclusive.
+
+Also record content ownership and volatility: what changes often, who updates it, and whether it belongs in code, structured data, a CMS, or another existing system. This feeds the Technical Build Plan.
+
+---
+
 ## Round 4 — Scope & practicals
 
 Usually 3 questions; fold into Round 3's message if short.
@@ -256,8 +271,13 @@ End Phase 1 by mirroring this back and getting explicit confirmation. Keep it un
 **Building:** [product type + one-line description]
 **Why now / success looks like:** [the trigger + what's different 3 months post-launch]
 **For:** [audience + what they already know/want]
+**Arrival context:** [known traffic/referral/search context, or assumption]
 **#1 visitor action:** [the conversion]
+**One promise / immediate evidence:** [promise + real proof available above fold]
+**First 3 seconds:** [visitor should feel X and conclude Y]
 **Perception gap:** [described as X today → should read as Y]
+**Competitors to outperform:** [names/URLs + clearer/credible/premium/faster/distinctive target]
+**Awareness / objections / customer language:** [level + top objections + verified phrases or evidence gap]
 **Exists already:** [brand assets / current site / content status]
 **Decides:** [solo / +who else, and who breaks ties]
 
@@ -274,6 +294,8 @@ End Phase 1 by mirroring this back and getting explicit confirmation. Keep it un
 
 **Category notes (from industry playbook):** [2-3 must-haves and anti-patterns]
 **Pages:** [list] · **Content:** [real / placeholder] · **Stack:** [detected/chosen] (defaulted items marked)
+**Content ownership:** [frequently changing content + owner/source]
+**Launch inputs:** [controlled traffic · feedback channel · success event/metric]
 
 Candidate style directions for research: [2-3 internal style names]
 ```

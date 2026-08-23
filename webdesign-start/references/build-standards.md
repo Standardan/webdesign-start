@@ -8,14 +8,15 @@ This file defines how to implement designs for this project: the HTML foundation
 
 1. [Semantic HTML foundations](#semantic-html-foundations)
 2. [Reference implementation workflow](#reference-implementation-workflow)
-3. [Live component implementation](#live-component-implementation)
-4. [Design-token implementation](#design-token-implementation)
-5. [Stack detection & adaptation](#stack-detection--adaptation)
-6. [Asset handling](#asset-handling)
-7. [Motion implementation](#motion-implementation)
-8. [Responsive verification protocol](#responsive-verification-protocol)
-9. [Pre-delivery checklist](#pre-delivery-checklist)
-10. [Self-review protocol](#self-review-protocol)
+3. [Strategic-loop implementation](#strategic-loop-implementation)
+4. [Live component implementation](#live-component-implementation)
+5. [Design-token implementation](#design-token-implementation)
+6. [Stack detection & adaptation](#stack-detection--adaptation)
+7. [Asset handling](#asset-handling)
+8. [Motion implementation](#motion-implementation)
+9. [Responsive verification protocol](#responsive-verification-protocol)
+10. [Pre-delivery checklist](#pre-delivery-checklist)
+11. [Self-review protocol](#self-review-protocol)
 
 ---
 
@@ -66,6 +67,20 @@ Pause for confirmation before expanding the full site unless the user explicitly
 ### Originality boundary
 
 Match systems and relationships, not brand-identifiable expression. Preserve the approved trait while changing copy, assets, exact measurements, and composition to fit this project's content. Never reproduce a distinctive page section wholesale. "Inspired by" should be explainable as a design rule, not demonstrable as a pixel overlay.
+
+---
+
+## Strategic-loop implementation
+
+Read `strategic-loops.md` and verify Loops 1–5 are complete in `DESIGN-BRIEF.md` before writing code.
+
+1. Build in the Technical Build Plan's order and record deviations as they occur.
+2. Make the named conversion-critical section part of the style sample. Use the selected baseline headline/subheadline, real evidence or an honest placeholder, the supporting visual, the primary action, and its named success event. Keep the other two copy variants in the brief as future test hypotheses; do not rotate or expose them without an experiment assignment.
+3. Implement the Scroll-Depth Copy Map literally, then read the rendered headings as one argument. Missing customer language remains labeled draft copy, not invented research.
+4. Implement the Motion Contract by role and trigger, including its static/no-JS/no-WebGL baseline, mobile budget, and reduced-motion behavior. Remove motion without a stated purpose.
+5. Instrument only the events named in the measurement plan, within the project's consent/privacy scope. Never claim an event, baseline, conversion lift, or experiment result that was not observed.
+
+The style-sample checkpoint must answer the creative blueprint's first-three-second test and the conversion spec's five-second comprehension test before full expansion.
 
 ---
 
@@ -382,6 +397,11 @@ Walk every item before presenting work. Check items honestly — an unchecked it
 
 ### Content
 
+- [ ] The rendered first three seconds communicate what this is, who it is for, the intended feeling, and the next action without external explanation
+- [ ] The conversion-critical section states one promise, shows truthful evidence, and exposes the primary action within ten seconds at 375px and 1440px
+- [ ] One copy baseline is implemented; variants A/B/C remain documented hypotheses with metrics and guardrails, not fake results or simultaneous rotating copy
+- [ ] The headings form a coherent scroll argument and each section answers the objection assigned in the Scroll-Depth Copy Map
+- [ ] Every trust claim, testimonial, metric, credential, customer phrase, and competitor statement has a real source or is explicitly labeled missing/draft
 - [ ] Button labels state the action ("Create account", never bare "Submit")
 - [ ] Empty, loading, and error states exist for every data-driven view
 - [ ] Error copy is human and actionable (no raw status codes)
@@ -404,6 +424,15 @@ Walk every item before presenting work. Check items honestly — an unchecked it
 - [ ] Animations use transform/opacity only
 - [ ] Lists >50 items virtualized or paginated
 - [ ] No console errors or failed network requests in a fresh page load
+
+### Strategy, measurement, and launch
+
+- [ ] Creative Direction Blueprint, Conversion-Critical Section Spec, Motion Contract, Scroll-Depth Copy Map, and Technical Build Plan are complete and match the implementation
+- [ ] Motion purpose, static baseline, reduced-motion path, and mobile performance budget were verified
+- [ ] Delivered routes, folders, components, dependencies, content ownership, accessibility criteria, and instrumentation match the Technical Build Plan or have documented deviations
+- [ ] Primary action and funnel events work within the stated consent/privacy boundary; no unobserved baseline or outcome is presented as fact
+- [ ] `CONVERSION-AUDIT.md` contains observed friction, prioritized fixes, the top three expected-impact changes, ordered experiments, metrics/events, guardrails, and stopping rules
+- [ ] For a full site/redesign, `LAUNCH-PLAN.md` contains owned launch checks, the 30-day review cadence, three prioritized experiments, low-volume metrics, feedback collection, and stop/change rules
 
 ---
 
@@ -443,7 +472,17 @@ Do not score success by pixel similarity. Score whether the intended transferabl
 - Do reduced motion, keyboard, touch, focus, and dependency checks pass?
 - Is any no-match, rejection, stale source, or deferral explained honestly? A no-match must still lead to a catalog-derived adaptation rather than plain custom UI.
 
-**Step 4 — Audit the build against the rest of the brief, section by section.** For each section of the brief, answer concretely:
+**Step 4 — Audit strategic Loops 1–5 against the rendered site and implementation.** Read `strategic-loops.md`, then verify:
+
+- Creative direction: run the three-second test and compare the actual page/scroll story, visual identity, technology direction, and build order with the blueprint.
+- Conversion-critical section: run the five-second comprehension and ten-second action tests at 375px and 1440px; confirm promise, truthful evidence, supporting visual, chosen copy baseline, primary action, and success event.
+- Motion: walk every role/trigger in the contract plus static, reduced-motion, touch, keyboard, low-power, and no-WebGL/no-JS paths that apply.
+- Copy: read headings as an argument, then verify each scroll-depth objection is answered with real evidence and every CTA/form/error/reassurance label matches the map.
+- Technical plan: compare routes, tree, repeated components, content/data ownership, dependencies, budgets, accessibility acceptance, analytics events, and test plan with what shipped. Record deviations.
+
+A missing loop section or unexplained mismatch is a FAIL to fix before continuing.
+
+**Step 5 — Audit the build against the rest of the brief, section by section.** For each section of the brief, answer concretely:
 
 - Does the hero (layout, imagery, tone, copy) match the approved reference direction — not just "a nice hero", but *that* direction?
 - Are the brief's tokens actually used in the code, or did parallel values creep in? Grep for hex literals and raw px values in components as an objective check.
@@ -451,13 +490,17 @@ Do not score success by pixel similarity. Score whether the intended transferabl
 - Does the typography match the brief's specified families and scale?
 - Do interactive behaviors described in the brief (nav style, animations, theme toggle) exist as described?
 
-**Step 5 — Walk the pre-delivery checklist above**, at the four protocol widths, in both themes, with one full keyboard pass. Fix violations as you find them; re-verify anything the fix could have disturbed.
+**Step 6 — Walk the pre-delivery checklist above**, at the four protocol widths, in both themes, with one full keyboard pass. Fix violations as you find them; re-verify anything the fix could have disturbed.
 
-**Step 6 — Cross-check against the UX rulebook's Critical 15** (`references/ux-rules.md`). Any hit is a blocker: fix before delivery.
+**Step 7 — Cross-check against the UX rulebook's Critical 15** (`references/ux-rules.md`). Any hit is a blocker: fix before delivery.
 
-**Step 7 — Run the slop audit** (`references/anti-slop.md`): grep the content files for em dashes, hype-lexicon words, and generic button labels; check the palette and section anatomy against the "banned by default" list; read the headlines in sequence for the specificity test. Include the audit outcome in the report.
+**Step 8 — Run the slop audit** (`references/anti-slop.md`): grep the content files for em dashes, hype-lexicon words, and generic button labels; check the palette and section anatomy against the "banned by default" list; read the headlines in sequence for the specificity test. Include the audit outcome in the report.
 
-**Step 8 — Report honestly.** Start by pasting the full Step 2 verdict table (every matrix row, PASS/FAIL/PARTIAL, with evidence) and the Component Opportunity Map coverage from Step 3 — these are the receipts, show them, don't summarize them away. Then report the rest in three buckets:
+**Step 9 — Run the conversion audit.** Execute Loop 6 in `strategic-loops.md` against the working rendered path and write `CONVERSION-AUDIT.md`. Fix objective defects and low-risk friction now; preserve genuine traffic-dependent questions as ordered experiments. Do not invent uplift estimates.
+
+**Step 10 — Write the thirty-day launch plan.** For a full site/redesign, execute Loop 7 and write `LAUNCH-PLAN.md`. Every check, feedback channel, metric, experiment, and stop/change rule needs an owner or explicit working owner. For a small isolated change, refresh the affected launch/measurement entries rather than manufacturing a new site-wide plan.
+
+**Step 11 — Report honestly.** Start by pasting the full Step 2 verdict table (every matrix row, PASS/FAIL/PARTIAL, with evidence), the Component Opportunity Map coverage from Step 3, and the strategic-loop verdicts from Steps 4, 9, and 10. These are the receipts; do not summarize them away. Then report the rest in three buckets:
 
 - **Passed:** what you checked and confirmed (be specific: "keyboard pass at all four widths, both themes").
 - **Fixed during review:** violations found and corrected — this builds trust, don't hide them.

@@ -1,6 +1,6 @@
 # webdesign-start — A Guided Web Design Skill for AI Coding Assistants
 
-**The problem this solves:** you know a good website when you see one, but you can't describe it — so your AI one-shots the *wrong* website. This skill makes the AI earn the build: it interviews you in plain language, goes and finds **real websites** that match your answers, lets you react to them ("yes, like THAT one"), locks the direction into a written design brief, and only then writes code.
+**The problem this solves:** visual taste alone does not define the audience, promise, evidence, conversion path, motion, copy, technical structure, or launch plan. This skill resolves those decisions in plain language, inspects real websites and competitors, persists an approved brief, proves the direction in a rendered sample, and only then completes the build and post-build audit.
 
 Works with **Claude Code, Cursor, Codex, Windsurf, Grok, and any assistant that can read files**. The design workflow is markdown; automatic updates use one bundled Python 3 standard-library script with no third-party dependencies.
 
@@ -12,16 +12,17 @@ Works with **Claude Code, Cursor, Codex, Windsurf, Grok, and any assistant that 
 Phase 0  Intake      — reads what you already said; never re-asks
                        rebuilds a complete, exact-count inventory of every live component/resource source
 Phase 1  Discovery   — 3-ish rounds of 3-4 multiple-choice questions,
-                       plain language, famous-site comparisons, no jargon
+                       plain language, famous-site comparisons, strategic evidence
 Phase 2  Research    — inspects your example sites first, then finds more only if needed;
                        you react, then each approved trait is mapped to this project
-Phase 3  Brief       — references + selected live components become DESIGN-BRIEF.md
+Phase 3  Brief       — creative, conversion, motion, copy, technical strategy + references
+                       + selected live components become DESIGN-BRIEF.md
                        you approve a short digest
    ── hard gate: no code before your approval ──
 Phase 4  Build       — compares every catalog without priority and uses the best-fit premium components,
                        then implements the brief
-Phase 5  Review      — audits reference/component carry-through + the brief + checklist,
-                       reports honestly what passed, failed, and is placeholder
+Phase 5  Review      — audits reference/component/strategy carry-through + conversion,
+                       then writes CONVERSION-AUDIT.md and a 30-day LAUNCH-PLAN.md
 ```
 
 The brief persists the approved design system, while `.webdesign-start/component-inventory.json` retains the complete searchable catalog snapshot for the engagement. Every invocation refreshes that inventory before new selection work.
@@ -37,6 +38,8 @@ webdesign-start/
     │                            #   + the "vague answer decoder" (what 'modern & clean' hides)
     ├── research.md              # user-reference inspection, search recipes, galleries,
     │                            #   reaction loop, Reference Translation Matrix
+    ├── strategic-loops.md       # seven hard loops: creative direction, critical-section
+    │                            #   conversion, motion, copy, build, audit, 30-day launch
     ├── component-sourcing.md   # complete equal-weight catalog/resource inventory,
     │                            #   selection, adaptation, and verification protocol
     ├── threeui.md               # ThreeUI Community visual/GPU selection, runtime,
@@ -94,7 +97,7 @@ Put the `webdesign-start` folder where the assistant can read it, then paste the
 
 ## Design lineage
 
-The design-principles layer (style catalog, industry anti-patterns, priority-tiered UX rules, pre-delivery checklist) is inspired by and extends [ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill). The live component layer treats four update-aware catalogs as one equal-weight toolkit rather than freezing copied lists or privileging a provider: the MIT-licensed [beUI repository](https://github.com/starc007/ui-components), [ThreeUI Community](https://github.com/MengTo/threeui), the community element library [Uiverse](https://github.com/uiverse-io/galaxy), and [Material Components Web](https://github.com/material-components/material-components-web). On every invocation, the skill rebuilds exact per-source counts and a searchable inventory of every current component identifier, then compares the strongest viable candidate from every catalog for each designed surface. Two live companions ride along: the [taste-skill](https://github.com/Leonxlnx/taste-skill) as a second anti-generic pass beside the built-in anti-slop rules, and [design-resources-for-developers](https://github.com/bradtraversy/design-resources-for-developers) for sourcing fonts, illustrations, photography, and icons. What this skill adds is the front half that data can't provide: **structured taste extraction** (the discovery interview + vague-answer decoder), **verified visual references** (inspection + reaction + explicit mapping into the build), and automatic, context-specific use of the collection throughout the rendered site.
+The design-principles layer (style catalog, industry anti-patterns, priority-tiered UX rules, pre-delivery checklist) is inspired by and extends [ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill). The seven-loop strategic framework was adapted from prompts supplied by the project owner and attributed to Farhan (`@Farhan_Ai3`); it turns creative direction, conversion, motion, copy, frontend planning, CRO review, and the first thirty launch days into required artifacts and verification gates. The live component layer treats four update-aware catalogs as one equal-weight toolkit rather than freezing copied lists or privileging a provider: the MIT-licensed [beUI repository](https://github.com/starc007/ui-components), [ThreeUI Community](https://github.com/MengTo/threeui), the community element library [Uiverse](https://github.com/uiverse-io/galaxy), and [Material Components Web](https://github.com/material-components/material-components-web). On every invocation, the skill rebuilds exact per-source counts and a searchable inventory of every current component identifier, then compares the strongest viable candidate from every catalog for each designed surface. Two live companions ride along: the [taste-skill](https://github.com/Leonxlnx/taste-skill) as a second anti-generic pass beside the built-in anti-slop rules, and [design-resources-for-developers](https://github.com/bradtraversy/design-resources-for-developers) for sourcing fonts, illustrations, photography, and icons.
 
 ## Updating
 
@@ -109,3 +112,4 @@ The skill updates itself at the start of an engagement when Python 3, network ac
 - **Name sites you already admire**, even from unrelated industries — the skill inspects these first and maps the parts you like to specific parts of your project.
 - **Critique the implemented component direction.** The skill compares every catalog without priority and implements the best contextual fit; if one feels wrong in the style sample, explain what feels wrong and it will search the full collection again, then reselect or restyle it.
 - **Keep `DESIGN-BRIEF.md` in the repo.** It's the memory. Future "add a pricing page" requests will match the existing design because the brief says how.
+- **Use the post-build artifacts.** `CONVERSION-AUDIT.md` separates immediate fixes from traffic-dependent experiments; `LAUNCH-PLAN.md` sets the first thirty days, owners, metrics, and stopping rules.
