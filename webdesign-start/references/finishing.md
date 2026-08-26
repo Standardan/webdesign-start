@@ -6,6 +6,14 @@
 
 **Where the chosen values come from — in this order:** (1) the measured Reference Teardowns of the user's approved sites (adapt the measured value: own hue, own face, preserved relationship); (2) the brief's discovery answers; (3) only where neither speaks, a deliberate pick from the recipe range. The recipes exist to stop timid defaults, not to replace the references — when a teardown and a recipe range disagree, the approved reference wins unless accessibility fails.
 
+**Components are not the problem.** Premium components should be used wherever they materially improve a designed surface. The failure is allowing a component demo's surrounding page layout to replace the user's approved direction. Lock the Reference Blend Contract's macro composition first, then use components to execute its interactions, visuals, and states at a higher craft level.
+
+## Pre-foundation gates: composition and assets
+
+Before the token file, sketch the page at macro scale from the Reference Blend Contract: section silhouette, first focal point, media share/crop, headline share, density changes, and major motion. This can be a small wireframe or written proportion map, but it must name the liked traits driving each dominant region. A generic split hero or card grid is not allowed unless the references/user chose it.
+
+Then run the Asset Readiness Gate from `brief-template.md`. Every P1 obligation that depends on photography, product UI, game art, illustration, video, 3D, or large-format motion must have a representative real, generated, licensed, or purpose-built asset/runtime before the style sample. If it does not, resolve the dependency or obtain explicit approval to change the direction. Do not replace dominant media with generic icons, empty frames, abstract gradients, or fabricated metrics.
+
 ## The order of operations (non-negotiable)
 
 The first file written in Phase 4 is the token/theme file, alone, before any component or page. It is checked against every recipe below (the Foundation Gate at the end of this file) and fixed *before* a single component consumes it. Foundation bugs metastasize: a slate ramp or a timid type scale, once consumed by twenty components, never gets fixed. A component built on a finished foundation is hard to make look generated.
@@ -58,6 +66,8 @@ Then obey the sentence everywhere, including sections built late (CTA bands and 
 ## Recipe 6 — The hero shows evidence
 
 For products and services, the strongest hero visual is the real thing doing its most impressive trick: a working interactive demo with plausible domain data, a real photograph, a real artifact. Build the demo as a first-class component (this is where the premium live-component budget belongs — the hero demo, not decorative cards). ThreeUI can carry the hero when the approved concept genuinely calls for place, atmosphere, generative visualization, or a 3D artifact; it cannot replace evidence for a product that already has a face. Absolute bans regardless of direction: fabricated browser chrome, invented dashboards with impossible numbers, abstract 3D blobs standing in for real product proof.
+
+An invented number is not made truthful by calling it a placeholder in the delivery report. If demo data is necessary, label it “demo,” “illustrative,” or equivalent in the rendered surface and never pair it with a live-status dot, “today,” “now,” or other telemetry language.
 
 Copy carries the same rule: the hero subhead states countable facts ("27 tools", "three chairs on East Sixth", "read-only by default") — see anti-slop's writing rules.
 

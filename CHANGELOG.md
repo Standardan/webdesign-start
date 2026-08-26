@@ -2,6 +2,15 @@
 
 All notable changes to the webdesign-start skill. Versions follow semver: major = workflow-breaking restructure, minor = new rules/sections/capabilities, patch = fixes and wording.
 
+## 1.12.0 — 2026-08-25
+
+- Added a Liked Trait Ledger that records every reference trait the user praises in their own words. Compound reactions are split into separate obligations, and no dominant trait may be replaced by an easier nav, color, radius, or token detail.
+- Added a Reference Blend Contract that assigns each primary reference explicit roles across silhouette, focal media, typography, density, color, chrome, and motion. Primary references must affect at least three macro dimensions, including silhouette, focal media, or motion; “mood only” now requires explicit user agreement.
+- Added a blocking Asset Readiness Gate for P1 photography, product UI, game art, illustration, video, 3D, and large-motion requirements. Generic icons, abstract gradients, empty frames, and fabricated telemetry cannot substitute for dominant reference media.
+- Clarified the component contract: live-catalog components remain mandatory where applicable, but they execute the locked reference-led composition instead of importing catalog-demo page layouts. Components preserve meaningful craft while their surrounding geometry and placement adapt to the approved direction.
+- Added equal-viewport side-by-side macro checks and a blind gestalt test to the style-sample and delivery gates. Reference fidelity and component coverage are independent hard gates; neither can compensate for failure of the other.
+- Strengthened evidence honesty: demo data must be visibly labeled in the rendered surface, and invented values may not use live dots, “today/now,” rolling telemetry, or other real-time language.
+
 ## 1.11.0 — 2026-08-22
 
 - Added `references/strategic-loops.md`, adapting the owner-supplied Farhan prompt framework into seven mandatory analyze→decide→record→verify loops: creative direction, conversion-critical section, motion system, conversion copy, technical build plan, conversion audit, and thirty-day launch plan.

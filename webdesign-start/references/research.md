@@ -13,7 +13,7 @@ This file defines Phase 2: turning the Discovery Summary into 2-3 **user-approve
 - [Step 4 — Presentation format](#step-4--presentation-format)
 - [Step 5 — Reaction loop](#step-5--reaction-loop)
 - [Step 6 — Inspect approved references](#step-6--inspect-approved-references)
-- [Step 7 — Build the Reference Translation Matrix](#step-7--build-the-reference-translation-matrix)
+- [Step 7 — Build the Reference Translation Matrix and Blend Contract](#step-7--build-the-reference-translation-matrix-and-blend-contract)
 - [The anchor library (no-search fallback)](#the-anchor-library-no-search-fallback)
 - [Guardrails](#guardrails)
 
@@ -30,8 +30,9 @@ Discovery Summary
    → present with "why it matches you"   (Step 4)
    → collect per-site reactions          (Step 5)
    → converged? → inspect approved sites deeply (Step 6)
-   → map observed traits to this project (Step 7)
-   → confirm matrix, exit to Phase 3
+   → record every liked trait verbatim in the Liked Trait Ledger
+   → map all liked traits + the cross-reference blend (Step 7)
+   → confirm ledger, matrix, and blend; exit to Phase 3
    → not converged? → refine and rerun once or twice (3 rounds max)
 ```
 
@@ -134,6 +135,19 @@ The "why I picked it for you" line is mandatory — it teaches the user that the
 - Unexplained 😍 → one follow-up: "what's the first thing you liked?" Don't interrogate further.
 - Contradictions (loves an airy site AND a dense one) → surface it: "these two pull opposite directions on density — which matters more on YOUR site?"
 
+### Liked Trait Ledger: listen without cherry-picking
+
+Create the ledger while reactions happen, using the user's words rather than a compressed design summary:
+
+| Reference | User's exact liked trait | Importance | Inspection target | Status |
+|---|---|---|---|---|
+| [site] | [quote or faithful near-verbatim phrase] | primary / supporting | [hero media / large motion / nav / type / density / etc.] | pending inspection |
+
+- Split compound reactions into separate traits. “I like the feel, the large animations, the picture taking over everything, and the small nav” is four obligations, not “luxury feel” plus whichever one is easiest to code.
+- A broad “I like all of this” requires a quick confirmation of the 2–4 dominant things the user means, informed by what is actually visible. Do not make them name design jargon.
+- Do not discard a dominant trait because it needs assets, custom composition, a premium component, or more work. Record the dependency; solve it at the Asset Readiness Gate.
+- A later prioritization may resolve conflicts, but it cannot silently erase a liked trait. Any trait deliberately omitted needs the user's explicit approval and a recorded reason.
+
 **Converged** = at least two strong positives with known reasons. From the 4-6 sites you presented, positive and "close-but" traits become implementation candidates; rejected traits become explicit avoidances. Do not jump directly from these reactions to generic mood words. Proceed to deep inspection and translation.
 
 **Not converged after round 1** → build round 2 from the reaction reasons (new constraints in, dead regions out). **Still stuck after round 3** → stop searching; present 2-3 named *directions* (mini mood descriptions synthesized from every positive fragment) and have the user pick one. Do not loop forever; decision fatigue is real and Phase 3's brief digest is another checkpoint anyway.
@@ -152,6 +166,8 @@ Reopen each positively rated site from the presented set after the user explains
 8. **Motion and interaction:** entrance hierarchy, hover behavior, sticky/scroll treatment.
 
 Record only observable details. Distinguish what the user explicitly liked from what you merely observed: approval of one trait is not approval of the whole site.
+
+Reconcile the inspection with the Liked Trait Ledger before translation. For every ledger item, capture the page/state where it appears, its role in the experience, and the measurable or visually testable relationship that makes it work. Pay special attention to dominant traits: full-bleed imagery, the focal object, hero scale, major motion, unusual density, or scroll choreography. These define resemblance more strongly than a border, radius, or nav height.
 
 ### Measure, don't vibe: the Reference Teardown
 
@@ -179,11 +195,11 @@ If no inspection capability exists at all, say so, write the teardown from the u
 
 If a reference cannot be reached:
 
-- Ask for a screenshot only if that reference is important and no equivalent evidence is available.
-- Otherwise mark it uninspected and do not make detailed claims about it.
+- If it is a primary reference or owns a liked trait, obtain a screenshot, screen recording, user-provided capture, or another inspectable artifact before locking the brief. This is a blocking evidence gap: do not continue from reputation, a search snippet, or a textual description of the site's category.
+- If it is genuinely optional, mark it uninspected and ask the user whether to remove it or keep it explicitly as non-binding context.
 - Never quietly substitute your memory of a past version of the site.
 
-## Step 7 — Build the Reference Translation Matrix
+## Step 7 — Build the Reference Translation Matrix and Blend Contract
 
 Translate each approved trait into an original project decision. Use this format:
 
@@ -202,13 +218,31 @@ Rules:
 
 - Use all six columns shown above; do not collapse **Source + observed evidence** into a generic label such as "Site A: clean." Name the page/region and the concrete trait you inspected, citing teardown values where they exist ("hero ~96px/800 at −2.5% tracking", not "big bold type").
 - Every P1 row's **Fidelity check** must be verifiable against the teardown: a pass condition someone could measure on the built site and compare to the measured reference relationship.
-- Every approved reference must contribute at least one row, or be labeled **mood only** with a reason.
+- Every Liked Trait Ledger item becomes a P1/P2 row. Compatible traits may share one row only when they have the same target and each remains individually verifiable.
+- A **primary visual reference** must shape at least three macro dimensions and must include at least one of: page silhouette, focal media, or motion/scroll choreography. Chrome, color, radius, or nav height alone cannot represent a primary reference.
+- “Mood only” is allowed only when the user explicitly agrees that the reference is non-binding. It cannot be used to hide an unreachable reference, an asset dependency, or a liked trait the assistant does not want to implement.
 - Every positive row must name a concrete target: token, component, section, page, or interaction.
-- Include 3-7 obligations, ranked P1/P2. More rows dilute the signal.
+- Keep the matrix readable, but never cap away user-approved traits. Rank obligations P1/P2 and group only where verification stays unambiguous.
 - Add explicit avoidances from negative reactions.
 - Translation must preserve the trait without reproducing proprietary copy, assets, logos, or a distinctive composition wholesale.
 - If references conflict, surface the conflict and ask which trait wins; do not average them into generic design.
 - Confirm the matrix with the user. This confirmation locks what the references actually mean before the brief is written.
+
+### Reference Blend Contract
+
+After the matrix, assign each primary reference a visible job in the combined direction:
+
+| Reference | Role in the blend | Macro dimensions owned | Dominant traits that must be recognizable | What we deliberately do not borrow |
+|---|---|---|---|---|
+| [Site A] | [hero art direction / page rhythm / product density / motion character] | [silhouette, media, type, density, motion, chrome, color] | [ledger item IDs or short trait names] | [brand-specific assets/copy/ornament] |
+
+Rules:
+
+- Across the blend, explicitly assign: page silhouette, first focal point, media ratio/crop, typography hierarchy, density rhythm, color distribution, chrome, and motion. Unassigned macro dimensions become model defaults.
+- State the combined three-second read in one sentence: “This should feel like [reference role A] combined with [role B], expressed through this project's own content.”
+- Do not average conflicting references into generic middle-ground design. Assign different roles or ask which wins.
+- A reference may own small details in addition to macro roles, but a small detail cannot satisfy a missing dominant role.
+- Confirm the Liked Trait Ledger, Reference Translation Matrix, and Reference Blend Contract together. The user should be able to point to every liked trait and see where it will appear.
 
 ## The anchor library (no-search fallback)
 
@@ -238,5 +272,5 @@ When no web search is available — or to seed candidates — use these widely-k
 
 - **Inspiration, not duplication.** Borrow structure genres, spacing philosophy, color temperature, motion character. Never replicate a reference's distinctive layout wholesale, copy text, logos, illustrations, photography, or brand-identifiable elements. The finished site should look like a *sibling in taste*, not a twin.
 - **No dead ends.** Never present a link you have reason to believe is broken, paywalled, or NSFW-adjacent.
-- **Stay in the user's league.** Flag when a reference's effect depends on assets the user lacks (world-class photography, 3D team) and name the achievable version.
+- **Stay in the user's league without deleting the direction.** Flag when a reference's effect depends on assets the user lacks (world-class photography, product UI, game art, video, or 3D). Define the achievable representative asset and preserve the same visual role, or ask the user to approve a changed direction. A generic icon, gradient, or fabricated metric is not an achievable substitute for dominant media.
 - **Don't editorialize the user's taste.** If they love the site you find mediocre, their taste wins — your job is coherence and execution quality, not aesthetic paternalism. Voice concerns once, through the lens of their own goals ("that density might slow the booking flow you said is #1"), then commit.

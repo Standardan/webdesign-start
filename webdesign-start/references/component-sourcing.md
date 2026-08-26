@@ -4,6 +4,15 @@ This file defines one neutral toolkit assembled from every live component catalo
 
 Plain hand-built UI where this collection can supply or meaningfully shape the surface is a failure. Every meaningful section, interaction, visualization, control, state, and signature moment must have explicit catalog lineage. Structural HTML, prose, layout wrappers, and project-specific data glue are not component surfaces and do not need artificial catalog attribution.
 
+## Reference-led composition, component-led execution
+
+Component use is mandatory where a catalog can materially improve the surface. It is not the source of the page's overall composition unless the approved Reference Blend Contract explicitly selects that composition.
+
+1. The Liked Trait Ledger and Reference Blend Contract lock the macro layer first: silhouette, focal point, media dominance/crop, type hierarchy, density rhythm, color distribution, chrome, and motion character.
+2. The Component Opportunity Map selects high-quality components for the jobs inside that macro layer: navigation behavior, media treatment, controls, cards, backgrounds, transitions, states, visualizations, and signature interactions.
+3. A component can preserve its excellent interaction, motion, state model, or distinctive treatment while its spacing, geometry, placement, and surrounding composition are adapted to the reference contract.
+4. A page fails when it has premium components but still uses a generic catalog/landing-page silhouette. Component coverage and reference fidelity are independent gates; neither compensates for the other.
+
 **Read this file:** on every invocation during Phase 0; while writing the Component Opportunity Map in Phase 3; before implementing every new or changed designed surface; and during Phase 5 review.
 
 ## The equal-weight toolkit
@@ -102,12 +111,12 @@ If a source is unreachable, try its raw repository, package metadata, or last lo
 
 Run this sequence for every new or changed section, interaction, visualization, control, feedback state, and signature moment:
 
-1. Define the job and the intended character in project terms.
+1. Define the job and intended character from the locked Reference Blend Contract, including the surface's fixed macro constraints. Do not start from a catalog preview's surrounding layout.
 2. Search the Complete Resource Inventory across **all four component catalogs**. Do not stop when the first plausible match appears and do not route to a favored catalog by component type.
 3. For each catalog, retain its strongest plausible candidate or record `no viable candidate`. Inspect live previews and current source for every finalist; names and thumbnails are insufficient.
 4. Compare finalists with one neutral rubric: functional fit, visible fit to the approved references, project-stack compatibility, accessibility, interaction quality, responsive behavior, performance, asset/license safety, and adaptation cost.
 5. Select the strongest overall fit. Catalog name and prior usage carry zero weight. Record why the winner suits this website better than the other finalists.
-6. Use the selected component directly when compatible. Otherwise make a faithful native-stack adaptation or compose it with the project's established accessible primitives. The finished surface must preserve observable design/behavior lineage from the selected catalog item.
+6. Use the selected component directly when compatible with both the surface job and macro composition. Otherwise make a faithful native-stack adaptation or compose it with the project's established accessible primitives. The finished surface must preserve observable design/behavior lineage from the selected item without importing an unrelated page silhouette.
 7. Re-fetch the exact selected item immediately before implementation. Merge deliberately; never overwrite project-specific work merely because upstream changed.
 
 **Component use is mandatory; mismatched package installation is not.** Never force a framework, inaccessible behavior, unlicensed asset, or disproportionate runtime merely to install an item unchanged. Select another component from the equal pool or adapt the strongest compatible pattern while preserving its meaningful craft.
@@ -118,21 +127,21 @@ When no item is an exact functional match, select the closest high-quality catal
 
 A catalog-derived implementation must preserve:
 
-- recognizable anatomy, interaction idea, motion character, or visual treatment from the named source;
+- meaningful craft from the named source: its interaction idea, motion character, state model, advanced behavior, or distinctive visual treatment. Exact demo anatomy is optional when it conflicts with the approved references;
 - project tokens and the approved reference obligations rather than the demo palette;
 - complete hover, focus-visible, active, disabled, loading, empty, and error states where applicable;
 - keyboard, touch, pointer, responsive, and reduced-motion behavior;
 - source provenance and required license notices.
 
-Never cite a component without materially incorporating it. A source name in the brief is not lineage if the rendered result is still a plain default control, generic card grid, static number, or unstyled native widget.
+Never cite a component without materially incorporating it. A source name in the brief is not lineage if the rendered result is still a plain default control, generic card grid, static number, or unstyled native widget. Conversely, never preserve demo anatomy merely to make provenance obvious; provenance lives in the brief and report, while the rendered result must look authored for this project.
 
 ## Component Opportunity Map
 
 Add one row for every designed surface; sweep every page and section rather than listing only obvious interactions:
 
-| Surface/job | Best candidate from each catalog | Selected lineage | Mode | Target | Reference fit and adaptation | Constraints/fallback |
-|---|---|---|---|---|---|---|
-| [job] | [beUI item/none · ThreeUI item/none · Uiverse item/none · MDC item/none] | [exact source ID/import/path] | [direct/adapted/composed] | [component/section/page] | [why this is the best fit for this website and what visibly carries through] | [stack/a11y/performance/license/fallback] |
+| Surface/job | Locked macro constraints | Best candidate from each catalog | Selected lineage | Mode | Target | Reference fit and adaptation | Constraints/fallback |
+|---|---|---|---|---|---|---|---|
+| [job] | [silhouette/media/density/motion constraints from blend + LT IDs] | [beUI item/none · ThreeUI item/none · Uiverse item/none · MDC item/none] | [exact source ID/import/path] | [direct/adapted/composed] | [component/section/page] | [why this is the best fit and what component craft visibly carries through without changing the macro direction] | [stack/a11y/performance/license/fallback] |
 
 Static prose and layout glue do not need manufactured rows. Cards, buttons, navigation, forms, menus, loaders, data displays, backgrounds, media treatments, feedback states, major content sections, and signature visuals do.
 
@@ -163,7 +172,7 @@ For greenfield work, let the complete set of selected components determine the s
 
 ## Style-sample checkpoint
 
-The style sample must include the highest-impact selected premium component plus representative selected treatments for its button/card or other visible primitives. Show implemented winners, not alternatives. Identify the source item and the exact observable trait incorporated. If the user critiques the result, convert the feedback into a constraint, search the full equal-weight inventory again, and revise the selection or adaptation before expanding the build.
+The style sample must include the highest-impact selected premium component plus representative selected treatments for its button/card or other visible primitives. Show implemented winners, not alternatives. Identify the source item, the component craft retained, and the macro constraints it obeys. If the user critiques the result, first determine whether the mismatch is macro reference fidelity or component treatment. Fix the reference composition before swapping components when silhouette, focal media, density, or scroll story is wrong; reselect/restyle when the component itself is wrong.
 
 ## Verification and reporting
 
@@ -173,8 +182,9 @@ Before delivery:
 - confirm every Component Opportunity Map row names the strongest finalist from each catalog or an explicit `no viable candidate`;
 - confirm every designed surface uses a direct, adapted, or composed catalog component with observable lineage;
 - fail and fix any plain or generic implementation that lacks catalog lineage;
+- fail any surface whose catalog component changed the locked silhouette, focal point, media hierarchy, density, or scroll story without user approval;
 - verify selected code uses project tokens and satisfies keyboard, touch, focus, reduced-motion, responsive, performance, asset, and license requirements;
 - record exact beUI slugs, ThreeUI Community IDs/imports/version or commit, Uiverse paths, MDC packages, and source URLs;
 - report catalog-source failures, stale inventory sections, dependency additions, and local/upstream divergence honestly.
 
-The review passes only when both conditions are true: the components fit this specific website, and the collection's craft is visibly present throughout the rendered experience.
+The review passes only when all conditions are true: the reference-led macro composition is recognizable, the components fit this specific website, and the collection's craft is visibly present throughout the rendered experience.

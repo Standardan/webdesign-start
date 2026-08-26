@@ -45,16 +45,22 @@ Strip all CSS mentally. Does the bare markup still communicate what everything *
 
 The approved references are not a moodboard to forget once coding starts. Before writing components:
 
-1. Read the Reference Translation Matrix in `DESIGN-BRIEF.md`.
-2. Turn every P1/P2 row into a build checklist item with its named target and fidelity check.
-3. Resolve conflicts in this order: accessibility and task success → explicit user decisions → approved reference obligations → industry guidance → generic style/layout catalogs → personal preference.
-4. Do not let a convenient starter component, framework default, or formula from `layouts.md` override an approved reference obligation.
+1. Read the Liked Trait Ledger, Reference Translation Matrix, and Reference Blend Contract in `DESIGN-BRIEF.md`.
+2. Turn every ledger item and P1/P2 row into a build checklist item with its named target and fidelity check. No dominant liked trait may be represented only by a smaller detail from the same reference.
+3. Lock the macro skeleton before selecting page-level arrangements: silhouette, first focal point, media ratio/crop, type hierarchy, density changes, color distribution, chrome, and major motion. Record which reference role owns each decision.
+4. Resolve conflicts in this order: accessibility and task success → explicit user decisions → approved reference obligations → industry guidance → generic style/layout catalogs → personal preference.
+5. Do not let a convenient starter component, framework default, or formula from `layouts.md` override an approved reference obligation.
 
 ### Style-sample checkpoint
 
-Build the hero plus one representative content section before the full page. Use the real token layer, fonts, button, card/content treatment, imagery strategy, and responsive behavior. The sample must exercise every P1 row that can reasonably appear above the fold and at least one P2 row.
+Build the hero plus one representative content section before the full page. Use the real token layer, fonts, button, card/content treatment, representative media, premium components, and responsive behavior. The sample must exercise every above-fold P1 liked trait, each primary reference's assigned macro role, and at least one P2 row.
 
-Render it at 375px and 1440px. Present it with a short carry-through note:
+Render it at 375px and 1440px. Create a side-by-side contact sheet or equivalent comparison with the approved reference regions at the same viewport. Run two tests before presenting it:
+
+1. **Macro comparison:** silhouette, first focal point, media dominance/crop, headline scale, density, color distribution, chrome, and motion character.
+2. **Blind gestalt test:** describe the rendered sample without reading the brief, then ask whether that description would let another designer identify the intended reference roles. If the answer is only “dark,” “minimal,” “glowy,” “premium,” or a list of components, it fails.
+
+Present it with a short carry-through note:
 
 ```markdown
 - [Source A trait] → [visible implementation in the sample]
@@ -90,11 +96,11 @@ Read `component-sourcing.md`, the brief's Complete Resource Inventory snapshot a
 
 1. Search the complete retained inventory, retain the strongest viable finalist from every catalog, and inspect each finalist's current detail/source. Apply the neutral rubric; do not stop at a familiar source. For ThreeUI, record the Community ID/import, package version or source commit, runtime, assets, and fallback.
 2. Compare the live files with any installed copy. Merge upstream accessibility or behavior improvements without erasing local tokens, content, or project-specific fixes.
-3. Install the winner directly only when the stack is compatible. Otherwise implement the approved faithful native-stack adaptation or composition; do not add a parallel framework silently and do not fall back to plain UI.
-4. Preserve the component's interaction semantics while replacing demo colors, type, spacing, radii, and copy with the approved design system.
+3. Install the winner directly only when the stack and locked macro composition are compatible. Otherwise implement the approved faithful native-stack adaptation or composition; do not add a parallel framework silently and do not fall back to plain UI.
+4. Preserve the component's meaningful craft—interaction, motion, state model, advanced behavior, or distinctive treatment—while replacing demo colors, type, spacing, radii, copy, and surrounding layout with the approved design system. Exact demo anatomy is not sacred when it conflicts with the references.
 5. Verify its dependencies are necessary, current enough for the host project, and recorded in the final report.
 
-The style sample includes the highest-impact automatically selected component and representative premium treatment for its visible primitives. Present the implemented winners, not alternatives. A ThreeUI selection includes its actual renderer and intentional static/no-WebGL/reduced-motion path. If the user critiques the result, turn the feedback into a constraint, search the full equal-weight collection again, and revise before full expansion. Small affordances may be batched into the overall motion system.
+The style sample includes the highest-impact automatically selected component and representative premium treatment for its visible primitives. Present the implemented winners, not alternatives. A ThreeUI selection includes its actual renderer and intentional static/no-WebGL/reduced-motion path. If the user critiques the result, first classify the mismatch: fix the Reference Blend Contract/composition when silhouette, media, density, or scroll story is wrong; reselect or restyle the component when its own treatment is wrong. Small affordances may be batched into the overall motion system.
 
 ---
 
@@ -162,11 +168,17 @@ Before writing code, detect what exists. Check for `package.json` (and its depen
 
 ## Asset handling
 
-Users often have no assets ready at build time. The standard here is: the page must look intentional and complete with placeholders, never broken, and swapping in real assets later must be a find-and-replace, not a re-layout.
+Users often have no assets ready at build time. The standard here is: the page must look intentional and complete with representative assets, never broken, and swapping in final assets later must be a find-and-replace, not a re-layout.
+
+### Asset Readiness Gate
+
+Before the style sample, walk every P1 liked trait and matrix row that depends on photography, product UI, game art, illustration, video, 3D, or large-format motion. Each must name a real, generated, licensed, purpose-built, or clearly representative asset/runtime that preserves the reference's visual role and proportion. If one is missing, create/source it within scope, request it, or obtain explicit approval to change the direction. Do not continue with a generic icon, abstract gradient, empty device frame, or fabricated metric in its place.
+
+Demo data may support a representative product component only when the rendered surface labels it as demo/illustrative. Never add live-status dots, “today,” “now,” rolling telemetry, or other real-time language to invented values.
 
 ### Placeholder images
 
-- **Generate SVG placeholders or CSS gradient blocks at the exact aspect ratio the real asset will have.** A 16:9 hero gets a 16:9 placeholder; a square avatar gets a square. Correct aspect ratios mean zero layout shift when real images arrive. Inline SVG placeholders can carry a label ("Hero image — product screenshot 16:9") so the user knows what belongs there.
+- **Use simple SVG/CSS placeholders only for non-P1 structural slots.** Generate them at the exact aspect ratio the real asset will have and label their purpose. A P1 media-led hero needs a representative asset that communicates the intended subject, crop, hierarchy, and atmosphere; a blank gradient block cannot prove that direction.
 - **Never hotlink images that can break.** No arbitrary URLs found on the web, no deep links into sites that will 404 or block hotlinking. A broken image icon is the fastest way to make a delivered page look abandoned.
 - **Placeholder services (picsum.photos, etc.) — use with caution and disclosure.** They require network access (broken offline/in sandboxed previews), can be slow, and return *random* content that may clash with the design's tone. Unsplash's old `source.unsplash.com` endpoint is deprecated and returns errors — do not use it. If you use picsum, pin a seed (`picsum.photos/seed/<name>/800/450`) so the image is stable across reloads, and tell the user these are temporary stand-ins.
 - **Local-first when possible:** write the SVG placeholder to the project's asset directory so the site is self-contained.
@@ -338,9 +350,12 @@ Walk every item before presenting work. Check items honestly — an unchecked it
 
 ### Visual quality
 
+- [ ] Every Liked Trait Ledger item has a rendered PASS or a user-approved omission; no dominant trait was replaced by an easier micro-detail
 - [ ] Every P1/P2 Reference Translation Matrix row is implemented at its named target or documented as a user-approved deviation
+- [ ] Every primary reference visibly fulfills its assigned Reference Blend Contract roles across at least three macro dimensions, including silhouette, focal media, or motion
 - [ ] Every Component Opportunity Map row is implemented, intentionally deferred, or rejected with a documented reason
 - [ ] The finished page carries the approved references in its silhouette, spacing, type, color, and components—not only in minor decorative details
+- [ ] Every P1 media/motion row passed the Asset Readiness Gate with a representative asset/runtime; no generic icon/gradient substituted for dominant media
 - [ ] All spacing values come from the 4/8px scale — no arbitrary margins/paddings
 - [ ] Consistent border radii from tokens across cards, inputs, buttons, modals
 - [ ] One icon family, one size, one stroke width throughout; no emoji as icons
@@ -356,6 +371,7 @@ Walk every item before presenting work. Check items honestly — an unchecked it
 - [ ] Every designed surface compares the strongest viable finalist from every catalog without source priority; exact slugs/IDs/imports/paths and `no viable candidate` results are recorded
 - [ ] Every designed surface has observable catalog lineage through direct use, faithful adaptation, or composition; no plain or unattributed custom UI remains
 - [ ] Imported or adapted catalog components use project tokens and do not carry demo styling unchanged
+- [ ] Premium components sit inside the locked reference-led composition; no catalog demo changed the silhouette, focal point, media hierarchy, density, or scroll story
 - [ ] Every selected ThreeUI visual records its Community ID/variant, import, package version or source commit, runtime/fallback, and required license/asset notices
 - [ ] ThreeUI/WebGL scenes pass reduced-motion, no-WebGL fallback, visibility pause, resize, teardown, context-loss, and low-power mobile checks where applicable
 - [ ] Every interactive element has visible hover (pointer devices), focus-visible, and active states
@@ -402,6 +418,7 @@ Walk every item before presenting work. Check items honestly — an unchecked it
 - [ ] One copy baseline is implemented; variants A/B/C remain documented hypotheses with metrics and guardrails, not fake results or simultaneous rotating copy
 - [ ] The headings form a coherent scroll argument and each section answers the objection assigned in the Scroll-Depth Copy Map
 - [ ] Every trust claim, testimonial, metric, credential, customer phrase, and competitor statement has a real source or is explicitly labeled missing/draft
+- [ ] Any demo/placeholder statistic is visibly labeled on the rendered surface and never presented with fake live/real-time indicators
 - [ ] Button labels state the action ("Create account", never bare "Submit")
 - [ ] Empty, loading, and error states exist for every data-driven view
 - [ ] Error copy is human and actionable (no raw status codes)
@@ -442,9 +459,19 @@ Run this after the build is complete and *before* telling the user it's done. It
 
 **Step 1 — Re-read DESIGN-BRIEF.md in full.** Not from memory: open the file and read it. Builds drift; memory of the brief drifts faster.
 
-**Step 2 — Run the reference fidelity audit on rendered pages. This is a hard gate, not a checklist to skim.** A matrix row is easy to satisfy in code and violate in the finished page — writing the CSS for a rule is not the same as the rule surviving contact with every section you build afterward. Do not proceed to Step 3 until this gate is printed and passes.
+**Step 2 — Run the reference fidelity audit on rendered pages. This is a hard gate, not a checklist to skim.** A matrix row is easy to satisfy in code and violate in the finished page. A small row can also pass while the dominant experience is completely wrong. Do not proceed to Step 3 until the trait, matrix, and macro-blend gates are printed and pass.
 
 Reopen the approved references (or use the inspected screenshots if a live page changed) and the brief's Reference Teardowns — the measured values are the standard a verdict is judged against, not your memory of the site. Then, for **every single row** of the Reference Translation Matrix — P1, P2, and Avoid — literally reprint the row with a verdict, in this exact shape, and show it to the user as part of the delivery report (not just reasoned about silently):
+
+First print every Liked Trait Ledger item:
+
+```
+| Liked trait | Verdict | Rendered evidence |
+|---|---|---|
+| [LT-01: user's wording] | PASS / FAIL / PARTIAL | [where it appears and whether its intended dominance survived] |
+```
+
+No liked trait may pass merely because a different, smaller trait from the same site is present.
 
 ```
 | Row | Verdict | Evidence |
@@ -462,6 +489,16 @@ For each row:
 
 Do not score success by pixel similarity. Score whether the intended transferable trait is clearly present, **on every page and section it applies to, not just the one it was first built for.** A single FAIL or PARTIAL row means the work is not done — fix it and re-run the row before moving on, not after the user points it out.
 
+Then print the Reference Blend Contract verdict at 375px and 1440px:
+
+```
+| Macro dimension | Assigned reference role | Verdict | Side-by-side evidence |
+|---|---|---|---|
+| silhouette / focal media / type / density / color / chrome / motion | […] | PASS / FAIL / PARTIAL | […] |
+```
+
+Use equal-viewport screenshots/contact sheets. Run the blind gestalt test: describe the site from the render alone without reading the brief. If that description does not reflect the assigned reference roles—or only says “dark,” “premium,” “minimal,” “glowy,” or lists components—the blend fails. A nav height, border, color, or token match cannot compensate for a missing full-bleed image, major animation, dominant typography relationship, or density pattern the user praised.
+
 **Step 3 — Audit the complete inventory and component lineage.** Verify the invocation's exact per-source counts, identifiers, provenance, reconciliation, and freshness, then walk every Component Opportunity Map row. Re-fetch every finalist and the winner; for ThreeUI rows, also apply the runtime and license gates in `threeui.md`:
 
 - Does the row name the strongest viable finalist from every catalog or explicitly record `no viable candidate`, with no source favored by default?
@@ -471,6 +508,7 @@ Do not score success by pixel similarity. Score whether the intended transferabl
 - Did upstream change after selection? If so, assess and merge relevant accessibility/behavior/runtime fixes without blind overwrite.
 - Do reduced motion, keyboard, touch, focus, and dependency checks pass?
 - Is any no-match, rejection, stale source, or deferral explained honestly? A no-match must still lead to a catalog-derived adaptation rather than plain custom UI.
+- Did every selected component preserve the locked macro composition rather than importing its demo's surrounding layout? Component coverage cannot turn a failed Step 2 into a pass.
 
 **Step 4 — Audit strategic Loops 1–5 against the rendered site and implementation.** Read `strategic-loops.md`, then verify:
 
@@ -500,7 +538,7 @@ A missing loop section or unexplained mismatch is a FAIL to fix before continuin
 
 **Step 10 — Write the thirty-day launch plan.** For a full site/redesign, execute Loop 7 and write `LAUNCH-PLAN.md`. Every check, feedback channel, metric, experiment, and stop/change rule needs an owner or explicit working owner. For a small isolated change, refresh the affected launch/measurement entries rather than manufacturing a new site-wide plan.
 
-**Step 11 — Report honestly.** Start by pasting the full Step 2 verdict table (every matrix row, PASS/FAIL/PARTIAL, with evidence), the Component Opportunity Map coverage from Step 3, and the strategic-loop verdicts from Steps 4, 9, and 10. These are the receipts; do not summarize them away. Then report the rest in three buckets:
+**Step 11 — Report honestly.** Start by pasting the full Step 2 verdict package: every Liked Trait Ledger item, every matrix row, and every macro-blend dimension with PASS/FAIL/PARTIAL evidence. Then include the Component Opportunity Map coverage from Step 3 and the strategic-loop verdicts from Steps 4, 9, and 10. These are the receipts; do not summarize them away. Then report the rest in three buckets:
 
 - **Passed:** what you checked and confirmed (be specific: "keyboard pass at all four widths, both themes").
 - **Fixed during review:** violations found and corrected — this builds trust, don't hide them.

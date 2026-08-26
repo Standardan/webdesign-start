@@ -41,6 +41,8 @@ Hard rules:
 - Target audience: situation, awareness, anxieties, desired identity, and decision criteria.
 - Competitors or category leaders the site must outperform, using reachable pages rather than reputation alone.
 - The feeling and conclusion the visitor should reach in the first three seconds.
+- The complete Liked Trait Ledger from approved references: every visual, media, motion, layout, density, typography, and chrome trait the user praised in their own words.
+- Which dominant reference effects depend on photography, product UI, game art, illustration, video, 3D, or large-format motion, and whether representative assets are available.
 
 ### Decide and record
 
@@ -50,13 +52,15 @@ Add a **Creative Direction Blueprint** to `DESIGN-BRIEF.md` containing:
 - First-three-second experience: intended feeling, immediate conclusion, and visible signals that create both.
 - Competitive advantage: what this site will make clearer, more credible, faster, or more distinctive than the named alternatives.
 - Visual identity: governing idea, signature element, type character, color temperature, imagery/art direction, shape, depth, and density.
+- Reference Blend Contract: the job each primary reference owns across silhouette, focal media, typography, density, color, chrome, and motion. A primary reference must influence at least three macro dimensions and include silhouette, focal media, or motion.
+- Asset Readiness Gate: a source/status/resolution for every P1 media or motion dependency. Missing dominant assets cannot be replaced with generic icons, gradients, or fabricated metrics.
 - Page architecture and scroll story: what the visitor learns, feels, and can do at each stage.
 - Motion character and technology direction.
 - Build order, with dependencies and the riskiest proof addressed early.
 
 ### Verify
 
-At the style-sample checkpoint, show the page for three seconds, then answer from the render alone: What is this? Who is it for? What should I do? What should it feel like? Any answer that depends on explanation outside the page is a failure to fix.
+At the style-sample checkpoint, show the page for three seconds, then answer from the render alone: What is this? Who is it for? What should I do? What should it feel like? Next compare equal-viewport screenshots with the approved reference regions and audit every Liked Trait Ledger item plus silhouette, focal media, type hierarchy, density, color distribution, chrome, and motion. Any answer that depends on explanation outside the page—or any result recognizable only by a small nav/color/detail while dominant liked traits are missing—is a failure to fix.
 
 ## Loop 2 — Conversion-critical section
 

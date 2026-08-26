@@ -14,14 +14,14 @@ Phase 0  Intake      — reads what you already said; never re-asks
 Phase 1  Discovery   — 3-ish rounds of 3-4 multiple-choice questions,
                        plain language, famous-site comparisons, strategic evidence
 Phase 2  Research    — inspects your example sites first, then finds more only if needed;
-                       you react, then each approved trait is mapped to this project
+                       every liked trait is captured, inspected, mapped, and assigned a role
 Phase 3  Brief       — creative, conversion, motion, copy, technical strategy + references
-                       + selected live components become DESIGN-BRIEF.md
+                       + reference blend + asset gate + selected live components become DESIGN-BRIEF.md
                        you approve a short digest
    ── hard gate: no code before your approval ──
-Phase 4  Build       — compares every catalog without priority and uses the best-fit premium components,
-                       then implements the brief
-Phase 5  Review      — audits reference/component/strategy carry-through + conversion,
+Phase 4  Build       — locks the reference-led macro composition, then compares every catalog
+                       without priority and uses the best-fit premium components inside it
+Phase 5  Review      — audits every liked trait, macro reference blend, components, and strategy,
                        then writes CONVERSION-AUDIT.md and a 30-day LAUNCH-PLAN.md
 ```
 
@@ -36,8 +36,8 @@ webdesign-start/
 └── references/                  # loaded progressively, only when a phase needs them
     ├── discovery.md             # adaptive questionnaire, branches per product type,
     │                            #   + the "vague answer decoder" (what 'modern & clean' hides)
-    ├── research.md              # user-reference inspection, search recipes, galleries,
-    │                            #   reaction loop, Reference Translation Matrix
+    ├── research.md              # user-reference inspection, Liked Trait Ledger,
+    │                            #   Reference Translation Matrix + Blend Contract
     ├── strategic-loops.md       # seven hard loops: creative direction, critical-section
     │                            #   conversion, motion, copy, build, audit, 30-day launch
     ├── component-sourcing.md   # complete equal-weight catalog/resource inventory,
@@ -97,7 +97,7 @@ Put the `webdesign-start` folder where the assistant can read it, then paste the
 
 ## Design lineage
 
-The design-principles layer (style catalog, industry anti-patterns, priority-tiered UX rules, pre-delivery checklist) is inspired by and extends [ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill). The seven-loop strategic framework was adapted from prompts supplied by the project owner and attributed to Farhan (`@Farhan_Ai3`); it turns creative direction, conversion, motion, copy, frontend planning, CRO review, and the first thirty launch days into required artifacts and verification gates. The live component layer treats four update-aware catalogs as one equal-weight toolkit rather than freezing copied lists or privileging a provider: the MIT-licensed [beUI repository](https://github.com/starc007/ui-components), [ThreeUI Community](https://github.com/MengTo/threeui), the community element library [Uiverse](https://github.com/uiverse-io/galaxy), and [Material Components Web](https://github.com/material-components/material-components-web). On every invocation, the skill rebuilds exact per-source counts and a searchable inventory of every current component identifier, then compares the strongest viable candidate from every catalog for each designed surface. Two live companions ride along: the [taste-skill](https://github.com/Leonxlnx/taste-skill) as a second anti-generic pass beside the built-in anti-slop rules, and [design-resources-for-developers](https://github.com/bradtraversy/design-resources-for-developers) for sourcing fonts, illustrations, photography, and icons.
+The design-principles layer (style catalog, industry anti-patterns, priority-tiered UX rules, pre-delivery checklist) is inspired by and extends [ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill). The seven-loop strategic framework was adapted from prompts supplied by the project owner and attributed to Farhan (`@Farhan_Ai3`); it turns creative direction, conversion, motion, copy, frontend planning, CRO review, and the first thirty launch days into required artifacts and verification gates. Reference fidelity is enforced at two levels: every liked trait is recorded and verified, while a Reference Blend Contract controls silhouette, focal media, typography, density, color, chrome, and motion. The live component layer then treats four update-aware catalogs as one equal-weight execution toolkit: the MIT-licensed [beUI repository](https://github.com/starc007/ui-components), [ThreeUI Community](https://github.com/MengTo/threeui), the community element library [Uiverse](https://github.com/uiverse-io/galaxy), and [Material Components Web](https://github.com/material-components/material-components-web). On every invocation, the skill rebuilds exact per-source counts and a searchable inventory of every current component identifier, then compares the strongest viable candidate from every catalog for each designed surface. Components remain mandatory where applicable, but they operate inside the approved macro composition rather than supplying a generic demo layout. Two live companions ride along: the [taste-skill](https://github.com/Leonxlnx/taste-skill) as a second anti-generic pass beside the built-in anti-slop rules, and [design-resources-for-developers](https://github.com/bradtraversy/design-resources-for-developers) for sourcing fonts, illustrations, photography, and icons.
 
 ## Updating
 
@@ -109,7 +109,7 @@ The skill updates itself at the start of an engagement when Python 3, network ac
 
 - **Give the opening message real information** ("a site for my two-chair barbershop in Austin, we're booked out weeks") — Phase 0 harvests it and skips those questions.
 - **React honestly in the research phase.** A "no, too corporate" is worth more than three polite "loves."
-- **Name sites you already admire**, even from unrelated industries — the skill inspects these first and maps the parts you like to specific parts of your project.
-- **Critique the implemented component direction.** The skill compares every catalog without priority and implements the best contextual fit; if one feels wrong in the style sample, explain what feels wrong and it will search the full collection again, then reselect or restyle it.
+- **Name sites you already admire**, even from unrelated industries. The skill records every part you say you like, including dominant imagery, animation, scale, density, and small chrome details; it cannot quietly keep only the easiest one.
+- **Critique the composition and components separately.** If the silhouette, imagery, density, or motion feels wrong, the skill revises the reference blend. If a component treatment feels wrong, it searches the full collection again and reselects or restyles it.
 - **Keep `DESIGN-BRIEF.md` in the repo.** It's the memory. Future "add a pricing page" requests will match the existing design because the brief says how.
 - **Use the post-build artifacts.** `CONVERSION-AUDIT.md` separates immediate fixes from traffic-dependent experiments; `LAUNCH-PLAN.md` sets the first thirty days, owners, metrics, and stopping rules.
