@@ -2,6 +2,24 @@
 
 All notable changes to the webdesign-start skill. Versions follow semver: major = workflow-breaking restructure, minor = new rules/sections/capabilities, patch = fixes and wording.
 
+## 2.0.0 — 2026-09-23
+
+Rebuilt the skill around how the [Claude Opus 5.5 · 100 HTML Files](https://miaai-lab.github.io/Claude-Opus-5.5-100-HTML-Files/) gallery gets 100 distinct, showcase-grade pages: one dense creative-direction paragraph per page, a fixed quality block, visuals made rather than sourced, and review from screenshots. Workflow-breaking.
+
+- New workflow: Intake → Discovery → **Concepts** → **Creative direction** (approval gate) → **First frame** (render checkpoint) → Build → Screenshot review.
+- Discovery is now a narrowing game. The user describes the project in their own words and never names a format. The skill keeps a private hypothesis board of candidate formats (plus a wildcard) and asks whichever plain-language question best splits them. It also collects the business's particulars (place, era, craft, signature thing, customers' words) and its world (the object the site would be, time of day, feeling), and stops as soon as it's confident.
+- Added `formats/`: 23 build recipes covering every kind of page in the benchmark gallery (editorial long-read, scroll journey, book/page-flip, interactive story, living scene, ambient experience, single-screen art, instrument, product showcase, signature reveal, heritage brand, collection/cabinet, poster/type-led, themed interface, live bento, command console, living data hero, data reference, explainer/simulation, maker tool, generative studio, playable, everyday tool). Each has architecture, original code sketches, variation levers, pitfalls and user signals. `formats/index.md` maps signals to formats and all 100 gallery pages to their format.
+- Added `concept.md`: three divergent concepts per project across a diversity grid (archetype, ground, type voice, hero technique, motion, palette temperature), with a named "house look" trap to avoid.
+- Added `creative-direction.md`: the Creative Direction Paragraph template, checklist and worked examples, plus a fixed 10-clause Quality Contract. Also a prompt-only delivery mode that hands over the paragraph as a copyable prompt.
+- Added `craft.md` and `techniques.md`: art direction (one idea in four systems, composed heroes with a camera, material, light, texture, palette proportions, type treatments, section devices, motion roles) and original code recipes. The scroll storytelling engine, driven by one continuous variable, lives in `formats/scroll-journey.md`.
+- Added `review.md`: a render loop at 1440×900 and 390×844, the first-frame test, a slot-by-slot audit against the paragraph, a sameness check, and failure patterns the benchmark pages still had.
+- Rewrote `build-standards.md` around a Showcase mode (one self-contained HTML file, no external requests, system fonts) and a Project mode (existing stacks, web fonts, treated real photography).
+- Component catalogs are now optional and limited to ordinary controls, restyled into the site's material. Removed the mandatory every-invocation catalog inventory, catalog lineage for every surface, and the ThreeUI contract.
+- Replaced the seven mandatory strategic loops, `CONVERSION-AUDIT.md` and `LAUNCH-PLAN.md` with short strategy essentials for business sites (`strategic-loops.md`, filename kept for updater compatibility).
+- Replaced reference measurement (the Liked Trait Ledger, Reference Translation Matrix and Blend Contract) with a lighter rule: record what the user loves in their own words and translate each trait into the concept.
+- Removed the style, palette, font-pairing, layout and industry menus (`styles.md`, `color.md`, `typography.md`, `layouts.md`, `industries.md`), the ban list and finishing recipes (`anti-slop.md`, `finishing.md`), and `threeui.md` and `ux-rules.md`. The accessibility floor now lives in `build-standards.md`.
+- The updater now also requires `discovery.md`, `concept.md`, `creative-direction.md`, `review.md` and `formats/index.md` in downloaded releases.
+
 ## 1.12.0 — 2026-08-25
 
 - Added a Liked Trait Ledger that records every reference trait the user praises in their own words. Compound reactions are split into separate obligations, and no dominant trait may be replaced by an easier nav, color, radius, or token detail.

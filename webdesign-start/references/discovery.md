@@ -1,305 +1,125 @@
-# Discovery — Adaptive Design Questionnaire
+# Discovery: the narrowing game
 
-This file is the complete question system for extracting a design direction from a user who cannot describe one. It defines what to ask, in what order, how to branch, and how to translate plain-language answers into design vocabulary. The output is a **Discovery Summary** that feeds the research phase.
+**Load at:** Phase 1, before asking anything. Also load `formats/index.md`.
 
-**When to read this file:** at the start of Phase 1, before asking the user anything.
+The user doesn't know what they want, and they shouldn't have to. They will never say "I want a living-scene site with a paper material". They'll say "a website for my bakery" or "something for my music". Discovery works like a good game of twenty questions played by a creative director:
 
-## Contents
+- **Listen first.** Let them describe it in their own words, then extract every signal.
+- **Keep private hypotheses.** Hold 2–4 candidate formats and a few candidate worlds, each with a rough confidence.
+- **Ask the question that splits your hypotheses best,** in plain language with vivid options, so every answer rules something out.
+- **Say what you're homing in on,** in human terms, never in format names: "It sounds like the site should feel like stepping into the shop, not reading a brochure."
+- **Stop as soon as you're confident.** Usually that takes 5–10 questions in 2–3 batches. Never ask more than about 12.
 
-- [Rules of engagement](#rules-of-engagement)
-- [Round 1 — Fundamentals (always)](#round-1--fundamentals-always)
-- [Round 2 — Taste extraction (always)](#round-2--taste-extraction-always)
-- [Round 3 — Product-type branches](#round-3--product-type-branches)
-- [Strategic evidence coverage](#strategic-evidence-coverage)
-- [Round 4 — Scope & practicals](#round-4--scope--practicals)
-- [The vague-answer decoder](#the-vague-answer-decoder)
-- [Answer-to-style mapping](#answer-to-style-mapping)
-- [Discovery Summary template](#discovery-summary-template)
-
----
+The output is the raw material for three concepts: a leading format, the particulars that make this business unlike others, and a world (object, place, time, material, feeling).
 
 ## Rules of engagement
 
-1. **Batches of 3-4 questions, one batch per message.** More feels like a form; fewer drags the process out. If your environment has a structured multiple-choice UI, use it; otherwise present lettered options (A/B/C…) in plain text.
-2. **Every question gets concrete options plus an escape hatch** ("or describe it your way"). Options do the heavy lifting — a user who can't articulate taste *can* pick between two vivid descriptions.
-3. **Anchor to famous sites and physical-world comparisons**, not design jargon. "Like an Apple product page" and "like a cozy neighborhood coffee shop" communicate; "neumorphic" does not. Only use a style term after the user's answers have earned it, and gloss it in parentheses.
-4. **Skip anything already known.** Harvest the opening message, any existing brief, and the repo first. Asking a question the user already answered burns trust.
-5. **Acknowledge before advancing.** Start each new batch with a one-line read-back of what the last batch established ("Got it — a booking-first site for a small climbing gym, friendly but not childish. Three more questions:").
-6. **Never let an answer pass that you can't act on.** "Modern and clean" is not actionable — run it through the [decoder](#the-vague-answer-decoder) and ask the follow-up in the same or next batch.
-7. **Silence on a question is a decision for the default.** If the user skips something, choose the industry-typical default, and record it in the summary as `(defaulted)` so they can veto it cheaply.
-8. **Watch for expertise signals.** If the user starts speaking fluent design ("I want something like Swiss typography with a single accent"), drop the plain-language scaffolding and meet them at their level — but still confirm with examples in Phase 2.
-9. **Cover the seven strategic loops without adding seven interviews.** Read `strategic-loops.md`, harvest its inputs from the opening request and answers below, then weave only the missing high-leverage questions into the normal batches. Mark low-risk assumptions; never invent evidence.
+1. **Open, don't interrogate.** Start with one inviting prompt if the opening message is thin: "Tell me about it however it comes to you: what it is, who it's for, what you love about it, anything you've seen that you like." Then harvest.
+2. **Batches of up to 4 questions,** one batch per message, each question with 2–4 vivid options plus "or describe it your way". With a structured question UI, use it; otherwise use lettered options.
+3. **Every option is a real branch.** If two options would lead to the same site, merge them. Options exist to split hypotheses.
+4. **Write options for this person.** For a bakery, the object question offers a flour-dusted recipe box, the oven door and a pastry box with string, not generic choices.
+5. **No design jargon.** Ask about things people know: objects, places, times of day, films, shops, magazines, how long visitors stay, what they do.
+6. **Read back before each batch** in one line, including your current lean: "Got it: a sourdough bakery in a Vermont mill town, busiest on Saturday mornings. I'm picturing something warm you step into rather than scroll past. A few more:".
+7. **"Not sure" is useful.** When they hesitate, show instead of asking: describe two or three tiny pictures ("A) you open the site and it's the bakery at 5 a.m., lights on, steam rising; B) it opens like a hand-written recipe book; C) a giant bold poster with today's bread") and let them point. You can also offer 2–3 gallery page numbers as examples (`research.md`).
+8. **Unanswered means you decide.** Choose what serves the direction and mark it `(assumed)` in the notes.
+9. **Expert users get expert questions.** If they speak design, drop the scaffolding.
 
 ---
 
-## Round 1 — Fundamentals (always)
+## The hypothesis board (keep it private, update after every answer)
 
-Ask these four, adapted to what's already known:
-
-**Q1. What are we building?**
-Offer the product-type list (this sets the Round 3 branch):
-- A) Business/marketing site for a company or service
-- B) SaaS or software product site
-- C) Online store
-- D) Portfolio or personal site
-- E) Restaurant, café, or hospitality
-- F) Blog, publication, or content site
-- G) Web app / dashboard (the product itself, not its marketing)
-- H) Landing page for a launch, event, or campaign
-- I) Nonprofit / community
-- J) Something else — describe it
-
-Follow the answer with one clarifier if the category is broad (A → "what does the business do?"; C → "what do you sell, roughly how many products?").
-
-**Q2. Who is the main visitor, and what do they already know?**
-Free-text with prompts: "e.g., 'developers evaluating tools,' 'local homeowners who found us on Google,' 'brides comparing photographers.'" Audience drives formality, density, and how much explaining the site must do.
-
-**Q2b. Why now?** (fold into Q2's batch)
-"What's making this website happen now, and what should be different for you three months after launch?" The answer converts an aesthetic request into an outcome the design can be judged against (more bookings, credibility for a funding round, escaping an embarrassing old site). If there's an existing brand, also ask the **gap question**: "How do people describe you today, and how do you WANT to be described after the redesign?" The distance between those two answers is the real assignment.
-
-**Q3. When a visitor lands, what is the ONE action that matters most?**
-- Buy / book / order
-- Sign up or start a trial
-- Contact / request a quote / call
-- Browse and be impressed (portfolio credibility)
-- Read / subscribe
-- Donate / join
-Everything on the site funnels toward this; extract one primary even if they name two.
-
-**Q4. What already exists?**
-- Logo? Brand colors? Fonts? Photography?
-- An existing site (URL!) — and is this a redesign of it or a fresh start?
-- Written copy, or should structure assume placeholder text?
-If they give an existing URL, treat it as a discovery goldmine: what do they like/hate about the current site?
-
----
-
-## Round 2 — Taste extraction (always)
-
-This is where "I can't describe what I want" gets solved. Use contrast pairs — every question is a spectrum with vivid, non-jargon endpoints. Pick the 4 most relevant if the industry already constrains some answers (a law firm doesn't need the playfulness question).
-
-**Q5. Overall energy** — "If your site were a place, which is closer?"
-- A) A quiet gallery — calm, spacious, few things asking for attention *(→ minimal family)*
-- B) A well-run office lobby — professional, warm, organized *(→ corporate-refined)*
-- C) A buzzing startup workspace — bold type, confident color, some motion *(→ expressive/tech)*
-- D) A street market — loud, dense, high-energy, unapologetic *(→ brutalist/maximal)*
-
-**Q6. Light or dark?**
-- A) Light — bright background, dark text (default for most audiences)
-- B) Dark — like a code editor or a cinema (strong for dev tools, gaming, premium tech)
-- C) Light with dark sections for drama
-- D) Both, with a toggle (adds build scope — flag it)
-
-**Q7. Color appetite**
-- A) Almost none — black/white/gray + ONE accent color
-- B) Restrained — a real brand color, used with discipline
-- C) Colorful — multiple hues, gradients welcome
-- D) "Make color the whole personality" — saturated, big fields of it
-
-**Q8. Typography personality** — "Which voice should the text have?"
-- A) Neutral and invisible — the words matter, not the letters (Inter-class sans)
-- B) Technical and precise — slightly engineered feel (geometric/mono accents)
-- C) Editorial — like a good magazine; serifs welcome
-- D) Expressive — big, characterful headlines that ARE the design
-- E) Friendly and rounded — approachable, human
-
-**Q9. Density & pace**
-- A) Airy — one idea per screen, lots of breathing room (reads premium, slower)
-- B) Balanced — normal marketing-site rhythm
-- C) Dense — lots of information visible at once (dashboards, catalogs, news)
-
-**Q10. Shape & depth** — "Buttons and cards should feel…"
-- A) Sharp and flat — crisp corners, no shadows (editorial/brutalist/swiss)
-- B) Slightly rounded, subtle shadows — the safe modern default
-- C) Very rounded / pill-shaped — soft and friendly
-- D) Layered and dimensional — glass blur, glow, floating cards (techy/showy)
-
-**Q11. Motion appetite**
-- A) None to minimal — instant, no tricks
-- B) Subtle — gentle fades/reveals on scroll, hover feedback (default)
-- C) Rich — animated hero, parallax, scroll-driven moments (adds build scope — flag it)
-
-**Q12. Anti-preferences (always ask, free-text):**
-"Any websites or styles you *hate*? Anything your site must never look like (a competitor, a trend, 'corporate stock-photo' feel…)?" A strong negative constrains the space better than three positives.
-
-**Q12b. Three traits, three anti-traits (strongest single exercise — use when Round 2 answers feel thin):**
-"Pick exactly three words for what the site should feel like, and three for what it must NOT feel like." Then, for any ambiguous trait, have them complete: "For us, [trait] means ___, but not ___." ("Premium means considered and unhurried, but not unapproachable.") Forcing exactly three of each prevents the incoherent everything-list, and the "but not" clause disambiguates words like *bold* or *premium* that point in multiple directions.
-
-**Question hygiene:** each scale measures ONE variable. Never bundle ("dark and dramatic or light and friendly?" conflates mode with energy — someone can want dark *and* friendly). If two Round 2 answers seem to conflict, that's signal, not error; ask which wins.
-
-Where useful, add the **anchor question**: "Any sites you already admire — even from unrelated industries?" A named URL here can short-circuit half of Phase 2.
-
----
-
-## Round 3 — Product-type branches
-
-Ask 3-4 from the branch matching Q1. These surface content and conversion facts that change the page map.
-
-### A) Business / service company
-- Service area local or national? (Local → maps, phone-first, review widgets)
-- What makes customers pick you over the competitor down the street? (becomes hero message)
-- Do visitors need pricing on the site, or is everything quoted?
-- Photos of real work/team available, or stock/illustration territory?
-
-### B) SaaS / software product
-- Is there a product to screenshot yet? (Screenshot hero vs abstract/illustration hero)
-- Self-serve signup or sales-led demo? (CTA language and pricing-page shape)
-- Pricing public? How many tiers?
-- Technical audience or business audience? (density, proof style: benchmarks vs testimonials)
-- Any social proof yet — logos, user counts, testimonials?
-
-### C) E-commerce
-- How many products at launch? (3 products = boutique showcase; 300 = catalog machinery)
-- Platform constraint (Shopify/existing cart) or fully custom?
-- Product photography quality — the honest answer decides how image-forward the design can be
-- Price positioning: budget, mid, premium? (premium = whitespace + restraint; budget = density + urgency cues)
-
-### D) Portfolio / personal
-- What kind of work, and is it visual? (Photography ≠ copywriting portfolio)
-- Goal: hired full-time, freelance clients, or showcase? (changes CTA and bio prominence)
-- How many pieces, and are 3-6 *great* ones available for case studies?
-- Should personality lead (memorable, risky) or work lead (neutral frame, safe)?
-
-### E) Restaurant / hospitality
-- Reservations, online ordering, or walk-in only? (the #1 CTA)
-- Food photography available and good? (image-led vs typography-led menu design)
-- The room's vibe in three words — the site should extend the physical space
-- Menu: changes how often? (weekly → needs easy edit path, never a PDF scan)
-
-### F) Blog / content
-- Publishing cadence and article length? (daily-short vs monthly-longform layouts differ)
-- Monetization/subscription in scope? (paywall UI, newsletter prominence)
-- One author with a voice, or a masthead of many?
-
-### G) Web app / dashboard
-- What's the main screen the user lives in? Describe the data.
-- Sidebar-nav app or top-nav app? Marketing pages needed too, or app only?
-- Data density: mission-control dense or consumer-app calm?
-- Existing component library/design system in the codebase?
-
-### H) Launch / event landing page
-- Single page or few pages? Date-driven (countdown)?
-- What's collected — emails, ticket sales, registrations?
-- Lifespan: disposable-after-event or evergreen?
-
-### I) Nonprofit / community
-- Primary: donations, volunteers, or awareness?
-- Stories/photos of real impact available? (specificity converts; abstraction doesn't)
-- Established-institution trust or grassroots energy?
-
----
-
-## Strategic evidence coverage
-
-Before ending discovery, cover these inputs from `strategic-loops.md`. Do not create a separate fifth round; fold missing items into the most relevant Round 1, 3, or 4 batch.
-
-1. **Arrival, promise, evidence, action:** “Where will the main visitor usually come from, what is the one promise they need to understand, what real proof can we show immediately, and what should they be able to start within ten seconds?” Separate unknown traffic from known sources; never fabricate proof.
-2. **Competitive and first-impression target:** “Which competitors or category leaders should this outperform, and what should a visitor feel and conclude in the first three seconds?” Ask what “outperform” means: clearer, more credible, more premium, faster, or more distinctive.
-3. **Awareness, objections, language:** “How aware are visitors when they arrive, what stops them from acting, and what exact phrases do customers use for the problem or outcome?” Request real reviews, call notes, search terms, emails, or testimonials when available. Otherwise mark voice-of-customer language as missing research.
-4. **Launch and measurement:** “Which traffic sources do you control, what low-cost feedback can you collect, and what result or event would prove the site is working even at low volume?” This supplies the launch plan without pretending early numbers are statistically conclusive.
-
-Also record content ownership and volatility: what changes often, who updates it, and whether it belongs in code, structured data, a CMS, or another existing system. This feeds the Technical Build Plan.
-
----
-
-## Round 4 — Scope & practicals
-
-Usually 3 questions; fold into Round 3's message if short.
-
-**Q13. Pages.** Propose a page list based on everything so far (use the industry playbook) and ask them to add/cut, rather than asking open-ended "what pages do you want?"
-
-**Q14. Content readiness.** Real copy and images now, later, or "write placeholder copy that sounds real"? (Never lorem ipsum — placeholder copy should be plausible so the design reads true.)
-
-**Q15. Stack** — only if not detectable from the repo. If greenfield and the user has no opinion, don't quiz them; state the default from `build-standards.md` and move on.
-
-**Q16. Extras in scope?** Dark-mode toggle, blog/CMS, contact form handling, multilingual, analytics. Each is scope; confirm rather than assume.
-
-**Q17. Who decides?** (only when the client isn't obviously solo)
-"Is anyone else approving this — a partner, a boss, a board?" If yes, get their veto concerns NOW and note who breaks ties. The classic project-killer is a late-arriving stakeholder invalidating an approved direction; a one-line decision model in the summary prevents it.
-
----
-
-## The vague-answer decoder
-
-The most common answers are the least actionable. Never accept these at face value — each has a designed follow-up:
-
-| User says | It usually hides | Ask this follow-up |
-|---|---|---|
-| "Modern and clean" | Any of: minimal, corporate-safe, or techy | "Clean like an Apple page (spare, product-first), clean like Stripe (organized, colorful accents), or clean like a fashion magazine (big images, elegant text)?" |
-| "Professional" | Fear of looking amateur, not a style | "Professional-conservative (bank, law firm) or professional-current (modern agency)? Should it feel established or fresh?" |
-| "With some pop" / "eye-catching" | Wants ONE bold element, rarely a loud site | "Pop from color (one vivid accent), from type (huge headlines), or from motion (things animate in)?" |
-| "Simple" | Either minimal aesthetic OR easy to use — very different | "Simple as in *looks* spare and calm, or simple as in *nothing is confusing* (which any style can achieve)?" |
-| "Like Apple" | Premium restraint, big product imagery | Confirm: whitespace + huge visuals + few words. Ask: "Do you have imagery strong enough to carry that?" (If not, steer toward type-led premium.) |
-| "Fun / playful" | A spectrum from friendly-rounded to circus | "Fun like Duolingo/Notion (friendly, tidy) or fun like a skate brand (loud, rule-breaking)?" |
-| "Luxurious / high-end" | Whitespace, serif, muted palette, slow pace | Confirm materials: "Quiet luxury (beige, serif, spare — Aesop) or glamorous luxury (black + gold, dramatic)?" |
-| "Trustworthy" | Industry-dependent trust signals | Identify category norms from `industries.md` — trust is mostly content (reviews, credentials, clarity), then reinforce with a conservative palette |
-| "Minimalist" | Often means "not cluttered," not true minimalism | "Truly spare (things removed until it almost hurts) or just uncluttered (everything has room)?" |
-| "Like [competitor] but better" | A real spec! | Ask what specifically is better: nicer looking, clearer, faster, more premium? Open the competitor site as reference material |
-| "I trust you / whatever you think" | Decision fatigue, not absence of taste | Compress: pick the 3 highest-leverage remaining questions, present as this-or-that pairs. Their taste will show up as vetoes in Phase 2 — plan for one extra research round |
-
----
-
-## Answer-to-style mapping
-
-Translate Round 2 vectors into 2-3 candidate styles from `references/styles.md` (read the full entries there before committing). Directional map:
-
-| Signal combination | Candidate styles |
-|---|---|
-| Quiet-gallery + light + near-no color + neutral type | Refined Minimalism; Swiss International; Monochrome + Single Accent |
-| Quiet-gallery + luxury cues (premium price, serif) | Quiet Luxury; High-Fashion Minimal |
-| Office-lobby + light + restrained color | Refined Minimalism; Soft SaaS Gradient |
-| Startup-buzz + light + colorful + subtle motion | Soft SaaS Gradient; AI Gradient Mesh; Friendly Approachable Minimal |
-| Startup-buzz + dark + technical type | Dark Developer-Tool Minimal; Terminal/CLI accents |
-| Dark + dimensional + rich motion | Glassmorphism (dark); Aurora Glow |
-| Street-market + sharp/flat + expressive type | Neo-Brutalism; Big-Type Manifesto |
-| Editorial voice + light + airy | Magazine Editorial; Editorial Humanist |
-| Friendly-rounded + colorful + playful | Rounded Friendly; Candy Pop |
-| Organic business (wellness, food, craft) + warm | Organic Warm Minimal; Botanical Natural; Warm Earth |
-| Dense + web app | Utilitarian App Shell (see layouts.md app patterns) |
-
-Present style candidates to the user **only** via Phase 2's example sites — never as a vocabulary quiz. The mapping's job is to target the research, not to be user-facing.
-
----
-
-## Discovery Summary template
-
-End Phase 1 by mirroring this back and getting explicit confirmation. Keep it under ~20 lines; every line traceable to an answer (mark defaults).
-
-```markdown
-## Discovery Summary — [Project name]
-
-**Building:** [product type + one-line description]
-**Why now / success looks like:** [the trigger + what's different 3 months post-launch]
-**For:** [audience + what they already know/want]
-**Arrival context:** [known traffic/referral/search context, or assumption]
-**#1 visitor action:** [the conversion]
-**One promise / immediate evidence:** [promise + real proof available above fold]
-**First 3 seconds:** [visitor should feel X and conclude Y]
-**Perception gap:** [described as X today → should read as Y]
-**Competitors to outperform:** [names/URLs + clearer/credible/premium/faster/distinctive target]
-**Awareness / objections / customer language:** [level + top objections + verified phrases or evidence gap]
-**Exists already:** [brand assets / current site / content status]
-**Decides:** [solo / +who else, and who breaks ties]
-
-**Direction signals:**
-- Energy: [e.g., calm-premium, leaning quiet-gallery]
-- Mode: [light / dark / light-with-dark-sections]
-- Color: [appetite + any known brand colors]
-- Type voice: [e.g., editorial serif headlines]
-- Density: [airy / balanced / dense]
-- Shape & depth: [e.g., soft-rounded, subtle shadows]
-- Motion: [none / subtle / rich]
-- Never: [anti-preferences, verbatim where possible]
-- Admired sites: [any user-named URLs]
-
-**Category notes (from industry playbook):** [2-3 must-haves and anti-patterns]
-**Pages:** [list] · **Content:** [real / placeholder] · **Stack:** [detected/chosen] (defaulted items marked)
-**Content ownership:** [frequently changing content + owner/source]
-**Launch inputs:** [controlled traffic · feedback channel · success event/metric]
-
-Candidate style directions for research: [2-3 internal style names]
+```
+Formats:   scene 0.45 · product 0.30 · editorial 0.15 · wildcard: journey (3 a.m. → opening)
+World:     wood-fired oven, dawn, flour dust, the queue on Saturdays
+Particulars known: place ✓  craft ✓  signature ✓  era ✗  customer words ✗
+Next best question: "one screen vs journey" splits scene from journey; the object question splits scene from editorial
 ```
 
-Mark each direction signal with its evidence grade where it matters: answers the user actually gave vs your inferences vs defaults. Inferences and defaults are the lines to watch in Phase 2 — the example sites will confirm or overturn them cheaply.
+Update the confidences from each answer using the signals in `formats/index.md` and the format files' "Signals" sections. Always keep one **wildcard**: a plausible format nobody in the category would expect. It feeds the third concept.
 
-Once confirmed, proceed to Phase 2 with `references/research.md`.
+## Choosing the next question
+
+Pick the question whose answers would **most change** the hypothesis board: the one that splits your top two or three formats, or fills the most important missing particular. Rough priorities:
+
+1. **Nothing known yet:** ask what it is, who it's for, and what visitors should do (the fundamentals).
+2. **Formats still spread out:** ask a splitting question from the table below.
+3. **Format leaning, particulars thin:** ask for particulars. They make the concept singular.
+4. **Format and particulars known, world unclear:** ask the world questions (object, time, feeling).
+5. **Confident on all three:** stop and move to concepts.
+
+### The fundamentals (almost always needed)
+
+- **What is it?** A business or service, a shop, a portfolio, a restaurant or venue, a product or app, an event or launch, a publication, a personal project, something else.
+- **Who is it for, and what should they do?** The main visitor in a phrase, and the one action that matters most: book, buy, call, sign up, read, visit, donate, play, or just be impressed.
+- **What exists already?** Logo, colours, real photography (of what, how good), copy, an existing site (what they like or hate about it).
+
+### Splitting questions (plain language, each answer moves the board)
+
+| Ask | Options that split |
+|---|---|
+| "When someone visits, what will they mostly do?" | Read a story · Look around and feel something · Buy or book · Browse lots of things · Play or make something · Learn how something works · Come back to use it regularly |
+| "How long do you imagine them staying?" | A quick, memorable glance · A few minutes of discovery · Coming back often |
+| "Should it all fit on one screen like a poster, unfold as they scroll, or turn like the pages of a book?" | One screen · Unfolds with scroll · Turns like pages · Not sure (show three tiny pictures) |
+| "Is there one thing that has to be the star?" | A product · A place · Your work or pieces · Numbers or reach · A story or idea · A feeling |
+| "Calm and quiet, or loud and bold?" | Calm, like a quiet room · Warm and welcoming · Confident and bold · Loud, like a poster on a wall |
+| "Should people be able to touch, play with or make something?" | Yes, make their own thing · Yes, play with it · Just a little delight · No, keep it simple |
+| "Is there a natural path through it: time, depth, steps, a process?" | Yes: [name the likely one for them] · No, it's more a place to look around |
+
+### Particulars (what is true of them and nobody else)
+
+Ask for 2–4, with prompts that fit the business:
+- **Place:** town, neighbourhood, landscape, climate, building.
+- **Time:** founding year, era, season, the hour they're busiest.
+- **Craft and process:** method, tool, material, a number ("a 40-year-old starter", "we fish with lines only").
+- **The signature thing:** what people come back for.
+- **In their customers' words:** what people say, the nickname, the review line.
+- **The person:** who founded it, why, their voice.
+
+This is the most important input in the skill. Particulars are what keep two bakeries from getting the same site.
+
+### World questions (feed the concept)
+
+- **"If your website were a physical object, what would it be?"** Offer 3–4 objects native to their business. The answer is often the concept itself.
+- **"When is it?"** A time of day, season or era: dawn, a rainy night, midwinter, 1928, the 1970s, the near future.
+- **"What should someone feel in the first three seconds?"** Offer pairs that force a choice: calm or thrilled, awed or welcomed, trusting or curious, cosy or impressed.
+- **"What do you love outside of websites?"** Films, shops, packaging, a hotel, a record sleeve, a museum. And websites they admire, with *what exactly* they love (`research.md`).
+
+## When to stop
+
+Move to concepts when all of these hold:
+- one format leads clearly, or two are close enough to become two of the three concepts;
+- you know at least two particulars;
+- you have a world: an object, place, time or feeling;
+- the primary action is known (for business sites).
+
+If the user is getting impatient, stop earlier. Assume what's missing, mark it, and let the concepts do the rest of the narrowing: reacting to three concrete concepts is the best question of all.
+
+## Worked example (illustrative)
+
+1. *User:* "I need a website for my plant shop." Board: collection 0.3 · scene 0.3 · product 0.2 · heritage 0.1. Wildcard: explainer ("how to keep it alive").
+2. *Ask:* what visitors mostly do (browse / step in and feel / buy online / learn care); the shop's particulars (place, what it's known for); whether there's a path through it.
+3. *User:* "People come in to browse for ages. We're in an old greenhouse by the canal, known for weird rare plants, and customers say it feels like a jungle." Board: scene 0.55 · collection 0.35. Wildcard: journey (canal gate → deep jungle).
+4. *Read back:* "It sounds like the site should feel like stepping into the greenhouse and wandering." *Ask:* one screen or unfold as you scroll; object (a glass greenhouse, a botanist's specimen drawer, a field guide); time (misty morning, humid midday, dusk with fairy lights).
+5. *User:* "Unfold, like walking deeper in. The greenhouse. Misty morning." Board: journey 0.5 · scene 0.4. Confident enough.
+6. *Concepts:*
+   - A: a scroll journey from the canal door into the dense centre, with mist lifting as you go.
+   - B: a living-scene greenhouse you look into, with plants to click like specimens.
+   - C (wildcard): a botanist's field guide book to flip through, one rare plant per page.
+
+## Discovery Notes template
+
+Read this back and get a "yes, that's it" before Phase 2.
+
+```markdown
+## Discovery Notes: [project]
+
+**What:** [type] for [business], [one-line description]
+**For:** [main visitor]. **Primary action:** [one action]
+**Particulars:** [place] · [time/era] · [craft/process] · [signature thing] · [customer words]
+**World:** object [..] · time [..] · feeling [..]
+**Loves:** [thing: trait in their words] …
+**Leaning:** [plain-language description of the direction], candidates [format A, format B, wildcard C]
+**Assets:** logo [y/n] · colours [..] · photography [what, quality] · copy [y/n]
+**Practicals:** pages [..] · functions [..] · stack [..] · deadline [..]
+**Assumed:** [anything you decided for them]
+```

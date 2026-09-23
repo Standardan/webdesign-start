@@ -1,61 +1,63 @@
 # webdesign-start — A Guided Web Design Skill for AI Coding Assistants
 
-**The problem this solves:** visual taste alone does not define the audience, promise, evidence, conversion path, motion, copy, technical structure, or launch plan. This skill resolves those decisions in plain language, inspects real websites and competitors, persists an approved brief, proves the direction in a rendered sample, and only then completes the build and post-build audit.
+**The problem this solves:** ask an AI for "a website for my bakery" and you get the average bakery website: a hero, three cards, a testimonial strip, safe fonts and a gradient. Ask it for *"Starter No. 1983 — A Ledger of Slow Bread", a bound baker's ledger with an engraved starter jar whose bubbles rise, cotton-paper cream #f4eee2, letterpress red only for dates and the order button…* and you get something nobody has seen before.
 
-Works with **Claude Code, Cursor, Codex, Windsurf, Grok, and any assistant that can read files**. The design workflow is markdown; automatic updates use one bundled Python 3 standard-library script with no third-party dependencies.
+This skill closes that gap for people who aren't designers. You never have to know what kind of site you want. Describe it however it comes to you, and the skill narrows it down like a game of twenty questions. It asks plain-language questions about what makes the business unlike others and what world it lives in, invents three distinct concepts to react to, and writes a dense **creative-direction paragraph** with exact palette, type, hand-drawn hero art, a device for every section and named interactions. It then builds from that paragraph and checks the rendered result from screenshots.
+
+The benchmark is the [Claude Opus 5.5 · 100 HTML Files](https://miaai-lab.github.io/Claude-Opus-5.5-100-HTML-Files/) gallery: 100 pages, each made from one such paragraph, none alike. The skill's workflow, craft rules and review gates come from close teardowns of that gallery.
+
+Works with **Claude Code, Cursor, Codex, Windsurf, Grok, and any assistant that can read files**. The workflow is Markdown. Automatic updates use one bundled Python 3 standard-library script.
 
 ## The workflow
 
 ```
 /webdesign-start
    ↓
-Phase 0  Intake      — reads what you already said; never re-asks
-                       rebuilds a complete, exact-count inventory of every live component/resource source
-Phase 1  Discovery   — 3-ish rounds of 3-4 multiple-choice questions,
-                       plain language, famous-site comparisons, strategic evidence
-Phase 2  Research    — inspects your example sites first, then finds more only if needed;
-                       every liked trait is captured, inspected, mapped, and assigned a role
-Phase 3  Brief       — creative, conversion, motion, copy, technical strategy + references
-                       + reference blend + asset gate + selected live components become DESIGN-BRIEF.md
-                       you approve a short digest
-   ── hard gate: no code before your approval ──
-Phase 4  Build       — locks the reference-led macro composition, then compares every catalog
-                       without priority and uses the best-fit premium components inside it
-Phase 5  Review      — audits every liked trait, macro reference blend, components, and strategy,
-                       then writes CONVERSION-AUDIT.md and a 30-day LAUNCH-PLAN.md
+Phase 0  Intake        reads what you already said; never re-asks
+Phase 1  Discovery     a narrowing game: describe it your way; the skill keeps private hunches
+                       about what kind of site it should be and asks the plain-language questions
+                       that best tell them apart, plus your particulars and your world
+Phase 2  Concepts      three genuinely different concepts, each with a palette, hero picture
+                       and signature moment; pick one, mix two, or redirect
+Phase 3  Direction     the Creative Direction Paragraph + fixed Quality Contract → DESIGN-BRIEF.md
+   ── gate: you approve the direction ──
+Phase 4  First frame   the hero screen built at full finish, rendered at desktop and phone size
+   ── checkpoint: you react to the real render ──
+Phase 5  Build         every section gets its own device; the governing idea runs through everything
+Phase 6  Review        screenshot loops against the paragraph, slot by slot, until nothing is left to fix
 ```
 
-The brief persists the approved design system, while `.webdesign-start/component-inventory.json` retains the complete searchable catalog snapshot for the engagement. Every invocation refreshes that inventory before new selection work.
+Just want the prompt? Ask for it. The skill runs Phases 1–3 and hands you the paragraph plus Quality Contract as one copyable block, for any model or designer.
 
 ## What's inside
 
 ```
 webdesign-start/
-├── SKILL.md                     # the orchestrator — phases, gates, environment fallbacks
+├── SKILL.md                     # the orchestrator: phases, gates, environment fallbacks
 ├── scripts/update_skill.py      # safe Phase 0 updater: validates, swaps, rolls back on failure
 └── references/                  # loaded progressively, only when a phase needs them
-    ├── discovery.md             # adaptive questionnaire, branches per product type,
-    │                            #   + the "vague answer decoder" (what 'modern & clean' hides)
-    ├── research.md              # user-reference inspection, Liked Trait Ledger,
-    │                            #   Reference Translation Matrix + Blend Contract
-    ├── strategic-loops.md       # seven hard loops: creative direction, critical-section
-    │                            #   conversion, motion, copy, build, audit, 30-day launch
-    ├── component-sourcing.md   # complete equal-weight catalog/resource inventory,
-    │                            #   selection, adaptation, and verification protocol
-    ├── threeui.md               # ThreeUI Community visual/GPU selection, runtime,
-    │                            #   fallback, asset, and licensing contract
-    ├── styles.md                # 46 UI styles in 10 families, each with CSS recipe + real examples
-    ├── color.md                 # token architecture + ~28 industry palettes with hex
-    ├── typography.md            # 32 font pairings by personality + scale/fluid-type systems
-    ├── layouts.md               # hero patterns + section formulas per product type
-    ├── industries.md            # ~28 product-type playbooks with anti-patterns
-    ├── anti-slop.md             # AI-tell bans: violet-gradient dark mode, glow orbs, em dashes,
-    │                            #   hype copy ("elevate", "seamless"), template heroes
-    ├── finishing.md             # generative recipes: tinted neutrals, type conviction,
-    │                            #   accent discipline, the Foundation Gate
-    ├── ux-rules.md              # priority-tiered accessibility & UX rulebook
-    ├── build-standards.md       # implementation standards + pre-delivery checklist + self-review
-    └── brief-template.md        # the DESIGN-BRIEF.md template
+    ├── discovery.md             # the narrowing game: hypothesis board, splitting questions, particulars
+    ├── strategic-loops.md       # strategy essentials for business sites: promise, action, proof,
+    │                            #   must-have content per site type
+    ├── research.md              # learning from sites you love without cloning; the gallery as a study set
+    ├── concept.md               # three concepts from the board, style anchors, the diversity grid
+    ├── creative-direction.md    # the paragraph template, checklist, examples, Quality Contract
+    ├── brief-template.md        # the short DESIGN-BRIEF.md template
+    ├── craft.md                 # art direction: one idea in four systems, hero composition,
+    │                            #   material, light, texture, palette, type, copy, motion
+    ├── techniques.md            # code recipes: grain, glass, glow, drawn scenes, lit headlines,
+    │                            #   springs, foil, reveal rituals, canvas performance
+    ├── build-standards.md       # Showcase vs Project mode, performance, accessibility, honesty
+    ├── component-sourcing.md    # optional libraries for ordinary controls only
+    ├── review.md                # screenshot loop, first-frame test, sameness check, report
+    └── formats/                 # 23 build recipes, one per kind of site, loaded only when chosen
+        ├── index.md             #   the format map: signals, splitting questions, all 100 gallery pages
+        ├── editorial-longread.md   scroll-journey.md    book-flip.md        interactive-story.md
+        ├── living-scene.md         ambient-experience.md  single-screen-art.md  instrument.md
+        ├── product-showcase.md     signature-reveal.md  heritage-brand.md   collection-cabinet.md
+        ├── poster-type.md          themed-interface.md  live-bento.md       command-console.md
+        ├── living-data-hero.md     data-reference.md    explainer-simulation.md  maker-tool.md
+        └── generative-studio.md    playable.md          everyday-tool.md
 adapters/                        # thin per-tool command shims (see install below)
 ```
 
@@ -97,19 +99,30 @@ Put the `webdesign-start` folder where the assistant can read it, then paste the
 
 ## Design lineage
 
-The design-principles layer (style catalog, industry anti-patterns, priority-tiered UX rules, pre-delivery checklist) is inspired by and extends [ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill). The seven-loop strategic framework was adapted from prompts supplied by the project owner and attributed to Farhan (`@Farhan_Ai3`); it turns creative direction, conversion, motion, copy, frontend planning, CRO review, and the first thirty launch days into required artifacts and verification gates. Reference fidelity is enforced at two levels: every liked trait is recorded and verified, while a Reference Blend Contract controls silhouette, focal media, typography, density, color, chrome, and motion. The live component layer then treats four update-aware catalogs as one equal-weight execution toolkit: the MIT-licensed [beUI repository](https://github.com/starc007/ui-components), [ThreeUI Community](https://github.com/MengTo/threeui), the community element library [Uiverse](https://github.com/uiverse-io/galaxy), and [Material Components Web](https://github.com/material-components/material-components-web). On every invocation, the skill rebuilds exact per-source counts and a searchable inventory of every current component identifier, then compares the strongest viable candidate from every catalog for each designed surface. Components remain mandatory where applicable, but they operate inside the approved macro composition rather than supplying a generic demo layout. Two live companions ride along: the [taste-skill](https://github.com/Leonxlnx/taste-skill) as a second anti-generic pass beside the built-in anti-slop rules, and [design-resources-for-developers](https://github.com/bradtraversy/design-resources-for-developers) for sourcing fonts, illustrations, photography, and icons.
+Version 2 rebuilds the skill around the benchmark gallery [Claude Opus 5.5 · 100 HTML Files](https://github.com/MiaAI-Lab/Claude-Opus-5.5-100-HTML-Files). Close teardowns of its strongest pages and an analysis of all 100 prompts showed where the variety and finish come from. Each page starts from a dense creative-direction paragraph plus an identical quality block. The signature visuals are made, not sourced, and every page was reviewed from screenshots before acceptance. The skill turns that method into a guided workflow. It links to the gallery as a study set and does not copy its code or prompts.
+
+Earlier versions (1.x) centred on reference-site measurement, style and palette menus, mandatory component catalogs and a seven-loop strategy process. They produced dependable but similar-looking sites. The useful parts survive in lighter form: plain-language discovery, honesty rules, strategy essentials for business sites, the accessibility floor and the render-and-fix loop. The original design-principles layer was inspired by [ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill), and the strategy essentials descend from the seven-loop framework adapted from prompts attributed to Farhan (`@Farhan_Ai3`).
 
 ## Updating
 
-The skill updates itself at the start of an engagement when Python 3, network access, and write permission are available. A clean canonical checkout fast-forwards with Git; copied installs download the canonical archive, validate it, replace the skill atomically, and restore the previous copy if installation fails. If automatic updating is unavailable, the engagement continues with the local version and says why. The skill also rebuilds the Complete Resource Inventory from beUI, ThreeUI Community, Uiverse, MDC-web, taste-skill, and the asset index on every invocation. It records exact per-source counts, all current identifiers, provenance, and freshness so newly published components can enter selection immediately; if web access is unavailable, it marks the affected inventory stale and continues with an explicit offline fallback.
+The skill updates itself at the start of an engagement when Python 3, network access and write permission are available. A clean canonical checkout fast-forwards with Git. Copied installs download the canonical archive, validate it, replace the skill atomically, and restore the previous copy if installation fails. If automatic updating is unavailable, the engagement continues with the local version and says why.
 
-`webdesign-start/VERSION` travels with every copy. The skill also treats trend-sensitive content as suspect once the version date is over a year old, verifying trends by search instead of asserting stale ones. See [CHANGELOG.md](CHANGELOG.md) for release history.
+`webdesign-start/VERSION` travels with every copy. See [CHANGELOG.md](CHANGELOG.md) for release history.
+
+## Every kind of site in the gallery
+
+The skill carries a build recipe for each kind of experience in the benchmark gallery. You don't pick one; discovery works out which fits:
+
+editorial long-read · scroll journey · book / page-flip · interactive story · living scene · ambient experience · single-screen art piece · instrument · product showcase · signature object and reveal · heritage brand · collection or cabinet · poster or type-led · themed interface · live bento · command console · living data hero · data reference · explainer / simulation · maker tool · generative studio · playable · everyday tool
+
+A site can combine them: a product showcase with one scroll-journey section, or a heritage brand with a small maker tool.
 
 ## Tips for best results
 
-- **Give the opening message real information** ("a site for my two-chair barbershop in Austin, we're booked out weeks") — Phase 0 harvests it and skips those questions.
-- **React honestly in the research phase.** A "no, too corporate" is worth more than three polite "loves."
-- **Name sites you already admire**, even from unrelated industries. The skill records every part you say you like, including dominant imagery, animation, scale, density, and small chrome details; it cannot quietly keep only the easiest one.
-- **Critique the composition and components separately.** If the silhouette, imagery, density, or motion feels wrong, the skill revises the reference blend. If a component treatment feels wrong, it searches the full collection again and reselects or restyles it.
-- **Keep `DESIGN-BRIEF.md` in the repo.** It's the memory. Future "add a pricing page" requests will match the existing design because the brief says how.
-- **Use the post-build artifacts.** `CONVERSION-AUDIT.md` separates immediate fixes from traffic-dependent experiments; `LAUNCH-PLAN.md` sets the first thirty days, owners, metrics, and stopping rules.
+- **Just describe it.** You don't need design words or a clear idea. The skill asks what it needs.
+- **Tell it what's true only of you.** "A two-chair barbershop in a 1920s bank vault in Austin, booked out for weeks" gives the concept far more to work with than "a barbershop website".
+- **Answer the object question honestly.** "If your website were a physical object, what would it be?" often *is* the concept.
+- **Name things you love, including things that aren't websites.** Say what exactly you love about each. The skill records the trait and translates it; it won't clone the source.
+- **React to the concepts freely.** "A's palette with C's idea" is a great answer.
+- **Judge the first-frame render, not the description.** That checkpoint exists so you can redirect before the full build.
+- **Keep `DESIGN-BRIEF.md` in the repo.** Future requests like "add a pricing page" read it and stay in the same world.

@@ -1,184 +1,171 @@
 ---
 name: webdesign-start
-description: Guided website strategy, design, build, conversion review, and launch workflow that turns a vague idea into a polished website through discovery, real-site research, creative direction, conversion and copy planning, motion and technical contracts, a persistent design brief, rendered audits, and a thirty-day launch plan. Use whenever the user wants to design or build a website, landing page, portfolio, web app UI, or online store; redesign/restyle an existing one; improve a conversion-critical section; or types /webdesign-start. Do NOT use for backend-only work, APIs, or non-visual tasks.
+description: Guided website design and build workflow that turns a vague idea into a singular, showcase-grade website. It asks plain-language questions, invents three distinct concepts, writes a dense creative-direction prompt with exact palette, type, hero art and signature interactions, builds and screenshot-reviews the first frame, then builds and reviews the full site. Use whenever the user wants to design or build a website, landing page, portfolio, online store or web-app UI; redesign or restyle one; wants a creative-direction prompt for a site; or types /webdesign-start. Do NOT use for backend-only work, APIs, or non-visual tasks.
 ---
 
-# Web Design Discovery & Build
+# webdesign-start
 
-**Skill version:** see the `VERSION` file beside this one (format: `<semver> <date>`). Canonical source: https://github.com/Standardan/webdesign-start
+**Skill version:** see `VERSION` beside this file (`<semver> <date>`). Canonical source: https://github.com/Standardan/webdesign-start
 
-You are running a guided website engagement. Resolve the brand, audience, competitive, conversion, content, visual, motion, and technical decisions before full implementation. Use structured discovery and inspected real websites, persist the decisions in a brief, prove the direction in a rendered sample, then build, audit the working conversion path, and prepare the first thirty launch days.
+Your job is to lead a person who is not a designer to a website that looks like nothing else on the internet: a site with one governing idea, its own art, its own palette and type, and a beautiful first frame. The benchmark is the gallery at https://miaai-lab.github.io/Claude-Opus-5.5-100-HTML-Files/: 100 pages, each made from one dense creative-direction paragraph, and no two alike.
 
-Never skip ahead to code. The phases below exist because every skipped phase resurfaces later as "this isn't what I wanted."
+That gallery works because every page starts from **a specific creative-direction paragraph**, not from a template, a component kit or a menu of safe defaults. This skill exists to get that paragraph out of an ordinary conversation, then build it faithfully and check the result from screenshots.
+
+## What makes the difference (keep this in mind at every step)
+
+1. **One idea, everywhere.** Every site gets a governing idea taken from its subject: light leaving a lamp, cut paper, a descent through water, an instrument panel. The hero, the progress indicator, the buttons, the ornaments, the transitions and the copy all express it. An effect you could paste into an unrelated site is decoration, not direction.
+2. **The site is a thing.** Decide what kind of artefact the site *is*: a magazine feature, a specimen cabinet, a lit diorama, an instrument, a poster, a field guide, a menu card. The layout comes from that object, never from "hero + three cards + CTA".
+3. **The signature visual is made, not sourced.** The hero is drawn for this project in SVG, canvas or CSS (or built from the client's real photography, treated by the concept). Stock imagery, icon packs and UI-kit demos never carry the look.
+4. **Exact values, decided up front.** Named colours with hex values, named type treatments, a named hero, named interactions. A vague brief produces the model's average, and the average looks the same every time.
+5. **Beautiful before anyone touches it.** The first frame must already be finished and alive (idle motion, pre-warmed simulations) at both phone and desktop sizes.
+6. **Judge the render, not the code.** Look at screenshots at 1440 and 390 wide, compare them with the paragraph slot by slot, fix the weakest thing, and repeat.
 
 ## Operating principles
 
-1. **The user is not a designer.** Never ask "do you want glassmorphism or neo-brutalism?" — ask in plain language, offer concrete options with vivid descriptions, and anchor to famous websites they may know. Translate their answers into design vocabulary yourself.
-2. **Examples beat adjectives.** "Clean and modern" means fifty different things. A URL the user says "yes, like THAT" to means exactly one thing. The research phase is therefore mandatory, not decorative.
-3. **References must survive contact with the build.** Do not reduce an approved site to the easiest token, nav detail, or color. Record every trait the user says they like, inspect how those traits work together, assign each one an implementation target, and verify both the individual traits and the combined macro composition in the rendered result.
-4. **One decision-maker: the brief.** Every visual decision made during build must trace to `DESIGN-BRIEF.md`. If the brief doesn't answer a question, either the answer is obvious from the approved references, or you ask.
-5. **Progress is visible.** Tell the user which phase you're in and what's left. This is a multi-step engagement; don't let it feel like an interrogation without a destination.
-6. **Respect answered questions.** If the user already told you something (in their first message, in an existing brief, in the repo), never ask again. Every phase starts by harvesting what is already known.
-7. **Use the complete component collection; give no catalog priority.** At Phase 0, read `references/component-sourcing.md` and `references/threeui.md`, fetch every live catalog and companion, and build the Complete Resource Inventory they define: exact per-source counts plus every current component identifier/capability, retained at `.webdesign-start/component-inventory.json` when file writes are available. No source is default, primary, first-look, or fallback. For every designed surface, compare the strongest viable candidate from every catalog and use the one that best fits this website's approved references, function, stack, accessibility, performance, and license constraints. Every designed surface must have observable catalog lineage through direct use, faithful adaptation, or composition; plain hand-built UI and source citations that do not visibly affect the result are review failures. Components are the execution layer inside a reference-led composition: a catalog demo must never replace the approved page silhouette, focal point, media hierarchy, density, or scroll story.
-8. **Run the seven strategic loops.** Read `references/strategic-loops.md`. Every full site or redesign must complete the creative-direction, conversion-critical section, motion-system, conversion-copy, technical-build, conversion-audit, and thirty-day launch loops. Each loop must analyze evidence, make a decision, persist its required artifact, and verify the result. Never fabricate proof, customer language, metrics, or test outcomes.
+- **The user is not a designer.** Ask in plain language with vivid, concrete options. Translate their answers into design decisions yourself. Explain any design term the first time you use it.
+- **Harvest before asking.** Never ask for something the user already said, something an existing `DESIGN-BRIEF.md` answers, or something visible in the repo.
+- **Show progress.** Say which step you are on and what comes next, in one line.
+- **The creative-direction paragraph is the contract.** Every build decision traces to it. If it doesn't answer a question, either decide in the spirit of the concept or ask.
+- **Honesty is not negotiable.** Never invent testimonials, client logos, metrics, awards or reviews for a real business. Fictional brands, people and data are allowed only when labelled as fictional. Facts must be accurate or hedged.
+- **Accessibility is part of beauty.** Contrast, keyboard access, focus styles, reduced motion and real text are required, not optional polish (`references/build-standards.md`).
 
-## Environment adaptation (read once, then proceed)
-
-This skill runs in many AI tools. Adapt to what you have:
+## Environment adaptation
 
 | Capability | If you have it | If you don't |
 |---|---|---|
-| Web search | Use it in Phase 2 to find live example sites | Use the curated anchor library in `references/research.md` — well-known sites you can cite from knowledge; tell the user results are from a curated list, not a live search |
-| Structured question UI (option pickers) | Use it for discovery batches | Present options as lettered lists (A/B/C/D) in plain text; the user replies with letters or free text |
-| File write access | Persist `DESIGN-BRIEF.md` to the project root | Output the full brief in chat and ask the user to save it |
-| An existing repo/codebase | Detect stack + existing brand assets before asking about them | Assume greenfield; default stack per `references/build-standards.md` |
+| Structured question UI | Use it for question batches (up to 4 questions, 2–4 options each) | Use lettered options in plain text |
+| Rendering (headless browser, preview pane, Playwright) | Screenshot at 1440×900 and 390×844 in Phases 4–6 | Say so plainly; review the code against `references/review.md` and ask the user for screenshots |
+| Web access | Optionally open user-named sites to study what they like | Work from the user's description; never invent observations of a site you did not see |
+| File writes | Save `DESIGN-BRIEF.md` at the project root | Print the brief in chat and ask the user to save it |
+| Existing codebase | Detect the stack and existing brand assets first | Default to the Showcase build mode in `references/build-standards.md` |
 
 ## Staying current
 
-Do this once per engagement, during Phase 0, before discovery:
-
-1. Run `scripts/update_skill.py` with an available Python 3 launcher (`python`, `python3`, or `py -3`). Do not merely check and tell the user to update. The updater compares `VERSION` with the canonical repository, fast-forwards a clean canonical checkout or performs a validated atomic swap for a copied install, and restores the previous copy if installation fails.
-2. **If it reports `updated`**, tell the user in one line — "Updated webdesign-start from v[old] to v[new]." Then re-read the updated `SKILL.md` before continuing because its workflow may have changed.
-3. **If it reports `up-to-date`**, say nothing and continue.
-4. **If Python, network access, or write permission is unavailable, or the updater reports `error`**, continue with the local copy and give one concise non-blocking notice with the reason. Never replace the skill with ad-hoc shell commands and never ask the user to perform the normal update manually.
-5. Read `references/component-sourcing.md` and `references/threeui.md`, then perform the mandatory complete live refresh: fetch the full beUI registry, all public ThreeUI Community parent/route/variant metadata, every Uiverse category and element identifier, every MDC-web package, every design-resources category/link, and the current taste-skill. Reconcile exact per-source totals and retain the full searchable inventory for the engagement. Refresh it on every invocation, including brief continuations, small edits, and audits; never reuse a prior snapshot without attempting all live sources. **If a fetch fails or you have no web access**, follow the inventory's stale-source fallback. Failure is not a reason to stall or invent current names/counts.
-6. **Staleness rule (works even offline):** compare today's date to the local `VERSION` date. If more than ~12 months have passed, treat the skill's *trend-sensitive* content — emerging styles, "current-year" addenda, named font trends, gallery lists, browser-support claims — as possibly stale: verify with a search before presenting them as current, and prefer the skill's timeless material (workflow, accessibility, conversion evidence, anti-slop principles), which ages well. Design fashion moves fast; yesterday's anti-generic move is tomorrow's tell.
+Once per engagement, before discovery, run `scripts/update_skill.py` with an available Python 3 launcher (`python3`, `python` or `py -3`).
+- `updated`: tell the user in one line ("Updated webdesign-start from vX to vY."), then re-read this file.
+- `up-to-date`: say nothing.
+- `error`, or no Python, network or write access: continue with the local copy and give one short notice with the reason. Never replace the skill with ad-hoc shell commands.
 
 ## The workflow
 
 ```
-Phase 0: Intake        — harvest what's already known, frame the engagement
-Phase 1: Discovery     — adaptive question batches           → Discovery Summary
-Phase 2: Research      — inspect real websites, verify every liked trait → Ledger + Matrix + Blend
-Phase 3: Brief         — synthesize strategy + design + build → DESIGN-BRIEF.md
-   [GATE: user approves brief]
-Phase 4: Build         — implement against the brief
-   [CHECKPOINT: user confirms reference-driven style sample]
-Phase 5: Review        — self-audit + conversion/launch plans → CONVERSION-AUDIT.md + LAUNCH-PLAN.md
+Phase 0  Intake        route the request, harvest what's known
+Phase 1  Discovery     the narrowing game: plain-language questions → Discovery Notes
+Phase 2  Concepts      three divergent concepts; the user picks, mixes or redirects
+Phase 3  Direction     the Creative Direction Paragraph + Quality Contract → DESIGN-BRIEF.md
+            [GATE: the user approves the direction]
+Phase 4  First frame   build the hero viewport at full craft, screenshot, review
+            [CHECKPOINT: the user reacts to the rendered first frame]
+Phase 5  Build         the rest of the site, every section with its own device
+Phase 6  Review        screenshot loops, quality contract audit, report
 ```
 
-Announce phase transitions briefly ("Discovery is done — moving to research. I'll come back with real sites to react to.").
+Announce each transition in one line ("Discovery done. Next I'll sketch three very different concepts for you to react to.").
 
 ---
 
 ## Phase 0 — Intake
 
-Before asking anything:
+1. **Route by request type.**
+   - **New site, redesign, or "I don't know what it should look like"**: full workflow.
+   - **`DESIGN-BRIEF.md` exists and holds a Creative Direction Paragraph**: read it, confirm continuation in one line, and go to Phase 5 for the requested work (Phase 4 if no first frame has been approved yet). An older brief without a paragraph: run Phases 2–3 compactly to write one, harvesting everything the old brief already decided.
+   - **Small change to an existing site** (one section, one component, a restyle): skip discovery. Read the brief or infer the site's governing idea, material, palette and type from the code, state that reading in one line, make the change in that language (`references/craft.md`), then review that slice with screenshots.
+   - **Audit or critique only**: go to Phase 6 and report against `references/review.md` without building.
+   - **"Just write me the prompt"**: run Phases 1–3 and deliver the paragraph plus Quality Contract as a copy-paste prompt (`references/creative-direction.md`, "Prompt-only delivery").
+2. **Harvest the opening message**: what is being built, for whom, the main visitor action, any brand assets, any sites or things the user admires, and any specifics about the business (place, history, craft, signature product). Mark each item known or unknown.
+3. **Frame the engagement in two or three sentences**: a few quick question rounds, then three concepts to react to, then a written direction for approval, then a rendered first frame before the full build.
 
-1. **Route by task size.** Full discovery exists for new sites and new design directions. Don't impose it on small work:
-   - **New site / redesign / "no idea how it should look"** → full workflow, Phase 1 onward.
-   - **Project already has an approved `DESIGN-BRIEF.md`** → read it and go straight to Phase 4 for the requested work; the brief is the discovery.
-   - **Small change to an existing site** (one component, one section, a restyle of something specific) → skip discovery and research; infer the design system from the existing code, use the freshly rebuilt Complete Resource Inventory to compare the strongest viable candidate from every catalog for the requested surface, confirm your design-system reading and recommendation in one message, make the change, then run the relevant slice of Phase 5.
-   - **Audit/review request** → skip to Phase 5's checklists and report findings without building.
-2. **Harvest the opening message.** Product type, industry, audience, style hints, stack, existing brand, and every example URL/screenshot the user supplied — mark each as known/unknown. User-supplied references are first-class inputs, not merely candidates to mix into a later search.
-3. **Check for prior state.** If `DESIGN-BRIEF.md` exists in the project, read it and ask whether this is a continuation (build/extend against it) or a fresh direction (archive it, restart discovery). For a continuation, verify that its Liked Trait Ledger, Reference Translation Matrix, Reference Blend Contract, Asset Readiness Gate, Component Opportunity Map, creative direction, conversion-critical section, motion contract, scroll-depth copy map, and technical build plan exist. Backfill and confirm any missing or affected contract before coding; an older brief does not bypass the new fidelity gates. If a codebase exists, note the stack and any existing design tokens/CSS.
-4. **Frame the engagement in 2-3 sentences.** Tell the user what's about to happen: a few short rounds of questions, then inspected websites and competitors, an approved strategic design/build brief, the rendered build, a conversion audit, and a thirty-day launch plan. Users cooperate with questionnaires when they know why and how long.
+If the user says "just build it" or "surprise me", still ask Round 1 of discovery (you cannot design for an unknown audience and business). Then generate the three concepts internally, pick the strongest, show its paragraph in one message, and continue unless the user objects.
 
-If the user says some version of "just build it, surprise me": still run Phase 1 Round 1 (the four fundamentals — you cannot build for an unknown audience), compress Rounds 2-3 into one batch of the three highest-leverage taste questions, and do a single lightweight research round. Never skip research entirely; one round of "which of these three directions?" costs a minute and prevents a full rebuild.
+## Phase 1 — Discovery (the narrowing game)
 
-## Phase 1 — Discovery
+Read `references/discovery.md` and `references/formats/index.md` now. The user will never say "I want a living-scene site"; they'll just describe what they have. Discovery works like twenty questions played by a creative director:
 
-Read `references/discovery.md` and `references/strategic-loops.md` **now** — they contain the question flows, branch logic, vague-answer decoder, and evidence required by the seven loops. Rules that must survive even if you read nothing else:
+- **Listen first.** Harvest every signal from how they describe it.
+- **Keep a private hypothesis board:** 2–4 candidate formats with rough confidences, plus one wildcard format nobody in the category would expect, the particulars known so far, and the emerging world (object, place, time, feeling).
+- **Ask whichever question most changes the board,** in plain language with vivid options written for this business: the one that splits the leading formats, or fills the most important missing particular. Up to 4 questions per batch, one batch per message.
+- **Read back in human terms** what you're homing in on ("It sounds like the site should feel like stepping into the greenhouse, not reading a brochure"). Never use format names with the user.
+- **When they hesitate, show:** describe two or three tiny pictures, or point to gallery pages, and let them choose.
+- **Stop when confident:** a leading format (or two close ones), at least two particulars, a world, and the primary action. That usually takes 5–10 questions in 2–3 batches, never more than about 12.
+- If the user names sites or things they love, record *what specifically* they love in their own words (`references/research.md`).
+- End with short **Discovery Notes** read back for a quick "yes, that's it".
 
-- Ask in **batches of 3-4 questions max**, multiple-choice with an "or describe it your way" escape hatch. One batch per message. Typically 3 rounds; never more than 4.
-- **Round 1** is always the fundamentals: what is being built, for whom, the single most important visitor action, and what brand assets already exist.
-- **Round 2** extracts taste through contrast pairs and famous-site anchors, not jargon.
-- **Round 3** branches by product type (SaaS questions differ from restaurant questions).
-- Gather or label assumptions for the strategic inputs without adding an interrogation: visitor pre-arrival context, one promise, real evidence, first-three-second feeling/conclusion, competitors to outperform, awareness and objections, customer language, controlled traffic sources, and measurable success.
-- **Decode vagueness.** "Modern and clean," "professional," "with some pop" are the most common answers and mean nothing yet — the decoder table in `references/discovery.md` tells you the follow-up that disambiguates each.
-- After the final round, **mirror back a Discovery Summary** (the template is in `references/discovery.md`) and get a "yes, that's me" before moving on. Read `references/industries.md` for the matching product-type playbook at this point — it adds category must-haves and anti-patterns the user won't think to mention. If a user preference conflicts with an industry norm (brutalism for a medical clinic), surface the tension with a recommendation; never silently override either side.
+For a business site, also read `references/strategic-loops.md` (strategy essentials). It adds the few decisions a business site needs (one promise, primary action, real proof, must-have content) without extra interview rounds.
 
-## Phase 2 — Research (the phase that makes this skill work)
+## Phase 2 — Concepts
 
-Read `references/research.md` **now**. This phase turns the Discovery Summary into 2-3 user-approved real websites plus a **Liked Trait Ledger**, **Reference Translation Matrix**, and **Reference Blend Contract** that anchor every later decision.
+Read `references/concept.md` now. Generate **three genuinely different concepts**: normally two from the leading formats on the hypothesis board and one from the wildcard. They must differ in format, ground (light or dark), type voice, hero technique and motion signature, per the diversity grid in that file. Each concept gets:
 
-The shape of it:
+- a name and one-line idea;
+- what the site *is* (the artefact or world);
+- the style anchor (one movement, era, tradition or physical material);
+- a 4–5 colour palette with names and hex values;
+- the hero picture, described so the user can see it;
+- one signature moment;
+- why it fits this business, in terms of the user's own answers.
 
-1. **Start with user-supplied examples.** Inspect each reachable URL (or attached screenshot) before searching for more. If the user already supplied enough good references, search only to resolve a missing dimension or do not search at all.
-2. **Search** for additional live sites matching the discovery profile when needed (query recipes and curated gallery sources are in the reference file). Search results discover candidates; they are not evidence about a site's design.
-   Include reachable named competitors or category leaders in a separate strategic sweep: compare their first-three-second message, evidence, primary action, scroll argument, trust, and motion restraint. Competitors inform differentiation; they do not automatically become aesthetic references.
-3. **Inspect before describing.** Open each candidate you present. Observe the actual page silhouette, spacing/density, typography, color distribution, components, imagery, and motion. Candidate-presentation notes and memory are not enough: reopen positively rated sites after the user's reaction and record page-specific evidence before building the matrix. If visual browsing is unavailable, state the limitation and do not invent detailed observations from a search snippet.
-4. **Present 4-6 candidates** as links with rich descriptions — for each: what the site is, *why it matches specific discovery answers* ("you said calm + premium; notice how much whitespace they leave around the product"), what to inspect, what you'd borrow, and what you'd do differently for this project.
-5. **Collect reactions** per site: love / close-but / no, and *what specifically* drew or repelled them. The "what specifically" is the gold — a "no" with a reason is worth more than an unexplained "love."
-6. **Iterate if needed.** Fewer than two strong positives → run one refined round using the reaction reasons as new search constraints. Cap at three rounds; if taste still won't converge, fall back to presenting 2-3 named *directions* built from the strongest partial signals and let the user pick.
-7. **Translate every liked trait, not a convenient subset.** Build the Liked Trait Ledger first from the user's own statements. For each approved site, capture the measured Reference Teardown, then build the Reference Translation Matrix: every liked trait names its source, observed evidence, original adaptation, exact target, and fidelity check. A primary visual reference must shape at least three macro dimensions and include at least one of silhouette, focal media, or motion; a small chrome detail cannot stand in for the whole reference. “Mood only” requires explicit user agreement and cannot hide an unimplemented liked trait.
-8. **Lock the blend.** Add a Reference Blend Contract that assigns each primary reference a clear job across silhouette, focal point/media, typography, density, color, chrome, and motion. Confirm the ledger, matrix, and blend together so the user can catch a missing trait before the brief.
+Present them vividly in plain language. If rendering is available and cheap, you may add a rough first-frame sketch of each. Let the user pick one, merge two, or redirect. Allow at most two rounds of revision; after that, recommend one and move on.
 
-Guardrail: references are for *direction* — structure, mood, spacing philosophy, color temperature, media role, and motion character. Never copy a reference's layout wholesale, its copy, logos, images, or distinctive brand elements. Preserve the relationships and experience the user approved; do not use originality as permission to discard them. The user should get a site that belongs in the same room as their references, not a clone or an unrelated template.
+Never present the median. If a concept could belong to any business in the category, replace it.
 
-## Phase 3 — The Design Brief
+## Phase 3 — Creative direction
 
-Synthesize the Discovery Summary, Liked Trait Ledger, Reference Translation Matrix, Reference Blend Contract, Asset Readiness Gate, and industry playbook into `DESIGN-BRIEF.md` at the project root, using the template in `references/brief-template.md`. The approved reference contract outranks generic catalog defaults; use the catalogs to execute the direction, not to overwrite the examples the user chose. To fill it well, consult:
+Read `references/creative-direction.md` and `references/brief-template.md` now.
 
-- `references/styles.md` — pick the dominant style (and at most one accent influence) that supports the approved Reference Blend Contract; the style label may not flatten or replace the reference roles.
-- `references/color.md` — build the full token set (light *and* dark if in scope) from the closest industry palette, adjusted toward the approved references.
-- `references/typography.md` — pick a pairing whose personality matches; include weights and fallbacks. When sourcing the actual files or hunting alternatives (fonts, illustrations, photography, icons), search the current companion-resource portion of the Complete Resource Inventory (`references/component-sourcing.md`) instead of defaulting to the same few known assets.
-- `references/layouts.md` — choose the page/section formulas for every page in scope.
-- `references/anti-slop.md` — before finalizing, verify the brief doesn't encode AI-default choices (violet-gradient dark mode, template heroes) that no discovery answer asked for.
-- `references/finishing.md` — the generative recipes (tinted neutrals, display conviction, the accent-discipline sentence, the third type voice, hero evidence). The brief must contain a chosen value for each recipe's parameter, including the written accent sentence — a brief that leaves these to build-time defaults will produce a generated-looking site no matter how good the audits are.
-- `references/strategic-loops.md` — complete Loops 1–5 in the brief: Creative Direction Blueprint, Conversion-Critical Section Spec with three testable copy variants and a selected baseline, Motion Contract, Scroll-Depth Copy Map with actual section/microcopy, and Technical Build Plan.
+1. Write the **Creative Direction Paragraph** for the chosen concept: one dense paragraph of about 150–250 words (per page for multi-page sites, under a short site-wide paragraph). Use the slot order and checklist in `creative-direction.md`: name and tagline, artefact type, style anchor, ground and palette with hex values, the hero and how it is drawn, sections each with its own device, domain-verb interactions, delight, a typography treatment, a mobile recomposition, and one restraint sentence.
+2. Attach the **Quality Contract**, the fixed engineering and finish floor from the same file, unchanged.
+3. Save both in `DESIGN-BRIEF.md` with the short facts sections from `brief-template.md`.
+4. Show the user the paragraph and a plain-language digest (what they will see on first load, what moves, what they can do). **Stop for approval.** Treat any critique as a paragraph edit, then show it again.
 
-Before approval, run the **Asset Readiness Gate** in `references/brief-template.md`. Every P1 media or motion obligation must name the real, generated, licensed, or clearly representative asset used in the style sample. If an important reference is unreachable, obtain user-provided screenshots or another inspectable artifact; do not silently demote it or build from reputation.
+## Phase 4 — First frame
 
-Then present the brief to the user as a **short digest** (direction, first-three-second experience, hero promise/evidence/action, selected baseline copy, palette, fonts, motion budget, pages, and build order — not the whole file) and ask for approval or edits. **This is the gate.** Do not write site code before an explicit yes. Small edit requests → update the brief, restate only the changed part, proceed.
+Read `references/craft.md`, `references/techniques.md`, `references/build-standards.md` and the chosen format's file in `references/formats/` now, plus the file for any format a section borrows.
 
-Before presenting the digest, read `references/component-sourcing.md`; use `references/threeui.md` when a ThreeUI finalist is evaluated. Lock the reference-led page composition first, then add a **Component Opportunity Map**. For every designed surface inside that composition, record the strongest viable candidate from each catalog (or `no viable candidate`), the automatically selected component lineage, direct/adapted/composed mode, target, and stack, accessibility, performance, license, or fallback constraints. All catalogs receive equal consideration. Do not ask the user to pre-select components. Choose the best contextual fit and implement its craft visibly without importing an unrelated catalog page silhouette.
+Build the **first viewport plus one following section** at full finish: the real hero art, real palette, real type, real copy, idle motion, the texture layer, and the reduced-motion variant. Render at 1440×900 and 390×844, then run the first-frame test in `references/review.md`. Fix and re-render until it passes. Then show the screenshots to the user and name which paragraph slot each visible choice comes from. **Pause for their reaction** unless they waived the checkpoint.
 
-## Phase 4 — Build
+## Phase 5 — Build
 
-Read `references/build-standards.md`, `references/ux-rules.md`, `references/anti-slop.md`, `references/finishing.md`, and `references/strategic-loops.md` before writing code. Non-negotiables:
+Build the rest of the site against the paragraph.
 
-- **Foundation first, and gate it.** The first file written is the token/theme file plus the type spec, alone. Run the Foundation Gate table from `references/finishing.md` on it — print the verdicts — and fix every failure *before any component consumes a token*. A timid foundation propagated into twenty components is the primary way builds end up looking generated despite passing every later audit.
-- **Design from the teardowns, not from your head.** The approved references were measured in Phase 2 (the Reference Teardowns in the brief); those numbers are where design values come from. The token file's grounds, borders, accent behavior, type sizes/weights/tracking, nav spec, container width, and section rhythm each start as an *adaptation of a measured teardown value* (own hue, own face, preserved relationship) — inventing a value from priors is allowed only where no teardown speaks, and the Foundation Gate's verdict table must say which teardown value each core token derives from. The same applies per section: before building any section with a matrix obligation, reopen that reference region (or its screenshot) and build with it in view.
-- **Composition before components.** Build the approved macro skeleton from the Reference Blend Contract first: silhouette, focal point, media ratio/crop, type hierarchy, density changes, and scroll choreography. Then place the selected live components into their named jobs. A component may improve the execution, but it may not convert a full-bleed, media-led concept into a generic split hero, card grid, dashboard frame, or catalog demo.
-- **Resolve P1 assets before the sample.** Pass the Asset Readiness Gate before building the conversion-critical section. Generate, source, create, or request a representative asset when the approved reference depends on photography, product UI, game art, video, 3D, or large animation. Generic icons, abstract gradients, and fabricated “live” numbers are not representative assets. Placeholder data must be visibly labeled in the rendered surface, not only in the delivery report.
+- Every section gets **its own device**, taken from the concept (a plate with a caption, a pinned scene, a dial, a stamped ticket), never a generic grid of cards.
+- Carry the governing idea into at least four systems: hero, navigation or progress, interactive controls, section transitions, and ornaments or dividers.
+- Follow the chosen format file's architecture and use the recipes in `techniques.md`. A scroll-played section in any format uses `formats/scroll-journey.md` (pinned scenes). Ordinary controls (forms, date pickers, menus, tabs, accordions) may come from an accessible library or catalog (`references/component-sourcing.md`), restyled in the site's material. Heroes, illustrations and scenes are always made for this site.
+- Write real copy in the concept's voice. When real content is missing, use clearly marked placeholders and list them in the report. Never write filler.
+- Re-render as you go, not only at the end.
 
-- Express every brief token as CSS custom properties (or the detected styling system's theme). Components consume tokens, never raw hex/px.
-- Build mobile-first; verify the widths in the build-standards protocol.
-- The UX rulebook's Priority 1-2 tiers (accessibility, touch/interaction) are never traded away for aesthetics.
-- Real content where the user provided it; honest, well-shaped placeholders where they didn't (flag every placeholder in the final report).
-- All copy you write follows the anti-slop writing rules: no em dashes in site copy, no hype lexicon, specifics over adjectives, the client's own phrases from discovery wherever possible.
-- Before coding, turn the brief's Liked Trait Ledger, Reference Translation Matrix, Reference Blend Contract, Asset Readiness Gate, and Component Opportunity Map into one build checklist. Do not choose a convenient stock hero, card grid, or component treatment that conflicts with any of them.
-- Follow the approved Technical Build Plan and record deviations. Build the named conversion-critical section in the style sample using the selected baseline copy, real evidence when available, the primary action, and its instrumented success event. Implement the Scroll-Depth Copy Map section by section and the Motion Contract state by state; do not improvise either from memory.
-- **Recheck the full collection at feature time.** The Phase 0 snapshot supplies complete recognition, not permission to stop at its first match. Immediately before implementing each new or changed designed surface, search the retained inventory across every catalog, inspect the strongest live finalist from each source, and select with the neutral rubric in `references/component-sourcing.md`. Re-fetch the winner's current files, dependencies, runtime, assets, and license boundary; use `references/threeui.md` for a ThreeUI finalist. Merge deliberately and preserve project work. Shipping a plain implementation or an unattributed custom surface is a Phase 5 failure; when no item is exact, build a faithful catalog-derived adaptation or composition with observable lineage.
-- **Never show a first render — run the owner's-eyes pass first.** The gap between a first generation and a site its owner is proud of is closed by small render-look-fix loops, and those loops are this skill's job, not the user's. Before presenting the style sample, and again before delivery, run at least two full loops: render at 375px and 1440px, then critique the *rendered* result as the site's owner would — the one thing that most reads as generated, the weakest spacing seam, any timid type, any accent leaking outside its stated discipline sentence, any section a stranger would call template — fix the worst finding, and re-render. At least one loop must be a **side-by-side pass**: put the rendered page next to each approved reference (or its teardown screenshot) and ask whether the measured relationship each P1 row promised actually survived — same scale contrast, same density, same accent restraint — because this comparison, not memory of the matrix, is what catches "we said apple.com and shipped a template." Stop only when a loop finds nothing worth fixing, and note in the report how many loops ran and what they caught. If no rendering capability exists, say so explicitly and do the loops on the code against the recipes in `references/finishing.md` instead.
-- **Build a reference-driven style sample before the first full page:** the hero plus one content section, real tokens, real type, representative media, one representative button and card, and the highest-impact automatically selected live-catalog implementation. When a ThreeUI centerpiece is selected, the sample must include its real runtime plus static/no-WebGL/reduced-motion fallback. It must visibly exercise every above-fold P1 liked trait and each primary reference's assigned macro role. Render it beside the approved reference regions at the same viewport and run the blind gestalt test from `references/build-standards.md`; token-level resemblance cannot compensate for the wrong silhouette, focal point, imagery, density, or motion. Show the passing sample, identify which observed trait and live component informed each major choice, and do not present a component picker. If the user dislikes the result, treat the critique as a new constraint, update the ledger/blend when needed, recheck the applicable live sources, and replace or restyle the component. Pause for confirmation before expanding the rest of the site unless explicitly waived.
-- Motion should be present across the experience as a coherent system: state feedback on interactive controls, purposeful transitions on changing surfaces, and 1-3 memorable signature interactions per page when the content supports them. Each viewport still gets **one leading motion event** at most; hierarchy makes the motion feel authored, while equal-intensity animation everywhere becomes noise. Every effect must have a reduced-motion path.
+## Phase 6 — Review
 
-## Phase 5 — Self-review
+Read `references/review.md` now and run the full loop:
 
-Follow the self-review protocol at the end of `references/build-standards.md`: re-read `DESIGN-BRIEF.md`, audit every Liked Trait Ledger item and Reference Translation Matrix row against the rendered pages, audit the Reference Blend Contract at macro scale, audit the built pages section by section, run the slop audit from `references/anti-slop.md`, then walk the pre-delivery checklist. **Reference fidelity is a hard gate, not a summary**: print every liked trait and matrix row with a PASS/FAIL/PARTIAL verdict and rendered evidence, then run the side-by-side gestalt test for silhouette, focal media, type scale, density, color distribution, chrome, and motion. A small nav/color/token match cannot compensate for a missing dominant trait. **The Complete Resource Inventory and component-lineage audit is a separate hard gate:** confirm exact reconciled counts and freshness for every source, then fail every designed surface that lacks a neutral four-catalog comparison or observable direct/adapted/composed catalog lineage. Component coverage cannot compensate for reference failure, and reference fidelity cannot excuse plain covered UI. **The seven-loop audit is a third hard gate:** verify Loops 1–5 against the render and implementation, then execute Loop 6 against the working site and write `CONVERSION-AUDIT.md`; execute Loop 7 and write `LAUNCH-PLAN.md` for a full site/redesign. Do not tell the user the work is done with a FAIL, unexplained PARTIAL row, missing strategic artifact, or unowned launch item still open. **If your environment can render pages, use it** at 375px and 1440px and inspect what is actually on screen. Fix what you find.
+1. Screenshot every page at 1440 and 390 wide, plus key scroll depths and states.
+2. Compare the render with the Creative Direction Paragraph **slot by slot**: PASS, PARTIAL or FAIL, with the evidence.
+3. Run the first-frame test, the sameness check, the Quality Contract audit and the accessibility checks.
+4. Fix the worst finding and re-render. Repeat until a loop finds nothing worth fixing, and do at least two loops.
+5. Report to the user:
+   - what was built;
+   - the slot-by-slot verdict;
+   - what the loops caught and fixed;
+   - placeholders and assets still needed;
+   - anything deliberately deferred.
 
-Elite sites budget the final stretch for polish, not new ideas: awkward heading line-breaks, section-to-section spacing seams, focus states, image loading behavior, reduced-motion. Spend a real pass on these before reporting. Then report to the user:
+Never report a FAIL as done.
 
-- What was built (pages, components), including exact live-source IDs/imports/adaptations used.
-- Reference coverage — every Liked Trait Ledger verdict, each approved example's assigned macro role and visible result, side-by-side gestalt evidence, plus any user-approved deviation and why.
-- Component coverage — the refreshed exact per-source inventory counts/provenance, which finalist each catalog offered for every designed surface, what won and why, and proof that its lineage is visible; for ThreeUI, include package version or source commit, runtime/fallback, and checks actually run.
-- Checklist results — **honestly**, including anything that failed or was skipped and why.
-- Strategic loop results — first-three-second verdict, hero/critical-section comprehension and action, motion/static-baseline checks, copy-objection coverage, technical-plan deviations, the top three conversion findings/experiments, and the 30-day launch schedule/stopping rules.
-- Every placeholder awaiting real content.
-- Suggested next steps (real copy, imagery, deployment) — as offers, not questions blocking completion.
+---
 
-## Reference file index
+## Reference index (load progressively)
 
-| File | Read when |
-|---|---|
-| `references/discovery.md` | Entering Phase 1 |
-| `references/research.md` | Entering Phase 2 |
-| `references/industries.md` | After discovery identifies the product type |
-| `references/styles.md` | Phase 3, choosing the style direction |
-| `references/color.md` | Phase 3, building tokens |
-| `references/typography.md` | Phase 3, choosing type |
-| `references/layouts.md` | Phase 3 (page map) and Phase 4 (building sections) |
-| `references/brief-template.md` | Phase 3, writing the brief |
-| `references/anti-slop.md` | Phase 3 (brief sanity check) and Phase 4 (copy + CSS rules); audited in Phase 5 |
-| `references/finishing.md` | Phase 3 (recipe parameters into the brief) and the start of Phase 4 (Foundation Gate before any CSS) |
-| `references/ux-rules.md` | Before and during Phase 4 |
-| `references/build-standards.md` | Phase 4 and Phase 5 |
-| `references/component-sourcing.md` | Every invocation in Phase 0; again in Phase 3, before every designed surface, and in Phase 5 |
-| `references/threeui.md` | Every invocation in Phase 0; again when evaluating or implementing a signature visual/GPU component |
-| `references/strategic-loops.md` | Phase 1 input gathering; Phase 3 Loops 1–5; Phase 4 implementation; Phase 5 Loops 6–7 |
-
-Bundled automation: run `scripts/update_skill.py` only for the Phase 0 self-update described above. Do not edit it into project deliverables.
-
-If a reference file is missing or unreadable, say so and proceed with best judgment rather than stalling — the workflow's phases and gates matter more than any single catalog.
+| File | Load at | Contains |
+|---|---|---|
+| `references/discovery.md` | Phase 1 | The narrowing game: hypothesis board, splitting questions, particulars, world questions, stopping rule, Discovery Notes |
+| `references/formats/index.md` | Phases 1–2 | Every format with its signals, the questions that split formats, all 100 gallery pages by format |
+| `references/formats/<format>.md` | Phases 4–5, once chosen | One recipe per format: architecture, key mechanics, variation levers, pitfalls, signals |
+| `references/strategic-loops.md` | Phase 1 (business sites) | Strategy essentials: promise, action, proof, must-have content per site type |
+| `references/research.md` | When the user names sites or wants inspiration | Learning from references without cloning; the gallery as a study set |
+| `references/concept.md` | Phase 2 | Concept generation from the hypothesis board, style anchors, the diversity grid, silhouettes |
+| `references/creative-direction.md` | Phase 3 | The paragraph template, checklist, worked examples, Quality Contract, prompt-only delivery |
+| `references/brief-template.md` | Phase 3 | `DESIGN-BRIEF.md` structure |
+| `references/craft.md` | Phases 4–5 | Art direction: governing idea, hero composition, material, light, texture, palette, type, copy, motion |
+| `references/techniques.md` | Phases 4–5 | Code recipes: texture, light, drawn illustration, type, motion, signature objects, canvas |
+| `references/build-standards.md` | Phase 4 | Build modes, stack adaptation, performance, accessibility, reduced motion, honesty |
+| `references/component-sourcing.md` | Phase 5, for ordinary controls | Optional control libraries and how to restyle them |
+| `references/review.md` | Phases 4 and 6 | The screenshot loop, first-frame test, sameness tells, slot audit, report format |

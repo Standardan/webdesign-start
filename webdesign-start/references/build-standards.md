@@ -1,545 +1,102 @@
-# Build Standards & Pre-Delivery Checklist
+# Build standards
 
-This file defines how to implement designs for this project: the HTML foundations, token discipline, stack-specific conventions, asset strategy, and motion patterns that keep the codebase consistent and maintainable. It ends with the pre-delivery checklist and self-review protocol that gate every deliverable — no page ships without passing through them.
+**Load at:** Phase 4.
 
-**When to read this file:** At the start of the build phase (before writing the first component), and again in full during self-review before presenting finished work to the user.
+These standards set the engineering floor under the Quality Contract. They stop an ambitious site from shipping broken. They are not a style guide: the look comes from the Creative Direction Paragraph.
 
-## Table of contents
+## Build modes
 
-1. [Semantic HTML foundations](#semantic-html-foundations)
-2. [Reference implementation workflow](#reference-implementation-workflow)
-3. [Strategic-loop implementation](#strategic-loop-implementation)
-4. [Live component implementation](#live-component-implementation)
-5. [Design-token implementation](#design-token-implementation)
-6. [Stack detection & adaptation](#stack-detection--adaptation)
-7. [Asset handling](#asset-handling)
-8. [Motion implementation](#motion-implementation)
-9. [Responsive verification protocol](#responsive-verification-protocol)
-10. [Pre-delivery checklist](#pre-delivery-checklist)
-11. [Self-review protocol](#self-review-protocol)
+Choose one in Phase 3 and record it in the brief.
 
----
+**Showcase mode** (the default when there is no codebase, and for one-page sites, launches and portfolios):
+- One self-contained `.html` file, with CSS in `<style>` and JavaScript in `<script>`.
+- No external requests at all: no CDNs, libraries, web fonts or remote images. All visuals come from CSS, inline SVG, canvas and code.
+- System font stacks only (see `craft.md`). Draw any display lettering that must look identical everywhere.
+- Works when opened directly from disk (`file://`).
+- This mode reproduces the benchmark gallery's conditions. The constraint is a feature, because it forces made-not-sourced visuals.
 
-## Semantic HTML foundations
+**Project mode** (an existing codebase, or a multi-page site that needs a framework, CMS or build step):
+- Detect and follow the existing stack, conventions and file layout. Never add a framework the project doesn't use without asking.
+- Web fonts are allowed. Self-host where possible, use `font-display: swap`, subset if you can, and preload only the display face.
+- Real photography is allowed and encouraged when it exists. Treat it by the concept: duotone, cut-out, framed as plates, graded to the palette, cropped with intent. Serve modern formats with sizes and `srcset`. Never use stock photography as the signature visual.
+- Libraries are allowed for real needs (routing, forms, data, a WebGL engine the concept truly needs). Never add a library just to get a look.
+- Keep the tokens (colours, type, easing, spacing) in one place: CSS custom properties, or the project's theme file.
 
-Semantic HTML is the cheapest quality multiplier available. It gives screen readers a navigable structure for free, gives browsers correct default behaviors (keyboard handling, form semantics), and — just as important — gives *future AI edits* an unambiguous map of the page. A `<nav>` is self-describing; a `<div class="nv-wrp">` requires re-deriving intent from CSS every time the file is touched. Semantic markup is documentation that can't drift out of date.
+## Structure
 
-### Rules
+- Valid HTML5: doctype, `lang`, charset, viewport meta, a meaningful `<title>` and meta description, and a `theme-color` matching the ground.
+- Semantic landmarks (`header`, `nav`, `main`, `section` with headings, `footer`), one `h1`, and a logical heading order.
+- `<button type="button">` for actions and `<a href>` for navigation. Never use clickable `div`s.
+- Unique ids, and labels tied to every control.
+- Decorative SVG and canvas get `aria-hidden="true"`. Meaningful art gets `role="img"` and a real description.
+- Open Graph title, description and a share image when the site will be shared (in Showcase mode, a share image can be skipped or rendered later).
 
-- **Use landmark elements to structure every page:** `<header>`, `<nav>`, `<main>` (exactly one), `<aside>`, `<footer>`, and `<section>` with an accessible name (heading or `aria-label`). Screen reader users navigate by landmark; a page of nested divs has no map. Landmarks also let a later editor (human or AI) locate "the footer" without reading the whole file.
-- **One `<h1>` per page, and heading levels never skip.** `h1 → h2 → h3`, never `h1 → h4` because the h4's font size looked right. Headings are the page's outline for assistive tech and for search engines; size is a styling concern, solved with CSS classes, never by choosing a different heading level. If a heading looks too big, restyle it — don't demote it.
-- **`<button>` for actions, `<a href>` for navigation. No exceptions.** A `<div onclick>` has no keyboard support, no focus, no role, and no semantics — you'd have to re-add all four by hand and will get at least one wrong. A `<button>` styled as a link is fine; a link styled as a button is fine; a div impersonating either is not. The test: does it change the URL? Then `<a>`. Does it do something on this page? Then `<button type="button">` (be explicit — inside a `<form>`, the default type is `submit`, a classic accidental-submit bug).
-- **Lists are `<ul>`/`<ol>`/`<li>`.** Nav menus, card grids, feature lists, footer link columns — anything that is a set of peer items. Screen readers announce "list, 6 items", giving users a size estimate before they commit to traversing it.
-- **Use the native element before reaching for ARIA.** `<dialog>`, `<details>`, `<select>`, `<input type="date">`, `<progress>` ship with keyboard handling, focus behavior, and semantics already correct. The first rule of ARIA: don't use ARIA when a native element does the job. ARIA adds promises ("this div is a listbox") that you must then keep entirely in JavaScript.
-- **Forms: every input associated with its `<label for>`, related inputs grouped in `<fieldset>`/`<legend>`, correct `type`, `inputmode`, and `autocomplete` attributes.** These attributes drive mobile keyboards and browser autofill — pure win, zero cost.
-- **Images: `alt` on every `<img>`** — descriptive for meaningful images, empty (`alt=""`) for decorative ones. An omitted alt attribute makes screen readers read the file name aloud.
-- **Tabular data lives in `<table>` with `<th scope>`; key–value pairs in `<dl>`.** Div-grids impersonating tables lose column/row association for screen readers, and lose copy-paste-into-spreadsheet behavior for everyone.
+## Tokens first
 
-### The litmus test for any element choice
-
-Strip all CSS mentally. Does the bare markup still communicate what everything *is* — headings, navigation, a list of six features, a form with labeled fields? If the unstyled page would be an undifferentiated soup of text, the markup is failing its half of the job, and every future edit (styling, theming, accessibility fixes, AI-assisted refactors) gets harder because intent must be reverse-engineered from class names.
-
----
-
-## Reference implementation workflow
-
-The approved references are not a moodboard to forget once coding starts. Before writing components:
-
-1. Read the Liked Trait Ledger, Reference Translation Matrix, and Reference Blend Contract in `DESIGN-BRIEF.md`.
-2. Turn every ledger item and P1/P2 row into a build checklist item with its named target and fidelity check. No dominant liked trait may be represented only by a smaller detail from the same reference.
-3. Lock the macro skeleton before selecting page-level arrangements: silhouette, first focal point, media ratio/crop, type hierarchy, density changes, color distribution, chrome, and major motion. Record which reference role owns each decision.
-4. Resolve conflicts in this order: accessibility and task success → explicit user decisions → approved reference obligations → industry guidance → generic style/layout catalogs → personal preference.
-5. Do not let a convenient starter component, framework default, or formula from `layouts.md` override an approved reference obligation.
-
-### Style-sample checkpoint
-
-Build the hero plus one representative content section before the full page. Use the real token layer, fonts, button, card/content treatment, representative media, premium components, and responsive behavior. The sample must exercise every above-fold P1 liked trait, each primary reference's assigned macro role, and at least one P2 row.
-
-Render it at 375px and 1440px. Create a side-by-side contact sheet or equivalent comparison with the approved reference regions at the same viewport. Run two tests before presenting it:
-
-1. **Macro comparison:** silhouette, first focal point, media dominance/crop, headline scale, density, color distribution, chrome, and motion character.
-2. **Blind gestalt test:** describe the rendered sample without reading the brief, then ask whether that description would let another designer identify the intended reference roles. If the answer is only “dark,” “minimal,” “glowy,” “premium,” or a list of components, it fails.
-
-Present it with a short carry-through note:
-
-```markdown
-- [Source A trait] → [visible implementation in the sample]
-- [Source B trait] → [visible implementation in the sample]
-- [Rejected trait] → [what the sample does instead]
-```
-
-Pause for confirmation before expanding the full site unless the user explicitly waived the checkpoint. If the user says the sample does not feel like the reference, diagnose the specific mismatch (silhouette, density, type, color, component shape, imagery, or motion), revise the brief's matrix if their interpretation changed, and rebuild the sample. Do not paper over a direction mismatch with small cosmetic tweaks.
-
-### Originality boundary
-
-Match systems and relationships, not brand-identifiable expression. Preserve the approved trait while changing copy, assets, exact measurements, and composition to fit this project's content. Never reproduce a distinctive page section wholesale. "Inspired by" should be explainable as a design rule, not demonstrable as a pixel overlay.
-
----
-
-## Strategic-loop implementation
-
-Read `strategic-loops.md` and verify Loops 1–5 are complete in `DESIGN-BRIEF.md` before writing code.
-
-1. Build in the Technical Build Plan's order and record deviations as they occur.
-2. Make the named conversion-critical section part of the style sample. Use the selected baseline headline/subheadline, real evidence or an honest placeholder, the supporting visual, the primary action, and its named success event. Keep the other two copy variants in the brief as future test hypotheses; do not rotate or expose them without an experiment assignment.
-3. Implement the Scroll-Depth Copy Map literally, then read the rendered headings as one argument. Missing customer language remains labeled draft copy, not invented research.
-4. Implement the Motion Contract by role and trigger, including its static/no-JS/no-WebGL baseline, mobile budget, and reduced-motion behavior. Remove motion without a stated purpose.
-5. Instrument only the events named in the measurement plan, within the project's consent/privacy scope. Never claim an event, baseline, conversion lift, or experiment result that was not observed.
-
-The style-sample checkpoint must answer the creative blueprint's first-three-second test and the conversion spec's five-second comprehension test before full expansion.
-
----
-
-## Live component implementation
-
-Read `component-sourcing.md`, the brief's Complete Resource Inventory snapshot and Component Opportunity Map, and `threeui.md` when a ThreeUI finalist is in scope. For each designed surface:
-
-1. Search the complete retained inventory, retain the strongest viable finalist from every catalog, and inspect each finalist's current detail/source. Apply the neutral rubric; do not stop at a familiar source. For ThreeUI, record the Community ID/import, package version or source commit, runtime, assets, and fallback.
-2. Compare the live files with any installed copy. Merge upstream accessibility or behavior improvements without erasing local tokens, content, or project-specific fixes.
-3. Install the winner directly only when the stack and locked macro composition are compatible. Otherwise implement the approved faithful native-stack adaptation or composition; do not add a parallel framework silently and do not fall back to plain UI.
-4. Preserve the component's meaningful craft—interaction, motion, state model, advanced behavior, or distinctive treatment—while replacing demo colors, type, spacing, radii, copy, and surrounding layout with the approved design system. Exact demo anatomy is not sacred when it conflicts with the references.
-5. Verify its dependencies are necessary, current enough for the host project, and recorded in the final report.
-
-The style sample includes the highest-impact automatically selected component and representative premium treatment for its visible primitives. Present the implemented winners, not alternatives. A ThreeUI selection includes its actual renderer and intentional static/no-WebGL/reduced-motion path. If the user critiques the result, first classify the mismatch: fix the Reference Blend Contract/composition when silhouette, media, density, or scroll story is wrong; reselect or restyle the component when its own treatment is wrong. Small affordances may be batched into the overall motion system.
-
----
-
-## Design-token implementation
-
-Tokens exist so a design decision is made once and referenced everywhere. The moment a raw hex or px value appears inside a component, that component has forked from the design system — it won't respond to theme changes, dark mode, or rebrand edits, and the divergence is invisible until it bites.
-
-### Rules
-
-- **The project's `DESIGN-BRIEF.md` is the single source of truth for tokens.** Before writing any styles, read the brief's token section (colors, type scale, spacing, radii, shadows) and transcribe it into code *once*. If the brief and the code ever disagree, the brief wins — update the code, or flag the conflict to the user if the brief seems wrong.
-- **Express tokens as CSS custom properties on `:root`** (plain CSS/vanilla projects), for example:
-
-  ```css
-  :root {
-    --color-bg: #faf9f7;
-    --color-surface: #ffffff;
-    --color-text: #1a1a1a;
-    --color-text-secondary: #52525b;
-    --color-accent: #2563eb;
-    --color-accent-hover: #1d4ed8;
-    --color-border: #e4e4e7;
-    --radius-md: 8px;
-    --space-4: 1rem;
-    --shadow-card: 0 1px 3px rgb(0 0 0 / 0.08);
-    --font-body: "Inter", system-ui, sans-serif;
-  }
-  :root[data-theme="dark"] { /* redefine only the values that change */ }
-  ```
-
-  Dark mode redefines the same custom properties under a theme selector/media query — components never know which theme is active, which is the entire point.
-- **When Tailwind is detected, extend the theme config instead** (`theme.extend.colors`, `spacing`, `borderRadius` in `tailwind.config.*`, or `@theme` in Tailwind v4 CSS config) so tokens become utilities (`bg-accent`, `text-secondary`). Never mix approaches: if Tailwind holds the tokens, don't also scatter `var(--color-accent)` in ad-hoc style attributes.
-- **Never hardcode hex colors, px spacing, or font sizes inside components.** Every visual value in a component traces to a token. If a needed value has no token, that's a signal: either add it to the token set deliberately (and to the brief), or you're introducing an inconsistency. The one-off `#3b82f6` you hardcode today is the light-blue-on-light-gray dark-mode bug of next week.
-- **Name tokens semantically, not literally.** `--color-danger` survives a rebrand from red to orange; `--color-red` becomes a lie. Two layers work well: primitive palette (`--blue-600`) referenced only by semantic tokens (`--color-accent: var(--blue-600)`), and components use only the semantic layer.
-- **Spacing comes from the scale, not from eyeballing.** If the brief defines a 4/8px rhythm, `margin: 22px` is a violation even if it "looks right" — use the nearest scale step and adjust the composition, not the scale.
-- **Type scale is tokens too.** Define the brief's sizes as `--text-sm` through `--text-4xl` (or Tailwind `fontSize` entries) with paired line-heights, and use `rem` units so user font-size preferences are respected. A component that sets `font-size: 17px` has opted out of both the scale and the user's browser settings.
-- **Acceptable non-token values are rare and structural:** `0`, `1px` hairlines, `100%`, `auto`, aspect-ratio numbers, and media-query breakpoints (which are their own fixed set). Everything visual — color, spacing, radius, shadow, type — goes through a token.
-
-### Token workflow
-
-1. Read `DESIGN-BRIEF.md`; extract every color, font, size, spacing step, radius, and shadow it specifies.
-2. Write them once into the token layer (`:root` custom properties or Tailwind theme).
-3. Build components exclusively against the token layer.
-4. During self-review, grep components for `#[0-9a-fA-F]{3,8}` and raw `px` values — every hit is either a bug or a missing token to promote.
-
----
-
-## Stack detection & adaptation
-
-Before writing code, detect what exists. Check for `package.json` (and its dependencies), config files (`next.config.*`, `nuxt.config.*`, `svelte.config.*`, `astro.config.*`, `tailwind.config.*`, `components.json`), and existing source structure. Then adapt — never impose a different stack's conventions on an existing project, because consistency with the codebase beats your preference every time.
-
-| Detected stack | How to adapt |
-|---|---|
-| **Plain HTML/CSS/JS** (no package.json, or no framework deps) | One CSS file (or small set: `tokens.css`, `base.css`, `components.css`) linked in order. Tokens on `:root`. Vanilla JS in `defer` scripts. No build step — do not introduce one unprompted. Repeat shared header/footer markup per page or use trivial JS includes; do not add a bundler just for templating. |
-| **React / Next.js** | Components in the existing directory convention (`components/`, `app/` for App Router). One component per file, PascalCase. Prefer Server Components (App Router) for static content; `"use client"` only where interactivity demands it. Tokens: global CSS custom properties in the root layout's stylesheet, or Tailwind theme if present. Use `next/image` and `next/font` when in Next.js — they implement the P3 performance rules for free. |
-| **Vue / Nuxt** | Single-file components (`.vue`), `<script setup>`. Follow existing composition patterns. Scoped styles reference global tokens — define tokens in a global CSS file, never inside a scoped block (scoping would trap them). Nuxt: pages in `pages/`, use `NuxtImg` if the image module is present. |
-| **Svelte / SvelteKit** | `.svelte` components, routes under `src/routes/` (SvelteKit). Svelte scopes styles per-component by default — same rule: tokens live in a global stylesheet (`app.css`), components consume `var(--token)`. Use Svelte transitions for motion but wrap them in reduced-motion checks. |
-| **Astro** | `.astro` components; keep pages static-first (zero JS by default is Astro's whole value). Add `client:*` directives only on genuinely interactive islands, and pick the cheapest (`client:visible` over `client:load`). Tokens in a global stylesheet imported in the base layout. |
-| **Tailwind present** | Tokens go into the Tailwind theme (see previous section). Use utility classes consistently — do not write parallel bespoke CSS for things utilities cover, and do not use arbitrary values (`p-[13px]`) that bypass the scale. Extract repeated utility clusters into components, not `@apply` soup. |
-| **Tailwind absent** | Do not add it to an existing project unprompted. Write plain CSS with custom properties; use BEM-ish or component-scoped class naming consistent with whatever the project already does. |
-| **shadcn/ui present** (`components.json`, `components/ui/`) | Use existing `components/ui` primitives instead of hand-rolling buttons/dialogs/dropdowns — they already handle focus traps, keyboard nav, and ARIA. Style via the CSS-variable theme (`--primary`, `--radius`, etc. in `globals.css`), which is where the brief's tokens map in. Add new primitives via the established pattern rather than inventing parallel ones. |
-
-**Greenfield default (nothing detected):** Let the approved collection of selected components decide. No catalog decides the stack by name. Choose the lightest coherent foundation that can faithfully support the highest-value winners, explain its dependency/runtime cost in the brief, and adapt remaining selections natively. Do not buy a framework for one decorative effect, but do not choose a minimal stack that prevents the approved premium-component direction either.
-
----
-
-## Asset handling
-
-Users often have no assets ready at build time. The standard here is: the page must look intentional and complete with representative assets, never broken, and swapping in final assets later must be a find-and-replace, not a re-layout.
-
-### Asset Readiness Gate
-
-Before the style sample, walk every P1 liked trait and matrix row that depends on photography, product UI, game art, illustration, video, 3D, or large-format motion. Each must name a real, generated, licensed, purpose-built, or clearly representative asset/runtime that preserves the reference's visual role and proportion. If one is missing, create/source it within scope, request it, or obtain explicit approval to change the direction. Do not continue with a generic icon, abstract gradient, empty device frame, or fabricated metric in its place.
-
-Demo data may support a representative product component only when the rendered surface labels it as demo/illustrative. Never add live-status dots, “today,” “now,” rolling telemetry, or other real-time language to invented values.
-
-### Placeholder images
-
-- **Use simple SVG/CSS placeholders only for non-P1 structural slots.** Generate them at the exact aspect ratio the real asset will have and label their purpose. A P1 media-led hero needs a representative asset that communicates the intended subject, crop, hierarchy, and atmosphere; a blank gradient block cannot prove that direction.
-- **Never hotlink images that can break.** No arbitrary URLs found on the web, no deep links into sites that will 404 or block hotlinking. A broken image icon is the fastest way to make a delivered page look abandoned.
-- **Placeholder services (picsum.photos, etc.) — use with caution and disclosure.** They require network access (broken offline/in sandboxed previews), can be slow, and return *random* content that may clash with the design's tone. Unsplash's old `source.unsplash.com` endpoint is deprecated and returns errors — do not use it. If you use picsum, pin a seed (`picsum.photos/seed/<name>/800/450`) so the image is stable across reloads, and tell the user these are temporary stand-ins.
-- **Local-first when possible:** write the SVG placeholder to the project's asset directory so the site is self-contained.
-- **Placeholder markup should already be final markup.** Ship the real `<img>`/`<picture>` structure now — dimensions, `alt`, `loading`, `srcset` slots — pointing at the placeholder, so swapping assets later means changing a `src`, nothing else:
-
-  ```html
-  <img
-    src="/assets/hero-placeholder.svg"
-    alt="Product dashboard overview"
-    width="1200" height="675"
-    fetchpriority="high"
-  />
-  ```
-
-### Icons
-
-- **Pick one icon library per project and inline the SVGs.** Lucide and Heroicons are safe defaults: consistent grid, open licenses, outline style. Inline SVG (not icon fonts, not `<img>`) so icons inherit `currentColor`, scale crisply, and add no font-loading cost.
-- **Fix size and stroke once, globally.** E.g., 20px or 24px at `stroke-width: 2` (Lucide default) — then never deviate per icon. Mixed sizes and strokes read as sloppiness (see UX rulebook P4).
-- **Decorative icons get `aria-hidden="true"`; functional icon-only controls get an `aria-label` on the control** (not on the SVG).
-
-### Favicon & social
-
-- **Every deliverable includes a favicon.** Minimum viable: an inline SVG favicon (`<link rel="icon" type="image/svg+xml" href="/favicon.svg">`) — a simple monogram or mark in the brand accent color beats the browser default globe. Add a 180px `apple-touch-icon` PNG when the project warrants it.
-- **Set Open Graph and Twitter card basics:** `og:title`, `og:description`, `og:image` (1200x630 — generate a simple branded placeholder if no real one exists), plus `twitter:card`. Pages get shared; an unfurl with no image or title looks broken in every chat app.
-- **Set `<title>` and `<meta name="description">` uniquely per page.** These are both SEO and the browser-tab/screen-reader identity of the page.
-
----
-
-## Modern CSS defaults (2026 baseline)
-
-These are cross-engine and safe to use as defaults — reaching for JavaScript or viewport hacks where these exist marks the code as dated:
-
-- **Container queries** for any component that must adapt to its slot rather than the viewport (cards that appear in both a sidebar and a main column). `container-type: inline-size` on the wrapper, `@container (min-width: 400px)` in the component.
-- **`:has()`** for state-aware styling without JS class bookkeeping (`.field:has(input:invalid)`, `.card:has(img)` variants).
-- **Subgrid** to align content across sibling cards (equal-height titles/footers in a grid row).
-- **`text-wrap: balance` on headings** by default — one declaration, outsized polish; `text-wrap: pretty` on prose where supported.
-- **Native `<dialog>` for modals and Popover API for menus/disclosures** — top-layer stacking, Escape, focus handling, and light dismiss come free and correct; custom overlay plumbing is where a11y bugs live.
-- **Cascade layers** (`@layer reset, tokens, components, utilities`) so override order is explicit rather than specificity warfare.
-- **Enhancement-only tier (must degrade gracefully):** scroll-driven animations (`animation-timeline: view()`) and View Transitions — support is still uneven, so normal scrolling and navigation must work identically without them. Anchor positioning needs a fallback.
-
-## Performance gates
-
-Treat Core Web Vitals thresholds as delivery gates, not aspirations: **LCP ≤ 2.5s, INP ≤ 200ms, CLS ≤ 0.1**.
-
-- The LCP image lives in the initial HTML (never lazy-loaded, never CSS-background-injected), with `srcset`/`sizes` and a single `fetchpriority="high"` — one, not sprinkled everywhere, or the hint means nothing.
-- AVIF as the default photographic format inside `<picture>` with WebP/JPEG fallback.
-- For INP: show visual feedback before doing expensive work on interaction, and split long tasks.
-
-## Motion implementation
-
-CSS-first: CSS transitions and animations run on the compositor, survive JS failures, and are trivially gated on user preference. Reach for JS animation libraries only when motion is genuinely interactive (dragging, physics, gesture-driven) — not for reveals and hovers.
-
-### Reduced motion — the exact pattern
-
-Include this in the global stylesheet of every project, and mirror the check in any JS that animates:
-
+Before writing sections, define the paragraph's values once:
 ```css
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+:root {
+  --ground: #f4eee2; --ink: #2a2622; --accent: #b3261e;   /* named in comments after the paragraph's things */
+  --display: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --ease-reveal: cubic-bezier(.18,.7,.16,1); --ease-spring: cubic-bezier(.3,1.6,.5,1);
+  --measure: 36rem; --space: clamp(1rem, 2.5vw, 2rem);
 }
 ```
-
-```js
-const prefersReducedMotion =
-  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-```
-
-The near-zero duration (rather than `none`) still fires `animationend`/`transitionend` events, so JS waiting on animation completion doesn't hang.
-
-### Scroll-reveal — the standard pattern
-
-Use IntersectionObserver, never scroll-event listeners (which fire constantly and jank). The contract: content is fully visible if JS fails, the hidden state is applied *by* JS, elements animate once.
-
-```css
-.reveal {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-.reveal.is-visible {
-  opacity: 1;
-  transform: none;
-}
-```
-
-```js
-const prefersReducedMotion =
-  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-if (!prefersReducedMotion && "IntersectionObserver" in window) {
-  // Only opt elements in when we can actually animate them —
-  // if JS never runs, no element is ever hidden.
-  const els = document.querySelectorAll("[data-reveal]");
-  els.forEach((el) => el.classList.add("reveal"));
-
-  const io = new IntersectionObserver(
-    (entries) => {
-      for (const entry of entries) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          io.unobserve(entry.target); // animate once, never re-trigger
-        }
-      }
-    },
-    { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
-  );
-  els.forEach((el) => io.observe(el));
-}
-```
-
-Note the order: elements carry only a `data-reveal` attribute in markup; the `.reveal` (hidden) class is added by JS. This is what makes the pattern fail-safe — never ship markup that is invisible until JS arrives.
-
-### Stagger rules
-
-- Stagger siblings by 50–80ms per item, capped at ~6 items (then the rest appear together). A 12-item list staggered at 100ms makes the last item wait 1.2s — that's not polish, it's a loading delay you built on purpose.
-- Implement via a per-item index custom property:
-
-  ```css
-  [data-reveal] { transition-delay: calc(var(--i, 0) * 60ms); }
-  ```
-
-  ```html
-  <li data-reveal style="--i: 0">…</li>
-  <li data-reveal style="--i: 1">…</li>
-  ```
-
-- Only stagger elements that enter *together* (one card grid); don't stagger unrelated sections.
-- Reset `transition-delay` to `0` on hover/interactive transitions of the same elements — a reveal delay leaking into hover states makes buttons feel laggy.
-
-### General motion rules
-
-- Animate only `transform` and `opacity` (compositor-friendly — see UX rulebook P7 for the role-based duration table: instant feedback, 80–150ms states, ~160ms small entrances, ~240ms overlays, 400ms ceiling).
-- `will-change` only on elements about to animate, removed after — permanent `will-change` wastes GPU memory.
-- Hover transitions: apply the transition to the base state, not the `:hover` state, so the exit animates too.
-
----
-
-## Responsive verification protocol
-
-Verify at these four widths, in this order (mobile-first — if 375 is broken, wider widths don't matter yet). Use browser devtools device emulation or resize the preview window to the exact widths. Also spot-check 320px if content is text-dense.
-
-| Width | Represents | Check specifically |
-|---|---|---|
-| **375px** | iPhone-class mobile | No horizontal scroll (scroll right deliberately to check). Text ≥16px, line lengths readable. Touch targets ≥44px with gaps. Nav collapsed and operable. Images fill width without overflow. Fixed elements respect safe areas and don't stack over content. Forms usable: full-width inputs, correct mobile keyboards. |
-| **768px** | Tablet / large phone landscape | The awkward middle: layouts often stretch single-column too wide (100-char lines) or jump to cramped desktop columns. Check line lengths stay ≤75ch, grids use a sensible intermediate column count (2 not 4), nav is deliberate (either pattern is fine — half-transformed is not), spacing scales up from mobile without dead zones. |
-| **1024px** | Small laptop / iPad landscape | Desktop layout should be engaged by now. Check multi-column grids balance, sidebars don't crush main content, hover states exist (this is the first hover-capable width), sticky elements behave, no elements still stretched full-width that should be capped. |
-| **1440px** | Standard desktop | Max-width containers cap content (~1200–1280px typical) — nothing stretches edge-to-edge. Hero images stay sharp at this width (resolution check). Whitespace is composed, not just accumulated at the margins. Prose ≤75ch. Check one size beyond too (1920) for background/section seams. |
-
-At every width, additionally: switch to dark mode and repeat a fast visual pass; tab through the page once to confirm focus order follows layout.
-
-### How to run the pass
-
-1. Start at 375px. Scroll the full page height slowly — read it as a user would, don't just glance.
-2. Deliberately try to scroll horizontally (trackpad swipe or shift-scroll). Any movement is a failure to fix now, before checking wider widths.
-3. Open every interactive surface at this width: nav menu, modals, dropdowns, accordions. Overlays that fit at 1440px routinely overflow at 375px.
-4. Repeat at 768, 1024, 1440. Between the fixed widths, drag-resize continuously and watch for a broken intermediate state — breakpoints are where layouts snap, but bugs live *between* them.
-5. Fix everything found at one width before moving up; mobile fixes frequently resolve (or reshape) desktop issues, rarely the reverse.
-
----
-
-## Pre-delivery checklist
-
-Walk every item before presenting work. Check items honestly — an unchecked item with a stated reason beats a falsely checked one, because the user can act on the truth.
-
-### Visual quality
-
-- [ ] Every Liked Trait Ledger item has a rendered PASS or a user-approved omission; no dominant trait was replaced by an easier micro-detail
-- [ ] Every P1/P2 Reference Translation Matrix row is implemented at its named target or documented as a user-approved deviation
-- [ ] Every primary reference visibly fulfills its assigned Reference Blend Contract roles across at least three macro dimensions, including silhouette, focal media, or motion
-- [ ] Every Component Opportunity Map row is implemented, intentionally deferred, or rejected with a documented reason
-- [ ] The finished page carries the approved references in its silhouette, spacing, type, color, and components—not only in minor decorative details
-- [ ] Every P1 media/motion row passed the Asset Readiness Gate with a representative asset/runtime; no generic icon/gradient substituted for dominant media
-- [ ] All spacing values come from the 4/8px scale — no arbitrary margins/paddings
-- [ ] Consistent border radii from tokens across cards, inputs, buttons, modals
-- [ ] One icon family, one size, one stroke width throughout; no emoji as icons
-- [ ] Vertical rhythm consistent between sections (no random gaps)
-- [ ] Images sharp at rendered size (not stretched or upscaled), correct aspect ratios, no distortion
-- [ ] Text doesn't overflow, truncates gracefully where constrained (long names, long URLs tested)
-- [ ] Visual hierarchy scannable: one clear primary action per view, headings outline the page
-- [ ] No placeholder/lorem text remaining unless explicitly agreed with the user
-
-### Interaction
-
-- [ ] The Complete Resource Inventory was rebuilt this invocation with exact reconciled counts, all identifiers, provenance, and freshness for every required source
-- [ ] Every designed surface compares the strongest viable finalist from every catalog without source priority; exact slugs/IDs/imports/paths and `no viable candidate` results are recorded
-- [ ] Every designed surface has observable catalog lineage through direct use, faithful adaptation, or composition; no plain or unattributed custom UI remains
-- [ ] Imported or adapted catalog components use project tokens and do not carry demo styling unchanged
-- [ ] Premium components sit inside the locked reference-led composition; no catalog demo changed the silhouette, focal point, media hierarchy, density, or scroll story
-- [ ] Every selected ThreeUI visual records its Community ID/variant, import, package version or source commit, runtime/fallback, and required license/asset notices
-- [ ] ThreeUI/WebGL scenes pass reduced-motion, no-WebGL fallback, visibility pause, resize, teardown, context-loss, and low-power mobile checks where applicable
-- [ ] Every interactive element has visible hover (pointer devices), focus-visible, and active states
-- [ ] Pressed/active states don't shift layout
-- [ ] Touch targets ≥44px with ≥8px gaps at mobile widths
-- [ ] Disabled states visually distinct and, where relevant, explained
-- [ ] All buttons/links actually work — no dead `href="#"` or empty handlers left behind
-- [ ] Feedback within 150ms for every click/tap (state change, spinner, or navigation start)
-- [ ] Modals: Escape closes, focus trapped, focus returns to trigger, backdrop behavior deliberate
-
-### Light / dark
-
-- [ ] Every page inspected in both themes (not just the homepage)
-- [ ] No hardcoded colors bypassing tokens (search the diff for hex literals)
-- [ ] Contrast re-verified in dark mode: 4.5:1 body, 3:1 large/UI
-- [ ] Borders and dividers visible in both themes
-- [ ] Images/illustrations don't glow or vanish against dark surfaces; shadows replaced by surface lightness where needed
-- [ ] Theme preference respected (`prefers-color-scheme`) and toggle state persists if a toggle exists
-
-### Layout & responsive
-
-- [ ] Verified at 375 / 768 / 1024 / 1440 per the protocol above
-- [ ] Zero horizontal page scroll at any width from 320px up
-- [ ] Wide content (tables, code) scrolls in its own container
-- [ ] Prose line length capped ~65–75ch
-- [ ] Fixed/sticky elements respect safe areas and don't cover content or each other
-- [ ] Layout survives 200% browser zoom without clipping or overlap
-
-### Accessibility
-
-- [ ] Landmarks present: one `<main>`, `<nav>`, `<header>`, `<footer>`
-- [ ] One `<h1>` per page; heading levels don't skip
-- [ ] Full keyboard pass performed: every control reachable, operable, visible focus, logical order
-- [ ] Skip link present and functional
-- [ ] All images have appropriate `alt`; icon-only controls have `aria-label`
-- [ ] Forms: visible labels bound with `for`, errors announced below fields, correct input types/autocomplete
-- [ ] `prefers-reduced-motion` disables/reduces all animation including JS-driven
-- [ ] Drag interactions have non-drag alternatives; no target below 24px anywhere
-
-### Content
-
-- [ ] The rendered first three seconds communicate what this is, who it is for, the intended feeling, and the next action without external explanation
-- [ ] The conversion-critical section states one promise, shows truthful evidence, and exposes the primary action within ten seconds at 375px and 1440px
-- [ ] One copy baseline is implemented; variants A/B/C remain documented hypotheses with metrics and guardrails, not fake results or simultaneous rotating copy
-- [ ] The headings form a coherent scroll argument and each section answers the objection assigned in the Scroll-Depth Copy Map
-- [ ] Every trust claim, testimonial, metric, credential, customer phrase, and competitor statement has a real source or is explicitly labeled missing/draft
-- [ ] Any demo/placeholder statistic is visibly labeled on the rendered surface and never presented with fake live/real-time indicators
-- [ ] Button labels state the action ("Create account", never bare "Submit")
-- [ ] Empty, loading, and error states exist for every data-driven view
-- [ ] Error copy is human and actionable (no raw status codes)
-- [ ] Page `<title>` and meta description unique per page; OG tags set
-- [ ] Headings front-load meaning and work as a standalone outline
-- [ ] Dates, numbers, currency formatted for humans
-
-### Anti-slop (see `references/anti-slop.md` for the full catalog)
-
-- [ ] Site copy contains zero em dashes, hype-lexicon words, emoji, or "Get Started"/"Learn More" buttons where a specific label exists
-- [ ] No headline or section could be pasted onto an unrelated business's site unchanged (the specificity test)
-- [ ] Palette, hero pattern, and section anatomy each trace to the brief — no violet-gradient defaults, glow orbs, or template three-card grids that nobody chose
-- [ ] The client's own phrases from discovery appear in the copy where they had good ones
-
-### Performance
-
-- [ ] Images in WebP/AVIF with `srcset`; dimensions declared on all media (zero CLS)
-- [ ] Hero/LCP image NOT lazy-loaded; below-fold images are
-- [ ] `font-display: swap` on web fonts; font files preloaded if critical
-- [ ] Animations use transform/opacity only
-- [ ] Lists >50 items virtualized or paginated
-- [ ] No console errors or failed network requests in a fresh page load
-
-### Strategy, measurement, and launch
-
-- [ ] Creative Direction Blueprint, Conversion-Critical Section Spec, Motion Contract, Scroll-Depth Copy Map, and Technical Build Plan are complete and match the implementation
-- [ ] Motion purpose, static baseline, reduced-motion path, and mobile performance budget were verified
-- [ ] Delivered routes, folders, components, dependencies, content ownership, accessibility criteria, and instrumentation match the Technical Build Plan or have documented deviations
-- [ ] Primary action and funnel events work within the stated consent/privacy boundary; no unobserved baseline or outcome is presented as fact
-- [ ] `CONVERSION-AUDIT.md` contains observed friction, prioritized fixes, the top three expected-impact changes, ordered experiments, metrics/events, guardrails, and stopping rules
-- [ ] For a full site/redesign, `LAUNCH-PLAN.md` contains owned launch checks, the 30-day review cadence, three prioritized experiments, low-volume metrics, feedback collection, and stop/change rules
-
----
-
-## Self-review protocol
-
-Run this after the build is complete and *before* telling the user it's done. Its purpose is honest verification, not ritual — the failure mode it prevents is confidently delivering work that drifted from the agreed design.
-
-**Step 1 — Re-read DESIGN-BRIEF.md in full.** Not from memory: open the file and read it. Builds drift; memory of the brief drifts faster.
-
-**Step 2 — Run the reference fidelity audit on rendered pages. This is a hard gate, not a checklist to skim.** A matrix row is easy to satisfy in code and violate in the finished page. A small row can also pass while the dominant experience is completely wrong. Do not proceed to Step 3 until the trait, matrix, and macro-blend gates are printed and pass.
-
-Reopen the approved references (or use the inspected screenshots if a live page changed) and the brief's Reference Teardowns — the measured values are the standard a verdict is judged against, not your memory of the site. Then, for **every single row** of the Reference Translation Matrix — P1, P2, and Avoid — literally reprint the row with a verdict, in this exact shape, and show it to the user as part of the delivery report (not just reasoned about silently):
-
-First print every Liked Trait Ledger item:
-
-```
-| Liked trait | Verdict | Rendered evidence |
-|---|---|---|
-| [LT-01: user's wording] | PASS / FAIL / PARTIAL | [where it appears and whether its intended dominance survived] |
-```
-
-No liked trait may pass merely because a different, smaller trait from the same site is present.
-
-```
-| Row | Verdict | Evidence |
-|---|---|---|
-| [P1: source + trait] | PASS / FAIL / PARTIAL | [what you observed on the rendered page — a specific element, section, or absence] |
-```
-
-For each row:
-- Is the named target present, on the actual rendered page, right now — not "the code exists for it somewhere"?
-- Does it preserve the observed relationship the user approved, or only a superficial detail?
-- Is the P1 influence visible in the page silhouette, type hierarchy, spacing/density, color distribution, or primary components?
-- Did a framework default or generic layout formula replace it?
-- **For any row phrased as a rule rather than an inclusion** (contains "never," "only ever," "always," "not a flat X," "no Y") — treat it as a constraint that every later section must obey, not a one-time decision. Explicitly re-scan every section/component you built *after* the style-sample checkpoint for a violation of that specific rule. This is the failure mode that slips through most often: the rule is correctly implemented in the first component that needed it (a button, a hero), then silently broken in a later one (a CTA band, a footer, a card grid) built under time pressure without re-checking the rule. Grep or visually inspect for the literal forbidden pattern (e.g. a rule banning flat color fills → search the CSS/markup for full-bleed solid-background sections using the constrained hue).
-- Is any deviation required by accessibility, content, feasibility, or a later user decision? Record the reason in the Evidence column.
-
-Do not score success by pixel similarity. Score whether the intended transferable trait is clearly present, **on every page and section it applies to, not just the one it was first built for.** A single FAIL or PARTIAL row means the work is not done — fix it and re-run the row before moving on, not after the user points it out.
-
-Then print the Reference Blend Contract verdict at 375px and 1440px:
-
-```
-| Macro dimension | Assigned reference role | Verdict | Side-by-side evidence |
-|---|---|---|---|
-| silhouette / focal media / type / density / color / chrome / motion | […] | PASS / FAIL / PARTIAL | […] |
-```
-
-Use equal-viewport screenshots/contact sheets. Run the blind gestalt test: describe the site from the render alone without reading the brief. If that description does not reflect the assigned reference roles—or only says “dark,” “premium,” “minimal,” “glowy,” or lists components—the blend fails. A nav height, border, color, or token match cannot compensate for a missing full-bleed image, major animation, dominant typography relationship, or density pattern the user praised.
-
-**Step 3 — Audit the complete inventory and component lineage.** Verify the invocation's exact per-source counts, identifiers, provenance, reconciliation, and freshness, then walk every Component Opportunity Map row. Re-fetch every finalist and the winner; for ThreeUI rows, also apply the runtime and license gates in `threeui.md`:
-
-- Does the row name the strongest viable finalist from every catalog or explicitly record `no viable candidate`, with no source favored by default?
-- Was the selected current component used directly, faithfully adapted, or composed at the named target, with its craft visibly present?
-- Does every designed surface on the rendered page have a row and catalog lineage, including sections, backgrounds, feedback states, and ordinary controls?
-- Does the installed code preserve local design tokens and project-specific fixes?
-- Did upstream change after selection? If so, assess and merge relevant accessibility/behavior/runtime fixes without blind overwrite.
-- Do reduced motion, keyboard, touch, focus, and dependency checks pass?
-- Is any no-match, rejection, stale source, or deferral explained honestly? A no-match must still lead to a catalog-derived adaptation rather than plain custom UI.
-- Did every selected component preserve the locked macro composition rather than importing its demo's surrounding layout? Component coverage cannot turn a failed Step 2 into a pass.
-
-**Step 4 — Audit strategic Loops 1–5 against the rendered site and implementation.** Read `strategic-loops.md`, then verify:
-
-- Creative direction: run the three-second test and compare the actual page/scroll story, visual identity, technology direction, and build order with the blueprint.
-- Conversion-critical section: run the five-second comprehension and ten-second action tests at 375px and 1440px; confirm promise, truthful evidence, supporting visual, chosen copy baseline, primary action, and success event.
-- Motion: walk every role/trigger in the contract plus static, reduced-motion, touch, keyboard, low-power, and no-WebGL/no-JS paths that apply.
-- Copy: read headings as an argument, then verify each scroll-depth objection is answered with real evidence and every CTA/form/error/reassurance label matches the map.
-- Technical plan: compare routes, tree, repeated components, content/data ownership, dependencies, budgets, accessibility acceptance, analytics events, and test plan with what shipped. Record deviations.
-
-A missing loop section or unexplained mismatch is a FAIL to fix before continuing.
-
-**Step 5 — Audit the build against the rest of the brief, section by section.** For each section of the brief, answer concretely:
-
-- Does the hero (layout, imagery, tone, copy) match the approved reference direction — not just "a nice hero", but *that* direction?
-- Are the brief's tokens actually used in the code, or did parallel values creep in? Grep for hex literals and raw px values in components as an objective check.
-- Is every page/section listed in the brief present? List them and tick them off — missing pages are the most common silent failure.
-- Does the typography match the brief's specified families and scale?
-- Do interactive behaviors described in the brief (nav style, animations, theme toggle) exist as described?
-
-**Step 6 — Walk the pre-delivery checklist above**, at the four protocol widths, in both themes, with one full keyboard pass. Fix violations as you find them; re-verify anything the fix could have disturbed.
-
-**Step 7 — Cross-check against the UX rulebook's Critical 15** (`references/ux-rules.md`). Any hit is a blocker: fix before delivery.
-
-**Step 8 — Run the slop audit** (`references/anti-slop.md`): grep the content files for em dashes, hype-lexicon words, and generic button labels; check the palette and section anatomy against the "banned by default" list; read the headlines in sequence for the specificity test. Include the audit outcome in the report.
-
-**Step 9 — Run the conversion audit.** Execute Loop 6 in `strategic-loops.md` against the working rendered path and write `CONVERSION-AUDIT.md`. Fix objective defects and low-risk friction now; preserve genuine traffic-dependent questions as ordered experiments. Do not invent uplift estimates.
-
-**Step 10 — Write the thirty-day launch plan.** For a full site/redesign, execute Loop 7 and write `LAUNCH-PLAN.md`. Every check, feedback channel, metric, experiment, and stop/change rule needs an owner or explicit working owner. For a small isolated change, refresh the affected launch/measurement entries rather than manufacturing a new site-wide plan.
-
-**Step 11 — Report honestly.** Start by pasting the full Step 2 verdict package: every Liked Trait Ledger item, every matrix row, and every macro-blend dimension with PASS/FAIL/PARTIAL evidence. Then include the Component Opportunity Map coverage from Step 3 and the strategic-loop verdicts from Steps 4, 9, and 10. These are the receipts; do not summarize them away. Then report the rest in three buckets:
-
-- **Passed:** what you checked and confirmed (be specific: "keyboard pass at all four widths, both themes").
-- **Fixed during review:** violations found and corrected — this builds trust, don't hide them.
-- **Known gaps:** anything unresolved, ambiguous, or intentionally deferred (missing real assets, a brief requirement that conflicted with an accessibility rule, an unverified browser). Never claim a clean bill of health you didn't earn — a stated limitation costs a sentence; a discovered false claim costs the user's trust in every future report.
+No raw colour or font values are allowed elsewhere, except inside drawn art, where gradients and shading legitimately need extra tones derived from the palette.
+
+## Responsive: recompose, don't scale
+
+- Support widths from 360px to large desktops with no horizontal scroll at any width. Check 360, 390, 768, 1024, 1440 and 1920.
+- Give heroes and scenes their own phone composition (`craft.md` §2): crop bands, repositioned subjects, fewer elements, type that restacks.
+- Use `svh`/`dvh` units, or an `innerHeight`-based `--vh`, for full-height stages so the mobile URL bar doesn't cause jumps.
+- Canvases follow their container and devicePixelRatio (capped at 2), and re-layout on resize.
+- Touch targets are at least 44×44px. Hover-only behaviour needs a tap or focus equivalent.
+
+## Motion and performance
+
+- Animate transform and opacity. Avoid animating layout properties, and heavy filters on large areas.
+- Use one `requestAnimationFrame` loop per concern, paused on `visibilitychange` and when its element is off-screen.
+- Clamp `dt`, and use frame-rate-independent smoothing.
+- Pre-render sprites and static layers, and re-bake only on a debounced resize.
+- **Reduced motion is a designed variant**, detected in both CSS and JavaScript, with live `change` handling:
+  - freeze ambient loops on a chosen frame;
+  - show assemblies in their finished state;
+  - replace motion with short fades;
+  - thin particles;
+  - jump instead of smooth-scrolling;
+  - keep every interaction working.
+- Budgets (guidance): first paint shows the finished hero; no long task over about 50ms after load on a mid-range phone; animation holds about 60fps on a mid-range laptop and degrades gracefully (fewer particles, lower buffer resolution) on phones.
+- Audio: synthesised with Web Audio or supplied files, starting only after a user gesture, with a visible mute toggle and off by default on business sites.
+
+## Accessibility floor
+
+- **Contrast:** body text at least 4.5:1; large text and essential UI at least 3:1. Check text over art at its worst point, and add a scrim, shadow or repositioning where needed. Muted labels still count.
+- **Focus:** a visible `:focus-visible` style in the site's own language (an accent ring, a double ring, an LED glow), never removed. For cards with a stretched link, ring the whole card with `:has(:focus-visible)`.
+- **Keyboard:** every interaction is reachable and operable. Custom widgets follow ARIA patterns (arrow keys for radio groups, sliders and tabs). Dialogs move focus in and return it on close, and close on Escape.
+- **No single-key global shortcuts** unless they can be turned off or only work while a widget has focus.
+- **Text stays text.** Headlines drawn as SVG keep an accessible name. Kinetic per-letter spans have an `aria-label` on the parent.
+- **Live updates** that matter (a reveal result, a state change) are announced politely. Continuous readouts (gauges) use `aria-live="off"`.
+- **Forms:** visible labels, clear errors next to the field, correct input types and autocomplete.
+- **Motion safety:** no flashing more than three times a second, and reduced motion respected.
+
+## Honesty and content
+
+- No lorem ipsum. Write real copy in the paragraph's voice, or mark placeholders clearly (`[Placeholder: opening hours]`) and list them in the report.
+- Never invent testimonials, client logos, reviews, metrics, awards or press for a real business. Fictional projects label their fiction in the page, for example in the footer.
+- Hedge facts that are approximate. Invented data never uses "live", "now" or real-time language.
+
+## Robustness
+
+- No console errors on load or on basic interaction.
+- Storage access (`localStorage` and similar) is wrapped in try/catch, and the page works without it.
+- Decorative steps (grain generation, sound) fail silently and never break the page.
+- Showcase mode makes no network requests. Project mode's external requests are intentional and listed.
+- Include a print stylesheet when the content is something people print (recipes, menus, itineraries).
+
+## Before handing to review
+
+- Tokens are defined and used, and there are no stray colours or fonts.
+- The first viewport at 1440×900 and 390×844 is finished before any interaction.
+- Reduced motion has been checked by emulation.
+- Keyboard-only navigation works through every interaction.
+- Then run `review.md`.
