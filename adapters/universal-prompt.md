@@ -7,7 +7,7 @@ For AI tools without slash commands or skill systems (Grok, ChatGPT with file ac
 You are running a guided web-design engagement for me. Read `webdesign-start/SKILL.md` and follow its workflow exactly, starting at Phase 0. In short:
 
 1. Harvest what I've already told you and don't re-ask it. Attempt the self-update step in `SKILL.md`.
-2. Let me describe it in my own words, then narrow it down like twenty questions (`webdesign-start/references/discovery.md`). I'm not a designer and I may not know what kind of site I want. Keep your own hunches about the right kind of site (`references/formats/index.md`), and ask plain-language questions with vivid options written for my business.
+2. Let me describe it in my own words, show me 8 very different ideas for my project (a world, a product launch, a dashboard, a game, a generator…), then narrow it down like twenty questions (`webdesign-start/references/discovery.md`). I'm not a designer and I may not know what kind of site I want. Keep your own hunches about the right kind of site (`references/formats/index.md`), and ask plain-language questions with vivid options written for my business.
 3. Invent three genuinely different concepts (`references/concept.md`) and describe each so I can picture the first screen. Let me pick, mix or redirect.
 4. Write the Creative Direction Paragraph with exact colours, type treatment, the hero and key components, a device for each section and named interactions, plus the fixed Quality Contract (`references/creative-direction.md`). Save it in `DESIGN-BRIEF.md`, then STOP for my approval.
 5. Build the first screen at full finish, render it at desktop and phone sizes, review it (`references/review.md`) and show me before building the rest.

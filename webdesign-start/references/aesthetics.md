@@ -24,7 +24,7 @@ Harmony comes from how colours *relate*, not which colours are chosen. Navy and 
 
 ### 1.1 Build the palette in this order
 
-1. **Anchor hue (family A).** Take it from the subject's dominant light or material (blue-hour sky h 255–265, crust h 45–60, sage h 130–150). Write down its OKLCH hue.
+1. **Anchor hue (family A).** Take it from the subject's dominant light or material (sea glass h 190–210, crust h 45–60, sage h 130–150, a product's own anodised finish). Write down its OKLCH hue.
 2. **Temperature of neutrals.** Warm paper (h 60–105) or cool night (h 240–300), usually on the anchor's side. Every neutral (ground, surface, ink, muted, rules, grain) gets **chroma 0.008–0.035 at that hue**. Pure grey (C < 0.004) is only for declared stark concepts (Swiss, brutalist, monochrome).
 3. **Ground.**
    - **Dark ground:** L 0.12–0.26 (limits 0.10–0.30) with C ≤ 0.07.

@@ -17,6 +17,8 @@ Sites look **modern** unless the user asks for something else. Modern doesn't me
 - **Motion:** fluid and physical: springs, scroll-linked scenes, crisp micro-interactions. Fast feedback, unhurried reveals.
 - **Components:** premium modern components, restyled to the concept (`component-sourcing.md`).
 
+**Registers change how these principles apply** (`registers.md`). In the product register, the governing idea is a product truth and the product is the hero, studio-lit, with no invented world. In the interface register, the design system and real data carry the beauty. The world-building rules below (scenes, material UI, information inside the world) apply fully only to the world register. **Light and time are tools, not themes:** don't build a site around time of day unless time is genuinely its subject.
+
 **Retro, heritage, hand-drawn or illustrated storybook styles** are used only when the user asks for them, or when their particulars point strongly that way *and* they pick that concept. Even then, execute them with modern polish: crisp rendering, fluid motion and a clean layout. The governing idea, the particulars and the diversity rules still apply: modern is the register, not a template.
 
 ## 1. One idea in at least four systems

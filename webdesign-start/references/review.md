@@ -82,6 +82,8 @@ A PARTIAL needs an explanation the user can accept. A FAIL is never "done".
 Fail the build if the render shows any of these, unless the paragraph calls for it by name:
 - **The house look:** a cream ground, a heavy ink serif headline, one rationed accent, tracked-caps labels, fade-up reveals. Or a dark violet-blue glow with glass cards. Or hero, three cards, testimonials, CTA band.
 - **Kit assembly:** a section that looks like a component-library demo: a component left in its demo styling, an overused effect with no reason (`component-sourcing.md`), equal-weight card grids, icon-in-circle features, stat tiles or a testimonial carousel.
+- **Time of day nobody asked for:** a site themed on golden hour, blue hour, dusk to night or sunrise when time isn't its subject.
+- **Wrong register:** an invented world or scene when the user leaned toward a sleek product page or a dashboard, or a cold interface when they wanted warmth and story (`registers.md`).
 - **Dated by accident:** a period, rustic or illustrated look the user never asked for, or modern-by-default parts rendered with bevels, glossy clip-art shading or faux-vintage texture.
 - **Unmotivated effects:** an effect that could be pasted into an unrelated site (a generic gradient blob, a cursor trail, a random marquee).
 - **Default type:** one neutral sans at medium weights everywhere, with no scale contrast.

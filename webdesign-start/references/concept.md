@@ -10,7 +10,7 @@ A concept is the decision that makes a site unlike any other. It answers six que
 | **Artefact** | What *is* the site, as an object or world? | A printed magazine feature |
 | **Style anchor** | Which one movement, era, tradition or material gives it a coherent visual language? | Late-19th-century engraving and book typography |
 | **Palette** | Which 4–5 named colours, with hex values, come from the subject's materials? | Cream paper, ink navy, signal red, fog grey |
-| **Hero** | What single picture, drawn for this site, fills the first frame, and how does it move on its own? | A lighthouse at dusk whose beam sweeps across the headline |
+| **Hero** | What single picture, made for this site, fills the first frame, and how does it move on its own? | A lighthouse whose beam sweeps across the headline |
 | **Signature moment** | What will people remember and describe to a friend? | The headline lights up where the beam crosses it |
 
 If you cannot fill all six, you don't have a concept yet.
@@ -23,12 +23,25 @@ If you cannot fill all six, you don't have a concept yet.
 4. **Develop each to all six parts**, then write it up for the user in the presentation format.
 5. **Test each one:** could it be described in a sentence a stranger would repeat? Could it belong to a competitor? If it could, replace it.
 
+## Registers first
+
+Read `registers.md`. **All three concepts stay in the register the user is leaning toward.** Someone who wants a dashboard gets three different dashboards; someone who wants an Apple-style launch gets three different product films or showcases. Neither gets an invented world. Cross the register only if discovery left it genuinely open, and then only for the wildcard.
+
+For product and interface registers, the six parts of a concept read differently:
+- the governing idea is a product or working truth;
+- the artefact is the product or its interface;
+- the anchor is a contemporary design language;
+- the hero is the product or the key screen.
+
+See the table in `registers.md`.
+
 ## Formats (from the hypothesis board)
 
 The format is the kind of experience: a story you read, a place you step into, pages you turn, a product you hold, something you play or make. Discovery narrows it without the user ever naming it (`discovery.md`), and `formats/index.md` lists every format with its signals and gallery examples.
 
 - **Concept A and concept B** normally use the two leading formats on the hypothesis board (or the leading format with two very different worlds, if one format is clearly right).
 - **Concept C** uses the board's **wildcard**: a plausible format nobody in the category would expect.
+- **Every idea the user picked in the exploration spread appears in at least one concept,** as its primary experience or as a borrowed section.
 - Once a concept is chosen, load its format file (`formats/<name>.md`) for the architecture, mechanics and pitfalls. A site can borrow one or two sections from other formats; name them in the paragraph.
 
 The format supplies architecture, never the look. Two sites in the same format must still differ in idea, material, palette, type and art. Each format file lists its variation levers.
@@ -43,7 +56,7 @@ Pick **exactly one** anchor per concept. It gives the model a large, coherent vi
 - **Movements and eras (only when asked for, or clearly motivated):** Art Nouveau 1899 · Vienna Secession · Art Deco 1928 · Bauhaus · Swiss International Style · mid-century modern · 1960s space age · 1970s supergraphics · Memphis 1986 · 1990s rave flyers · Y2K chrome · Victorian scientific plates · Edo woodblock · Soviet constructivism · Scandinavian functionalism · Brutalist concrete.
 - **Traditions and trades:** botanical engraving · nautical charts · railway timetables and transit diagrams · apothecary labels · letterpress · risograph · enamel signage · hand-painted shopfronts · museum placards · patent drawings · architectural drafting · field notebooks · seed packets · matchbook covers · record sleeves · film title cards.
 - **Materials:** cut paper · washi · letterpress cotton paper · brass · brushed steel · lacquer · walnut · concrete · terracotta · stained glass · frosted glass · enamel · felt · knit wool · clay · wax seal · gold foil · neon · chalk · ink wash.
-- **Places and light:** a lighthouse at dusk · a greenhouse in the morning · a harbour in fog · a night market · a mountain hut · a sunlit kitchen at 6 a.m. · the deep sea · an observatory · a library after closing.
+- **Places and settings:** a lighthouse on rocks · a greenhouse · a harbour in fog · a market · a mountain hut · a workshop bench · the deep sea · an observatory · a library.
 
 This list is vocabulary, not a menu. The best anchor is often one the particulars suggest and no list contains.
 
@@ -76,6 +89,7 @@ Some combinations have become the default output of AI design tools, including e
 - A bento grid of icon-and-text tiles.
 - A neutral sans (Inter or system-ui) at medium weights everywhere, with no scale contrast.
 - Abstract gradient blobs or "mesh gradients" as the hero picture.
+- **Time of day as the theme:** golden hour, blue hour, dusk to night, sunrise, or "one night of…". It gives a palette and a motion for free, which is why it keeps appearing. At most one concept may use it, and only when time is genuinely the subject (`registers.md`).
 
 A concept escapes this by having a governing idea that makes its own choices. The escape is never "pick something weird".
 
@@ -116,8 +130,8 @@ End with a recommendation (which one and why) and an invitation: "Pick one, mix 
 
 *Brief:* a sourdough bakery in a riverside mill town. It opens at 7, bakers start at 3 a.m., uses a 40-year-old starter, and customers call the Saturday morning queue "the line".
 
-- **A. "The 3 A.M. Shift":** a *journey* from dark to dawn. Scrolling moves the clock from 3 a.m. to 7 a.m.: the page starts night-blue with one lit oven window, dough rises in stages, the sky warms to apricot, and the doors open at the bottom with today's bakes and hours. A clock gauge shows the time. Book serif, dark to light ground.
+- **A. "Forty Years of Starter":** a *scroll journey* along one continuous thing: the dough. Scrolling follows a single loaf from the starter jar through mixing, folding, proving and scoring to the oven, with a gauge showing hydration and hours of proof. Warm flour-white ground, a crisp contemporary serif, and crumb-structure close-ups as set pieces.
 - **B. "Starter No. 1983":** a *product showcase* built around the 40-year-old starter. Warm off-white ground, crust and oven-orange accents, a sharp contemporary serif. The hero is a softly lit, slowly turning glass jar of starter with bubbles rising (a restyled 3D or canvas component), and each bread is a large product moment with hydration and bake time as crisp data. A "feed the starter" interaction makes it bubble.
 - **C. "The Line":** a *poster/type-led* concept. A giant condensed "THE LINE" set as a queue of letters that shuffle forward with scroll. A saturated tomato ground and flour-white type. Each bread is a ticket stub you tear off to see details. Loud and local, with a counter for "loaves left today" (clearly a placeholder until connected to real data).
 
-The three differ on format, ground, type voice, hero technique and motion. Each uses at least two particulars.
+The three differ on format, ground, type voice, hero technique and motion. Each uses at least two particulars, and none relies on time of day.

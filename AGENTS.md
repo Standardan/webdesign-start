@@ -12,8 +12,9 @@ This file is a living contributor guide. Update it whenever the repository struc
 - `webdesign-start/references/`: progressively loaded guidance for each workflow phase.
 - `webdesign-start/references/concept.md` and `creative-direction.md`: the core of the skill, which turns discovery answers into three divergent concepts and then into the Creative Direction Paragraph plus the fixed Quality Contract.
 - `webdesign-start/references/craft.md`, `techniques.md`: art direction and code recipes shared by every format.
-- `webdesign-start/references/discovery.md` and `formats/index.md`: the narrowing game (hypothesis board and splitting questions) and the format map with signals and all 100 gallery pages.
-- `webdesign-start/references/formats/*.md`: one build recipe per kind of site (23 formats). Each follows the same sections: Load when, Study, What makes it work, Architecture, Key mechanics, Variation levers, Business uses, Pitfalls, Signals.
+- `webdesign-start/references/discovery.md` and `formats/index.md`: the exploration spread, the narrowing game (hypothesis board and splitting questions), and the format map with signals, 21 experiences and all 100 gallery pages.
+- `webdesign-start/references/registers.md`: world, product and interface registers, and the rule that light and time are tools, not themes.
+- `webdesign-start/references/formats/*.md`: one build recipe per kind of site (25 formats). Each follows the same sections: Load when, Study, What makes it work, Architecture, Key mechanics, Variation levers, Business uses, Pitfalls, Signals.
 - `webdesign-start/references/review.md`: screenshot loop, first-frame test, sameness check and slot audit.
 - `webdesign-start/references/polish.md` and `webdesign-start/scripts/page_audit.js`: the Phase 6 polish pass and its whole-page audit (chrome collisions, lone words, cut-off text, native controls, filler, repeated sections).
 - `webdesign-start/references/aesthetics.md` and `webdesign-start/scripts/palette_check.py`, `squint_check.py`, `composition_audit.js`: the beauty floor (colour, depth and light, composition and geometry) with deterministic checks. Thresholds were measured on the 100 gallery pages; don't tighten one without re-running it on the gallery thumbnails, or it will fail pages that are known to be beautiful.
@@ -91,6 +92,8 @@ Beauty-floor and polish scripts: after changing `palette_check.py`, `squint_chec
   - native form controls and lone words were left in.
 
   Fixes: the Phase 6 polish pass and `page_audit.js`; checks at every scroll depth; focal areas capped at 25% of the grid; exceptions need the user's agreement; device fidelity and section rhythm rules.
+
+- **Time-of-day bias (2026-09, v2.2.0):** both test builds themed themselves on the hour (blue hour, golden hour to night). The skill's discovery asked "when is it?" by default, its examples leaned on dawn and night, and every site was treated as a world. Users wanting a dashboard or an Apple-style showcase had no path, and discovery never showed the range of the gallery. Fixes: registers (world, product, interface), product-film and app-interface formats, the exploration spread, and time of day as an opt-in idea capped at one concept.
 
 ## Skill evolution
 

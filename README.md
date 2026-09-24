@@ -14,9 +14,9 @@ Works with **Claude Code, Cursor, Codex, Windsurf, Grok, and any assistant that 
 /webdesign-start
    ↓
 Phase 0  Intake        reads what you already said; never re-asks
-Phase 1  Discovery     a narrowing game: describe it your way; the skill keeps private hunches
-                       about what kind of site it should be and asks the plain-language questions
-                       that best tell them apart, plus your particulars and your world
+Phase 1  Discovery     describe it your way; see an exploration spread of 8 very different ideas for
+                       your subject (a world, a product launch, a dashboard, a game, a generator…);
+                       then a narrowing game settles the register, the kind of site and your particulars
 Phase 2  Concepts      three genuinely different concepts, each with a palette, hero picture
                        and signature moment; pick one, mix two, or redirect
 Phase 3  Direction     the Creative Direction Paragraph + fixed Quality Contract → DESIGN-BRIEF.md
@@ -42,7 +42,8 @@ webdesign-start/
 ├── scripts/page_audit.js        # whole-page polish: chrome collisions, lone words, cut-off text,
 │                                #   native controls, filler, repeated sections
 └── references/                  # loaded progressively, only when a phase needs them
-    ├── discovery.md             # the narrowing game: hypothesis board, splitting questions, particulars
+    ├── discovery.md             # exploration spread + the narrowing game: hypothesis board, questions
+    ├── registers.md             # world, product (Apple-style) or interface (dashboards): what changes
     ├── strategic-loops.md       # strategy essentials for business sites: promise, action, proof,
     │                            #   must-have content per site type
     ├── research.md              # learning from sites you love without cloning; the gallery as a study set
@@ -62,14 +63,15 @@ webdesign-start/
     │                            #   controls and states, rendering detail, device fidelity, rhythm
     ├── aesthetics.md            # the beauty floor: colour harmony, depth and light, composition,
     │                            #   gallery calibration; measured on all 100 gallery pages
-    └── formats/                 # 23 build recipes, one per kind of site, loaded only when chosen
+    └── formats/                 # 25 build recipes, one per kind of site, loaded only when chosen
         ├── index.md             #   the format map: signals, splitting questions, all 100 gallery pages
         ├── editorial-longread.md   scroll-journey.md    book-flip.md        interactive-story.md
         ├── living-scene.md         ambient-experience.md  single-screen-art.md  instrument.md
         ├── product-showcase.md     signature-reveal.md  heritage-brand.md   collection-cabinet.md
         ├── poster-type.md          themed-interface.md  live-bento.md       command-console.md
         ├── living-data-hero.md     data-reference.md    explainer-simulation.md  maker-tool.md
-        └── generative-studio.md    playable.md          everyday-tool.md
+        ├── generative-studio.md    playable.md          everyday-tool.md
+        └── product-film.md (Apple-style launch)         app-interface.md (dashboards and apps)
 adapters/                        # thin per-tool command shims (see install below)
 ```
 
@@ -125,7 +127,7 @@ The skill updates itself at the start of an engagement when Python 3, network ac
 
 The skill carries a build recipe for each kind of experience in the benchmark gallery. You don't pick one; discovery works out which fits:
 
-editorial long-read · scroll journey · book / page-flip · interactive story · living scene · ambient experience · single-screen art piece · instrument · product showcase · signature object and reveal · heritage brand · collection or cabinet · poster or type-led · themed interface · live bento · command console · living data hero · data reference · explainer / simulation · maker tool · generative studio · playable · everyday tool
+product film (Apple-style launch) · app interface (dashboards) · editorial long-read · scroll journey · book / page-flip · interactive story · living scene · ambient experience · single-screen art piece · instrument · product showcase · signature object and reveal · heritage brand · collection or cabinet · poster or type-led · themed interface · live bento · command console · living data hero · data reference · explainer / simulation · maker tool · generative studio · playable · everyday tool
 
 A site can combine them: a product showcase with one scroll-journey section, or a heritage brand with a small maker tool.
 

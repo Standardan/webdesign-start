@@ -2,6 +2,16 @@
 
 All notable changes to the webdesign-start skill. Versions follow semver: major = workflow-breaking restructure, minor = new rules/sections/capabilities, patch = fixes and wording.
 
+## 2.3.0 — 2026-09-24
+
+Discovery opens up, and sites are no longer all "worlds" themed on the time of day.
+
+- **Registers** (`references/registers.md`): every site is settled early as **world** (a place, story or object), **product** (an Apple-style launch) or **interface** (a dashboard or app). Concept parts, craft rules, depth and motion adapt to the register, and all three concepts stay in the user's register.
+- **New formats:** `product-film.md` (Apple-style launch: studio-lit product, one truth per pinned chapter, proof numbers, finishes, compare table) and `app-interface.md` (dashboards and product apps: a real design system, the one number first, designed states, command palette, honest demo data). Now 25 formats.
+- **Exploration spread:** right after the fundamentals, discovery shows 8 very different ideas for the user's subject, each a different experience from the gallery. The gallery's pages are now grouped into 21 experiences (play, make, generate, flip, learn how it works, watch live data, a product launch and more), each with gallery examples. Picks steer the concepts, and every picked idea must appear in one.
+- **Light and time are tools, not themes:** "when is it?" is no longer a default question. Time of day may theme at most one concept, and only when time is genuinely the subject. Unrequested time-of-day theming and a wrong register are new sameness tells. Examples throughout were rewritten without dawn, dusk or night themes, including new worked paragraphs for a product film and an app dashboard.
+- **Discovery questions for each register:** product questions (the one thing it does best, what to see first, the product asset) and interface questions (who uses it, the one number, density, light or dark).
+
 ## 2.2.0 — 2026-09-24
 
 The polish layer, from a critique of the second real build (a car-rental site that was strong but a notch below the gallery).

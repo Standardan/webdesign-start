@@ -86,7 +86,9 @@ If the user says "just build it" or "surprise me", still ask Round 1 of discover
 Read `references/discovery.md` and `references/formats/index.md` now. The user will never say "I want a living-scene site"; they'll just describe what they have. Discovery works like twenty questions played by a creative director:
 
 - **Listen first.** Harvest every signal from how they describe it.
-- **Keep a private hypothesis board:** 2–4 candidate formats with rough confidences, plus one wildcard format nobody in the category would expect, the particulars known so far, and the emerging world (object, place, time, feeling).
+- **Open the range before narrowing.** Right after the fundamentals, show the **exploration spread**: 8 very different ideas for *their* subject, each a different experience from the gallery's 21 (step into a place, play, make, generate, flip pages, learn how it works, watch something live, a product launch…), with a gallery page for each. Users can't ask for things they've never imagined. Their picks move the hypothesis board, and an unexpected pick must reach the concepts.
+- **Settle the register early** (`references/registers.md`): world (a place, story or object), product (an Apple-style launch) or interface (a dashboard or app). It decides what every later rule means, and it stops the skill offering an invented world to someone who wants a sleek product page or a dashboard.
+- **Keep a private hypothesis board:** the register, 2–4 candidate formats with rough confidences, plus one wildcard format nobody in the category would expect, the particulars known so far, and the emerging world (object, place, time, feeling).
 - **Ask whichever question most changes the board,** in plain language with vivid options written for this business: the one that splits the leading formats, or fills the most important missing particular. Up to 4 questions per batch, one batch per message.
 - **Read back in human terms** what you're homing in on ("It sounds like the site should feel like stepping into the greenhouse, not reading a brochure"). Never use format names with the user.
 - **When they hesitate, show:** describe two or three tiny pictures, or point to gallery pages, and let them choose.
@@ -99,7 +101,7 @@ For a business site, also read `references/strategic-loops.md` (strategy essenti
 
 ## Phase 2 — Concepts
 
-Read `references/concept.md` now. Generate **three genuinely different concepts**: normally two from the leading formats on the hypothesis board and one from the wildcard. They must differ in format, ground (light or dark), type voice, hero technique and motion signature, per the diversity grid in that file. Each concept gets:
+Read `references/concept.md` now. Generate **three genuinely different concepts**: all in the user's register, normally two from the leading formats on the hypothesis board and one from the wildcard. At most one concept may be themed on time of day, and only if time is genuinely the subject. They must differ in format, ground (light or dark), type voice, hero technique and motion signature, per the diversity grid in that file. Each concept gets:
 
 - a name and one-line idea;
 - what the site *is* (the artefact or world);
@@ -190,6 +192,7 @@ Never report a FAIL as done.
 | File | Load at | Contains |
 |---|---|---|
 | `references/discovery.md` | Phase 1 | The narrowing game: hypothesis board, splitting questions, particulars, world questions, stopping rule, Discovery Notes |
+| `references/registers.md` | Phases 1, 2 and 4 | World, product and interface registers: how to detect them, what each concept part means in each, light and time as tools not themes |
 | `references/formats/index.md` | Phases 1–2 | Every format with its signals, the questions that split formats, all 100 gallery pages by format |
 | `references/formats/<format>.md` | Phases 4–5, once chosen | One recipe per format: architecture, key mechanics, variation levers, pitfalls, signals |
 | `references/strategic-loops.md` | Phase 1 (business sites) | Strategy essentials: promise, action, proof, must-have content per site type |
