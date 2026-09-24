@@ -57,7 +57,7 @@ A broadsheet uses columns and rules. A zine uses collage and rotated slabs. A fi
 
 ## Pitfalls
 
-- Display faces that exist on one OS only. Draw the headline in SVG, or load a web font in Project mode.
+- Display faces that exist on one OS only. Draw the headline in SVG, or load a web font.
 - Long empty gaps in the pinned scene on phones. Shorten the gaps below 700px.
 - Layout reads (`getBoundingClientRect`) inside scroll loops. Cache the offsets on resize.
 - Low contrast for text over the scene. Use layered scrims and double text-shadows, and check the worst frame.

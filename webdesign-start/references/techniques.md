@@ -1,4 +1,4 @@
-# Techniques: recipes for made-not-sourced visuals
+# Techniques: recipes for crafted visuals
 
 **Load at:** Phases 4 and 5. Use the section you need, not the whole file.
 

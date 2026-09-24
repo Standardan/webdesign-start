@@ -52,6 +52,7 @@ Pick the question whose answers would **most change** the hypothesis board: the 
 - **What is it?** A business or service, a shop, a portfolio, a restaurant or venue, a product or app, an event or launch, a publication, a personal project, something else.
 - **Who is it for, and what should they do?** The main visitor in a phrase, and the one action that matters most: book, buy, call, sign up, read, visit, donate, play, or just be impressed.
 - **What exists already?** Logo, colours, real photography (of what, how good), copy, an existing site (what they like or hate about it).
+- **How should it be built?** Ask in plain words unless an existing codebase decides it: "A single file you can open or upload anywhere, or a full project a developer can keep growing?" Recommend one based on what you've heard (`build-standards.md`).
 
 ### Splitting questions (plain language, each answer moves the board)
 
@@ -79,9 +80,10 @@ This is the most important input in the skill. Particulars are what keep two bak
 
 ### World questions (feed the concept)
 
-- **"If your website were a physical object, what would it be?"** Offer 3–4 objects native to their business. The answer is often the concept itself.
-- **"When is it?"** A time of day, season or era: dawn, a rainy night, midwinter, 1928, the 1970s, the near future.
+- **"If your website were a physical object, what would it be?"** Offer 3–4 objects native to their business. The answer is often the concept itself. The object supplies the idea and the interactions, not a vintage look: a pastry box becomes a crisp, softly lit 3D box that opens, not an old-fashioned illustration.
+- **"When is it?"** A time of day, season or light: dawn, golden hour, a rainy night, midwinter, a bright noon. (An era only matters if they choose a period style below.)
 - **"What should someone feel in the first three seconds?"** Offer pairs that force a choice: calm or thrilled, awed or welcomed, trusting or curious, cosy or impressed.
+- **Period or modern?** Sites are contemporary by default. If the user says "vintage", "classic", "old-school", "rustic" or "retro", ask once: "Do you want it to actually look like it's from another era, or modern with that warmth and character?" Only a clear "another era" unlocks a period style.
 - **"What do you love outside of websites?"** Films, shops, packaging, a hotel, a record sleeve, a museum. And websites they admire, with *what exactly* they love (`research.md`).
 
 ## When to stop
@@ -120,6 +122,6 @@ Read this back and get a "yes, that's it" before Phase 2.
 **Loves:** [thing: trait in their words] …
 **Leaning:** [plain-language description of the direction], candidates [format A, format B, wildcard C]
 **Assets:** logo [y/n] · colours [..] · photography [what, quality] · copy [y/n]
-**Practicals:** pages [..] · functions [..] · stack [..] · deadline [..]
+**Practicals:** pages [..] · functions [..] · build mode [single file / project, stack] · deadline [..]
 **Assumed:** [anything you decided for them]
 ```

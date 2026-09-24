@@ -6,21 +6,25 @@ These standards set the engineering floor under the Quality Contract. They stop 
 
 ## Build modes
 
-Choose one in Phase 3 and record it in the brief.
+**Ask the user each time** (discovery practicals), unless an existing codebase already decides it. Offer it in plain words, with a recommendation:
+- "One file you can open or upload anywhere" → **Single-file mode**. Best for one-page sites, launches, portfolios and quick sharing.
+- "A full project a developer can grow" → **Project mode**. Best for multi-page sites, stores, CMS content, or when the component plan leans on React libraries.
 
-**Showcase mode** (the default when there is no codebase, and for one-page sites, launches and portfolios):
-- One self-contained `.html` file, with CSS in `<style>` and JavaScript in `<script>`.
-- No external requests at all: no CDNs, libraries, web fonts or remote images. All visuals come from CSS, inline SVG, canvas and code.
-- System font stacks only (see `craft.md`). Draw any display lettering that must look identical everywhere.
-- Works when opened directly from disk (`file://`).
-- This mode reproduces the benchmark gallery's conditions. The constraint is a feature, because it forces made-not-sourced visuals.
+Record the answer in the brief.
 
-**Project mode** (an existing codebase, or a multi-page site that needs a framework, CMS or build step):
+**Single-file mode:**
+- One `index.html` with CSS in `<style>` and JavaScript in `<script>`.
+- Web fonts may load from Google Fonts, and small libraries (GSAP, three.js, Motion) from a CDN (jsDelivr or cdnjs). Components are ported to plain HTML, CSS and JavaScript (`component-sourcing.md`).
+- **Offline variant**, when the user needs it to work with no network: no external requests at all, system font stacks only (`craft.md` §9), and display lettering drawn in SVG where the look depends on it. This matches the benchmark gallery's conditions.
+- Works when opened directly from disk (`file://`), with fonts falling back gracefully when offline.
+
+**Project mode** (an existing codebase, or a new one when the user chooses it):
 - Detect and follow the existing stack, conventions and file layout. Never add a framework the project doesn't use without asking.
-- Web fonts are allowed. Self-host where possible, use `font-display: swap`, subset if you can, and preload only the display face.
+- For a new project, propose a modern stack that suits the component plan (for example Next.js or Vite with React, Tailwind and Motion) and confirm it with the user.
+- Web fonts: self-host where possible, use `font-display: swap`, subset if you can, and preload only the display face.
 - Real photography is allowed and encouraged when it exists. Treat it by the concept: duotone, cut-out, framed as plates, graded to the palette, cropped with intent. Serve modern formats with sizes and `srcset`. Never use stock photography as the signature visual.
-- Libraries are allowed for real needs (routing, forms, data, a WebGL engine the concept truly needs). Never add a library just to get a look.
-- Keep the tokens (colours, type, easing, spacing) in one place: CSS custom properties, or the project's theme file.
+- Component libraries are first-class (`component-sourcing.md`). Other libraries are allowed for real needs (routing, forms, data, a 3D engine).
+- Keep the tokens (colours, type, easing, spacing) in one place: CSS custom properties, or the project's theme file, and wire every component to them.
 
 ## Structure
 
@@ -29,7 +33,7 @@ Choose one in Phase 3 and record it in the brief.
 - `<button type="button">` for actions and `<a href>` for navigation. Never use clickable `div`s.
 - Unique ids, and labels tied to every control.
 - Decorative SVG and canvas get `aria-hidden="true"`. Meaningful art gets `role="img"` and a real description.
-- Open Graph title, description and a share image when the site will be shared (in Showcase mode, a share image can be skipped or rendered later).
+- Open Graph title, description and a share image when the site will be shared (in single-file mode, a share image can be skipped or rendered later).
 
 ## Tokens first
 
@@ -90,7 +94,7 @@ No raw colour or font values are allowed elsewhere, except inside drawn art, whe
 - No console errors on load or on basic interaction.
 - Storage access (`localStorage` and similar) is wrapped in try/catch, and the page works without it.
 - Decorative steps (grain generation, sound) fail silently and never break the page.
-- Showcase mode makes no network requests. Project mode's external requests are intentional and listed.
+- External requests (fonts, CDNs, APIs) are intentional and listed in the brief. The offline single-file variant makes none.
 - Include a print stylesheet when the content is something people print (recipes, menus, itineraries).
 
 ## Before handing to review

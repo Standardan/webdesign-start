@@ -4,6 +4,8 @@
 
 A **format** is the kind of experience a site is: something you read, step into, flip through, play, use, or watch. The user never has to name one. Discovery (`../discovery.md`) listens for the signals below, keeps 2–4 formats as working hypotheses, and asks the questions that separate them. The format decides the architecture. The concept (`../concept.md`) decides everything that makes it singular: the idea, the material, the palette, the type and the art.
 
+Every format renders in a **contemporary** design language by default (`../craft.md`, "Contemporary by default"). Many gallery study pages use period or illustrated styles: study their *architecture*, not their era. Period styling (for example most of the heritage-brand variants) is used only when the user asks for it.
+
 A site can combine formats. Usually one **primary format** shapes the first frame and overall form, and one or two **borrowed pieces** from other formats add a section: a product page with one scroll-journey section, or a heritage brand with a small maker tool.
 
 ## The formats

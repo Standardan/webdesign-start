@@ -15,10 +15,12 @@ That gallery works because every page starts from **a specific creative-directio
 
 1. **One idea, everywhere.** Every site gets a governing idea taken from its subject: light leaving a lamp, cut paper, a descent through water, an instrument panel. The hero, the progress indicator, the buttons, the ornaments, the transitions and the copy all express it. An effect you could paste into an unrelated site is decoration, not direction.
 2. **The site is a thing.** Decide what kind of artefact the site *is*: a magazine feature, a specimen cabinet, a lit diorama, an instrument, a poster, a field guide, a menu card. The layout comes from that object, never from "hero + three cards + CTA".
-3. **The signature visual is made, not sourced.** The hero is drawn for this project in SVG, canvas or CSS (or built from the client's real photography, treated by the concept). Stock imagery, icon packs and UI-kit demos never carry the look.
-4. **Exact values, decided up front.** Named colours with hex values, named type treatments, a named hero, named interactions. A vague brief produces the model's average, and the average looks the same every time.
-5. **Beautiful before anyone touches it.** The first frame must already be finished and alive (idle motion, pre-warmed simulations) at both phone and desktop sizes.
-6. **Judge the render, not the code.** Look at screenshots at 1440 and 390 wide, compare them with the paragraph slot by slot, fix the weakest thing, and repeat.
+3. **Crafted, not assembled.** Beautiful modern components (animated heroes, text effects, scroll scenes, 3D, polished controls) are core building blocks, chosen per surface and always restyled to this site's tokens and concept (`references/component-sourcing.md`). The rest is made for this site too: scenes, the client's photography treated by the concept, the copy. Stock imagery and components left in their demo styling never carry the look.
+4. **Modern by default.** Sites speak today's design language (confident type, full-bleed composition, real depth and light, fluid motion) unless the user asks for a period, heritage or illustrated style (`references/craft.md`, "Contemporary by default").
+5. **Exact values, decided up front.** Named colours with hex values, named type treatments, a named hero, named interactions. A vague brief produces the model's average, and the average looks the same every time.
+6. **Beautiful before anyone touches it.** The first frame must already be finished and alive (idle motion, pre-warmed simulations) at both phone and desktop sizes.
+7. **Judge the render, not the code.** Look at screenshots at 1440 and 390 wide, compare them with the paragraph slot by slot, fix the weakest thing, and repeat.
+8. **Never ugly.** Every page clears the beauty floor in `references/aesthetics.md`: harmonious colour, real depth and one consistent light, clean geometry and a clear focal point. The floor is measured with the scripts in `scripts/` and calibrated against the 100 gallery pages, none of which look ugly.
 
 ## Operating principles
 
@@ -37,7 +39,8 @@ That gallery works because every page starts from **a specific creative-directio
 | Rendering (headless browser, preview pane, Playwright) | Screenshot at 1440×900 and 390×844 in Phases 4–6 | Say so plainly; review the code against `references/review.md` and ask the user for screenshots |
 | Web access | Optionally open user-named sites to study what they like | Work from the user's description; never invent observations of a site you did not see |
 | File writes | Save `DESIGN-BRIEF.md` at the project root | Print the brief in chat and ask the user to save it |
-| Existing codebase | Detect the stack and existing brand assets first | Default to the Showcase build mode in `references/build-standards.md` |
+| Python 3 (+ Pillow) | Run `scripts/palette_check.py` and `scripts/squint_check.py` (`references/aesthetics.md`) | Apply the same rules by eye and say the check was done by eye |
+| Existing codebase | Detect the stack and existing brand assets first | Ask the user which build mode they want (`references/build-standards.md`) |
 
 ## Staying current
 
@@ -86,6 +89,7 @@ Read `references/discovery.md` and `references/formats/index.md` now. The user w
 - **Ask whichever question most changes the board,** in plain language with vivid options written for this business: the one that splits the leading formats, or fills the most important missing particular. Up to 4 questions per batch, one batch per message.
 - **Read back in human terms** what you're homing in on ("It sounds like the site should feel like stepping into the greenhouse, not reading a brochure"). Never use format names with the user.
 - **When they hesitate, show:** describe two or three tiny pictures, or point to gallery pages, and let them choose.
+- **Ask which build mode they want** (a single file they can open or upload anywhere, or a full project a developer can grow) unless an existing codebase decides it (`references/build-standards.md`).
 - **Stop when confident:** a leading format (or two close ones), at least two particulars, a world, and the primary action. That usually takes 5–10 questions in 2–3 batches, never more than about 12.
 - If the user names sites or things they love, record *what specifically* they love in their own words (`references/research.md`).
 - End with short **Discovery Notes** read back for a quick "yes, that's it".
@@ -114,22 +118,25 @@ Read `references/creative-direction.md` and `references/brief-template.md` now.
 
 1. Write the **Creative Direction Paragraph** for the chosen concept: one dense paragraph of about 150–250 words (per page for multi-page sites, under a short site-wide paragraph). Use the slot order and checklist in `creative-direction.md`: name and tagline, artefact type, style anchor, ground and palette with hex values, the hero and how it is drawn, sections each with its own device, domain-verb interactions, delight, a typography treatment, a mobile recomposition, and one restraint sentence.
 2. Attach the **Quality Contract**, the fixed engineering and finish floor from the same file, unchanged.
-3. Save both in `DESIGN-BRIEF.md` with the short facts sections from `brief-template.md`.
-4. Show the user the paragraph and a plain-language digest (what they will see on first load, what moves, what they can do). **Stop for approval.** Treat any critique as a paragraph edit, then show it again.
+3. Read `references/aesthetics.md`. Build the palette with its colour rules, write the tokens to `.webdesign-start/tokens.json` and run `scripts/palette_check.py` until it passes. Fill in the beauty floor declarations (depth family, light, projection, focal area, radii, rotation, phone pattern).
+4. Plan the components surface by surface (`references/component-sourcing.md`), copy every promise into the build ledger, and save everything in `DESIGN-BRIEF.md` using `brief-template.md`.
+5. Show the user the paragraph, a rendered palette swatch strip (so they judge real colours, not hex codes), and a plain-language digest (what they will see on first load, what moves, what they can do). **Stop for approval.** Treat any critique as a paragraph edit, then show it again.
 
 ## Phase 4 — First frame
 
-Read `references/craft.md`, `references/techniques.md`, `references/build-standards.md` and the chosen format's file in `references/formats/` now, plus the file for any format a section borrows.
+Read `references/craft.md`, `references/component-sourcing.md`, `references/techniques.md`, `references/build-standards.md` and the chosen format's file in `references/formats/` now, plus the file for any format a section borrows.
 
-Build the **first viewport plus one following section** at full finish: the real hero art, real palette, real type, real copy, idle motion, the texture layer, and the reduced-motion variant. Render at 1440×900 and 390×844, then run the first-frame test in `references/review.md`. Fix and re-render until it passes. Then show the screenshots to the user and name which paragraph slot each visible choice comes from. **Pause for their reaction** unless they waived the checkpoint.
+Build the **first viewport plus one following section** at full finish: the real hero, restyled components, real palette, real type, real copy, idle motion, and the reduced-motion variant. Render at 1440×900 and 390×844, then run the beauty floor gate (`references/aesthetics.md` §5: palette, squint and composition checks, then side by side with two same-format gallery pages), the first-frame test, and a cold critique from `references/review.md`. The following section must already continue the concept's world, because that is where sites most often fall back to a template. Fix and re-render until it passes. Then show the screenshots to the user and name which paragraph slot each visible choice comes from. **Pause for their reaction** unless they waived the checkpoint.
 
 ## Phase 5 — Build
 
 Build the rest of the site against the paragraph.
 
 - Every section gets **its own device**, taken from the concept (a plate with a caption, a pinned scene, a dial, a stamped ticket), never a generic grid of cards.
-- Carry the governing idea into at least four systems: hero, navigation or progress, interactive controls, section transitions, and ornaments or dividers.
-- Follow the chosen format file's architecture and use the recipes in `techniques.md`. A scroll-played section in any format uses `formats/scroll-journey.md` (pinned scenes). Ordinary controls (forms, date pickers, menus, tabs, accordions) may come from an accessible library or catalog (`references/component-sourcing.md`), restyled in the site's material. Heroes, illustrations and scenes are always made for this site.
+- **Build against the build ledger** in the brief: every section, interaction, delight, mobile rule and the footer. Nothing promised is left out, and every nav link resolves.
+- Carry the governing idea into at least four systems (hero, navigation or progress, controls, transitions, ornaments) and **into every section**: each one happens somewhere in the concept's world, never as a generic web section (`references/craft.md`, "The idea survives the scroll").
+- Information lives inside the world, not in cards pasted over the art (`references/craft.md`, "Information lives inside the world").
+- Follow the chosen format file's architecture and use the recipes in `techniques.md`. A scroll-played section in any format uses `formats/scroll-journey.md` (pinned scenes). Build each surface with the component chosen in the brief's component plan, restyled to the tokens and concept (`references/component-sourcing.md`). Where no component fits, build it from `techniques.md`.
 - Write real copy in the concept's voice. When real content is missing, use clearly marked placeholders and list them in the report. Never write filler.
 - Re-render as you go, not only at the end.
 
@@ -138,10 +145,13 @@ Build the rest of the site against the paragraph.
 Read `references/review.md` now and run the full loop:
 
 1. Screenshot every page at 1440 and 390 wide, plus key scroll depths and states.
-2. Compare the render with the Creative Direction Paragraph **slot by slot**: PASS, PARTIAL or FAIL, with the evidence.
-3. Run the first-frame test, the sameness check, the Quality Contract audit and the accessibility checks.
-4. Fix the worst finding and re-render. Repeat until a loop finds nothing worth fixing, and do at least two loops.
-5. Report to the user:
+2. **Completeness gate:** run the dead-link and empty-section check and tick every item of the build ledger. Anything missing gets built before any visual review.
+3. **Cold critique:** judge the screenshots as a demanding art director who hasn't read the paragraph, and list the five worst problems. Use a separate reviewer (a subagent or fresh session) if your environment has one.
+4. **Beauty floor gate** (`references/aesthetics.md` §5) at both sizes. Any failure is fixed before anything else.
+5. Compare the render with the Creative Direction Paragraph **slot by slot**: PASS, PARTIAL or FAIL, with the evidence.
+6. Run the first-frame test (including the silhouette and squint tests), the sameness check, the Quality Contract audit and the accessibility checks.
+7. Fix the worst finding and re-render. Repeat until a loop finds nothing worth fixing, and do at least two loops.
+8. Report to the user:
    - what was built;
    - the slot-by-slot verdict;
    - what the loops caught and fixed;
@@ -166,6 +176,7 @@ Never report a FAIL as done.
 | `references/brief-template.md` | Phase 3 | `DESIGN-BRIEF.md` structure |
 | `references/craft.md` | Phases 4–5 | Art direction: governing idea, hero composition, material, light, texture, palette, type, copy, motion |
 | `references/techniques.md` | Phases 4–5 | Code recipes: texture, light, drawn illustration, type, motion, signature objects, canvas |
+| `references/aesthetics.md` | Phases 3, 4 and 6 | The beauty floor: colour harmony, depth and light, composition and geometry, gallery calibration, the gate; uses `scripts/palette_check.py`, `scripts/squint_check.py`, `scripts/composition_audit.js` |
 | `references/build-standards.md` | Phase 4 | Build modes, stack adaptation, performance, accessibility, reduced motion, honesty |
-| `references/component-sourcing.md` | Phase 5, for ordinary controls | Optional control libraries and how to restyle them |
+| `references/component-sourcing.md` | Phases 3–5 | Modern component sources, choosing per surface, restyling, overused effects, build-mode notes |
 | `references/review.md` | Phases 4 and 6 | The screenshot loop, first-frame test, sameness tells, slot audit, report format |

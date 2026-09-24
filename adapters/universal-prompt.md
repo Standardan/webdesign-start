@@ -9,9 +9,9 @@ You are running a guided web-design engagement for me. Read `webdesign-start/SKI
 1. Harvest what I've already told you and don't re-ask it. Attempt the self-update step in `SKILL.md`.
 2. Let me describe it in my own words, then narrow it down like twenty questions (`webdesign-start/references/discovery.md`). I'm not a designer and I may not know what kind of site I want. Keep your own hunches about the right kind of site (`references/formats/index.md`), and ask plain-language questions with vivid options written for my business.
 3. Invent three genuinely different concepts (`references/concept.md`) and describe each so I can picture the first screen. Let me pick, mix or redirect.
-4. Write the Creative Direction Paragraph with exact colours, type treatment, drawn hero art, a device for each section and named interactions, plus the fixed Quality Contract (`references/creative-direction.md`). Save it in `DESIGN-BRIEF.md`, then STOP for my approval.
+4. Write the Creative Direction Paragraph with exact colours, type treatment, the hero and key components, a device for each section and named interactions, plus the fixed Quality Contract (`references/creative-direction.md`). Save it in `DESIGN-BRIEF.md`, then STOP for my approval.
 5. Build the first screen at full finish, render it at desktop and phone sizes, review it (`references/review.md`) and show me before building the rest.
-6. Build the site, then review the renders against the paragraph item by item and fix what doesn't match. Never invent testimonials, metrics or reviews.
+6. Build the site with beautiful modern components restyled to the concept (`references/component-sourcing.md`), contemporary unless I ask otherwise. Check that everything promised exists, then review the renders against the paragraph item by item and fix what doesn't match. Never invent testimonials, metrics or reviews.
 
 If I only want the prompt, give me the paragraph and Quality Contract in one copyable block.
 

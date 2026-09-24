@@ -2,7 +2,7 @@
 
 **The problem this solves:** ask an AI for "a website for my bakery" and you get the average bakery website: a hero, three cards, a testimonial strip, safe fonts and a gradient. Ask it for *"Starter No. 1983 — A Ledger of Slow Bread", a bound baker's ledger with an engraved starter jar whose bubbles rise, cotton-paper cream #f4eee2, letterpress red only for dates and the order button…* and you get something nobody has seen before.
 
-This skill closes that gap for people who aren't designers. You never have to know what kind of site you want. Describe it however it comes to you, and the skill narrows it down like a game of twenty questions. It asks plain-language questions about what makes the business unlike others and what world it lives in, invents three distinct concepts to react to, and writes a dense **creative-direction paragraph** with exact palette, type, hand-drawn hero art, a device for every section and named interactions. It then builds from that paragraph and checks the rendered result from screenshots.
+This skill closes that gap for people who aren't designers. You never have to know what kind of site you want. Describe it however it comes to you, and the skill narrows it down like a game of twenty questions. It asks plain-language questions about what makes the business unlike others and what world it lives in, invents three distinct concepts to react to, and writes a dense **creative-direction paragraph** with exact palette, type, hand-drawn hero art, a device for every section and named interactions. It then builds from that paragraph, using beautiful modern components restyled for the concept, and checks the rendered result from screenshots. Sites are contemporary by default; vintage or illustrated styles only when you ask.
 
 The benchmark is the [Claude Opus 5.5 · 100 HTML Files](https://miaai-lab.github.io/Claude-Opus-5.5-100-HTML-Files/) gallery: 100 pages, each made from one such paragraph, none alike. The skill's workflow, craft rules and review gates come from close teardowns of that gallery.
 
@@ -35,6 +35,9 @@ Just want the prompt? Ask for it. The skill runs Phases 1–3 and hands you the 
 webdesign-start/
 ├── SKILL.md                     # the orchestrator: phases, gates, environment fallbacks
 ├── scripts/update_skill.py      # safe Phase 0 updater: validates, swaps, rolls back on failure
+├── scripts/palette_check.py     # colour harmony check (tokens + optional screenshot)
+├── scripts/squint_check.py      # is the subject the strongest thing on screen?
+├── scripts/composition_audit.js # alignment, type scale, radii, rotation, focal overlap, measure
 └── references/                  # loaded progressively, only when a phase needs them
     ├── discovery.md             # the narrowing game: hypothesis board, splitting questions, particulars
     ├── strategic-loops.md       # strategy essentials for business sites: promise, action, proof,
@@ -48,8 +51,12 @@ webdesign-start/
     ├── techniques.md            # code recipes: grain, glass, glow, drawn scenes, lit headlines,
     │                            #   springs, foil, reveal rituals, canvas performance
     ├── build-standards.md       # Showcase vs Project mode, performance, accessibility, honesty
-    ├── component-sourcing.md    # optional libraries for ordinary controls only
-    ├── review.md                # screenshot loop, first-frame test, sameness check, report
+    ├── component-sourcing.md    # modern component sources (shadcn, Aceternity, Magic UI, React Bits…),
+    │                            #   choosing per surface, restyling, overused effects
+    ├── review.md                # completeness gate, cold critique, screenshot loop, first-frame
+    │                            #   and sameness checks, report
+    ├── aesthetics.md            # the beauty floor: colour harmony, depth and light, composition,
+    │                            #   gallery calibration; measured on all 100 gallery pages
     └── formats/                 # 23 build recipes, one per kind of site, loaded only when chosen
         ├── index.md             #   the format map: signals, splitting questions, all 100 gallery pages
         ├── editorial-longread.md   scroll-journey.md    book-flip.md        interactive-story.md

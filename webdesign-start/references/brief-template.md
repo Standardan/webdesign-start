@@ -19,7 +19,7 @@ _Status: [draft | approved YYYY-MM-DD] · webdesign-start [version]_
 
 ## Build mode
 
-[Showcase single file | Project: framework, styling approach, where it deploys], per build-standards.md.
+[Single file (online | offline) | Project: framework, styling, where it deploys], as the user chose, per build-standards.md. External requests: [fonts, CDNs, APIs].
 
 ## Tokens
 
@@ -35,6 +35,43 @@ The paragraph's values, defined once. Copy this into the build.
 | Text type | [stack or font] · [size/measure] | |
 | Label type | [stack] · [size, case, tracking] | |
 | Easing | [named curves] | [what each is for] |
+| Light | --light-x/--light-y [vector] · --key [rgb] · --fill [rgb] · --shade [rgb] | one key light; every shadow and highlight derives from it |
+
+Palette check: `python3 scripts/palette_check.py .webdesign-start/tokens.json` → [PASS, or each finding and its fix].
+
+## Beauty floor declarations
+
+Per `aesthetics.md`. The review checks the render against these.
+
+- **Depth family per surface:** hero [object-space | light-space | graphic-flat], [section] […]. A place or product is never graphic-flat.
+- **Depth cues in the hero (at least 5):** […]
+- **Drawn scenes:** projection [flat elevation | 1-point | 2-point | axonometric + angles], horizon at [fraction of the frame].
+- **Focal area** (16×10 grid, for `squint_check.py`): desktop [C0,R0,C1,R1], phone [C0,R0,C1,R1]. **Balance:** [symmetric | asymmetric].
+- **Radii:** [0 | one value | two values]. **Rotation:** [none | declared set and why]. **Phone recomposition:** [art first | type in the quiet zone | redrawn in portrait | type first].
+- **Calibration pages:** [two gallery pages in the same format].
+
+## Component plan
+
+Surface by surface, per `component-sourcing.md`. Every component is restyled to the tokens above.
+
+| Surface | Component | Source | Restyle (tokens, material, motion, content) |
+|---|---|---|---|
+| Hero | … | … | … |
+| Headline treatment | … | … | … |
+| [Section] device | … | … | … |
+| Primary action | … | … | … |
+| Navigation / menu | … | … | … |
+
+## Build ledger
+
+Every promise in the paragraph, copied out as a checklist. Phase 5 builds against it; the review's completeness gate ticks it from the render.
+
+- [ ] Hero: [what it must show and do]
+- [ ] Section: [name] with [device]
+- [ ] Interaction: [verb] → [visible result]
+- [ ] Delight: [detail]
+- [ ] Mobile: [recomposition]
+- [ ] Ending: footer with [facts], [sample/fiction note if any]
 
 ## Business essentials
 

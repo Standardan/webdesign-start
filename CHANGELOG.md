@@ -2,6 +2,36 @@
 
 All notable changes to the webdesign-start skill. Versions follow semver: major = workflow-breaking restructure, minor = new rules/sections/capabilities, patch = fixes and wording.
 
+## 2.1.0 — 2026-09-23
+
+Lessons from the first real build (a bakery site that came out boxy, unfinished and partly generic), plus a shift to modern, component-rich sites.
+
+- **Components are a core ingredient again.** `component-sourcing.md` now covers modern sources (shadcn/ui, Aceternity UI, Magic UI, React Bits, Motion Primitives, Origin UI, beUI, Uiverse, ThreeUI, GSAP, Motion). It covers choosing per surface, restyling every component to the site's tokens and concept, and a list of overused effects. The brief gets a component plan, and the paragraph names its key components. Quality Contract clause 1 is now "Crafted, not assembled".
+- **Contemporary by default.** Sites use today's design language unless the user asks for a period, heritage or illustrated style. Discovery asks "period or modern?" when the user says vintage or classic. Style anchors, examples and world questions no longer lean vintage.
+- **Build mode is asked each time:** a single file (online, or an offline variant with system fonts) or a full project. Web fonts and small CDN libraries are allowed in single-file mode.
+- **Completeness gate:** a dead-link and empty-section check plus a build ledger of every promise in the paragraph, checked before any visual review. Nothing may be logged as done without being seen.
+- **Cold critique:** each review loop includes an art-director critique made without reading the brief, by a separate reviewer where the environment allows.
+- **New craft rules and review tests:**
+  - scenes, not diagrams (the boxy trap), with silhouette and squint tests and no dead zones;
+  - information lives inside the world, not in cards pasted over art;
+  - the idea survives the scroll;
+  - lettering traditions are more than a font with effects;
+  - objects, not clip art;
+  - say each fact once per screen.
+- **The beauty floor** (`aesthetics.md`), measured on all 100 gallery pages and tested against the failed build:
+  - **Colour:** one accent hue, families separated by value, tinted neutrals, ramps that lean yellow as they lighten, warm colours on dark grounds used as light, and 11 named clashes.
+  - **Depth and light:** a depth family per surface, at least 5 depth cues in a hero, one key light declared as tokens, a five-level elevation scale, grounded objects, one projection and horizon, and no near-axis angles.
+  - **Composition and geometry:** exact or clearly off-centre focal points, one gutter, no near-miss edges, a real type scale, 0–2 radii, declared rotation only, and curved text only on drawn circles.
+  - **Calibration:** side by side with two same-format gallery pages.
+- **Checking scripts:**
+  - `scripts/palette_check.py`: tokens, plus an optional screenshot.
+  - `scripts/squint_check.py`: the subject must be the strongest thing on screen. Its thresholds were calibrated so all tested gallery pages pass.
+  - `scripts/composition_audit.js`: a DOM audit.
+
+  The palette is checked before the brief is approved and shown to the user as swatches. The first frame and the final review must pass the gate.
+- **Quality Contract clause 11, "Beautiful by measure".** Prompt-only deliveries carry the floor too.
+- **New sameness tells:** the section template (tracked label, headline with one italic accent word, right-hand paragraph), three equal columns, pasted-on UI, WordArt and clip art, component demo styling, and an accidental dated look.
+
 ## 2.0.0 — 2026-09-23
 
 Rebuilt the skill around how the [Claude Opus 5.5 · 100 HTML Files](https://miaai-lab.github.io/Claude-Opus-5.5-100-HTML-Files/) gallery gets 100 distinct, showcase-grade pages: one dense creative-direction paragraph per page, a fixed quality block, visuals made rather than sourced, and review from screenshots. Workflow-breaking.

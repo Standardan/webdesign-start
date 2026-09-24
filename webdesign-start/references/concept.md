@@ -35,9 +35,12 @@ The format supplies architecture, never the look. Two sites in the same format m
 
 ## Style anchors
 
-Pick **exactly one** anchor per concept. It gives the model a large, coherent visual language to draw from. Two anchors dilute each other. Take the anchor from the particulars (era, place, craft), not from fashion.
+Pick **exactly one** anchor per concept. It gives the model a large, coherent visual language to draw from. Two anchors dilute each other.
 
-- **Movements and eras:** Art Nouveau 1899 · Vienna Secession · Art Deco 1928 · Bauhaus · Swiss International Style · mid-century modern · 1960s space age · 1970s supergraphics · Memphis 1986 · 1990s rave flyers · Y2K chrome · Victorian scientific plates · Edo woodblock · Soviet constructivism · Scandinavian functionalism · Brutalist concrete.
+**Contemporary by default.** All three concepts use a modern design language unless the user asks for a period, heritage or illustrated style. A historical anchor is allowed for at most one concept, only when the particulars point there, and it is still executed with modern polish (`craft.md`, "Contemporary by default"). Take the anchor from the particulars (place, craft, audience), not from fashion.
+
+- **Contemporary languages:** Swiss-precise product film · contemporary editorial (large type, full-bleed photography) · soft-industrial Scandinavian · Japanese quiet minimalism · Californian light and colour · kinetic type-led · spatial and glassy (layered translucency, depth) · warm tactile modern (real materials, soft light) · data-rich technical · bold colour-block graphic · cinematic dark (deep blacks, one light).
+- **Movements and eras (only when asked for, or clearly motivated):** Art Nouveau 1899 · Vienna Secession · Art Deco 1928 · Bauhaus · Swiss International Style · mid-century modern · 1960s space age · 1970s supergraphics · Memphis 1986 · 1990s rave flyers · Y2K chrome · Victorian scientific plates · Edo woodblock · Soviet constructivism · Scandinavian functionalism · Brutalist concrete.
 - **Traditions and trades:** botanical engraving · nautical charts · railway timetables and transit diagrams · apothecary labels · letterpress · risograph · enamel signage · hand-painted shopfronts · museum placards · patent drawings · architectural drafting · field notebooks · seed packets · matchbook covers · record sleeves · film title cards.
 - **Materials:** cut paper · washi · letterpress cotton paper · brass · brushed steel · lacquer · walnut · concrete · terracotta · stained glass · frosted glass · enamel · felt · knit wool · clay · wax seal · gold foil · neon · chalk · ink wash.
 - **Places and light:** a lighthouse at dusk · a greenhouse in the morning · a harbour in fog · a night market · a mountain hut · a sunlit kitchen at 6 a.m. · the deep sea · an observatory · a library after closing.
@@ -67,6 +70,7 @@ Also make sure of three things:
 Some combinations have become the default output of AI design tools, including earlier versions of this skill. Use one only when the concept specifically calls for it, and say why:
 
 - A cream or off-white ground, an ink headline in a heavy serif, one rationed accent colour, small tracked-caps labels and fade-up reveals.
+- Component-library defaults: aurora or beam backgrounds, spotlight cards in a bento, shimmer buttons and logo marquees left in their demo styling (`component-sourcing.md`).
 - A dark ground with a violet-to-blue gradient glow, glass cards and a centred headline.
 - Hero, then three feature cards, then testimonials, then a CTA band.
 - A bento grid of icon-and-text tiles.
@@ -104,6 +108,8 @@ Write each concept for a non-designer, vividly, in about 120–160 words:
 **Why it fits you:** [ties to two or more of their particulars and answers]
 ```
 
+Every concept palette already follows the colour rules in `aesthetics.md` §1 (one accent hue, value-separated families, tinted neutrals). Run `scripts/palette_check.py` on each before presenting it, and show each palette as rendered swatches, not just hex codes.
+
 End with a recommendation (which one and why) and an invitation: "Pick one, mix two ('A's palette with C's idea'), or tell me what's missing."
 
 ## Worked example (illustrative)
@@ -111,7 +117,7 @@ End with a recommendation (which one and why) and an invitation: "Pick one, mix 
 *Brief:* a sourdough bakery in a riverside mill town. It opens at 7, bakers start at 3 a.m., uses a 40-year-old starter, and customers call the Saturday morning queue "the line".
 
 - **A. "The 3 A.M. Shift":** a *journey* from dark to dawn. Scrolling moves the clock from 3 a.m. to 7 a.m.: the page starts night-blue with one lit oven window, dough rises in stages, the sky warms to apricot, and the doors open at the bottom with today's bakes and hours. A clock gauge shows the time. Book serif, dark to light ground.
-- **B. "Starter No. 1983":** a *print artefact*, a bound baker's ledger. Cotton-paper ground, letterpress-red and iron-gall ink. The hero is an engraved-style drawing of the starter jar with gently rising bubbles. Each bread is a ledger plate with hydration and bake time. Stamped dates, ruled lines, and a "feed the starter" interaction that makes it bubble.
+- **B. "Starter No. 1983":** a *product showcase* built around the 40-year-old starter. Warm off-white ground, crust and oven-orange accents, a sharp contemporary serif. The hero is a softly lit, slowly turning glass jar of starter with bubbles rising (a restyled 3D or canvas component), and each bread is a large product moment with hydration and bake time as crisp data. A "feed the starter" interaction makes it bubble.
 - **C. "The Line":** a *poster/type-led* concept. A giant condensed "THE LINE" set as a queue of letters that shuffle forward with scroll. A saturated tomato ground and flour-white type. Each bread is a ticket stub you tear off to see details. Loud and local, with a counter for "loaves left today" (clearly a placeholder until connected to real data).
 
 The three differ on format, ground, type voice, hero technique and motion. Each uses at least two particulars.

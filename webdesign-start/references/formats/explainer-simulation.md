@@ -16,7 +16,7 @@
 - **One honest model note.** Each strong page states in one sentence what is true and what is simplified: "periods and order are true; distances are log-compressed" (004), "faithful outside the magnets; strengths in arbitrary units" (095). It sits next to the model, not in a footer.
 - **One input that makes the principle obvious.** A crank, a wind slider, a step rail, a drag-to-fling. The principle becomes visible because the user caused it.
 - **Presets as lessons.** 100's double slit, lens and parabolic dish; 095's attracting and repelling pairs; 030's figure-eight orbit. Each preset is a question with its answer already running.
-- **The instrument around the model is in the subject's material:** brass plaques (004), a blueprint title block (056), a lab notebook (093), knitting needles and a row counter (013). See `craft.md` §3.
+- **The instrument around the model is in the subject's material:** brass plaques (004), a blueprint title block (056), a lab notebook (093), knitting needles and a row counter (013). See `craft.md` §5.
 - **Readouts that name the physics.** Crank angle, pace, field magnitude, total energy, row count, room area. Numbers change as the user acts, so cause and effect stay linked.
 
 ## Architecture

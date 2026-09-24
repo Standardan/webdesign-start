@@ -12,10 +12,33 @@ Every benchmark gallery page was rendered at 1440×900 and 390×844 and accepted
    - Add each state (modes, day/night, open dialogs, hover on the signature object).
    - Add a reduced-motion render.
    - Use whatever you have: a browser pane, a headless browser (Playwright or Puppeteer), or the project's own tooling. If nothing can render, say so and ask the user for screenshots. Never claim a visual check you didn't do.
-2. **Look like the owner would.** Before checking any list, write the one thing that most reads as generic or unfinished.
-3. **Audit** with the sections below.
-4. **Fix the worst finding first**, then re-render.
-5. **Repeat** until a loop finds nothing worth fixing. Run at least two full loops for Phase 6. Record how many loops ran and what each caught.
+2. **Completeness gate first** (below). A site missing promised sections is not reviewed for beauty until it's complete.
+3. **Look like the owner would.** Before checking any list, write the one thing that most reads as generic or unfinished.
+4. **Cold critique.** Review the screenshots as a demanding art director who has *not* read the paragraph, and list the five worst problems. If your environment can run a separate reviewer (a subagent or a fresh session), give it only the screenshots and ask for exactly that. The builder is the worst judge of their own work.
+5. **Beauty floor gate** (`aesthetics.md` §5): run `palette_check.py` on the tokens and screenshot, `squint_check.py` on the first frame, and `composition_audit.js` in the page, at both sizes. Then compare side by side with two same-format gallery pages. Any failure is fixed before anything else.
+6. **Audit** with the sections below.
+7. **Fix the worst finding first**, then re-render.
+8. **Repeat** until a loop finds nothing worth fixing. Run at least two full loops for Phase 6. Record how many loops ran and what each caught.
+
+## Completeness gate
+
+Before any visual judgement, check that everything promised exists. Run this in the page (browser console or your automation tool):
+
+```js
+const ids = new Set([...document.querySelectorAll('[id]')].map(e => e.id));
+const deadLinks = [...document.querySelectorAll('a[href^="#"]')].map(a => a.getAttribute('href').slice(1)).filter(id => id && !ids.has(id));
+const emptySections = [...document.querySelectorAll('section, footer')].filter(s => s.innerText.trim().length < 20).map(s => s.id || s.className);
+({ deadLinks, emptySections, hasFooter: !!document.querySelector('footer'), height: document.documentElement.scrollHeight });
+```
+
+Then tick the **build ledger** (the list of promises copied from the paragraph into the brief, `brief-template.md`):
+- [ ] Every section named in the paragraph exists, with its device.
+- [ ] Every named interaction works (mouse, touch, keyboard).
+- [ ] Every delight detail exists.
+- [ ] Every navigation link resolves, and the page has a proper ending (footer with the business facts, and any fiction or sample-data note).
+- [ ] Every claim in the brief's decisions log ("added a footer note", "tags flip on tap") is true in the current render. Never record work as done without seeing it.
+
+Any unchecked box is a FAIL. Build it, then continue.
 
 ## First-frame test (Phase 4, and again in Phase 6)
 
@@ -28,6 +51,11 @@ At both sizes, with no interaction:
 - [ ] The phone frame is recomposed, not a squeezed desktop. Nothing important is hidden or crowded. The title doesn't cover the subject.
 - [ ] Texture and light are present (unless emptiness is the concept).
 - [ ] The type has a treatment: scale contrast, a chosen case and tracking, and it isn't default-looking.
+- [ ] **Silhouette test:** filled black, the scene's shapes are not just nested rectangles (`craft.md` §3).
+- [ ] **Squint test:** one clear brightest area at the focal point, a readable light-to-dark structure, and no dead zones of flat colour.
+- [ ] **Information lives in the world:** no web card pasted over the art. On phones, info and controls take no more than about 35% of the first screen (`craft.md` §4).
+- [ ] **Lettering is real:** any named lettering tradition shows its specific marks, not a system font with a gradient and bevel. Text inside the art uses the world's lettering.
+- [ ] **Each fact appears once** in the viewport.
 
 ## Slot audit (against the Creative Direction Paragraph)
 
@@ -52,17 +80,24 @@ A PARTIAL needs an explanation the user can accept. A FAIL is never "done".
 
 Fail the build if the render shows any of these, unless the paragraph calls for it by name:
 - **The house look:** a cream ground, a heavy ink serif headline, one rationed accent, tracked-caps labels, fade-up reveals. Or a dark violet-blue glow with glass cards. Or hero, three cards, testimonials, CTA band.
-- **Kit assembly:** a section that looks like a component-library demo, including equal-weight card grids, icon-in-circle features, stat tiles or a testimonial carousel.
+- **Kit assembly:** a section that looks like a component-library demo: a component left in its demo styling, an overused effect with no reason (`component-sourcing.md`), equal-weight card grids, icon-in-circle features, stat tiles or a testimonial carousel.
+- **Dated by accident:** a period, rustic or illustrated look the user never asked for, or modern-by-default parts rendered with bevels, glossy clip-art shading or faux-vintage texture.
 - **Unmotivated effects:** an effect that could be pasted into an unrelated site (a generic gradient blob, a cursor trail, a random marquee).
 - **Default type:** one neutral sans at medium weights everywhere, with no scale contrast.
 - **Flatness:** untextured flat fills and neutral grey shadows, where the concept wants material.
 - **Concept drift:** fewer than four systems carry the governing idea; ordinary controls ignore the material.
 - **A generic first viewport:** remove the logo, and it could belong to a competitor.
+- **The section template:** a small tracked-caps label, a big serif headline with one italic word in the accent colour, and a paragraph in the right-hand column. It creeps into sections after the hero even when the hero is strong.
+- **Three equal columns:** three products, features or steps in identical boxes, evenly spaced. Vary scale, staging and rhythm, or turn them into one composed picture.
+- **The boxy scene:** a drawn place made of square-on rectangles with no perspective, overlap or light falloff.
+- **Pasted-on UI:** a bordered panel or card laid over the hero art.
+- **WordArt and clip art:** display type faked with gradient, bevel and drop shadow; objects shaded with one glossy radial gradient.
+- **The concept stops at the hero:** a section whose screenshot, header hidden, could belong to a different site (`craft.md` §11).
 
 ## Quality Contract audit
 
-Check each of the 10 clauses (`creative-direction.md`) with evidence:
-- **Made, not sourced:** any stock imagery, icon-pack decoration or kit layouts?
+Check each of the 11 clauses (`creative-direction.md`) with evidence:
+- **Crafted, not assembled:** any stock imagery, icon-pack decoration, or a component still in its library demo styling (default colours, radius, copy, effect intensity)?
 - **Four systems** carrying the idea.
 - **First frame** at both sizes.
 - **Recomposed:** check 360, 390, 768, 1440 and 1920 widths, with no horizontal scroll.
@@ -92,6 +127,8 @@ These slipped past even strong pages. Look for them specifically:
 ## Review: [project]
 
 **Built:** [pages/sections, build mode, stack]
+**Completeness:** [build ledger: every promise ✓, or what was added after the gate caught it]
+**Beauty floor:** [palette_check, squint_check and composition_audit output at 1440 and 390; the two gallery pages compared and the verdict on colour, depth, composition and finish]
 **Loops run:** [n]. Caught and fixed: [list]
 **Slot audit:** [table, or a summary with every PARTIAL explained]
 **First frame:** [pass notes at 1440 and 390]

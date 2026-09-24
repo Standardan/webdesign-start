@@ -15,6 +15,7 @@ This file is a living contributor guide. Update it whenever the repository struc
 - `webdesign-start/references/discovery.md` and `formats/index.md`: the narrowing game (hypothesis board and splitting questions) and the format map with signals and all 100 gallery pages.
 - `webdesign-start/references/formats/*.md`: one build recipe per kind of site (23 formats). Each follows the same sections: Load when, Study, What makes it work, Architecture, Key mechanics, Variation levers, Business uses, Pitfalls, Signals.
 - `webdesign-start/references/review.md`: screenshot loop, first-frame test, sameness check and slot audit.
+- `webdesign-start/references/aesthetics.md` and `webdesign-start/scripts/palette_check.py`, `squint_check.py`, `composition_audit.js`: the beauty floor (colour, depth and light, composition and geometry) with deterministic checks. Thresholds were measured on the 100 gallery pages; don't tighten one without re-running it on the gallery thumbnails, or it will fail pages that are known to be beautiful.
 - `webdesign-start/references/strategic-loops.md`, `research.md`, `brief-template.md`, `build-standards.md`: strategy essentials, reference handling, the brief template and the engineering floor. **These four filenames must not be renamed or removed**: the updater bundled with older installs refuses any download that lacks them (see `REQUIRED_PATHS` in `scripts/update_skill.py`).
 - `webdesign-start/scripts/update_skill.py`: the self-updater. Its `REQUIRED_PATHS` lists files every future release must contain.
 - `webdesign-start/VERSION`: release version and date in `<semver> <YYYY-MM-DD>` format.
@@ -32,9 +33,9 @@ This file is a living contributor guide. Update it whenever the repository struc
 6. Preserve progressive disclosure. A change should not force the assistant to load every reference file up front. Keep the pre-build reading small so the model's effort goes into the concept and the craft, not the process.
 7. Treat user approval gates, accessibility requirements, honest content and honest placeholder reporting as behavioral contracts.
 8. **Singularity over safety.** The skill exists to produce sites unlike other sites. Do not add fixed menus (style, palette, font or layout lists) that the model picks from by default, section templates, or rules whose safe zone becomes a house look. Vocabulary lists are allowed only as inspiration, labelled as such, beside a rule that the concept decides.
-9. **Made, not sourced.** Heroes, illustrations, scenes, signature objects and section devices are made for each site. Component libraries are optional and limited to ordinary controls, restyled into the site's material (`component-sourcing.md`). Never reintroduce mandatory catalog lineage or catalog inventories.
+9. **Crafted, not assembled; modern by default.** Premium modern components are a core ingredient, chosen per surface and always restyled to the site's tokens and concept (`component-sourcing.md`). A component left in its demo styling is a failure. Sites use a contemporary design language unless the user asks for a period, heritage or illustrated style. Never reintroduce mandatory catalog inventories or catalog lineage for every surface.
 10. **The Creative Direction Paragraph is the contract** and the Quality Contract block is fixed text. Change the Quality Contract only deliberately, in one place (`creative-direction.md`), and note it in the changelog.
-11. **Judge the render.** Visual claims require screenshots at 1440×900 and 390×844 when rendering is available. If it isn't, the skill must say so and never claim a visual check it didn't do.
+11. **Judge the render, completely.** Visual claims require screenshots at 1440×900 and 390×844 when rendering is available. If it isn't, the skill must say so and never claim a visual check it didn't do. Every promise in the brief is checked against the render (the build ledger) before any beauty review, and nothing is logged as done without being seen.
 12. **References are ingredients.** Record what the user loves in their own words and translate each trait into the concept; never clone a reference's layout, copy or imagery. The benchmark gallery has no published licence: link to it and cite page numbers, but don't copy its code or prompts into the skill.
 
 ## Editing conventions
@@ -73,7 +74,13 @@ There is currently no automated test suite. Validate documentation changes with 
 5. When a change affects output quality, test it on a real request and compare the rendered first frame with the benchmark gallery at the same size.
 6. Inspect `git diff --check` and `git diff` before handoff.
 
-If repeatable validation becomes substantial, add a small deterministic checker and document its command here. Do not claim a check passed unless it was actually run.
+If repeatable validation becomes substantial, add a small deterministic checker and document its command here.
+
+Beauty-floor scripts: after changing `palette_check.py` or `squint_check.py`, run them on a known failure and on gallery thumbnails. A known failure must still fail and the gallery must still pass. For example, `python3 webdesign-start/scripts/palette_check.py <tokens.json> <screenshot.png>` and `python3 webdesign-start/scripts/squint_check.py <screenshot.png> C0,R0,C1,R1`. Do not claim a check passed unless it was actually run.
+
+## Lessons from real builds
+
+- **Hermosa Baking (2026-09, v2.0.0):** the build shipped without two promised sections, with a dead nav link, a flat façade of rectangles, a web card pasted over the hero, a generic second section (kicker plus italic-accent headline), WordArt-style lettering and clip-art bread. The v2.0 skill also pushed toward vintage pastiche. Fixes: the completeness gate and build ledger, cold critique, the silhouette and squint tests, "information lives inside the world", "the idea survives the scroll", "contemporary by default", and components as a core ingredient. The colours also clashed (navy and brown at the same darkness, twin gold/orange accents) and the scene mixed three projections. That led to the beauty floor (`aesthetics.md`) with measured thresholds and checking scripts.
 
 ## Skill evolution
 

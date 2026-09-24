@@ -19,7 +19,7 @@ A periodic-table grid is a third, related layout: a fixed matrix where position 
 - **Filters and toggles are the legend.** 036's line legend toggles lines; 020's sort and unit switches sit above the plate. The key and the controls are one object.
 - **A detail panel that adds, not repeats.** 020's tooltip adds the continent and the outflow; 036's station card adds live departures. The panel answers the next question.
 - **A playful comparison.** 020's "race the droplets" lets people feel the length differences; 036's route planner turns the diagram into a tool. One such moment, not five.
-- **Print apparatus:** plate numbers, an issue line, a key, a scale bar, a colophon with sources (`craft.md` §3).
+- **Print apparatus:** plate numbers, an issue line, a key, a scale bar, a colophon with sources (`craft.md` §5).
 
 ## Architecture
 

@@ -37,6 +37,7 @@ REQUIRED_PATHS = (
     "references/creative-direction.md",
     "references/review.md",
     "references/formats/index.md",
+    "references/aesthetics.md",
     "scripts/update_skill.py",
 )
 VERSION_RE = re.compile(
