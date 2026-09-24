@@ -125,6 +125,8 @@ A section is a small idea, not a container. For each section, name its device:
 - **Scene devices:** a pinned scene scrubbed by scroll, a day/night change, a camera move.
 - **Data as editorial:** a value paired with a sentence, hairline meters instead of progress bars, shared scales across repeated items, charts that label only the extremes and "now".
 
+**Rhythm across sections:** vary scale, density or layout at least every 2–3 sections, never build four sections in a row from the same block, and give long pages a full-bleed set piece roughly every three screens (`polish.md` §8).
+
 Avoid equal-weight card grids, icon-in-circle features, stat tiles and testimonial carousels unless the concept turns them into something (a bento where every tile *does* something live is the exception that earns it).
 
 ## 11. The idea survives the scroll

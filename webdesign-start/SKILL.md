@@ -36,7 +36,7 @@ That gallery works because every page starts from **a specific creative-directio
 | Capability | If you have it | If you don't |
 |---|---|---|
 | Structured question UI | Use it for question batches (up to 4 questions, 2–4 options each) | Use lettered options in plain text |
-| Rendering (headless browser, preview pane, Playwright) | Screenshot at 1440×900 and 390×844 in Phases 4–6 | Say so plainly; review the code against `references/review.md` and ask the user for screenshots |
+| Rendering (headless browser, preview pane, Playwright) | Screenshot at 1440×900 and 390×844 in Phases 4–7 | Say so plainly; review the code against `references/review.md` and ask the user for screenshots |
 | Web access | Optionally open user-named sites to study what they like | Work from the user's description; never invent observations of a site you did not see |
 | File writes | Save `DESIGN-BRIEF.md` at the project root | Print the brief in chat and ask the user to save it |
 | Python 3 (+ Pillow) | Run `scripts/palette_check.py` and `scripts/squint_check.py` (`references/aesthetics.md`) | Apply the same rules by eye and say the check was done by eye |
@@ -60,7 +60,8 @@ Phase 3  Direction     the Creative Direction Paragraph + Quality Contract → D
 Phase 4  First frame   build the hero viewport at full craft, screenshot, review
             [CHECKPOINT: the user reacts to the rendered first frame]
 Phase 5  Build         the rest of the site, every section with its own device
-Phase 6  Review        screenshot loops, quality contract audit, report
+Phase 6  Polish        the last layer: chrome, every frame, type, controls, detail, rhythm
+Phase 7  Review        screenshot loops at every scroll depth, gates, report
 ```
 
 Announce each transition in one line ("Discovery done. Next I'll sketch three very different concepts for you to react to.").
@@ -73,7 +74,7 @@ Announce each transition in one line ("Discovery done. Next I'll sketch three ve
    - **New site, redesign, or "I don't know what it should look like"**: full workflow.
    - **`DESIGN-BRIEF.md` exists and holds a Creative Direction Paragraph**: read it, confirm continuation in one line, and go to Phase 5 for the requested work (Phase 4 if no first frame has been approved yet). An older brief without a paragraph: run Phases 2–3 compactly to write one, harvesting everything the old brief already decided.
    - **Small change to an existing site** (one section, one component, a restyle): skip discovery. Read the brief or infer the site's governing idea, material, palette and type from the code, state that reading in one line, make the change in that language (`references/craft.md`), then review that slice with screenshots.
-   - **Audit or critique only**: go to Phase 6 and report against `references/review.md` without building.
+   - **Audit or critique only**: go to Phase 7 and report against `references/review.md` without building.
    - **"Just write me the prompt"**: run Phases 1–3 and deliver the paragraph plus Quality Contract as a copy-paste prompt (`references/creative-direction.md`, "Prompt-only delivery").
 2. **Harvest the opening message**: what is being built, for whom, the main visitor action, any brand assets, any sites or things the user admires, and any specifics about the business (place, history, craft, signature product). Mark each item known or unknown.
 3. **Frame the engagement in two or three sentences**: a few quick question rounds, then three concepts to react to, then a written direction for approval, then a rendered first frame before the full build.
@@ -140,14 +141,36 @@ Build the rest of the site against the paragraph.
 - Write real copy in the concept's voice. When real content is missing, use clearly marked placeholders and list them in the report. Never write filler.
 - Re-render as you go, not only at the end.
 
-## Phase 6 — Review
+## Phase 6 — Polish
+
+Read `references/polish.md` now. The build is complete; this pass makes it feel finished. It is a real pass, roughly a fifth of the build effort.
+
+1. Run `scripts/page_audit.js` at 1440×900 and 390×844. It scrolls the whole page and reports:
+   - chrome collisions and floating panels over content;
+   - lone words and cut-off text;
+   - browser-default controls and placeholder filler;
+   - repeated section blocks.
+2. Capture the whole page (a screenshot every 50–75% of a viewport at both sizes, plus states and mid-animation frames). Work through the polish list:
+   - chrome and layering;
+   - pause-anywhere frames;
+   - typography finishing;
+   - every control and state;
+   - consistent scale;
+   - a rendering-detail pass on all illustration;
+   - device fidelity (each device the paragraph names really is that thing);
+   - section rhythm;
+   - the last details.
+3. Fix, re-render and repeat until the audit is clean and a full scroll finds nothing to fix. Keep a polish log for the report.
+4. Any exception to a check (an audit finding you want to keep, a larger focal area) is **named to the user and agreed**, never granted silently in the brief.
+
+## Phase 7 — Review
 
 Read `references/review.md` now and run the full loop:
 
-1. Screenshot every page at 1440 and 390 wide, plus key scroll depths and states.
+1. Screenshot every page at 1440 and 390 wide **at every 50–75% of a viewport through the whole page**, plus states and mid-animation frames.
 2. **Completeness gate:** run the dead-link and empty-section check and tick every item of the build ledger. Anything missing gets built before any visual review.
 3. **Cold critique:** judge the screenshots as a demanding art director who hasn't read the paragraph, and list the five worst problems. Use a separate reviewer (a subagent or fresh session) if your environment has one.
-4. **Beauty floor gate** (`references/aesthetics.md` §5) at both sizes. Any failure is fixed before anything else.
+4. **Beauty floor gate** (`references/aesthetics.md` §5) at both sizes and every scroll depth, plus a clean `page_audit.js`. Any failure is fixed before anything else.
 5. Compare the render with the Creative Direction Paragraph **slot by slot**: PASS, PARTIAL or FAIL, with the evidence.
 6. Run the first-frame test (including the silhouette and squint tests), the sameness check, the Quality Contract audit and the accessibility checks.
 7. Fix the worst finding and re-render. Repeat until a loop finds nothing worth fixing, and do at least two loops.
@@ -176,7 +199,8 @@ Never report a FAIL as done.
 | `references/brief-template.md` | Phase 3 | `DESIGN-BRIEF.md` structure |
 | `references/craft.md` | Phases 4–5 | Art direction: governing idea, hero composition, material, light, texture, palette, type, copy, motion |
 | `references/techniques.md` | Phases 4–5 | Code recipes: texture, light, drawn illustration, type, motion, signature objects, canvas |
-| `references/aesthetics.md` | Phases 3, 4 and 6 | The beauty floor: colour harmony, depth and light, composition and geometry, gallery calibration, the gate; uses `scripts/palette_check.py`, `scripts/squint_check.py`, `scripts/composition_audit.js` |
+| `references/polish.md` | Phase 6 | The last layer: chrome and layering, pause-anywhere frames, typography finishing, controls and states, scale, rendering detail, device fidelity, section rhythm; uses `scripts/page_audit.js` |
+| `references/aesthetics.md` | Phases 3, 4, 6 and 7 | The beauty floor: colour harmony, depth and light, composition and geometry, gallery calibration, the gate; uses `scripts/palette_check.py`, `scripts/squint_check.py`, `scripts/composition_audit.js` |
 | `references/build-standards.md` | Phase 4 | Build modes, stack adaptation, performance, accessibility, reduced motion, honesty |
 | `references/component-sourcing.md` | Phases 3–5 | Modern component sources, choosing per surface, restyling, overused effects, build-mode notes |
-| `references/review.md` | Phases 4 and 6 | The screenshot loop, first-frame test, sameness tells, slot audit, report format |
+| `references/review.md` | Phases 4 and 7 | The screenshot loop, first-frame test, sameness tells, slot audit, report format |

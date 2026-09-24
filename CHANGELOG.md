@@ -2,6 +2,40 @@
 
 All notable changes to the webdesign-start skill. Versions follow semver: major = workflow-breaking restructure, minor = new rules/sections/capabilities, patch = fixes and wording.
 
+## 2.2.0 — 2026-09-24
+
+The polish layer, from a critique of the second real build (a car-rental site that was strong but a notch below the gallery).
+
+- **New Phase 6 — Polish** (`references/polish.md`); review moves to Phase 7. The pass covers:
+  - chrome and layering, with clear zones and a lane for floating UI;
+  - pause-anywhere frames: no half-rolled digits, overlapping sprites or layout shift;
+  - typography finishing: balanced and pretty wrapping, no lone words or wrapping labels, real typographic characters, non-breaking unit spaces;
+  - every control styled, and every state designed;
+  - one scale per scene;
+  - a rendering-detail pass for illustration: shading where surfaces meet, edge light, material variety, secondary detail, authored night states;
+  - device fidelity;
+  - section rhythm;
+  - the last details.
+- **New `scripts/page_audit.js`.** It scrolls the whole page and reports:
+  - text passing under fixed chrome with no backing;
+  - floating panels hiding content;
+  - lone last words and cut-off text;
+  - browser-default controls and placeholder filler;
+  - four or more sections in a row built from the same block.
+
+  Calibrated on gallery pages so their known-good choices (hidden native inputs with custom visuals, open scene zones) don't trip it.
+- **Gates run through the whole page:**
+  - screenshots every 50–75% of a viewport;
+  - `palette_check.py` takes many screenshots;
+  - `squint_check.py` runs on each set piece's opening frame;
+  - gallery calibration scrolls the whole page side by side.
+- **Loopholes closed:**
+  - the squint check rejects focal areas over 40 of 160 cells;
+  - check exceptions must be agreed with the user and recorded in the brief, never self-granted.
+- **New rules:**
+  - device fidelity: a named device must be that thing, not a card standing in for it; it has its own row in the slot audit;
+  - section rhythm: vary every 2–3 sections, never four identical in a row, and a full-bleed set piece about every three screens.
+
 ## 2.1.0 — 2026-09-23
 
 Lessons from the first real build (a bakery site that came out boxy, unfinished and partly generic), plus a shift to modern, component-rich sites.

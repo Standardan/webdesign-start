@@ -24,7 +24,8 @@ Phase 3  Direction     the Creative Direction Paragraph + fixed Quality Contract
 Phase 4  First frame   the hero screen built at full finish, rendered at desktop and phone size
    ── checkpoint: you react to the real render ──
 Phase 5  Build         every section gets its own device; the governing idea runs through everything
-Phase 6  Review        screenshot loops against the paragraph, slot by slot, until nothing is left to fix
+Phase 6  Polish        the last layer: chrome, every frame, type, controls, rendering detail, rhythm
+Phase 7  Review        screenshots through the whole page, beauty gates, slot-by-slot audit
 ```
 
 Just want the prompt? Ask for it. The skill runs Phases 1–3 and hands you the paragraph plus Quality Contract as one copyable block, for any model or designer.
@@ -38,6 +39,8 @@ webdesign-start/
 ├── scripts/palette_check.py     # colour harmony check (tokens + optional screenshot)
 ├── scripts/squint_check.py      # is the subject the strongest thing on screen?
 ├── scripts/composition_audit.js # alignment, type scale, radii, rotation, focal overlap, measure
+├── scripts/page_audit.js        # whole-page polish: chrome collisions, lone words, cut-off text,
+│                                #   native controls, filler, repeated sections
 └── references/                  # loaded progressively, only when a phase needs them
     ├── discovery.md             # the narrowing game: hypothesis board, splitting questions, particulars
     ├── strategic-loops.md       # strategy essentials for business sites: promise, action, proof,
@@ -55,6 +58,8 @@ webdesign-start/
     │                            #   choosing per surface, restyling, overused effects
     ├── review.md                # completeness gate, cold critique, screenshot loop, first-frame
     │                            #   and sameness checks, report
+    ├── polish.md                # the last layer: chrome, pause-anywhere frames, type finishing,
+    │                            #   controls and states, rendering detail, device fidelity, rhythm
     ├── aesthetics.md            # the beauty floor: colour harmony, depth and light, composition,
     │                            #   gallery calibration; measured on all 100 gallery pages
     └── formats/                 # 23 build recipes, one per kind of site, loaded only when chosen

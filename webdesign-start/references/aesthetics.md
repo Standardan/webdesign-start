@@ -1,6 +1,6 @@
 # The beauty floor: colour, depth and composition
 
-**Load at:** Phase 3 (colour and depth decisions go into the brief), Phase 4 (first-frame gate) and Phase 6 (review gate). Also for audit-only requests.
+**Load at:** Phase 3 (colour and depth decisions go into the brief), Phase 4 (first-frame gate) and Phase 7 (review gate). Also for audit-only requests.
 
 None of the 100 benchmark gallery pages looks ugly. That isn't taste or luck: all 100 follow the same measurable rules for colour, depth and composition. These rules were derived by measuring every page in OKLCH colour, blurred value maps, the DOM and the source code, and tested against a failed build (Hermosa Baking, 2026-09) whose colours clashed, whose scene had no depth, and whose angles and alignment looked wrong.
 
@@ -8,10 +8,11 @@ A site can be singular in concept and still fail this floor. **Every rule here i
 
 | Check | Tool | When |
 |---|---|---|
-| Palette harmony | `python3 scripts/palette_check.py tokens.json [first-frame.png]` | Phase 3 (tokens), Phases 4 and 6 (with screenshots) |
-| Focal value structure | `python3 scripts/squint_check.py first-frame.png C0,R0,C1,R1` | Phases 4 and 6, desktop and phone |
-| Alignment, type scale, radii, rotation, focal overlap, measure | `scripts/composition_audit.js` pasted into the page, or run by your browser tool | Phases 4 and 6, at 1440×900 and 390×844 |
-| Gallery calibration | Side by side with 2 gallery pages of the same format (§4) | Phases 4 and 6 |
+| Palette harmony | `python3 scripts/palette_check.py tokens.json [screenshot.png ...]` | Phase 3 (tokens), Phase 4 (first frame), Phase 7 (a screenshot every 50–75% of a viewport through the whole page) |
+| Focal value structure | `python3 scripts/squint_check.py frame.png C0,R0,C1,R1` (the subject only, at most 40 cells) | Phases 4 and 7: the first frame and the opening frame of every set piece, desktop and phone |
+| Alignment, type scale, radii, rotation, focal overlap, measure | `scripts/composition_audit.js` pasted into the page, or run by your browser tool | Phases 4 and 7, at 1440×900 and 390×844 |
+| Whole-page polish | `scripts/page_audit.js` in the page (it scrolls itself) | Phases 6 and 7, at 1440×900 and 390×844 |
+| Gallery calibration | Side by side with 2 gallery pages of the same format (§4), first frame and whole page | Phases 4 and 7 |
 
 `palette_check.py` needs only Python 3 for tokens, and Pillow for screenshots. `squint_check.py` needs Pillow. If a tool can't run, do the check by eye against the rule, and say it was done by eye.
 
@@ -284,23 +285,24 @@ The subject keeps at least 25% of the first screen, and information and controls
 
 ## 4. Gallery calibration
 
-Numbers catch most failures, but beauty is also judged by eye. At Phase 4 and Phase 6:
+Numbers catch most failures, but beauty is also judged by eye. At Phase 4 and Phase 7:
 
 1. Pick **two gallery pages in the same format** (`formats/index.md` lists them) and screenshot or open them at the same size as your first frame. Their thumbnails are at `https://miaai-lab.github.io/Claude-Opus-5.5-100-HTML-Files/` (open the page) or in the source repository's `thumbs/` folder.
 2. Put your screenshot beside them and compare, one at a time: **colour** (does yours feel as harmonious and intentional?), **depth** (as dimensional and lit?), **composition** (as clear a focal point, as clean an alignment?), **finish** (as polished at the edges, the type and the details?).
 3. If yours is weaker on any of the four, it fails. Name the gap, fix it, and compare again. "Different style" is not an excuse for weaker colour, depth or composition.
+4. **In Phase 7, compare the whole page:** scroll yours and the two gallery pages side by side, section by section. The first frame is where effort goes naturally; the middle of the page is where it runs out.
 
 ## 5. The gate
 
 A first frame or a finished page passes the beauty floor only when all of these hold, at 1440×900 and 390×844:
 
-- [ ] `palette_check.py` passes on the tokens, and on the screenshot.
-- [ ] `squint_check.py` passes: the subject is the strongest cell, with no failures.
-- [ ] `composition_audit.js` reports no findings, or each remaining finding is a declared exception in the brief.
+- [ ] `palette_check.py` passes on the tokens and on screenshots at every 50–75% of a viewport through the whole page.
+- [ ] `squint_check.py` passes on the first frame and each set piece's opening frame, with an honest focal area (the subject itself, at most 40 cells).
+- [ ] `composition_audit.js` and `page_audit.js` report no findings, or each remaining finding is an exception the user agreed to (never self-granted).
 - [ ] Each surface's depth family is declared, and the hero shows at least 5 depth cues including the mandatory ones.
 - [ ] One key light, consistent shadows and highlights, grounded objects, no glow under contact points.
 - [ ] Drawn scenes: one projection, one horizon, converging lines, no near-axis angles, thickness on architecture and objects.
 - [ ] No dead zones, no near-miss edges, no stray rotations, no stretched or effect-stacked lettering.
-- [ ] Calibration: not weaker than two same-format gallery pages on colour, depth, composition or finish.
+- [ ] Calibration: not weaker than two same-format gallery pages on colour, depth, composition or finish, on the first frame and scrolled side by side through the whole page.
 
 Record the tool outputs and the calibration verdict in the review report.

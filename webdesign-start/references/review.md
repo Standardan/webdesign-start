@@ -1,6 +1,6 @@
 # Review: judge the render, not the code
 
-**Load at:** Phase 4 (first frame) and Phase 6 (full review). Also for audit-only requests.
+**Load at:** Phase 4 (first frame) and Phase 7 (full review). Also for audit-only requests.
 
 Every benchmark gallery page was rendered at 1440×900 and 390×844 and accepted only after its screenshots were reviewed. Run the same gate. Code that looks right often renders wrong.
 
@@ -8,7 +8,7 @@ Every benchmark gallery page was rendered at 1440×900 and 390×844 and accepted
 
 1. **Render.**
    - Screenshot each page at **1440×900** and **390×844**, first frame before any interaction.
-   - Add screenshots at key scroll depths (every set piece, and about every 25% of a long page).
+   - Add a screenshot every 50–75% of a viewport height through the **whole page**. Checks that only ran on the first frame have missed mid-page chrome collisions, colour mud and repeated layouts.
    - Add each state (modes, day/night, open dialogs, hover on the signature object).
    - Add a reduced-motion render.
    - Use whatever you have: a browser pane, a headless browser (Playwright or Puppeteer), or the project's own tooling. If nothing can render, say so and ask the user for screenshots. Never claim a visual check you didn't do.
@@ -18,7 +18,7 @@ Every benchmark gallery page was rendered at 1440×900 and 390×844 and accepted
 5. **Beauty floor gate** (`aesthetics.md` §5): run `palette_check.py` on the tokens and screenshot, `squint_check.py` on the first frame, and `composition_audit.js` in the page, at both sizes. Then compare side by side with two same-format gallery pages. Any failure is fixed before anything else.
 6. **Audit** with the sections below.
 7. **Fix the worst finding first**, then re-render.
-8. **Repeat** until a loop finds nothing worth fixing. Run at least two full loops for Phase 6. Record how many loops ran and what each caught.
+8. **Repeat** until a loop finds nothing worth fixing. Run at least two full loops for Phase 7. Record how many loops ran and what each caught.
 
 ## Completeness gate
 
@@ -40,7 +40,7 @@ Then tick the **build ledger** (the list of promises copied from the paragraph i
 
 Any unchecked box is a FAIL. Build it, then continue.
 
-## First-frame test (Phase 4, and again in Phase 6)
+## First-frame test (Phase 4, and again in Phase 7)
 
 At both sizes, with no interaction:
 - [ ] Would someone screenshot this and send it to a friend? If it's only "fine", it fails.
@@ -68,6 +68,7 @@ Give every slot a verdict with evidence from the screenshots:
 | Ground and palette (hex values used, accent stays in its job) | | |
 | Hero (as described, drawn, idle behaviour present) | | |
 | Each section's device | | |
+| Device fidelity (each named device really is that thing, not a card standing in for it; `polish.md` §7) | | |
 | Each named interaction (works by mouse, touch and keyboard) | | |
 | Delight | | |
 | Typography treatment | | |
@@ -128,7 +129,8 @@ These slipped past even strong pages. Look for them specifically:
 
 **Built:** [pages/sections, build mode, stack]
 **Completeness:** [build ledger: every promise ✓, or what was added after the gate caught it]
-**Beauty floor:** [palette_check, squint_check and composition_audit output at 1440 and 390; the two gallery pages compared and the verdict on colour, depth, composition and finish]
+**Beauty floor:** [palette_check at every scroll depth, squint_check per set piece, composition_audit and page_audit at 1440 and 390; the two gallery pages compared (first frame and whole page) and the verdict on colour, depth, composition and finish]
+**Polish log:** [what the polish phase found and fixed; exceptions the user agreed to]
 **Loops run:** [n]. Caught and fixed: [list]
 **Slot audit:** [table, or a summary with every PARTIAL explained]
 **First frame:** [pass notes at 1440 and 390]

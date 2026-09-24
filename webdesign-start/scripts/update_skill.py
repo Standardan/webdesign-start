@@ -38,6 +38,7 @@ REQUIRED_PATHS = (
     "references/review.md",
     "references/formats/index.md",
     "references/aesthetics.md",
+    "references/polish.md",
     "scripts/update_skill.py",
 )
 VERSION_RE = re.compile(

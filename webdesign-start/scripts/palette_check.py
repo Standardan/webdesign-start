@@ -1,6 +1,8 @@
 """Palette check for webdesign-start (references/aesthetics.md, "Colour").
 
-Usage: python3 palette_check.py tokens.json [first-frame.png]
+Usage: python3 palette_check.py tokens.json [screenshot.png ...]
+Pass one screenshot per scroll depth (every 50-75% of a viewport) so colour is checked across the whole page,
+not only the first frame.
 tokens.json: [{"name", "hex", "role": ground|surface|ink|muted|accent|other, "area": 0-1,
                "on": [ground names], "field": bool, "stop": bool, "maximal": bool}]
 The screenshot check needs Pillow (pip install pillow); everything else is standard library.
@@ -44,4 +46,9 @@ def check(tokens, shot=None):
         fam = families([p + (1 / len(P),) for p in P]); area_rules(fam, 'screenshot', out); dom = fam[0][0] if fam else 0
         s = sum(p[1] >= .12 and dh(p[2], dom) > 35 for p in P) / len(P); lim = .12 if any(t.get('maximal') for t in tokens) else .05; s > lim and out.append(f'screenshot: accent (C>=.12, off the main hue) covers {s:.1%} > {lim:.0%}')
     return out
-if __name__ == '__main__': print('\n'.join(check(json.load(open(sys.argv[1])), sys.argv[2] if len(sys.argv) > 2 else None)) or 'PASS')
+if __name__ == '__main__':
+    toks = json.load(open(sys.argv[1]))
+    out = check(toks)                                          # token rules
+    for shot in sys.argv[2:]:                                  # screenshot rules, one pass per scroll depth
+        out += [f'{shot}: {m}' for m in check(toks, shot) if m.startswith('screenshot')]
+    print('\n'.join(out) or 'PASS')

@@ -46,7 +46,7 @@ Per `aesthetics.md`. The review checks the render against these.
 - **Depth family per surface:** hero [object-space | light-space | graphic-flat], [section] […]. A place or product is never graphic-flat.
 - **Depth cues in the hero (at least 5):** […]
 - **Drawn scenes:** projection [flat elevation | 1-point | 2-point | axonometric + angles], horizon at [fraction of the frame].
-- **Focal area** (16×10 grid, for `squint_check.py`): desktop [C0,R0,C1,R1], phone [C0,R0,C1,R1]. **Balance:** [symmetric | asymmetric].
+- **Focal area** (16×10 grid, for `squint_check.py`; the subject itself, at most 40 cells): desktop [C0,R0,C1,R1], phone [C0,R0,C1,R1], and each set piece's opening frame. **Balance:** [symmetric | asymmetric].
 - **Radii:** [0 | one value | two values]. **Rotation:** [none | declared set and why]. **Phone recomposition:** [art first | type in the quiet zone | redrawn in portrait | type first].
 - **Calibration pages:** [two gallery pages in the same format].
 
@@ -61,6 +61,12 @@ Surface by surface, per `component-sourcing.md`. Every component is restyled to 
 | [Section] device | … | … | … |
 | Primary action | … | … | … |
 | Navigation / menu | … | … | … |
+
+## Exceptions agreed with the user
+
+Any check result kept on purpose (an audit finding, a rule broken for the concept), with the date the user agreed. Nothing goes here without the user's say-so.
+
+- [date] [check and finding] · [why] · agreed by the user
 
 ## Build ledger
 

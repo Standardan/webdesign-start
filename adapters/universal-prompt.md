@@ -11,7 +11,7 @@ You are running a guided web-design engagement for me. Read `webdesign-start/SKI
 3. Invent three genuinely different concepts (`references/concept.md`) and describe each so I can picture the first screen. Let me pick, mix or redirect.
 4. Write the Creative Direction Paragraph with exact colours, type treatment, the hero and key components, a device for each section and named interactions, plus the fixed Quality Contract (`references/creative-direction.md`). Save it in `DESIGN-BRIEF.md`, then STOP for my approval.
 5. Build the first screen at full finish, render it at desktop and phone sizes, review it (`references/review.md`) and show me before building the rest.
-6. Build the site with beautiful modern components restyled to the concept (`references/component-sourcing.md`), contemporary unless I ask otherwise. Check that everything promised exists, then review the renders against the paragraph item by item and fix what doesn't match. Never invent testimonials, metrics or reviews.
+6. Build the site with beautiful modern components restyled to the concept (`references/component-sourcing.md`), contemporary unless I ask otherwise. Run the polish pass on the whole page (`references/polish.md`), check that everything promised exists, then review the renders against the paragraph item by item and fix what doesn't match. Never invent testimonials, metrics or reviews.
 
 If I only want the prompt, give me the paragraph and Quality Contract in one copyable block.
 

@@ -15,6 +15,7 @@ This file is a living contributor guide. Update it whenever the repository struc
 - `webdesign-start/references/discovery.md` and `formats/index.md`: the narrowing game (hypothesis board and splitting questions) and the format map with signals and all 100 gallery pages.
 - `webdesign-start/references/formats/*.md`: one build recipe per kind of site (23 formats). Each follows the same sections: Load when, Study, What makes it work, Architecture, Key mechanics, Variation levers, Business uses, Pitfalls, Signals.
 - `webdesign-start/references/review.md`: screenshot loop, first-frame test, sameness check and slot audit.
+- `webdesign-start/references/polish.md` and `webdesign-start/scripts/page_audit.js`: the Phase 6 polish pass and its whole-page audit (chrome collisions, lone words, cut-off text, native controls, filler, repeated sections).
 - `webdesign-start/references/aesthetics.md` and `webdesign-start/scripts/palette_check.py`, `squint_check.py`, `composition_audit.js`: the beauty floor (colour, depth and light, composition and geometry) with deterministic checks. Thresholds were measured on the 100 gallery pages; don't tighten one without re-running it on the gallery thumbnails, or it will fail pages that are known to be beautiful.
 - `webdesign-start/references/strategic-loops.md`, `research.md`, `brief-template.md`, `build-standards.md`: strategy essentials, reference handling, the brief template and the engineering floor. **These four filenames must not be renamed or removed**: the updater bundled with older installs refuses any download that lacks them (see `REQUIRED_PATHS` in `scripts/update_skill.py`).
 - `webdesign-start/scripts/update_skill.py`: the self-updater. Its `REQUIRED_PATHS` lists files every future release must contain.
@@ -26,7 +27,7 @@ This file is a living contributor guide. Update it whenever the repository struc
 ## Working principles
 
 1. Read this file and the files directly relevant to the requested change before editing.
-2. Preserve the core sequence: intake, discovery, concepts, creative-direction approval, first-frame checkpoint, build and screenshot review. Any deliberate change to a gate must be documented in the README and changelog.
+2. Preserve the core sequence: intake, discovery, concepts, creative-direction approval, first-frame checkpoint, build, polish and screenshot review. Any deliberate change to a gate must be documented in the README and changelog.
 3. Keep the skill tool-agnostic. Tool-specific behavior belongs in environment-adaptation rules or an adapter, not in the canonical workflow unless every supported assistant can follow it.
 4. Prefer precise, testable instructions over aspirational language. Do not add hype, filler, or unsupported claims.
 5. Avoid duplicating detailed guidance across files. Keep orchestration in `SKILL.md`; keep phase-specific detail in the relevant reference file; link between them clearly.
@@ -76,11 +77,20 @@ There is currently no automated test suite. Validate documentation changes with 
 
 If repeatable validation becomes substantial, add a small deterministic checker and document its command here.
 
-Beauty-floor scripts: after changing `palette_check.py` or `squint_check.py`, run them on a known failure and on gallery thumbnails. A known failure must still fail and the gallery must still pass. For example, `python3 webdesign-start/scripts/palette_check.py <tokens.json> <screenshot.png>` and `python3 webdesign-start/scripts/squint_check.py <screenshot.png> C0,R0,C1,R1`. Do not claim a check passed unless it was actually run.
+Beauty-floor and polish scripts: after changing `palette_check.py`, `squint_check.py` or `page_audit.js`, run them on a known failure and on gallery thumbnails. A known failure must still fail and the gallery must still pass. For example, `python3 webdesign-start/scripts/palette_check.py <tokens.json> <screenshot.png>` and `python3 webdesign-start/scripts/squint_check.py <screenshot.png> C0,R0,C1,R1`. Do not claim a check passed unless it was actually run.
 
 ## Lessons from real builds
 
 - **Hermosa Baking (2026-09, v2.0.0):** the build shipped without two promised sections, with a dead nav link, a flat façade of rectangles, a web card pasted over the hero, a generic second section (kicker plus italic-accent headline), WordArt-style lettering and clip-art bread. The v2.0 skill also pushed toward vintage pastiche. Fixes: the completeness gate and build ledger, cold critique, the silhouette and squint tests, "information lives inside the world", "the idea survives the scroll", "contemporary by default", and components as a core ingredient. The colours also clashed (navy and brown at the same darkness, twin gold/orange accents) and the scene mixed three projections. That led to the beauty floor (`aesthetics.md`) with measured thresholds and checking scripts.
+
+- **Dack car rental (2026-09, v2.1.0):** a strong concept that still felt a notch below the gallery. Causes:
+  - checks ran only on the first frame, so mid-page chrome collisions, colour mud and repeated layouts were never tested;
+  - the gates were loosened by a focal area covering most of the screen and self-granted exceptions;
+  - brief devices ("painted on lots") became cards;
+  - the illustration stopped at flat vector;
+  - native form controls and lone words were left in.
+
+  Fixes: the Phase 6 polish pass and `page_audit.js`; checks at every scroll depth; focal areas capped at 25% of the grid; exceptions need the user's agreement; device fidelity and section rhythm rules.
 
 ## Skill evolution
 
