@@ -2,6 +2,17 @@
 
 All notable changes to the webdesign-start skill. Versions follow semver: major = workflow-breaking restructure, minor = new rules/sections/capabilities, patch = fixes and wording.
 
+## 2.4.0 — 2026-10-08
+
+Sites stop reading as AI-written. From a review of 13 real builds where the owner's verdict was "they still scream AI": em dashes everywhere, the same stock phrasing, and a tiny tracked label over a giant headline over a grey paragraph in every section.
+
+- **New `references/human-copy.md`:** punctuation (no em dashes or dash-like hyphens in visible copy; ranges written as "9 to 5"), stock AI phrases to avoid and what to write instead, and layout cadence (the label → big heading → paragraph stack at most once, tracked uppercase labels only for real metadata and at most 3–4 per page, varied section openings).
+- **New `scripts/copy_audit.js`:** in-page audit reporting DASH, RANGE, PHRASE, LABELS, STACK and SLOGAN findings. Required clean in Phase 6 and Phase 7.
+- **Craft change:** "Extreme scale contrast" with 10–12px tracked labels is replaced by "Scale with purpose"; genre kickers are optional and rare. The label voice is used only for real metadata.
+- **Review:** two new sameness tells, "AI copy" and "The eyebrow stack everywhere".
+- **Quality Contract item 8** (deliberate change): honest content is also written the way a person talks, with no em dashes, no stock AI phrases and varied section openings.
+- New core principle in SKILL.md: "Written by a person." Adapters updated.
+
 ## 2.3.0 — 2026-09-24
 
 Discovery opens up, and sites are no longer all "worlds" themed on the time of day.

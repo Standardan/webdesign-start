@@ -86,7 +86,8 @@ QUALITY CONTRACT (applies to every page of this site)
 7. Accessible. Semantic HTML, WCAG AA text contrast, visible :focus-visible styles in the site's own
    language, keyboard access to every interaction, pointer events for mouse and touch, touch equivalents
    for anything hover-driven, labels on controls, alt text or role="img" descriptions on meaningful art.
-8. Honest content. Original copy in the paragraph's voice, with no lorem ipsum. Facts are accurate or hedged.
+8. Honest content. Original copy in the paragraph's voice, written the way a person talks: no lorem ipsum,
+   no em dashes, no stock AI phrases, and section openings that vary. Facts are accurate or hedged.
    Fictional brands, people and data are labelled as fictional. No invented testimonials, logos, metrics
    or reviews for a real business; missing content uses clearly marked placeholders.
 9. Robust. No console errors; storage access is wrapped in try/catch; sound, if any, is synthesised or

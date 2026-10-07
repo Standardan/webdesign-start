@@ -24,7 +24,7 @@ Phase 3  Direction     the Creative Direction Paragraph + fixed Quality Contract
 Phase 4  First frame   the hero screen built at full finish, rendered at desktop and phone size
    ── checkpoint: you react to the real render ──
 Phase 5  Build         every section gets its own device; the governing idea runs through everything
-Phase 6  Polish        the last layer: chrome, every frame, type, controls, rendering detail, rhythm
+Phase 6  Polish        the last layer: human copy, chrome, every frame, type, controls, detail, rhythm
 Phase 7  Review        screenshots through the whole page, beauty gates, slot-by-slot audit
 ```
 
@@ -41,6 +41,8 @@ webdesign-start/
 ├── scripts/composition_audit.js # alignment, type scale, radii, rotation, focal overlap, measure
 ├── scripts/page_audit.js        # whole-page polish: chrome collisions, lone words, cut-off text,
 │                                #   native controls, filler, repeated sections
+├── scripts/copy_audit.js        # copy that sounds human: em dashes, stock AI phrases,
+│                                #   tracked-label overuse, repeated label/heading/paragraph stacks
 └── references/                  # loaded progressively, only when a phase needs them
     ├── discovery.md             # exploration spread + the narrowing game: hypothesis board, questions
     ├── registers.md             # world, product (Apple-style) or interface (dashboards): what changes
@@ -61,6 +63,7 @@ webdesign-start/
     │                            #   and sameness checks, report
     ├── polish.md                # the last layer: chrome, pause-anywhere frames, type finishing,
     │                            #   controls and states, rendering detail, device fidelity, rhythm
+    ├── human-copy.md            # no AI tells: punctuation, stock phrases, section cadence
     ├── aesthetics.md            # the beauty floor: colour harmony, depth and light, composition,
     │                            #   gallery calibration; measured on all 100 gallery pages
     └── formats/                 # 25 build recipes, one per kind of site, loaded only when chosen

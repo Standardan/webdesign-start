@@ -20,7 +20,8 @@ That gallery works because every page starts from **a specific creative-directio
 5. **Exact values, decided up front.** Named colours with hex values, named type treatments, a named hero, named interactions. A vague brief produces the model's average, and the average looks the same every time.
 6. **Beautiful before anyone touches it.** The first frame must already be finished and alive (idle motion, pre-warmed simulations) at both phone and desktop sizes.
 7. **Judge the render, not the code.** Look at screenshots at 1440 and 390 wide, compare them with the paragraph slot by slot, fix the weakest thing, and repeat.
-8. **Never ugly.** Every page clears the beauty floor in `references/aesthetics.md`: harmonious colour, real depth and one consistent light, clean geometry and a clear focal point. The floor is measured with the scripts in `scripts/` and calibrated against the 100 gallery pages, none of which look ugly.
+8. **Written by a person.** Copy sounds like the business owner talking: specific, plain, no em dashes, no stock AI phrases. Layout varies how sections open instead of stamping a tiny tracked label over a giant headline over a grey paragraph everywhere (`references/human-copy.md`, checked by `scripts/copy_audit.js`).
+9. **Never ugly.** Every page clears the beauty floor in `references/aesthetics.md`: harmonious colour, real depth and one consistent light, clean geometry and a clear focal point. The floor is measured with the scripts in `scripts/` and calibrated against the 100 gallery pages, none of which look ugly.
 
 ## Operating principles
 
@@ -133,26 +134,27 @@ Build the **first viewport plus one following section** at full finish: the real
 
 ## Phase 5 — Build
 
-Build the rest of the site against the paragraph.
+Build the rest of the site against the paragraph. Read `references/human-copy.md` before writing copy.
 
 - Every section gets **its own device**, taken from the concept (a plate with a caption, a pinned scene, a dial, a stamped ticket), never a generic grid of cards.
 - **Build against the build ledger** in the brief: every section, interaction, delight, mobile rule and the footer. Nothing promised is left out, and every nav link resolves.
 - Carry the governing idea into at least four systems (hero, navigation or progress, controls, transitions, ornaments) and **into every section**: each one happens somewhere in the concept's world, never as a generic web section (`references/craft.md`, "The idea survives the scroll").
 - Information lives inside the world, not in cards pasted over the art (`references/craft.md`, "Information lives inside the world").
 - Follow the chosen format file's architecture and use the recipes in `techniques.md`. A scroll-played section in any format uses `formats/scroll-journey.md` (pinned scenes). Build each surface with the component chosen in the brief's component plan, restyled to the tokens and concept (`references/component-sourcing.md`). Where no component fits, build it from `techniques.md`.
-- Write real copy in the concept's voice. When real content is missing, use clearly marked placeholders and list them in the report. Never write filler.
+- Write real copy in the concept's voice, the way the owner would say it: no em dashes, no stock AI phrases, varied sentence length (`references/human-copy.md`). Vary how sections open; the label → big heading → paragraph stack appears once at most. When real content is missing, use clearly marked placeholders and list them in the report. Never write filler.
 - Re-render as you go, not only at the end.
 
 ## Phase 6 — Polish
 
 Read `references/polish.md` now. The build is complete; this pass makes it feel finished. It is a real pass, roughly a fifth of the build effort.
 
-1. Run `scripts/page_audit.js` at 1440×900 and 390×844. It scrolls the whole page and reports:
+1. Run `scripts/copy_audit.js` (em dashes, stock phrases, tracked-label overuse, repeated section stacks) and fix every finding by rewriting (`references/human-copy.md`).
+2. Run `scripts/page_audit.js` at 1440×900 and 390×844. It scrolls the whole page and reports:
    - chrome collisions and floating panels over content;
    - lone words and cut-off text;
    - browser-default controls and placeholder filler;
    - repeated section blocks.
-2. Capture the whole page (a screenshot every 50–75% of a viewport at both sizes, plus states and mid-animation frames). Work through the polish list:
+3. Capture the whole page (a screenshot every 50–75% of a viewport at both sizes, plus states and mid-animation frames). Work through the polish list:
    - chrome and layering;
    - pause-anywhere frames;
    - typography finishing;
@@ -162,8 +164,8 @@ Read `references/polish.md` now. The build is complete; this pass makes it feel 
    - device fidelity (each device the paragraph names really is that thing);
    - section rhythm;
    - the last details.
-3. Fix, re-render and repeat until the audit is clean and a full scroll finds nothing to fix. Keep a polish log for the report.
-4. Any exception to a check (an audit finding you want to keep, a larger focal area) is **named to the user and agreed**, never granted silently in the brief.
+4. Fix, re-render and repeat until both audits are clean and a full scroll finds nothing to fix. Keep a polish log for the report.
+5. Any exception to a check (an audit finding you want to keep, a larger focal area) is **named to the user and agreed**, never granted silently in the brief.
 
 ## Phase 7 — Review
 
@@ -172,7 +174,7 @@ Read `references/review.md` now and run the full loop:
 1. Screenshot every page at 1440 and 390 wide **at every 50–75% of a viewport through the whole page**, plus states and mid-animation frames.
 2. **Completeness gate:** run the dead-link and empty-section check and tick every item of the build ledger. Anything missing gets built before any visual review.
 3. **Cold critique:** judge the screenshots as a demanding art director who hasn't read the paragraph, and list the five worst problems. Use a separate reviewer (a subagent or fresh session) if your environment has one.
-4. **Beauty floor gate** (`references/aesthetics.md` §5) at both sizes and every scroll depth, plus a clean `page_audit.js`. Any failure is fixed before anything else.
+4. **Beauty floor gate** (`references/aesthetics.md` §5) at both sizes and every scroll depth, plus a clean `page_audit.js` and a clean `copy_audit.js`. Any failure is fixed before anything else.
 5. Compare the render with the Creative Direction Paragraph **slot by slot**: PASS, PARTIAL or FAIL, with the evidence.
 6. Run the first-frame test (including the silhouette and squint tests), the sameness check, the Quality Contract audit and the accessibility checks.
 7. Fix the worst finding and re-render. Repeat until a loop finds nothing worth fixing, and do at least two loops.
@@ -206,4 +208,5 @@ Never report a FAIL as done.
 | `references/aesthetics.md` | Phases 3, 4, 6 and 7 | The beauty floor: colour harmony, depth and light, composition and geometry, gallery calibration, the gate; uses `scripts/palette_check.py`, `scripts/squint_check.py`, `scripts/composition_audit.js` |
 | `references/build-standards.md` | Phase 4 | Build modes, stack adaptation, performance, accessibility, reduced motion, honesty |
 | `references/component-sourcing.md` | Phases 3–5 | Modern component sources, choosing per surface, restyling, overused effects, build-mode notes |
+| `references/human-copy.md` | Phases 3, 5, 6 and 7 | Human copy and layout cadence: no em dashes, no stock AI phrases, tracked labels as metadata only, varied section openings; uses `scripts/copy_audit.js` |
 | `references/review.md` | Phases 4 and 7 | The screenshot loop, first-frame test, sameness tells, slot audit, report format |

@@ -14,6 +14,9 @@ This phase exists to close that gap on purpose, not by luck. Treat it as a real 
 
 ## How to run it
 
+Run `scripts/copy_audit.js` first and rewrite every finding (`human-copy.md`); copy tells are the fastest way a polished page still reads as machine-made.
+
+
 1. **Run the page audit** (`scripts/page_audit.js`) at 1440×900 and at 390×844. It scrolls the whole page and reports:
    - text passing under fixed chrome with no backing;
    - floating panels hiding content;

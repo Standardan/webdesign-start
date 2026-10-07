@@ -99,8 +99,8 @@ A flat, perfect fill reads as generated. Almost every strong page has a surface:
 ## 9. Typography
 
 Type carries much of a site's character. Choose a **treatment**, not just a family.
-- **Extreme scale contrast.** Display type at 10–25% of the viewport height (sometimes more) against 10–12px labels tracked at 0.14–0.34em. Generic pages cluster between 16 and 64px. Use both extremes and skip the middle when you can.
-- **Two or three voices at most:** a display voice, a text voice and often a mono or small-caps label voice for metadata and readings.
+- **Scale with purpose.** Big display type is for the one thing that matters on a screen, set against a real text size and a real middle size. Small tracked caps are for genuine metadata (a time, a unit, a status, a legend), at most 3–4 per page; they are not a decoration to put above every heading. A tiny tracked label over a giant headline over a grey paragraph, repeated section after section, is the most common AI tell (`human-copy.md` §3).
+- **Two or three voices at most:** a display voice, a text voice and, only when the content has real readings or metadata, a mono or small-caps label voice.
 - **Book-level details in text:** a 60–66 character measure, line-height 1.5–1.7, old-style numerals in prose, tabular numerals in data, small caps for labels, indented paragraphs or generous paragraph spacing, `text-wrap: balance` on headings, hanging punctuation for pull quotes, a drop cap when the genre has one.
 - **Draw the display type** as SVG when the look depends on a weight or shape system fonts can't guarantee (hairline numerals, stencil, Nouveau lettering, a wordmark). Keep the real text in the DOM for accessibility.
 - **Lettering traditions are more than a font with effects.** When the concept names a lettering tradition (sign-painting, gold leaf, neon, engraving, stencil, chalk), reproduce its specific marks. A system font with a gradient, bevel and drop shadow reads as WordArt. Sign-painter gold leaf, for example, has a dark keyline outline, an offset shade in a second colour, gilded highlights that follow each stroke, slightly casual stroke ends, and lettering that sits *on* the glass (reflections pass over it and the interior shows through the gaps). Draw the letterforms as SVG paths when a font can't carry the tradition. Every piece of text inside the art (door signs, labels, tags) uses the world's lettering, never plain system type.
@@ -141,7 +141,7 @@ The governing idea must not stop at the hero. When section two becomes a generic
 
 ## 12. Copy and world detail
 
-- **Write copy as part of the conceit.** Use a kicker from the genre ("Plate XVIII · Paper diorama"), a headline with a line break chosen on purpose, and sentences in the voice the paragraph states.
+- **Write copy as part of the conceit, the way a person talks.** A headline with a line break chosen on purpose and sentences in the voice the paragraph states. Genre kickers are optional and rare, not a label above every section. No em dashes, no stock AI phrases (`human-copy.md`).
 - **Density of true detail:** add 5–10 small, specific, true-to-the-world details per page: an edition number, coordinates, a revision table, "complimentary engraving", "sheet 3 of 7", a footnote on what is approximate. Generic sites lack exactly this.
 - **Real formulas and facts** where the subject has them (dew point, bake temperature, orbital period), accurate or hedged.
 - **Honesty:** label fiction as fiction, hedge approximations, and never invent social proof.

@@ -95,6 +95,8 @@ Fail the build if the render shows any of these, unless the paragraph calls for 
 - **The boxy scene:** a drawn place made of square-on rectangles with no perspective, overlap or light falloff.
 - **Pasted-on UI:** a bordered panel or card laid over the hero art.
 - **WordArt and clip art:** display type faked with gradient, bevel and drop shadow; objects shaded with one glossy radial gradient.
+- **AI copy:** em dashes or dash-like hyphens in visible text, stock phrases ("not just… it's", "whether you're", "elevate", "seamless", "nestled", "your trusted partner"), stacked one-word slogans, every heading a pun or a question (`human-copy.md`; `scripts/copy_audit.js`).
+- **The eyebrow stack everywhere:** a tiny tracked uppercase label, a giant headline and a small grey paragraph opening two or more sections, or more than 4 small tracked labels on the page.
 - **The concept stops at the hero:** a section whose screenshot, header hidden, could belong to a different site (`craft.md` §11).
 
 ## Quality Contract audit
