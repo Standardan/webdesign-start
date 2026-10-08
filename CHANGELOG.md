@@ -2,6 +2,15 @@
 
 All notable changes to the webdesign-start skill. Versions follow semver: major = workflow-breaking restructure, minor = new rules/sections/capabilities, patch = fixes and wording.
 
+## 2.5.0 — 2026-10-08
+
+Sites stop reading as AI templates in structure, not only in words. v2.4.0 fixed em dashes and stock phrases, but redesigned sites still looked machine-made: every section opened with a tracked label, a giant headline and a grey subline, followed by three equal cards, a numbered step row, twin price cards, an accordion FAQ and a dark closing band, always in the order hero, services, about, process, call to action.
+
+- **New `scripts/layout_audit.js`:** an in-page audit (same calling convention and output as `copy_audit.js`, computed styles only) with 21 finding codes: `EYEBROW`, `SUBLINE`, `OPENER`, `HEADINGS`, `TWOCOL`, `PILLS`, `TICKS`, `NUMROW`, `NUP`, `TWIN`, `FAQ`, `CTABAND`, `FOOTMARK`, `HMONO`, `SCALE`, `REVEAL`, `MOCKUP`, `ALTERNATE`, `TESTIMONIAL`, `ORDER`, `PADDING`. It is a separate script from `copy_audit.js` because it reads layout, not text. Run at 1440×900 with default motion and no prior scrolling (`REVEAL` needs to see what is hidden at load). Thresholds were tuned on ten AI-looking builds against the same ten redesigned.
+- **New `references/layout-cadence.md`:** the principle (each section takes its form from the concept's objects; vary openings, scale and rhythm; order sections by the visitor's decision), a table of every tell and its fix, and how to treat remaining findings (name the reason in the report).
+- **Gates:** Phase 6 and Phase 7 require `layout_audit.js` alongside `copy_audit.js` and `page_audit.js`. Review report names remaining findings. New sameness tell "Template structure". Core principle 8 and the Phase 5 copy bullet now cover structure.
+- `human-copy.md`, `polish.md`, `craft.md`, README, AGENTS.md and all adapters point to the new file and script.
+
 ## 2.4.0 — 2026-10-08
 
 Sites stop reading as AI-written. From a review of 13 real builds where the owner's verdict was "they still scream AI": em dashes everywhere, the same stock phrasing, and a tiny tracked label over a giant headline over a grey paragraph in every section.

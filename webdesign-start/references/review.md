@@ -96,6 +96,7 @@ Fail the build if the render shows any of these, unless the paragraph calls for 
 - **Pasted-on UI:** a bordered panel or card laid over the hero art.
 - **WordArt and clip art:** display type faked with gradient, bevel and drop shadow; objects shaded with one glossy radial gradient.
 - **AI copy:** em dashes or dash-like hyphens in visible text, stock phrases ("not just… it's", "whether you're", "elevate", "seamless", "nestled", "your trusted partner"), stacked one-word slogans, every heading a pun or a question (`human-copy.md`; `scripts/copy_audit.js`).
+- **Template structure:** three equal cards, a numbered step row, twin price panels, an accordion FAQ, a dark call-to-action band before the footer, one fade-up on every block, a laptop mockup in the hero, the stock order hero, services, about, process, call to action (`layout-cadence.md`; `scripts/layout_audit.js`).
 - **The eyebrow stack everywhere:** a tiny tracked uppercase label, a giant headline and a small grey paragraph opening two or more sections, or more than 4 small tracked labels on the page.
 - **The concept stops at the hero:** a section whose screenshot, header hidden, could belong to a different site (`craft.md` §11).
 
@@ -133,7 +134,7 @@ These slipped past even strong pages. Look for them specifically:
 
 **Built:** [pages/sections, build mode, stack]
 **Completeness:** [build ledger: every promise ✓, or what was added after the gate caught it]
-**Beauty floor:** [palette_check at every scroll depth, squint_check per set piece, composition_audit and page_audit at 1440 and 390; the two gallery pages compared (first frame and whole page) and the verdict on colour, depth, composition and finish]
+**Beauty floor:** [palette_check at every scroll depth, squint_check per set piece, composition_audit and page_audit at 1440 and 390; copy_audit and layout_audit clean, or each remaining finding named with its reason; the two gallery pages compared (first frame and whole page) and the verdict on colour, depth, composition and finish]
 **Polish log:** [what the polish phase found and fixed; exceptions the user agreed to]
 **Loops run:** [n]. Caught and fixed: [list]
 **Slot audit:** [table, or a summary with every PARTIAL explained]

@@ -16,6 +16,7 @@ This file is a living contributor guide. Update it whenever the repository struc
 - `webdesign-start/references/registers.md`: world, product and interface registers, and the rule that light and time are tools, not themes.
 - `webdesign-start/references/formats/*.md`: one build recipe per kind of site (25 formats). Each follows the same sections: Load when, Study, What makes it work, Architecture, Key mechanics, Variation levers, Business uses, Pitfalls, Signals.
 - `webdesign-start/references/human-copy.md` and `webdesign-start/scripts/copy_audit.js`: human copy and layout cadence (no em dashes, no stock AI phrases, tracked labels as metadata only, varied section openings) with an in-page audit.
+- `webdesign-start/references/layout-cadence.md` and `webdesign-start/scripts/layout_audit.js`: structural AI tells (eyebrows, same-shaped openings, numbered rows, equal card groups, twin pricing, accordion FAQs, dark CTA bands, uniform reveals, stock section order, uniform padding). It is a separate script from `copy_audit.js` because it reads computed layout rather than text. Thresholds were tuned on rendered AI-looking pages (many findings) against redesigned human-looking ones (clean or one or two); re-run both sets after changing one.
 - `webdesign-start/references/review.md`: screenshot loop, first-frame test, sameness check and slot audit.
 - `webdesign-start/references/polish.md` and `webdesign-start/scripts/page_audit.js`: the Phase 6 polish pass and its whole-page audit (chrome collisions, lone words, cut-off text, native controls, filler, repeated sections).
 - `webdesign-start/references/aesthetics.md` and `webdesign-start/scripts/palette_check.py`, `squint_check.py`, `composition_audit.js`: the beauty floor (colour, depth and light, composition and geometry) with deterministic checks. Thresholds were measured on the 100 gallery pages; don't tighten one without re-running it on the gallery thumbnails, or it will fail pages that are known to be beautiful.
@@ -79,7 +80,7 @@ There is currently no automated test suite. Validate documentation changes with 
 
 If repeatable validation becomes substantial, add a small deterministic checker and document its command here.
 
-Beauty-floor and polish scripts: after changing `palette_check.py`, `squint_check.py` or `page_audit.js`, run them on a known failure and on gallery thumbnails. A known failure must still fail and the gallery must still pass. For example, `python3 webdesign-start/scripts/palette_check.py <tokens.json> <screenshot.png>` and `python3 webdesign-start/scripts/squint_check.py <screenshot.png> C0,R0,C1,R1`. Do not claim a check passed unless it was actually run.
+Beauty-floor and polish scripts: after changing `palette_check.py`, `squint_check.py` or `page_audit.js`, run them on a known failure and on gallery thumbnails. A known failure must still fail and the gallery must still pass. For example, `python3 webdesign-start/scripts/palette_check.py <tokens.json> <screenshot.png>` and `python3 webdesign-start/scripts/squint_check.py <screenshot.png> C0,R0,C1,R1`. `layout_audit.js` is calibrated the same way: run it on a page built from the stock template (it must flag nearly every code) and on a hand-composed page (it must be clean or nearly). Do not claim a check passed unless it was actually run.
 
 ## Lessons from real builds
 

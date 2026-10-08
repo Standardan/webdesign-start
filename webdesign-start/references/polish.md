@@ -14,7 +14,7 @@ This phase exists to close that gap on purpose, not by luck. Treat it as a real 
 
 ## How to run it
 
-Run `scripts/copy_audit.js` first and rewrite every finding (`human-copy.md`); copy tells are the fastest way a polished page still reads as machine-made.
+Run `scripts/copy_audit.js` first and rewrite every finding (`human-copy.md`), then `scripts/layout_audit.js` at 1440×900 with default motion and restructure every finding (`layout-cadence.md`); copy and structure tells are the fastest way a polished page still reads as machine-made.
 
 
 1. **Run the page audit** (`scripts/page_audit.js`) at 1440×900 and at 390×844. It scrolls the whole page and reports:
@@ -95,7 +95,7 @@ A device that became a card is a FAIL in the review's slot audit, even if everyt
 ## 8. Section rhythm
 
 Long pages need rhythm, or they become one repeated block:
-- **Vary scale, density or layout at least every 2–3 sections.** Never build four sections in a row from the same block (the page audit flags this).
+- **Vary scale, density or layout at least every 2–3 sections.** Never build four sections in a row from the same block (the page audit flags this). `scripts/layout_audit.js` also flags uniform openings, heading sizes, padding, backgrounds and reveals (`layout-cadence.md`).
 - **At least one full-bleed set piece** roughly every three screens on long pages: a moment where the art takes over and the text steps back.
 - **Alternate text-led and art-led sections,** and leave at least one quiet pause: a single line, a big number, or a breath of scene.
 - **Open and close with intent:** the first section after the hero continues the hero's world, and the ending resolves it (a finale, not a footer that just stops).

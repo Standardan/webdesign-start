@@ -43,6 +43,9 @@ webdesign-start/
 │                                #   native controls, filler, repeated sections
 ├── scripts/copy_audit.js        # copy that sounds human: em dashes, stock AI phrases,
 │                                #   tracked-label overuse, repeated label/heading/paragraph stacks
+├── scripts/layout_audit.js      # structure that doesn't read as a template: eyebrows, same-shaped
+│                                #   openings, numbered rows, card groups, twin pricing, FAQ accordions,
+│                                #   CTA bands, uniform reveals, stock section order
 └── references/                  # loaded progressively, only when a phase needs them
     ├── discovery.md             # exploration spread + the narrowing game: hypothesis board, questions
     ├── registers.md             # world, product (Apple-style) or interface (dashboards): what changes
@@ -64,6 +67,7 @@ webdesign-start/
     ├── polish.md                # the last layer: chrome, pause-anywhere frames, type finishing,
     │                            #   controls and states, rendering detail, device fidelity, rhythm
     ├── human-copy.md            # no AI tells: punctuation, stock phrases, section cadence
+    ├── layout-cadence.md        # no template structure: forms from the concept, varied openings/scale/rhythm
     ├── aesthetics.md            # the beauty floor: colour harmony, depth and light, composition,
     │                            #   gallery calibration; measured on all 100 gallery pages
     └── formats/                 # 25 build recipes, one per kind of site, loaded only when chosen

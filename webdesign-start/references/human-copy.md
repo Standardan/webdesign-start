@@ -1,5 +1,7 @@
 # Human copy and layout cadence (no AI tells)
 
+**See also:** `layout-cadence.md` for structural tells.
+
 **Load at:** Phase 3 (before writing the paragraph's copy voice), Phase 5 (while writing copy), Phase 6 and Phase 7 (run `scripts/copy_audit.js`).
 
 A site can be beautiful and still read as machine-made in two seconds. Visitors don't name it, they just stop trusting it. The tells are small and repeat everywhere: em dashes in every other sentence, the same stock phrases, a tiny tracked label above every big headline, and every section opening the same way. This file lists the tells and what to do instead. The concept still decides the voice; these are floors, not a style.
@@ -40,6 +42,8 @@ The other tell is structural: every section built from the same three parts.
 - **Vary how sections open.** Start one with the content itself (the menu, the photo wall, the map), one with a heading set inline with a paragraph, one with a big number or a real quote of the business's own words, one with no heading at all because the content explains itself.
 - **Vary the grid.** Not every section is "headline left, paragraph right" or "centered heading over three cards".
 - **Scale with purpose.** Big type is for the one thing that matters in that section. Mid-size type exists; not everything is huge-or-tiny.
+
+Structure has its own file: `layout-cadence.md` (and `scripts/layout_audit.js`) covers numbered rows, equal card groups, twin pricing, accordion FAQs, dark closing bands, uniform reveals and the stock section order.
 
 ## 4. The check
 
