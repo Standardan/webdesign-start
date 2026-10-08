@@ -37,6 +37,7 @@ The concept decides how each of these looks. This table decides what must be pri
 | **Venue, event space, caterer** | Check a date, request a quote | Photographs of the space; a date picker or enquiry form | Contact; the planner's direct line |
 | **Professional services (accountant, lawyer, agent)** | Book a consultation or ask a question | What happens at the first meeting; credentials | Contact; header |
 | **Auto repair, shop** | Request service or a drop-off time | The work shown; hours; drop-off slots | Header and contact. Call primary only if they truly take bookings by phone |
+| **Web studio or agency selling on spec** | Ask for a free sample by email, and look at the work first | The work as the picture; an email form reachable without a click (a card in the hand, a field set in the frame); the price said once | Nowhere if the studio works by email only, and then say so plainly in the footer and contact page |
 | **Nonprofit, church, club** | The one thing they ask of visitors (give, join, come Sunday) | Times and place; one clear ask | Contact |
 
 When a business sits between two rows, take the one that matches how *its* customers behave, and ask the owner.

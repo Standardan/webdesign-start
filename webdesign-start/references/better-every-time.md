@@ -31,6 +31,8 @@ Never put client or customer data in the ledger if the ledger lives in a public 
 
 Use short, consistent values so entries compare. If the file does not exist, create it with a one-line header.
 
+**Ledger hygiene when more than one agent or session builds in the same workspace.** Read the file before you write; add your block at the end and never replace the file or paste a fresh draft over it; do not run `git checkout -- .webdesign-start/ledger.md` or any other restore on a shared ledger (it throws away other sessions' uncommitted entries). If you must reconcile two versions, merge their blocks, keep every block, and say so in the report. One block per site and one per rebuild; a rebuilt site gets a new block, the old one stays as history.
+
 ## 2. No repeats across the last N sites
 
 Before Phase 2 concepts (read the ledger) and again at the creative-direction gate (check):
@@ -54,6 +56,7 @@ The new site must beat the best earlier sites. This is a visual check on rendere
    - **First frame:** which would you screenshot and send? Which has the clearer focal point, the better picture, the more distinct composition?
    - **One signature moment:** which has the memorable thing, and does the new site's moment do something theirs cannot?
    - **Sameness:** does the new site look like a sibling of any of them? (Same hero type, same device, same layout skeleton, same palette family.)
+   For a blind check, make the sheet with `python3 scripts/contact_sheet.py --blind -o sheet.png frame1.png frame2.png ...` (one sheet for 1440 frames, one for 390 frames; the script prints the key, keep it from the reviewer) and give it to a separate reviewer with only this question: rank these by "the first frame I would screenshot and send to a friend", then list each one's three worst problems. A new site that ranks below an earlier one has lost, however good it looks to you: change the first frame and run it again. (A studio's own site whose hero displays other sites ranked fourth of five in nine rounds, always behind the bespoke originals it displayed: a hero made of someone else's screenshots cannot beat them on a static first frame. Give such a site its own art direction, a physical object and a voice, not only a frame around the work.)
 4. **The new site must win** on at least the first frame **and** one signature moment against every site in the comparison set. If it loses or ties, **fix it before shipping**: change the hero, sharpen the moment, push the photography, and compare again. Record the loop count.
 5. If there are fewer than two earlier sites, compare against two gallery pages in the same format (`aesthetics.md` §4) instead, and say so.
 6. A separate reviewer helps (a subagent or fresh session with only the screenshots, asked "which of these is best, and why?"). The builder is a poor judge of their own work.

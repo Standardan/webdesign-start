@@ -390,6 +390,16 @@ Guard it with a busy flag, keep it skippable, trigger it only by an explicit act
 
 **Secondary responders:** a contact shadow that shifts opposite to the tilt and shrinks with lift, and a soft halo whose opacity tracks the tilt.
 
+**A hand of cards you run a pointer along** (a catalogue, portfolio or product range as one touchable object). Use it when the work itself is the hero: eleven portrait cards fan from a pivot below the frame, the chosen one rises, straightens and lights up, the rest fall into shade, and a caption band under the fan changes with it. Things that took three attempts, so do them first:
+- **Fixed slots on desktop, mapped from the pointer's x position.** Never hit-test the cards: if the chosen card moves under the pointer, the pointer lands on its neighbour and the selection runs away to the end. Slot `i` sits at `x = (i - mid) * slot`, rotation `(i - mid) * step`, a small drop `d²·2px`; the pointer picks `round((x - centre) / slot) + mid`. The chosen card only rises and scales, it never travels sideways.
+- **Build every card at its popped size and scale it down at rest** (`scale(1 / popScale)` to `scale(1)`), and do not set `will-change: transform`. Cards built small and scaled up render blurry text.
+- **One spring per card** (`pop`, 0 to 1; stiffness about 190, damping about 23), run in one `requestAnimationFrame` loop that stops when everything has settled. Reduced motion sets the targets with no loop.
+- **A card that holds a form** is the exception: freeze the scrub while it has focus or the pointer is over it, release when the pointer moves about 90px out of it, and make its form `inert` until it is chosen so it cannot be tabbed into by accident.
+- **Phone: a different layout from the same state.** Switch to a continuous coverflow (`d = i - pos`, offsets `min(|d|,1)*A + max(|d|-1,0)*B`, rotation and scale falling off with `|d|`), a pointer drag that moves `pos`, and a snap with the release velocity. Keep `touch-action: pan-y` so the page still scrolls.
+- **Keyboard and touch:** roving `tabindex`, arrows move the choice, and only `:focus-visible` focus may select (otherwise a tap on a card focuses it, selects it and then opens it in the same gesture). A click on the chosen card opens the thing.
+- **Idle:** advance the choice every 3 to 4 seconds until the first real input; pause when the tab is hidden or the hero is off-screen; no autoplay under reduced motion.
+- **The caption band sits over the card bottoms** (cards are cut off behind it like a desk edge), so the cards never collide with text. Tint the stage glow with the chosen card's own accent, mixed about 45% with the site's lamp colour so it never goes muddy.
+
 ---
 
 ## 8. Canvas performance

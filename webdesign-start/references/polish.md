@@ -46,6 +46,7 @@ Every frame must look finished, because every frame is a screenshot someone migh
 ## 3. Typography finishing
 
 - `text-wrap: balance` on headings, and `text-wrap: pretty` on paragraphs and ledes. Then check: **no lone last word** on any line break at any width. Rewrite the line if the browser can't fix it.
+- **Wide display faces and lone words.** A face such as an extra-wide grotesk takes 0.7 to 0.95em per character, so at 390px a 40px headline gets one word a line and the last line is a lone word. Size phone headlines from the face (about 26 to 31px for a wide face), and set the desktop measure in `em` so the break leaves two or more words on the last line. A non-breaking space between the last two words does **not** satisfy `WIDOW` (it checks the last regular space): fix the size or the measure, or rewrite.
 - **Short labels never wrap** ("3.6 KM · COMPLAINT 03"): use `white-space: nowrap`, shorten them, or restack them deliberately on phones.
 - **Real typographic characters:** curly quotes and apostrophes, en dashes for ranges (6–9), em dashes where the voice uses them, the multiplication sign (2 × €45), ellipsis (…). Put a non-breaking space between numbers and units (12.0 km, €39, 50 ml).
 - **Numbers:** tabular numerals in anything that changes or lines up (prices in a list, times, counters); old-style numerals in running text if the typeface has them.

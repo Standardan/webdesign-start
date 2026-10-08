@@ -44,6 +44,7 @@ webdesign-start/
 │                                #   native controls, filler, repeated sections
 ├── scripts/copy_audit.js        # copy that sounds human: em dashes, stock AI phrases,
 │                                #   tracked-label overuse, repeated label/heading/paragraph stacks
+├── scripts/contact_sheet.py     # blind side-by-side sheet of first frames for the better-every-time critique
 ├── scripts/layout_audit.js      # structure that doesn't read as a template: the formula hero, two-tone
 │                                #   headlines, paper ticket/receipt/stamp/tag devices, eyebrows, same-shaped
 │                                #   openings, numbered rows, card groups, twin pricing, FAQ accordions,

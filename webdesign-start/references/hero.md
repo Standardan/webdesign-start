@@ -35,6 +35,7 @@ The hero comes from the concept's artefact and the business's product, never fro
 | **A split decision** | Two or three big doors into the site ("Order flowers" / "Plan an event" / "Sympathy"), each a photograph | Businesses with distinct customer paths | Each door is an image and a verb, not three buttons |
 | **A live board** | Something that is true right now: open or closed, today's stock, the next free slot, the wait | Cafés, bakeries, trades with capacity, clinics | Real data or clearly marked sample data. Never a fake counter |
 | **A map or route as the experience** | The place and how to reach it are the point (a dive shop, a mobile service) | Only when location is the product. Never as decoration | Not a default for "local business" |
+| **A hand of the work** | The work itself as one touchable object: a fan or hand of cards (screenshots, products, finished jobs) you run a pointer along, with the chosen card lit and its caption under the fan | Studios, agencies, makers and any business whose work is its product | One line of type small on the stage; the action is a card in the hand (a form) or a text link, never a button under a sentence. Recipe: `techniques.md` §7 |
 | **The detail close-up** | A macro of the craft: crumb, grain, bristle, weld | Makers, trades, food | Often the best first frame for a small business with one great product |
 
 ### Questions that find it
@@ -53,6 +54,11 @@ If the answers are a photograph and a tool, the hero is that photograph with tha
 - **A carousel of formula heroes.**
 - **A hero whose picture is a mockup** (a laptop or phone frame): see `MOCKUP`.
 - **The same hero type twice in a row across the portfolio.** Check the ledger (`better-every-time.md`).
+
+## When `HERO` fires on a page that is not a formula hero
+
+- **Interactive diagrams count as buttons.** A route, stepper or tab diagram built from `<button>` elements, sitting in the first viewport under a headline and a sentence, reads as headline, subline and buttons. Do not hide the buttons: move the sentence below the diagram (the diagram is then the tool and the headline labels it), or build the diagram so its first-frame state is the picture.
+- **A one-line headline of 40px or less with no subline under it passes by design.** That is the point of a hero where the object carries the frame and the words are set into it.
 
 ## Writing the headline when there is one
 

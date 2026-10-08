@@ -2,6 +2,18 @@
 
 All notable changes to the webdesign-start skill. Versions follow semver: major = workflow-breaking restructure, minor = new rules/sections/capabilities, patch = fixes and wording.
 
+## 2.6.1 — 2026-10-08
+
+Written back from rebuilding a studio's own site (a fan of the studio's sample sites as the hero), which ranked fourth of five in a blind first-frame review before it was fixed.
+
+- **New `scripts/contact_sheet.py`:** a lettered contact sheet of first frames, optionally shuffled (`--blind`, key printed separately), for the side-by-side ranking in `better-every-time.md` §3. The section now says how to run the blind check and that ranking below an earlier site is a loss.
+- **`better-every-time.md`: ledger hygiene** for workspaces where several agents or sessions build at once (append, never replace, never restore a shared ledger from git, merge blocks and say so).
+- **`techniques.md` §7: a hand of cards you run a pointer along:** fixed slots mapped from the pointer's x position (never hit-test moving cards), cards built at popped size and scaled down at rest (crisp text), one spring per card, a form-holding card that freezes the scrub, a coverflow layout for phones, keyboard and touch rules (only `:focus-visible` may select), idle advance and reduced motion, a caption band over the card bottoms.
+- **`hero.md`:** a "hand of the work" row in the catalogue, and a note on when `HERO` fires on a page that is not a formula hero (interactive diagrams made of buttons under a subline; a one-line headline of 40px or less with no subline passes by design).
+- **`polish.md` §3:** wide display faces leave lone words at 390px; size phone headlines from the face and set the desktop measure in `em`; a non-breaking space does not satisfy `WIDOW`.
+- **`primary-action.md`:** a web studio or agency selling on spec (free sample by email, the work first; no phone if the studio works by email only).
+- README, AGENTS.md (repository map, lessons) and SKILL.md Phase 7 mention the script.
+
 ## 2.6.0 — 2026-10-08
 
 Sites stop looking like each other, and each one has to beat the last. From an owner review of 16 sites that passed every copy, page and layout audit and still felt alike: "every single website has such a big and clearly AI written call to action at the top with the subtext underneath it", the phone number prioritised even for a flower shop that sells online, square generic stock bread that did not fit the flow, a pie list that never changed the picture, and the same ticket, stamp and tag devices across sites.

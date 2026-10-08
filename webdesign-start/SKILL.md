@@ -193,7 +193,7 @@ Read `references/review.md` now and run the full loop:
 7. Fix the worst finding and re-render. Repeat until a loop finds nothing worth fixing, and do at least two loops.
 8. **Better every time** (`references/better-every-time.md`), mandatory before the report:
    - **Ledger:** append this site's entry (format, hero type, primary action, signature devices, interactions that change content, palette family, type pairing) to the portfolio ledger, and confirm none of the hero type or devices repeat the recent sites.
-   - **Side-by-side:** screenshot the first frame and signature moment next to the 2 or 3 best earlier sites at 1440 and 390. The new site must win on the first frame **and** on at least one signature moment. If it loses or ties, fix it and compare again.
+   - **Side-by-side:** screenshot the first frame and signature moment next to the 2 or 3 best earlier sites at 1440 and 390. The new site must win on the first frame **and** on at least one signature moment. If it loses or ties, fix it and compare again. Use `scripts/contact_sheet.py --blind` and a separate reviewer for the first-frame ranking (`references/better-every-time.md` §3).
    - **Retro:** write at least one concrete improvement back into the skill's repository (a recipe, rule, check, example or doc fix), with a `CHANGELOG.md` line. If the repository is not available, write it to `.webdesign-start/skill-backlog.md`. No client or lead data goes into a public skill.
 9. Report to the user:
    - what was built;
