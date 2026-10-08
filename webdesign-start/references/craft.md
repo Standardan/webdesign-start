@@ -13,7 +13,7 @@ Sites look **modern** unless the user asks for something else. Modern doesn't me
 - **Type:** contemporary families chosen for the concept (sharp neo-grotesks, refined geometrics, high-contrast modern serifs, variable fonts), set with confidence: large display sizes, tight tracking at scale, precise hierarchy. Pick faces for this site, not the same favourites every time.
 - **Layout:** asymmetric grids, full-bleed media, generous negative space, deliberate overlap, and precise alignment. Composition carries the energy, not ornament.
 - **Depth and light:** soft, realistic shadows, layered translucency, subtle 3D, and light as the accent. No skeuomorphic bevels, no glossy clip-art shading, no faux-vintage textures unless asked for.
-- **Imagery:** the client's photography treated with intent, 3D or rendered-looking objects, motivated generative visuals, or clean modern illustration (flat planes, subtle gradients, crisp edges).
+- **Imagery:** photography art-directed into the layout (`photography.md`: a matched set, concept-driven crops and masks, cut-outs, scale contrast, one grade, full-bleed moments, never a grid of equal squares), 3D or rendered-looking objects, motivated generative visuals, or clean modern illustration (flat planes, subtle gradients, crisp edges).
 - **Motion:** fluid and physical: springs, scroll-linked scenes, crisp micro-interactions. Fast feedback, unhurried reveals.
 - **Components:** premium modern components, restyled to the concept (`component-sourcing.md`).
 
@@ -36,7 +36,10 @@ Name the governing idea in one word or phrase (light, paper, depth, ink, tide, s
 
 **Test:** remove the words. Could you still tell what the site is about? Reject any effect that could be pasted into an unrelated site.
 
-## 2. The hero is a composed picture
+## 2. The hero is a composed picture (and never the formula)
+
+- **Never the formula.** A big headline, a one-paragraph subline and one or two buttons beside an image is the default hero and is banned as the dominant composition (`hero.md`). Choose a hero type from the concept (a product you can touch, a full-bleed photograph with one line set into it, a working tool, a menu or board that is the hero, an editorial cover, a scene, a poster) and its action from how the customers buy (`primary-action.md`).
+- **One-colour headlines.** No highlighted two-tone word in the headline. Emphasis comes from scale, weight, position or the art touching the letters.
 
 - **One focal point**, placed on purpose. The brightest or highest-contrast thing on the screen is the subject (the sun, the product, the lamp), not a button.
 - **Make the art and the headline touch.** The art affects the type (light crosses it, a waterline cuts it, a figure stands between two words), or the type is part of the art. That single move makes a hero feel authored.
@@ -122,7 +125,7 @@ Type carries much of a site's character. Choose a **treatment**, not just a fami
 
 A section is a small idea, not a container. For each section, name its device:
 - **Print devices:** a plate with a caption and number, a pull quote that breaks the column, a marginal note, a footnote that pops up, a colophon.
-- **Object devices:** a ticket stub, a stamped card, a tear-off slip, a specimen label, a tag on a string, a polaroid with tape.
+- **Object devices:** the business's own objects (a bread bag, a hang tag on a bouquet, a work order, a menu board, a delivery van's route sheet). Paper tickets, receipts, stamps and tags are the skill's most-repeated house habit: they are not a default, and `PAPERDEV` flags two or more. Use one only when the concept truly is that object, and not twice in a row across the portfolio.
 - **Instrument devices:** a dial, a gauge, a timeline with named phases, a readout with units, an exploded view.
 - **Scene devices:** a pinned scene scrubbed by scroll, a day/night change, a camera move.
 - **Data as editorial:** a value paired with a sentence, hairline meters instead of progress bars, shared scales across repeated items, charts that label only the extremes and "now".
@@ -168,6 +171,7 @@ Motion has four jobs. Give each one a style that fits the concept:
 
 - **Name interactions with the domain's verbs** ("Feed the starter", "Move the sun", "Release the pendulums", "Still the water"), and give each a visible, satisfying result.
 - **At least one interaction should teach something true** about the craft (first crack in a roast, lamination layers, a shadow at a given hour).
+- **A selection changes the content.** Pick a pie and its photograph, price and description change; pick a service and its time, price and gallery change; hover a menu line and its picture appears (`techniques.md` §9). An interface whose picture does not respond to its choices feels dead.
 - **For business sites, give one signature object per page** the full tactile treatment (a membership card, a product, a pricing plan, a menu) and keep the rest calm. Removing the effect must leave a working, conventional page.
 - **Delight is small and specific:** a flour puff on the order button, a fox that blinks, a shooting star after a minute, a light that flickers when a sign is "broken".
 - **Characters**, when a concept has one, follow the classic principles: anticipation, squash and stretch, arcs and idle life (blink, ear flick). They are focusable buttons with keyboard feedback.

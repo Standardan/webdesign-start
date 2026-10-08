@@ -16,9 +16,9 @@ Write one paragraph (not bullets) with these slots, roughly in this order. Palet
 2. **Artefact type and subject.** What the site *is* ("a scroll journey following one loaf from starter to oven", "an Apple-style launch film for a speaker", "the customer dashboard of an invoicing app"), not just its topic. Mark fictional subjects as fictional.
 3. **Register and style anchor.** State the register (world, product or interface; `registers.md`) and exactly one design language, movement, tradition or material ("Swiss-precise product film", "soft-industrial Scandinavian", "calm editorial data"). Contemporary by default (`craft.md`).
 4. **Ground and palette.** Describe the ground as a material or surface, with its hex ("studio white #fbfbfd", "flour paper #f6f1e8", "graphite #121316"). Then add 3–5 colours, each a *named thing* plus hex ("anodised sage #8fa89a, crust #9a5a2b, signal orange #ff6a2b"). Give the one accent a stated job ("signal orange only for the primary action and focus").
-5. **Hero.** One specific picture made for this site, and how it is made: a restyled component, a canvas or WebGL scene, CSS 3D, SVG, or the client's photography treated by the concept. Include what it does on its own before any interaction, and how it relates to the headline.
+5. **Hero.** One specific picture made for this site, and how it is made: a restyled component, a canvas or WebGL scene, CSS 3D, SVG, or photography art-directed by the concept (`photography.md`). Name its **hero type** from `hero.md` (a product you can touch, a full-bleed photograph with one line set into it, a working tool, a board that is the hero, a typographic poster…). It is never the formula: a headline, a subline and buttons beside an image. Include what it does on its own before any interaction, how it relates to the headline, and the **primary action** it carries for this kind of business (`primary-action.md`; the phone only where calling is how customers buy).
 6. **Sections, each with its own device.** "The design as a pinned turn of the speaker; battery life as one huge number that counts once; finishes as a live colour swap; specs as a clean compare table." Never just a list of section names.
-7. **Interactions named with domain verbs.** 2–4 of them, each with its visible result: "Feed the starter (click the jar: bubbles rise and the level climbs)"; "Score the loaf (drag across the dough; the cut blooms open)". Style ordinary controls as in-world objects.
+7. **Interactions named with domain verbs.** 2–4 of them, each with its visible result (a selection changes what you see: its photo, price and description): "Feed the starter (click the jar: bubbles rise and the level climbs)"; "Score the loaf (drag across the dough; the cut blooms open)". Style ordinary controls as in-world objects.
 8. **Delight.** 1–2 small surprises: idle life, a hover detail, an easter egg.
 9. **Key components.** The 2–4 components that carry the look, named by behaviour and source, and how each is restyled ("a spotlight card from Aceternity, relit as warm oven light"; "Magic UI number ticker for loaves left, in tabular Geist Mono"). The full surface-by-surface plan goes in the brief (`component-sourcing.md`).
 10. **Typography treatment.** The character and the *treatment*: scale, case, tracking, numerals, drawn lettering. Name the fonts (contemporary web fonts by default; system stacks only for the offline single-file variant).
@@ -35,6 +35,10 @@ For multi-page sites, write a short **site paragraph** (name, artefact, anchor, 
 - [ ] Exactly one style anchor.
 - [ ] Ground described as a material, 3–6 hex colours each named after a real thing, one accent with one stated job.
 - [ ] A single hero picture made for this site, with idle behaviour, so the first frame is beautiful before any interaction.
+- [ ] A named hero type from `hero.md` that is not the formula and does not repeat the portfolio ledger's last four (`better-every-time.md`).
+- [ ] A primary action taken from how this business's customers buy (`primary-action.md`), with the phone placed where it belongs.
+- [ ] Photography art-directed into the layout: set, crops or masks, grade, at least one full-bleed moment (`photography.md`).
+- [ ] Any selection or state change shows different content, not just a highlight (`techniques.md` §9).
 - [ ] How the hero is made (component, scene, 3D, SVG, treated photography).
 - [ ] 2–4 key components named, each with its restyle.
 - [ ] Contemporary register, unless the user asked for a period or illustrated style.
@@ -63,6 +67,10 @@ For multi-page sites, write a short **site paragraph** (name, artefact, anchor, 
 
 > Design "MASS — Studio for Heavy Architecture", a portfolio for a small concrete-and-timber architecture practice, made as a large-format exhibition poster crossed with a site model, in the spirit of Brutalist monographs. Ground: board-formed concrete #b9b6af with a procedural shutter-plank texture and tie-holes; palette: raw timber #c89b6d, graphite #1d1d1f, drafting blue #2f4a7a, and oxidised copper #4f7f73 used only as light and line: section cuts, the active project, focus rings. Hero: the word MASS in a heavy, tightly tracked grotesk at a quarter of the viewport height, cut through by an axonometric SVG model of the studio's best-known house; a sun slider sweeps its shadow across the letters. Sections: projects as a horizontal track of drawings that scroll sideways; each project opens from its exact tile into a full-screen case study; process as a drafting sheet whose lines draw themselves; contact as a title block with scale, sheet number and revision. Interaction: "Move the sun" (drag to change the hour and shadow angle); hover a project to lift its roof off the model. Typography: heavy grotesk (Helvetica Neue, Arial Nova, Arial, sans-serif) at weight 800 with −0.05em tracking against 10.5px mono captions tracked at 0.18em. Mobile: MASS stacks into two lines with the model behind; the project track becomes a vertical list. Weighty and exact; slow, heavy easing; no playful bounce.
 
+**A florist (world register, product-led, fictional):**
+
+> Design "Larkspur & Lane — Flowers Cut This Morning", the site of a fictional two-person flower shop that takes most of its orders online for next-day and same-day delivery, as a contemporary editorial market stall in a warm tactile modern language. Ground: unbleached linen #f2ece0 with a faint weave; palette: bucket zinc #8d979a, stem green #3f5a3a, ink plum #2c1f2e and one accent, poppy #e04a2f, used only for the order control and the selected stem. Hero (a working tool, not a headline block): a photograph of that morning's buckets, shot overhead in one soft window light, fills 70% of the frame; each stem variety is a tall arch-shaped cut-out you can tap to add to a bouquet laid across the lower third, and the bouquet's price and the delivery cutoff ("Order by noon for today") update beside it; the shop's name sits small in the corner, one line "Cut at six." is set into the photograph's quiet upper left, and the number lives in the footer. Sections: today's bouquets as four different-sized prints overlapping on the linen, each with a real photograph, a price and an "Add" control; delivery as the day's map of streets the van reaches before noon; weddings and sympathy as two photograph doors that open a short form; the shop as one full-bleed photograph of the cooler with the hours set into it. Interactions: "Fill the bucket" (tapping a stem adds it to the bouquet and swaps the bouquet photograph for the closest matching arrangement); "Choose the vase" (each vase changes the preview and the price). Delight: a petal drifts down once when a bouquet is ordered. Typography: a sharp high-contrast serif at 8vw for the one line, a plain grotesque at 17px for everything else, tabular prices. Mobile: the photograph fills the screen with the stems as a swipe row; the order bar is sticky. Warm, quick and unfussy; no ticket, no tag, no stamp.
+
 ## The Quality Contract
 
 Append this block **unchanged** to every paragraph, in the brief and in any prompt you hand over. Its wording is deliberately fixed. The paragraph varies and the contract does not.
@@ -70,12 +78,15 @@ Append this block **unchanged** to every paragraph, in the brief and in any prom
 ```text
 QUALITY CONTRACT (applies to every page of this site)
 1. Crafted, not assembled. The signature visuals are made for this site: premium components restyled
-   to its tokens and concept, drawn or rendered scenes, or the client's own photography treated by the
-   concept. No stock imagery, no decorative icon packs, and no component left in its library demo styling.
+   to its tokens and concept, drawn or rendered scenes, or photography art-directed into the layout
+   (chosen as a set, masked and cropped by the concept, graded together). Stock photographs are stand-ins,
+   labelled as such. No decorative icon packs, and no component left in its library demo styling.
 2. One governing idea. The idea in the paragraph is visible in at least four systems: the hero, navigation
    or progress, interactive controls, and transitions or ornaments.
 3. A beautiful first frame. At 1440×900 and 390×844 the first viewport is finished and alive before any
    interaction: idle motion is running, simulations are pre-warmed, and nothing waits for scroll to look good.
+   It is an experience from the concept, never a headline, a subline and buttons beside an image, and its
+   primary action is the one this business's customers actually use (the phone only where calling is how they buy).
 4. Recomposed, not scaled. Phones get their own composition of the hero and sections, from 360px to large
    desktops, with no horizontal scroll.
 5. Exact values. The palette, type treatments, spacing rhythm and easing come from the paragraph and are
@@ -94,7 +105,8 @@ QUALITY CONTRACT (applies to every page of this site)
    supplied, starts only after a user gesture and has a visible mute toggle.
 10. Showcase grade. Visually impressive, bookmark-worthy and full of small, specific, true-to-the-world
     details, and clearly distinct from generic templates and from this skill's other work in concept, layout,
-    palette, typography and motion.
+    palette, typography and motion: no hero type or signature device repeated from the recent sites, and every
+    selection or state change shows different content, not just a highlight.
 11. Beautiful by measure. One accent hue; no two opposite hues covering large areas at the same darkness;
     tinted neutrals; warm colours on dark grounds used as light, not dull surfaces. One key light, with every
     shadow and highlight consistent with it; grounded objects with contact shadows; one projection and one

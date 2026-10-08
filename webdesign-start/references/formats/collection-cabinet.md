@@ -123,6 +123,7 @@ function frame() {
 
 ## Pitfalls
 
+- **Thumbnails that open nothing new.** Choosing an item changes the large picture, name, price and description, and every item is photographed the same way so the frame never jumps (`../photography.md` §7, `../techniques.md` §9). Uniform square tiles in an equal grid are the stock gallery: vary scale and shape.
 - An arrangement with no reason. If position carries no meaning, a periodic grid or dial is decoration; use a drawer or a track instead.
 - Invented items presented as real stock. Generated specimens and artworks are fine for an art piece; on a shop, mark placeholders and replace them with the client's products.
 - The detail view that has no action. Every item detail needs the next step (buy, book, enquire, share).

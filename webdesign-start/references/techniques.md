@@ -14,6 +14,7 @@ These are compact, original recipes for the techniques that recur in the benchma
 6. [Motion and transitions](#6-motion-and-transitions): reveals, retheming, expand-from-tile, iris wipe, particles that avoid text
 7. [Signature objects](#7-signature-objects): tilt with glare, foil layers, reveal ritual
 8. [Canvas performance](#8-canvas-performance)
+9. [Photographs in the interface and interactions that change the content](#9-photographs-in-the-interface-and-interactions-that-change-the-content): masks, cut-outs, selection swaps, hover previews, state-driven content
 
 ---
 
@@ -401,3 +402,125 @@ Guard it with a busy flag, keep it skippable, trigger it only by an explicit act
 - Use `contain: paint` on stages. Keep heavy SVG filters on static layers.
 - Skip updates for off-screen elements, and stop loops entirely when nothing is visible.
 - Test on a throttled mobile profile. Blend modes and masks over large areas repaint every frame.
+
+---
+
+## 9. Photographs in the interface and interactions that change the content
+
+**The rule:** a selection or state change must change what you see. Pick a pie, and the page shows that pie (its photo, price and description). Pick a service, and the time, price and gallery change. Hover a menu line, and its picture appears. A list whose picture never changes is a failure (`review.md`). Art direction for the photographs themselves is in `photography.md`.
+
+### Recipe A: one data object drives the whole detail
+
+Define the items once. The list, the detail and the photo are all rendered from it, so they cannot drift apart. Fictional example:
+
+```html
+<ul class="picker" id="picker" role="listbox" aria-label="Pies" aria-activedescendant="p-lattice">
+  <li role="option" id="p-lattice" tabindex="0" aria-selected="true" data-id="lattice">Lattice cherry</li>
+  <li role="option" id="p-pecan" tabindex="-1" data-id="pecan">Brown butter pecan</li>
+  <li role="option" id="p-lemon" tabindex="-1" data-id="lemon">Lemon icebox</li>
+</ul>
+<figure class="stage">
+  <div class="pic" id="picA"></div><div class="pic" id="picB"></div>
+  <figcaption aria-live="polite"><b id="pie-name"></b> <span id="pie-price"></span><p id="pie-desc"></p></figcaption>
+</figure>
+```
+```js
+const ITEMS = { lattice: { name: 'Lattice cherry', price: '$28', desc: 'Sour cherries, a lattice you can see through.', img: 'img/lattice.webp' },
+                pecan:   { name: 'Brown butter pecan', price: '$26', desc: 'Browned butter, toasted pecans.', img: 'img/pecan.webp' },
+                lemon:   { name: 'Lemon icebox', price: '$24', desc: 'Cold, tart, a graham crust.', img: 'img/lemon.webp' } };
+const $ = id => document.getElementById(id), picker = $('picker'), pics = [$('picA'), $('picB')]; let front = 0, current = null;
+Object.values(ITEMS).forEach(i => { const im = new Image(); im.src = i.img; im.decode?.().catch(() => {}); });   // preload: a click never shows a blank frame
+function show(id) {
+  if (id === current) return; current = id; const it = ITEMS[id];
+  const back = pics[1 - front], fore = pics[front];
+  back.style.backgroundImage = `url(${it.img})`;
+  back.classList.add('in'); fore.classList.remove('in'); front = 1 - front;     // crossfade
+  $('pie-name').textContent = it.name; $('pie-price').textContent = it.price; $('pie-desc').textContent = it.desc;
+  document.querySelectorAll('[role=option]').forEach(o => { const on = o.dataset.id === id; o.setAttribute('aria-selected', on); o.tabIndex = on ? 0 : -1; if (on) picker.setAttribute('aria-activedescendant', o.id); });
+}
+picker.addEventListener('click', e => { const o = e.target.closest('[role=option]'); if (o) show(o.dataset.id); });
+picker.addEventListener('keydown', e => { const o = [...picker.children], i = o.findIndex(x => x.tabIndex === 0); const d = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key]; if (d) { e.preventDefault(); const n = o[(i + d + o.length) % o.length]; n.focus(); show(n.dataset.id); } });
+show('lattice');
+```
+```css
+.pic { position: absolute; inset: 0; background-size: cover; opacity: 0; transform: scale(1.03); transition: opacity .3s ease, transform .5s cubic-bezier(.18,.7,.16,1); }
+.pic.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .pic { transition: none; } }
+```
+Rules: every item has the same framing (`photography.md` §7); the text, price and photo change in the same frame; the first item is selected on load, so the first frame is never empty; a hash or `?item=` restores the selection (shareable); the caption is `aria-live="polite"`, so the change is announced once. (Give elements ids like `pie-name`, never `name`: a global `name` collides with `window.name`.)
+
+### Recipe B: hover and focus preview that follows the cursor
+
+A menu line previews its picture. Keyboard focus shows it too, and touch shows it on tap, never hover alone.
+```js
+const tip = document.querySelector('.preview'); let tx = 0, ty = 0, x = 0, y = 0, raf;
+list.addEventListener('pointermove', e => { tx = e.clientX; ty = e.clientY; if (!raf) raf = requestAnimationFrame(loop); });
+function loop() { x += (tx - x) * .18; y += (ty - y) * .18; tip.style.transform = `translate(${x + 24}px, ${y - tip.offsetHeight / 2}px)`;
+  raf = Math.abs(tx - x) + Math.abs(ty - y) > .5 ? requestAnimationFrame(loop) : 0; }
+list.querySelectorAll('a').forEach(a => { const set = () => { tip.style.backgroundImage = `url(${a.dataset.img})`; tip.classList.add('on'); };
+  a.addEventListener('pointerenter', set); a.addEventListener('focus', set); a.addEventListener('pointerleave', () => tip.classList.remove('on')); a.addEventListener('blur', () => tip.classList.remove('on')); });
+```
+For touch and small screens, put the thumbnail inline in each row or open the picture as the detail of the tapped item.
+
+### Recipe C: the service or option picker (time, price, gallery)
+
+Same pattern as A with a richer object: `{ name, duration, price, gallery: [...], note }`. Selecting a service updates the duration and price line, replaces the gallery with that service's pictures, and (for booking) filters the slot strip to times long enough for it. Keep one state object and one `render(state)`; never patch pieces by hand.
+
+```js
+const state = { service: 'full-groom', slot: null }; const render = () => { const s = SERVICES[state.service];
+  dur.textContent = s.duration; price.textContent = s.price; gallery.replaceChildren(...s.gallery.map(src => Object.assign(new Image(), { src, alt: s.alt })));
+  slots.querySelectorAll('button').forEach(b => b.disabled = +b.dataset.mins < s.mins); };
+```
+
+### Recipe D: a variant changes the product itself (colour, size, finish)
+
+Swap the image set when photos exist per variant. When they do not, tint a cut-out with an SVG filter or a CSS blend over a neutral photograph, and **label it as a preview of the colour**. Never fake a photograph of something that was not shot.
+
+### Recipe E: shaped crops and masks
+
+```css
+.arch   { clip-path: path('M0 100% V45% C0 20% 20% 0 50% 0 S100% 20% 100% 45% V100% Z'); }   /* a doorway; use an SVG <clipPath clipPathUnits="objectBoundingBox"> for scalable shapes */
+.notch  { clip-path: polygon(0 0, 100% 0, 100% 78%, 86% 100%, 0 100%); }
+.slot   { aspect-ratio: 1 / 2.4; border-radius: 999px; overflow: hidden; }
+.ring   { mask: radial-gradient(circle at 50% 50%, #000 62%, transparent 62.5%); }
+```
+SVG mask for a hand-cut or torn edge: put the shape in an SVG `<mask>` with `maskContentUnits="objectBoundingBox"`, and apply `mask: url(#torn)` to the image. Add a drop shadow with `filter: drop-shadow(...)` on the **parent** (a shadow on a clipped element is clipped away).
+
+### Recipe F: cut-outs and type that passes behind the subject
+
+Layer: ground photograph or colour, then the headline, then the cut-out subject (a transparent WebP). The letters pass behind the product.
+```css
+.stack { position: relative; isolation: isolate; }
+.stack h2 { position: absolute; z-index: 1; font-size: clamp(5rem, 18vw, 16rem); line-height: .8; }
+.stack .cut { position: relative; z-index: 2; filter: drop-shadow(0 28px 22px rgb(var(--shade) / .35)); }
+```
+Match the shadow to the scene's light (`aesthetics.md` §2), and give the cut-out a faint contact shadow where it meets the ground.
+
+### Recipe G: one grade across a set
+
+```css
+.set img { filter: saturate(.92) contrast(1.04) sepia(.08) hue-rotate(-4deg); }
+.tint { position: relative; } .tint::after { content: ''; position: absolute; inset: 0; background: var(--shade); mix-blend-mode: soft-light; opacity: .25; pointer-events: none; }
+```
+Bake the grade into the files when you can; filters on many large images repaint (`§8`).
+
+### Recipe H: the scroll-driven crop
+
+Drive `clip-path: inset()` or `transform: scale()` from one scroll variable, transform and opacity only, with a static first state that is already a finished picture:
+```js
+addEventListener('scroll', () => { const r = stage.getBoundingClientRect(), t = Math.min(1, Math.max(0, 1 - r.top / innerHeight)); stage.style.setProperty('--t', t.toFixed(3)); }, { passive: true });
+```
+```css
+.stage img { clip-path: inset(calc(14% * (1 - var(--t, 1))) calc(22% * (1 - var(--t, 1))) round calc(40px * (1 - var(--t, 1)))); }
+```
+Reduced motion: show the finished crop, no scroll link.
+
+### Checks for any interaction that should change content
+
+- Selecting an item changes the picture, the name, the price and the description in one frame.
+- The first item is already selected on load.
+- Every item's photo is preloaded, with the same framing.
+- Works by mouse, touch and keyboard (arrow keys move the selection; Enter or Space confirms).
+- `aria-selected`, `aria-live` caption, visible focus.
+- Reduced motion swaps instantly.
+- A screenshot taken after each selection shows the right item (review the render, `review.md`).

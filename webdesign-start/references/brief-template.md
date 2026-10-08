@@ -17,6 +17,15 @@ _Status: [draft | approved YYYY-MM-DD] · webdesign-start [version]_
 
 [The Quality Contract block from creative-direction.md, unchanged.]
 
+## Hero, action and portfolio
+
+- **Hero type** (`hero.md`): [type]. First thing the eye lands on: […]. First thing the hand can do: […]. Not the formula.
+- **Primary action** (`primary-action.md`): [verb + object] · what the visitor can do in the first frame: […] · where the phone appears: […]
+- **Signature devices:** […] (none repeats more than 2 of the last 10 sites)
+- **Photography** (`photography.md`): [client / stock stand-ins] · set: [light, angle, palette, grade] · crops and masks: […] · full-bleed moment: […]
+- **Interactions that change content:** [selection → photo, price, description]
+- **Ledger check** (`better-every-time.md`): last four hero types […]; palette family […]; type pairing […]
+
 ## Build mode
 
 [Single file (online | offline) | Project: framework, styling, where it deploys], as the user chose, per build-standards.md. External requests: [fonts, CDNs, APIs].
@@ -74,14 +83,14 @@ Every promise in the paragraph, copied out as a checklist. Phase 5 builds agains
 
 - [ ] Hero: [what it must show and do]
 - [ ] Section: [name] with [device]
-- [ ] Interaction: [verb] → [visible result]
+- [ ] Interaction: [verb] → [visible result: the selection's photo, price and description change]
 - [ ] Delight: [detail]
 - [ ] Mobile: [recomposition]
 - [ ] Ending: footer with [facts], [sample/fiction note if any]
 
 ## Business essentials
 
-- **Visitor:** … **Primary action:** … **Promise:** …
+- **Visitor:** … **Primary action (from how customers buy):** … **Promise:** …
 - **Proof we actually have:** … (none invented)
 - **Must-have content:** hours, address, prices, … (per strategic-loops.md)
 

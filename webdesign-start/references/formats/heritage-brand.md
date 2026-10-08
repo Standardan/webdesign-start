@@ -115,6 +115,7 @@ document.querySelectorAll('.fan').forEach(f => io.observe(f));
 
 ## Pitfalls
 
+- **The ticket, stamp and tag as the heritage device.** They are the portfolio's most repeated habit (`PAPERDEV`, `../better-every-time.md`). Take ornament from the business's own objects and period grammar, and check the ledger before reusing a device.
 - Pastiche overload. Ornament on every edge, every button and every paragraph turns into costume. Leave calm space between ornamented objects; body text sits on plain ground.
 - Thin, widely tracked capitals used for reading text. Keep them for names and short labels; body text needs a readable serif at 17–20px.
 - Gold on black or cream failing contrast. Check each gold against its ground and use a darker gold for small text.

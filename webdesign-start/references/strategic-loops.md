@@ -7,7 +7,7 @@ A beautiful site that hides the hours or buries the booking button has failed it
 ## The five decisions
 
 1. **The visitor:** who arrives, from where (search, Instagram, word of mouth, a flyer), and what they already know.
-2. **The primary action:** the one thing that matters most. Every page makes it easy, and the concept styles it as its signature control: a tear-off order slip, a stamped booking card, a lit "Reserve" plaque. It must still read instantly as a button.
+2. **The primary action:** the one thing that matters most, **taken from how this business's customers buy** (`primary-action.md`: florist, bakery, restaurant, trades, emergency trades, salon, gym, retail), never defaulted to the phone. Every page makes it easy, and the concept styles it as its signature control (a booking tab on the board, an order slip for tomorrow's loaves, a lit "Reserve" plaque). It must still read instantly as an action. The phone is correct and tappable wherever it appears and primary only when calling is how the business is bought.
 3. **The promise:** in one sentence, why this business rather than another. It's usually built from the particulars ("bread from a 40-year-old starter, baked since 3 a.m.").
 4. **Real proof:** only what exists, such as real reviews (quoted with permission and source), years in business, awards, press, certifications, and real numbers. If there is none yet, the site leans on specificity and craft, and the report lists "proof to collect". Never invent it.
 5. **The three-second test:** a stranger looking at the first frame should know what this is, feel the intended feeling, and see where to act. The concept's art supports this; it never hides it.
@@ -31,10 +31,10 @@ The concept decides *how* these look (a price list can be an enamel sign or a le
 
 ## Conversion basics the concept must respect
 
-- The primary action is visible in the first frame on desktop and within one scroll on phones. It repeats at natural decision points.
+- The primary action is visible in the first frame on desktop and within one scroll on phones, and the first frame lets the visitor start it without a click where the business allows (a picker, a booking strip, a builder). It repeats at natural decision points.
 - Navigation to the must-haves takes one step from anywhere. The nav can be an elevator dial or a ledger index, but it must be obvious and keyboard-accessible.
 - Forms ask only for what's needed and show errors next to the field.
-- Phone numbers and addresses are tappable on phones.
+- Phone numbers and addresses are tappable on phones, verified against the client's real number, and placed where a person would look (header, footer, contact, hours, confirmation) unless calling is the primary action.
 - Motion never delays reaching the action. Intros are skippable or shorter than about 1.5s.
 - Page weight and speed stay in budget (`build-standards.md`). A slow site loses the visitors the art was meant to win.
 

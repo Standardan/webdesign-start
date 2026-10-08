@@ -57,6 +57,7 @@ A broadsheet uses columns and rules. A zine uses collage and rotated slabs. A fi
 
 ## Pitfalls
 
+- **A cover that is a headline, a deck and a button.** Build the cover like a magazine: masthead, one dominant picture, two or three real cover lines (`../hero.md`).
 - Display faces that exist on one OS only. Draw the headline in SVG, or load a web font.
 - Long empty gaps in the pinned scene on phones. Shorten the gaps below 700px.
 - Layout reads (`getBoundingClientRect`) inside scroll loops. Cache the offsets on resize.

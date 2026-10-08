@@ -126,6 +126,7 @@ Reject the sameness tells: a centred product on a gradient blob, pill variant ch
 
 ## Pitfalls
 
+- **A product list whose picture never changes.** Choosing a variant, flavour or item swaps the photograph, price and description together (`../techniques.md` §9). For a small shop, the hero is the product you can touch (`../hero.md`), and the primary action is to order it (`../primary-action.md`).
 - **Announcing an animated price every frame.** 082's price element is itself `aria-live` and is rewritten per frame. Tween an `aria-hidden` copy and announce once.
 - **ARIA radios on buttons instead of a form.** 082 groups them twice and nothing submits without JavaScript. Use native inputs, as 024 and 035 do.
 - **Hover-to-switch content.** 082's notes pyramid changes panels on `pointerenter`. Use the tabs pattern with click or focus activation.

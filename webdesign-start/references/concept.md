@@ -18,10 +18,11 @@ If you cannot fill all six, you don't have a concept yet.
 ## Procedure
 
 1. **Reread the particulars** from the Discovery Notes. The concept must use at least two of them. A concept that ignores the particulars could belong to any business in the category.
-2. **Brainstorm 8–10 raw ideas quickly**, spread across the leading formats and the wildcard on the hypothesis board. Take them from the particulars (the 3 a.m. start, the river, the 40-year-old starter), from the world answers (the object, the time, the feeling) and from the craft's own vocabulary.
-3. **Pick three that pass the diversity grid** (below).
-4. **Develop each to all six parts**, then write it up for the user in the presentation format.
-5. **Test each one:** could it be described in a sentence a stranger would repeat? Could it belong to a competitor? If it could, replace it.
+2. **Read the portfolio ledger** (`better-every-time.md`): hero types, signature devices, palette families and type pairings of the last sites. Concepts must not repeat them.
+3. **Brainstorm 8–10 raw ideas quickly**, spread across the leading formats and the wildcard on the hypothesis board. Take them from the particulars (the 3 a.m. start, the river, the 40-year-old starter), from the world answers (the object, the time, the feeling) and from the craft's own vocabulary.
+4. **Pick three that pass the diversity grid** (below).
+5. **Develop each to all six parts**, then write it up for the user in the presentation format. Give each a **hero type** from `hero.md` (never the formula: headline, subline and buttons beside an image), the **primary action** for this kind of business (`primary-action.md`), and an answer to "where is the product?". For a real business with something to show, at least one concept is photography-led or product-led (`photography.md`).
+6. **Test each one:** could it be described in a sentence a stranger would repeat? Could it belong to a competitor? If it could, replace it.
 
 ## Registers first
 
@@ -62,13 +63,14 @@ This list is vocabulary, not a menu. The best anchor is often one the particular
 
 ## The diversity grid
 
-The three concepts must differ from each other on **at least four** of these six axes:
+The three concepts must differ from each other on **at least four** of these seven axes (the hero type counts as one):
 
 | Axis | Examples of different values |
 |---|---|
 | Format | any two different entries in `formats/index.md` |
 | Ground value | light (paper, plaster, bone) · dark (ink, lacquer, night) · saturated (cobalt, tomato, blueprint) |
 | Type voice | book serif · Didone display · heavy grotesk · condensed poster caps · geometric · monospace instrument · drawn lettering |
+| Hero type (`hero.md`) | product you can touch · full-bleed photograph with one line · editorial cover · working tool · scene · board or menu · poster type with no button · split doors · live board |
 | Hero technique | vector illustration · layered paper depth · canvas particles or light · CSS 3D object · giant type · treated real photography · generative pattern |
 | Motion signature | idle ambient life · scroll-scrubbed journey · spring physics · self-drawing line · state-change retheme · reveal ritual |
 | Palette temperature | warm · cool · neutral with one hot accent · high-chroma |
@@ -86,6 +88,8 @@ Some combinations have become the default output of AI design tools, including e
 - Component-library defaults: aurora or beam backgrounds, spotlight cards in a bento, shimmer buttons and logo marquees left in their demo styling (`component-sourcing.md`).
 - A dark ground with a violet-to-blue gradient glow, glass cards and a centred headline.
 - Hero, then three feature cards, then testimonials, then a CTA band.
+- **The formula hero:** a big headline, a one-paragraph subline and one or two buttons beside an image (`hero.md`), with the phone as the lead action by habit (`primary-action.md`).
+- **Paper devices by default:** the ticket, receipt, stamp or tag, the map as decoration, the tiny mono spec label, the two-tone headline word, the dark slab top and bottom with a wavy divider. They recur across the portfolio; the ledger counts them (`better-every-time.md`).
 - A bento grid of icon-and-text tiles.
 - A neutral sans (Inter or system-ui) at medium weights everywhere, with no scale contrast.
 - Abstract gradient blobs or "mesh gradients" as the hero picture.

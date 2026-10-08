@@ -14,7 +14,7 @@ This phase exists to close that gap on purpose, not by luck. Treat it as a real 
 
 ## How to run it
 
-Run `scripts/copy_audit.js` first and rewrite every finding (`human-copy.md`), then `scripts/layout_audit.js` at 1440×900 with default motion and restructure every finding (`layout-cadence.md`); copy and structure tells are the fastest way a polished page still reads as machine-made.
+Run `scripts/copy_audit.js` first and rewrite every finding (`human-copy.md`), then `scripts/layout_audit.js` at 1440×900 with default motion and restructure every finding (`layout-cadence.md`); copy and structure tells are the fastest way a polished page still reads as machine-made. A `HERO` finding means the first frame is still the formula (`hero.md`): change what the first frame is, don't trim the subline.
 
 
 1. **Run the page audit** (`scripts/page_audit.js`) at 1440×900 and at 390×844. It scrolls the whole page and reports:
@@ -24,7 +24,7 @@ Run `scripts/copy_audit.js` first and rewrite every finding (`human-copy.md`), t
    - browser-default controls and placeholder filler;
    - four or more sections in a row built from the same block.
 2. **Capture the whole page**, not just the first frame: a screenshot every 50–75% of a viewport height at both sizes, plus each interactive state and a few mid-animation frames.
-3. **Work through sections 1–9 below** against those screenshots. Fix as you go, re-render, and repeat until the audit is clean and a full scroll finds nothing to fix.
+3. **Work through sections 1–9 below (including 4b)** against those screenshots. Fix as you go, re-render, and repeat until the audit is clean and a full scroll finds nothing to fix.
 4. **Record a polish log** for the review report: what was found and fixed, and any exception the user agreed to.
 
 ## 1. Chrome and layering
@@ -63,6 +63,13 @@ Every frame must look finished, because every frame is a screenshot someone migh
   - inputs at least 16px on phones, so iOS doesn't zoom;
   - selected values that fit their field at every width.
 - **Touch:** targets at least 44×44px, and nothing that only works on hover.
+
+## 4b. Photographs and selections
+
+- **Every photograph is placed on purpose** (`photography.md`): the crop keeps the subject at every width (`object-position` per breakpoint), shaped or masked images keep their shadows (shadow on the parent), and text over a photograph keeps contrast at the phone crop.
+- **One grade, one light** across the set; a photo that breaks the set is regraded or replaced.
+- **Click every selectable item** (menu, picker, service, variant, tab): the picture, price and description change together, the first item is selected on load, preloaded images never show a blank frame, keyboard and touch work, reduced motion swaps instantly (`techniques.md` §9). Capture a screenshot after each selection.
+- **No leftover formula:** re-run `layout_audit.js` and confirm no `HERO`, `HEADLINE2` or `PAPERDEV`.
 
 ## 5. Consistency and scale
 

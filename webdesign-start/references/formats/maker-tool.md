@@ -117,6 +117,7 @@ async function exportPNG(px = 2400) {
 
 ## Pitfalls
 
+- **A tool strip bolted under the formula hero.** For florists, salons, groomers and rentals the tool can be the hero: a builder or booking strip as the main object in the first frame, with the headline as its label (`../hero.md`).
 - A blank canvas on arrival. Open on a finished example and let the first touch take over.
 - The canvas swallowing page scroll on phones. Apply `touch-action: none` only to the drawing surface, and leave a scrollable margin around it.
 - Undo on every `pointermove`. Snapshot per gesture, or one stroke will need 200 presses of Undo.

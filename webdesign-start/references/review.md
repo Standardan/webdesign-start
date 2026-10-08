@@ -56,6 +56,10 @@ At both sizes, with no interaction:
 - [ ] **Information lives in the world:** no web card pasted over the art. On phones, info and controls take no more than about 35% of the first screen (`craft.md` §4).
 - [ ] **Lettering is real:** any named lettering tradition shows its specific marks, not a system font with a gradient and bevel. Text inside the art uses the world's lettering.
 - [ ] **Each fact appears once** in the viewport.
+- [ ] **Not the formula (`hero.md`):** name the hero type, the first thing the eye lands on and the first thing the hand can do. If the answers are "a headline", "a headline" and "tap the button", it fails. `layout_audit.js` shows no `HERO`, and the headline is one colour (`HEADLINE2`).
+- [ ] **Primary action (`primary-action.md`):** state this business's primary action in one sentence, what a visitor can do in the first frame without a click, and where the phone appears. For any business that is not an emergency trade, a phone number as the largest control is a FAIL.
+- [ ] **The product is in the first frame** for commerce, food and trades sites: you can see what is sold, made or done. A concept made only of diagrams, maps or labels fails.
+- [ ] **Photographs are designed (`photography.md`):** a consistent set (light, angle, palette, grade), shaped or cropped by the concept, one full-bleed moment per page, no uniform grid of equal rectangles, nothing square-and-generic beside a flow it does not match.
 
 ## Slot audit (against the Creative Direction Paragraph)
 
@@ -98,21 +102,28 @@ Fail the build if the render shows any of these, unless the paragraph calls for 
 - **AI copy:** em dashes or dash-like hyphens in visible text, stock phrases ("not just… it's", "whether you're", "elevate", "seamless", "nestled", "your trusted partner"), stacked one-word slogans, every heading a pun or a question (`human-copy.md`; `scripts/copy_audit.js`).
 - **Template structure:** three equal cards, a numbered step row, twin price panels, an accordion FAQ, a dark call-to-action band before the footer, one fade-up on every block, a laptop mockup in the hero, the stock order hero, services, about, process, call to action (`layout-cadence.md`; `scripts/layout_audit.js`).
 - **The eyebrow stack everywhere:** a tiny tracked uppercase label, a giant headline and a small grey paragraph opening two or more sections, or more than 4 small tracked labels on the page.
+- **The formula hero:** a big headline, a one-paragraph subline and one or two buttons beside or over an image, as the dominant composition of the first frame (`hero.md`; `HERO` in `scripts/layout_audit.js`).
+- **Phone first by habit:** a call button leading the first frame of a business whose customers order, book, browse or request an estimate (`primary-action.md`).
+- **Two-tone headline:** one or two words of the hero headline in another colour, in a gradient or dimmed (`HEADLINE2`).
+- **The paper device by default:** a ticket, receipt, stamp or tag as the page's device, used on 2 or more elements here or across the recent sites (`PAPERDEV`; `better-every-time.md`).
+- **Dead interfaces:** a list, picker or menu whose selection does not change the picture, price and description (`techniques.md` §9). Click every selectable item in the render and screenshot each.
+- **Stock-folder photography:** square photographs of mixed light and angle in equal tiles, with no crop, mask, scale contrast or grade (`photography.md`).
+- **Repeats:** a hero type, signature device, palette family or type pairing the portfolio ledger shows in recent sites (`better-every-time.md`).
 - **The concept stops at the hero:** a section whose screenshot, header hidden, could belong to a different site (`craft.md` §11).
 
 ## Quality Contract audit
 
 Check each of the 11 clauses (`creative-direction.md`) with evidence:
-- **Crafted, not assembled:** any stock imagery, icon-pack decoration, or a component still in its library demo styling (default colours, radius, copy, effect intensity)?
+- **Crafted, not assembled:** stock photographs not labelled as stand-ins or not art-directed (mixed set, plain rectangles, no grade), icon-pack decoration, or a component still in its library demo styling (default colours, radius, copy, effect intensity)?
 - **Four systems** carrying the idea.
-- **First frame** at both sizes.
+- **First frame** at both sizes, an experience (not the formula) with the business's real primary action.
 - **Recomposed:** check 360, 390, 768, 1440 and 1920 widths, with no horizontal scroll.
 - **Exact values:** no stray colours or fonts.
 - **Motion:** loops pause when hidden and off-screen, DPR capped at 2, reduced-motion variant designed.
 - **Accessibility:** contrast (including text over art and muted labels), focus visible, full keyboard path, touch equivalents for hover, labels, dialog focus.
 - **Honesty:** no invented proof, fiction labelled, placeholders marked.
 - **Robust:** no console errors, storage guarded, sound gated with a visible toggle.
-- **Showcase grade:** 5–10 specific true-to-the-world details per page.
+- **Showcase grade:** 5–10 specific true-to-the-world details per page; no repeated hero type or device from the ledger; every selection changes what is shown.
 
 ## Failures the benchmark pages still had (check for these)
 
@@ -127,6 +138,13 @@ These slipped past even strong pages. Look for them specifically:
 - **Low-contrast muted text** (for example 2.9:1 captions).
 - **Fonts that exist on one OS only,** leaving the display type to a weak fallback elsewhere.
 
+## Better every time (the final gate)
+
+After the loops are clean and before the report (`better-every-time.md`):
+1. **Ledger.** Append this site's entry and confirm no hero type in the last four, and no signature device in more than two of the last ten.
+2. **Side-by-side.** Screenshot this site's first frame and signature moment beside the 2 or 3 best earlier sites at 1440×900 and 390×844. It must win on the first frame **and** one signature moment against each. A tie or loss goes back to Phase 4 or 5.
+3. **Retro.** Write one concrete improvement into the skill (a recipe, rule, check or example) through its repository, with a `CHANGELOG.md` line.
+
 ## Report format
 
 ```markdown
@@ -136,6 +154,11 @@ These slipped past even strong pages. Look for them specifically:
 **Completeness:** [build ledger: every promise ✓, or what was added after the gate caught it]
 **Beauty floor:** [palette_check at every scroll depth, squint_check per set piece, composition_audit and page_audit at 1440 and 390; copy_audit and layout_audit clean, or each remaining finding named with its reason; the two gallery pages compared (first frame and whole page) and the verdict on colour, depth, composition and finish]
 **Polish log:** [what the polish phase found and fixed; exceptions the user agreed to]
+**Hero and action:** [hero type; what the eye lands on; what the hand can do; the primary action and where the phone is; `HERO`/`HEADLINE2`/`PAPERDEV` clean or named]
+**Photography and interactions:** [set consistency, crops and masks, full-bleed moment; each selection checked in the render: item → photo, price, description]
+**Portfolio:** [ledger path; hero type vs the last four; devices not repeated; palette family; type pairing]
+**Side-by-side:** [the 2 to 3 earlier sites compared, what the new site wins on (first frame, signature moment), loops]
+**Retro:** [the improvement written back to the skill, with file and CHANGELOG line]
 **Loops run:** [n]. Caught and fixed: [list]
 **Slot audit:** [table, or a summary with every PARTIAL explained]
 **First frame:** [pass notes at 1440 and 390]

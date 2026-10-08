@@ -22,7 +22,7 @@ Record the answer in the brief.
 - Detect and follow the existing stack, conventions and file layout. Never add a framework the project doesn't use without asking.
 - For a new project, propose a modern stack that suits the component plan (for example Next.js or Vite with React, Tailwind and Motion) and confirm it with the user.
 - Web fonts: self-host where possible, use `font-display: swap`, subset if you can, and preload only the display face.
-- Real photography is allowed and encouraged when it exists. Treat it by the concept: duotone, cut-out, framed as plates, graded to the palette, cropped with intent. Serve modern formats with sizes and `srcset`. Never use stock photography as the signature visual.
+- Real photography is allowed and encouraged when it exists. Treat it by the concept: duotone, cut-out, framed as plates, graded to the palette, cropped with intent. Serve modern formats with sizes and `srcset`. Stock photographs are stand-ins: chosen as a matched set and art-directed into the layout like the client's own (`photography.md`), labelled as stand-ins in the report, and never presented as the client's work. Photography is placed with real `<img>` elements, sized, lazy-loaded below the fold, preloaded where a selection will swap it in (`photography.md` §6).
 - Component libraries are first-class (`component-sourcing.md`). Other libraries are allowed for real needs (routing, forms, data, a 3D engine).
 - Keep the tokens (colours, type, easing, spacing) in one place: CSS custom properties, or the project's theme file, and wire every component to them.
 

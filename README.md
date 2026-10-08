@@ -25,7 +25,8 @@ Phase 4  First frame   the hero screen built at full finish, rendered at desktop
    ── checkpoint: you react to the real render ──
 Phase 5  Build         every section gets its own device; the governing idea runs through everything
 Phase 6  Polish        the last layer: human copy, chrome, every frame, type, controls, detail, rhythm
-Phase 7  Review        screenshots through the whole page, beauty gates, slot-by-slot audit
+Phase 7  Review        screenshots through the whole page, beauty gates, slot-by-slot audit, then the
+                       final step: portfolio ledger, side-by-side against the best earlier sites, retro
 ```
 
 Just want the prompt? Ask for it. The skill runs Phases 1–3 and hands you the paragraph plus Quality Contract as one copyable block, for any model or designer.
@@ -43,7 +44,8 @@ webdesign-start/
 │                                #   native controls, filler, repeated sections
 ├── scripts/copy_audit.js        # copy that sounds human: em dashes, stock AI phrases,
 │                                #   tracked-label overuse, repeated label/heading/paragraph stacks
-├── scripts/layout_audit.js      # structure that doesn't read as a template: eyebrows, same-shaped
+├── scripts/layout_audit.js      # structure that doesn't read as a template: the formula hero, two-tone
+│                                #   headlines, paper ticket/receipt/stamp/tag devices, eyebrows, same-shaped
 │                                #   openings, numbered rows, card groups, twin pricing, FAQ accordions,
 │                                #   CTA bands, uniform reveals, stock section order
 └── references/                  # loaded progressively, only when a phase needs them
@@ -68,6 +70,10 @@ webdesign-start/
     │                            #   controls and states, rendering detail, device fidelity, rhythm
     ├── human-copy.md            # no AI tells: punctuation, stock phrases, section cadence
     ├── layout-cadence.md        # no template structure: forms from the concept, varied openings/scale/rhythm
+    ├── hero.md                  # the formula hero banned; a catalogue of real hero types tied to the concept
+    ├── primary-action.md        # business type to primary action to where the phone belongs (never phone-first)
+    ├── photography.md           # photographs as design: matched sets, masks, cut-outs, grade, selection swaps
+    ├── better-every-time.md     # portfolio ledger, no-repeat rule, side-by-side critique, the retro
     ├── aesthetics.md            # the beauty floor: colour harmony, depth and light, composition,
     │                            #   gallery calibration; measured on all 100 gallery pages
     └── formats/                 # 25 build recipes, one per kind of site, loaded only when chosen

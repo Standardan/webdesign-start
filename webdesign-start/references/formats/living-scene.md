@@ -69,6 +69,7 @@ document.body.dataset.state = weather;          // CSS redefines ~10–13 colour
 
 ## Pitfalls
 
+- **Headline and buttons laid over the scene.** That is the formula hero with a drawing behind it. Put the information inside the scene's own surfaces and let the scene or the tool be the first frame (`../hero.md`, `../craft.md` §4).
 - The title block eating the phone screen. Size the interface smaller on phones and check that nothing covers the focal subject.
 - Hints that promise interactions which behave differently.
 - Characters that can land somewhere absurd (in the river). Seed or constrain their targets.

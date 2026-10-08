@@ -82,7 +82,7 @@ Also useful, as a multi-select: **"What would you love visitors to be able to do
 ### The fundamentals (almost always needed)
 
 - **What is it?** A business or service, a shop, a portfolio, a restaurant or venue, a product or app, an event or launch, a publication, a personal project, something else.
-- **Who is it for, and what should they do?** The main visitor in a phrase, and the one action that matters most: book, buy, call, sign up, read, visit, donate, play, or just be impressed.
+- **Who is it for, and what should they do?** The main visitor in a phrase, and the one action that matters most: book, order, request an estimate, visit, call, sign up, read, donate, play, or just be impressed. For a business, ask *how a customer becomes a customer* (they walk in, order online, book a slot, send photos for a price, phone because something is broken) and take the answer from `primary-action.md`. Never assume "call"; a phone-first site for a business that sells flowers or bread online is wrong.
 - **What exists already?** Logo, colours, real photography (of what, how good), copy, an existing site (what they like or hate about it).
 - **How should it be built?** Ask in plain words unless an existing codebase decides it: "A single file you can open or upload anywhere, or a full project a developer can keep growing?" Recommend one based on what you've heard (`build-standards.md`).
 

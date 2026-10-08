@@ -131,6 +131,7 @@ For type-as-material (054): draw the word on an offscreen canvas, read `getImage
 
 ## Pitfalls
 
+- **A poster that ends with the formula.** A giant word with a subline and two buttons under it is the formula hero in a bigger size. Let the action sit in the nav or at the foot, or build it into the poster as part of the composition (`../hero.md`). One colour for the headline (`HEADLINE2`).
 - A giant word that breaks mid-letter or overflows at 390 wide. Fit to ink per breakpoint and test the longest real word.
 - Chaos without a grid. If blocks don't snap to columns, collage reads as broken, not bold.
 - Recomposition that puts shapes over text, or a seed that produces an ugly sheet. Reserve text zones and reject layouts that fail a simple overlap check.

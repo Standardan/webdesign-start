@@ -18,6 +18,9 @@ The sections' order is also a choice: put first what this visitor needs to decid
 
 | Code | The tell | Do instead |
 |---|---|---|
+| `HERO` | The first frame is the formula: a big headline, a one-paragraph subline and one or two buttons in one block, with an image beside or behind (including a photograph with the same text block over it) | Make the first frame an experience from the concept: a product you can touch, a photograph with one line set into it, a working tool, a menu or board that is the hero, an editorial cover, a poster (`hero.md`). Trimming the subline is not a fix |
+| `HEADLINE2` | One or two words of the hero headline in another colour, a gradient or a dimmed half | One colour. Emphasis from size, weight, position or the art touching the letters |
+| `PAPERDEV` | Two or more paper ticket, receipt, stamp or tag devices on the page | Take the device from the business's own objects, and use at most one. Check the portfolio ledger (`better-every-time.md`) |
 | `EYEBROW` | Tracked or mono small label directly above a heading (including a label drawn in SVG or built in script) | Put the fact in the heading. Labels stay for real metadata (a time, a unit, a status), never above headings |
 | `SUBLINE` | Heading, then a dim grey paragraph, opening several sections | Let the heading stand, or put the detail inside the content |
 | `OPENER`, `HEADINGS` | Sections open with the same shape; every section after the hero opens with a visible heading | At least two sections open with content, media, a figure or nothing. Hidden or aria-label-only headings count as headless |
@@ -38,6 +41,8 @@ The sections' order is also a choice: put first what this visitor needs to decid
 | `ORDER` | Sections in the stock order: hero, services, about, process, call to action | Order by the visitor's decision |
 | `PADDING` | Identical vertical padding on every section | Dense and loose sections differ |
 
+`HERO`, `HEADLINE2` and `PAPERDEV` came in v2.6.0 from an owner review of 16 sites that passed every other audit and still felt alike. `HERO` is the page-level version of the portfolio problem: the layout skeleton of the first frame repeated even when art, palette and type changed. Its calibration: most of those sites fail it; a typographic poster (headline at 14% of the viewport width or more), a full-bleed photograph with one short line, a working tool (two or more inputs in the frame), a small-type product hero and a sign-as-hero pass.
+
 These are tells, not bans. A single numbered row, one trio of cards or a dark closing section is fine when the concept puts it there. Two or three together on one page is the template.
 
 ## The check
@@ -47,5 +52,6 @@ Run `scripts/layout_audit.js` in the rendered page at 1440×900 with **default m
 - Fix by restructuring, not by renaming classes or hiding the evidence from the audit.
 - A finding that the concept truly demands (for example four numbered bays on a floor plan) may stay if the review report names it and says why. Exceptions are never self-granted for more than one or two codes; if five codes remain, the page is a template.
 - Run it again after fixes. Required before the review report, together with `copy_audit.js`.
+- `HERO`, `HEADLINE2` and `PAPERDEV` are not exceptions to grant: a remaining one means the first frame or the device repeats the house habit. Change the design.
 
 Thresholds came from rendered pages that read as AI-made (many findings each) against redesigned pages that read as made by a person (clean or one or two findings). If you change a threshold, re-run both kinds.

@@ -8,6 +8,8 @@ Every format renders in a **contemporary** design language by default (`../craft
 
 Formats group into three **registers** (`../registers.md`): **world** (a place, story or object), **product** (an Apple-style launch or showcase) and **interface** (dashboards and apps). Discovery settles the register first, so a user leaning toward a dashboard or a sleek product page is never offered an invented world.
 
+Formats give the architecture, never the hero. Whichever format leads, the first frame is an experience taken from the concept and never the formula of a headline, a subline and buttons beside an image (`../hero.md`), and its action comes from how the business's customers buy (`../primary-action.md`). A format used in the last four sites is a signal to choose a different hero type for this one (`../better-every-time.md`).
+
 A site can combine formats. Usually one **primary format** shapes the first frame and overall form, and one or two **borrowed pieces** from other formats add a section: a product page with one scroll-journey section, or a heritage brand with a small maker tool.
 
 ## The formats

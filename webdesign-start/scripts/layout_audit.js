@@ -2,8 +2,9 @@
 // with your browser tool) on the rendered page at 1440x900, with default motion (do not emulate reduced motion and do not
 // scroll first: REVEAL needs to see what is hidden at load). Returns a promise of findings (empty array = clean).
 // Same convention as copy_audit.js, which covers the words; this covers the structure. All checks read computed styles.
-// Codes: EYEBROW SUBLINE OPENER HEADINGS TWOCOL PILLS TICKS NUMROW NUP TWIN FAQ CTABAND FOOTMARK HMONO SCALE REVEAL
-//        MOCKUP ALTERNATE TESTIMONIAL ORDER PADDING. Thresholds were tuned on pages known to read as AI-made (many findings)
+// Codes: HERO HEADLINE2 PAPERDEV EYEBROW SUBLINE OPENER HEADINGS TWOCOL PILLS TICKS NUMROW NUP TWIN FAQ CTABAND FOOTMARK
+//        HMONO SCALE REVEAL MOCKUP ALTERNATE TESTIMONIAL ORDER PADDING. HERO, HEADLINE2 and PAPERDEV (v2.6.0) were calibrated
+//        on a set of 16 shipped small-business sites (most fail HERO on purpose) and on posters/tools/photograph heroes. Thresholds were tuned on pages known to read as AI-made (many findings)
 // and on redesigned pages that read as human-made (clean or one or two). Don't tighten one without re-running both sets.
 (async () => {
   const F = [], cs = (e, p) => getComputedStyle(e, p), px = v => parseFloat(v) || 0;
@@ -43,6 +44,47 @@
   const footer = [...document.querySelectorAll('footer, [role=contentinfo]')].filter(shown).pop();
   const inner = secs.slice(1); // everything after the hero
   const hero = secs[0];
+
+
+  // ---- HERO: the formula first frame (headline + subline + button cluster as the dominant composition) ----
+  // The default hero (hero.md): a big headline, a one-paragraph subline and one or two buttons stacked in one block, usually with
+  // an image beside or behind it. Passes: no subline or no button in the cluster (a single line set into a photograph, a poster),
+  // a typographic poster headline (>= 14% of the viewport width), a working tool in the frame (2+ inputs), or a headline that is
+  // not the largest type on screen or under 44px (the first frame is something else).
+  const VW = innerWidth, siteBar = e => { const n = e.closest('nav,[role=navigation],footer,header'); return !!n && (n.matches('nav,[role=navigation],footer') || n.getBoundingClientRect().height < 140); };
+  const heroHead = [...document.querySelectorAll('h1')].find(h => shown(h) && !srOnly(h) && !siteBar(h) && absTop(h) < VH * .8) || [...document.querySelectorAll('h2,[role=heading]')].find(h => shown(h) && !srOnly(h) && !siteBar(h) && absTop(h) < VH * .6);
+  if (heroHead) {
+    const hb = heroHead.getBoundingClientRect(), hTop = hb.top + scrollY, hBot = hb.bottom + scrollY, hfs = px(cs(heroHead).fontSize), inlineOnly = e => [...e.children].every(c => /^(SPAN|B|I|EM|STRONG|SMALL|A|BR|MARK|ABBR)$/.test(c.tagName));
+    const subs = [...document.querySelectorAll('p,div,span')].filter(e => { if (!shown(e) || srOnly(e) || siteBar(e) || !inlineOnly(e) || heroHead.contains(e)) return false; const w = words(e.textContent); if (w < 6 || w > 70) return false;
+      const b = e.getBoundingClientRect(), t = b.top + scrollY, fs = px(cs(e).fontSize); return t >= hBot - 8 && t <= hBot + 150 && fs >= body * .85 && fs <= 34 && fs < hfs * .6 && (Math.abs(b.left - hb.left) < 64 || Math.abs((b.left + b.right) / 2 - (hb.left + hb.right) / 2) < 90); })
+      .sort((a, b) => absTop(a) - absTop(b));
+    const sub = subs[0];
+    if (sub) { const sBot = sub.getBoundingClientRect().bottom + scrollY, sTop = absTop(sub);
+      const looksBtn = e => { const s = cs(e); return px(s.paddingLeft) >= 8 || rgba(s.backgroundColor)[3] > .3 || px(s.borderTopWidth) >= 1 || [...e.querySelectorAll('*')].some(c => { const q = cs(c); return rgba(q.backgroundColor)[3] > .3 || px(q.borderTopWidth) >= 1; }); };
+      const ctas = [...document.querySelectorAll('a,button,[role=button]')].filter(e => { if (!shown(e) || siteBar(e) || e.matches('[aria-hidden=true]') || words(e.textContent) < 1 || words(e.textContent) > 9) return false; const b = e.getBoundingClientRect(), t = b.top + scrollY;
+        return t >= sTop && t <= sBot + 230 && b.height >= 32 && b.left < hb.right + 40 && b.right > hb.left - 40 && looksBtn(e) && !e.closest('[role=tablist],[role=radiogroup]'); });
+      const controls = [...document.querySelectorAll('input:not([type=hidden]),select,textarea')].filter(e => shown(e) && !siteBar(e) && absTop(e) < VH).length;
+      let maxFs = 0; for (const e of document.querySelectorAll('body *')) { if (!shown(e) || siteBar(e) || srOnly(e) || absTop(e) > VH * .95 || ![...e.childNodes].some(c => c.nodeType === 3 && c.textContent.trim().length > 1)) continue; maxFs = Math.max(maxFs, px(cs(e).fontSize)); }
+      const poster = hfs >= VW * .14, dominant = hfs >= maxFs * .8 && hfs >= 44;
+      if (ctas.length >= 1 && ctas.length <= 4 && controls < 2 && !poster && dominant) F.push(`HERO the first frame is the formula: headline ${clip(heroHead.textContent, 26)}, a ${words(sub.textContent)}-word subline and ${ctas.length} button${ctas.length > 1 ? 's' : ''} (${ctas.slice(0, 2).map(c => clip(c.textContent, 16)).join(' + ')}) stacked in one block. Make the first frame an experience from the concept: a product you can touch, a full-bleed photograph with one line set into it, a working tool, a menu or board that is the hero, an editorial cover, a typographic poster with no button (hero.md)`); }
+  }
+
+  // ---- HEADLINE2: two-tone headline (one or two words in another colour, a gradient, or a dimmed half) ----
+  const twoTone = []; for (const h of [...document.querySelectorAll('h1,h2,[role=heading]')].filter(h => shown(h) && !srOnly(h) && absTop(h) < VH)) { const total = words(h.textContent); if (total < 3) continue; const base = fgOf(h);
+    for (const c of h.querySelectorAll('span,em,i,b,strong,mark,u,a')) { const wc = words(c.textContent); if (wc < 1 || wc / total > .6 || !shown(c)) continue; const q = cs(c), v = fgOf(c);
+      const d = Math.hypot(v[0] - base[0], v[1] - base[1], v[2] - base[2]); const clipText = /text/.test(q.webkitBackgroundClip || q.backgroundClip || '') && (q.backgroundImage || '') !== 'none';
+      if (d > 70 || clipText) { twoTone.push(`${clip(c.textContent, 16)} in ${clipText ? 'a gradient' : 'another colour'}`); break; } } }
+  if (twoTone.length) F.push(`HEADLINE2 two-tone headline (${twoTone.slice(0, 2).join('; ')}): set the headline in one colour and let size, weight, position or the art carry the emphasis`);
+
+  // ---- PAPERDEV: ticket, receipt, stamp or tag used as the page's device ----
+  const paperRe = /(^|[\s_-])(ticket|stub|tstub|receipt|stamp|stamped|gift-?tag|price-?tag|luggage|voucher|coupon|punch-?card|slip|tag)(?=$|[\s_-]|\d)/i;
+  const paperish = e => { const s = cs(e), m = (s.transform || '').match(/matrix\(([^)]+)\)/); const rot = m ? Math.abs(parseFloat(m[1].split(',')[1])) > .01 : false, b = e.getBoundingClientRect();
+    const chip = px(s.borderTopLeftRadius) >= b.height / 2 - 2; if (chip && !rot) return false;
+    return /dashed|dotted/.test(s.borderTopStyle + s.borderBottomStyle + s.borderLeftStyle) || rot || (s.maskImage && s.maskImage !== 'none') || (s.webkitMaskImage && s.webkitMaskImage !== 'none') || (s.clipPath && s.clipPath !== 'none') || /radial-gradient/.test(s.backgroundImage || '') || (s.boxShadow && s.boxShadow !== 'none') || (cs(e, '::before').content || 'none') !== 'none' && px(cs(e, '::before').width) > 0 && px(cs(e, '::before').width) <= 26; };
+  const papers = [...document.querySelectorAll('body *')].filter(e => { if (e.closest('svg,nav')) return false; const b = e.getBoundingClientRect(); if (!shown(e) || b.width < 60 || b.height < 30 || (e.textContent || '').trim().length < 3) return false;
+    const names = (e.getAttribute('class') || '') + ' ' + (e.id || ''); return paperRe.test(names) && paperish(e); });
+  const paperTop = papers.filter(p => !papers.some(o => o !== p && o.contains(p)));
+  if (paperTop.length >= 2) F.push(`PAPERDEV ${paperTop.length} paper ticket, receipt, stamp or tag devices (${paperTop.slice(0, 3).map(tag).join(', ')}): this is a house habit; take the device from the business's own objects and use at most one`);
 
   // ---- 1. EYEBROW: tracked or mono small label directly before a heading ----
   const candidates = [...document.querySelectorAll('body *')].filter(e => shown(e) && isLabel(e));
