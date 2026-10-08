@@ -161,7 +161,7 @@ Build the rest of the site against the paragraph. Read `references/human-copy.md
 
 Read `references/polish.md` now. The build is complete; this pass makes it feel finished. It is a real pass, roughly a fifth of the build effort.
 
-1. Run `scripts/copy_audit.js` (em dashes, stock phrases, tracked-label overuse, repeated section stacks) and fix every finding by rewriting (`references/human-copy.md`). Then run `scripts/layout_audit.js` at 1440×900 with default motion (eyebrows, same-shaped section openings, numbered rows, equal card groups, twin pricing, accordion FAQs, dark CTA bands, uniform reveals, stock section order) and fix every finding by restructuring (`references/layout-cadence.md`). The audit also flags the formula hero (`HERO`), a two-tone headline (`HEADLINE2`) and paper ticket, receipt, stamp or tag devices (`PAPERDEV`).
+1. Run `scripts/copy_audit.js` (em dashes, stock phrases, tracked-label overuse, repeated section stacks) and fix every finding by rewriting (`references/human-copy.md`). Then run `scripts/layout_audit.js` at 1440×900 with default motion (eyebrows, same-shaped section openings, numbered rows, equal card groups, twin pricing, accordion FAQs, dark CTA bands, uniform reveals, stock section order) and fix every finding by restructuring (`references/layout-cadence.md`). The audit also flags a hero-sized link or button (`BIGHIT`), an extended display face at headline or numeral size (`WIDEFACE`), the formula hero (`HERO`), a two-tone headline (`HEADLINE2`) and paper ticket, receipt, stamp or tag devices (`PAPERDEV`).
 2. Run `scripts/page_audit.js` at 1440×900 and 390×844. It scrolls the whole page and reports:
    - chrome collisions and floating panels over content;
    - lone words and cut-off text;

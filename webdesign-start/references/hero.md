@@ -18,6 +18,10 @@ Everyone has seen it, so nobody feels it. It is the first frame of the average b
 
 **Don't fix it by shrinking the subline to five words or removing the button from the audit's sight.** That is the formula with its disguise on. Change what the first frame *is*.
 
+## Large areas are never click targets
+
+A hero picture, a background, a full-width band or any element that fills a large part of the first screen **never navigates and never opens a dialog, lightbox or overlay on click**. A visitor clicking the picture to see it better, or just resting a finger on it while scrolling on a phone, must not be taken anywhere. Only explicit, labelled controls open things: a link or button with words ("Open it"), or a small print or thumbnail that is visibly a control. If the big picture should change, give it a signposted control (arrows, the prints) rather than making the whole picture a hidden button. Do not cover the art with an invisible full-size `<button>` or `<a>`. Where a picture on a phone is a tap-to-open preview, it carries a visible label ("Open the live site") and says so. `layout_audit.js` flags a link or button that covers most of the first viewport (`BIGHIT`). Click the background in review: nothing may happen.
+
 ## Choose the hero from the concept
 
 The hero comes from the concept's artefact and the business's product, never from this list. The list is vocabulary for finding one the concept wants. Pick the type before you draw anything, write it in the paragraph and the brief, and log it in the portfolio ledger (`better-every-time.md`).

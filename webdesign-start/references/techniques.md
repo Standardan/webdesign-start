@@ -396,9 +396,16 @@ Guard it with a busy flag, keep it skippable, trigger it only by an explicit act
 - **One spring per card** (`pop`, 0 to 1; stiffness about 190, damping about 23), run in one `requestAnimationFrame` loop that stops when everything has settled. Reduced motion sets the targets with no loop.
 - **A card that holds a form** is the exception: freeze the scrub while it has focus or the pointer is over it, release when the pointer moves about 90px out of it, and make its form `inert` until it is chosen so it cannot be tabbed into by accident.
 - **Phone: a different layout from the same state.** Switch to a continuous coverflow (`d = i - pos`, offsets `min(|d|,1)*A + max(|d|-1,0)*B`, rotation and scale falling off with `|d|`), a pointer drag that moves `pos`, and a snap with the release velocity. Keep `touch-action: pan-y` so the page still scrolls.
+- **The big picture is not a control** (`hero.md`). Opening happens only from the chosen card or print and a labelled "Open it" link; clicking the stage behind them does nothing. Do not lay an invisible full-size button over the art, and do not make a swipe on it open anything.
 - **Keyboard and touch:** roving `tabindex`, arrows move the choice, and only `:focus-visible` focus may select (otherwise a tap on a card focuses it, selects it and then opens it in the same gesture). A click on the chosen card opens the thing.
 - **Idle:** advance the choice every 3 to 4 seconds until the first real input; pause when the tab is hidden or the hero is off-screen; no autoplay under reduced motion.
 - **The caption band sits over the card bottoms** (cards are cut off behind it like a desk edge), so the cards never collide with text. Tint the stage glow with the chosen card's own accent, mixed about 45% with the site's lamp colour so it never goes muddy.
+
+### A before and after wipe (compare slider)
+
+- **Each caption belongs to its side and is clipped with it.** Put the "before" caption inside the before layer and the "after" caption inside the after layer, with no `z-index` on a caption that lifts it above the clipping layer. Stack the layers (before under, after over, `clip-path: inset(0 0 0 var(--x))`) and let the wipe cut the text like it cuts the picture. A caption that stays whole while the line passes over it reads as a mistake. Test by dragging the line across each caption.
+- **Dragging must survive the browser's own drags.** Set `-webkit-user-drag: none` and `user-select: none` on images and SVG inside the wipe and call `preventDefault()` on `pointerdown`, or a drag that starts on the picture is cancelled by the native image drag and the line stops following the pointer.
+- **Pick the sample for the viewer, not the author.** Compare a made-up business of the kind the visitor would want to look at, and a built result that is clearly good. A dull or ugly pair undercuts the whole point.
 
 ---
 

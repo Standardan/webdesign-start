@@ -45,6 +45,10 @@ The other tell is structural: every section built from the same three parts.
 
 Structure has its own file: `layout-cadence.md` (and `scripts/layout_audit.js`) covers numbered rows, equal card groups, twin pricing, accordion FAQs, dark closing bands, uniform reveals and the stock section order.
 
+## 3b. Do not advertise the tooling
+
+Marketing copy does not lead with the studio's own tooling (AI, agents, automation, "our robots do the research"). Visitors buy the result, the price and the person who stands behind it, and a headline about the machinery reads as either a boast or a warning. Write process copy in the plural first person about what is done and who is accountable ("We look at what is public, we build it, a person checks it, you get a private link"). Never claim that people do work they do not do, and never hide the tooling either: when asked directly (FAQ, About, an email reply) answer yes, plainly and briefly, in one or two calm sentences. Do not lead a section, a heading, a meta description or a lane label with it unless the client asked for that emphasis. When a client's own site is being written, the same rule applies to the client's tooling.
+
 ## 4. The check
 
 Run `scripts/copy_audit.js` in the rendered page (paste into the console or evaluate with your browser tool) at 1440×900 after the build and again in review. It reports:

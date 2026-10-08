@@ -3,7 +3,7 @@
 // scroll first: REVEAL needs to see what is hidden at load). Returns a promise of findings (empty array = clean).
 // Same convention as copy_audit.js, which covers the words; this covers the structure. All checks read computed styles.
 // Codes: HERO HEADLINE2 PAPERDEV EYEBROW SUBLINE OPENER HEADINGS TWOCOL PILLS TICKS NUMROW NUP TWIN FAQ CTABAND FOOTMARK
-//        HMONO SCALE REVEAL MOCKUP ALTERNATE TESTIMONIAL ORDER PADDING. HERO, HEADLINE2 and PAPERDEV (v2.6.0) were calibrated
+//        HMONO SCALE REVEAL MOCKUP ALTERNATE TESTIMONIAL ORDER PADDING BIGHIT WIDEFACE. HERO, HEADLINE2 and PAPERDEV (v2.6.0) were calibrated
 //        on a set of 16 shipped small-business sites (most fail HERO on purpose) and on posters/tools/photograph heroes. Thresholds were tuned on pages known to read as AI-made (many findings)
 // and on redesigned pages that read as human-made (clean or one or two). Don't tighten one without re-running both sets.
 (async () => {
@@ -225,6 +225,22 @@
   // ---- PADDING: identical vertical padding on every section ----
   if (inner.length >= 5) { const pads = inner.map(sec => `${Math.round(px(cs(sec).paddingTop))}/${Math.round(px(cs(sec).paddingBottom))}`); const uniq = new Set(pads);
     if (uniq.size === 1 && pads[0] !== '0/0') F.push(`PADDING all ${inner.length} sections after the hero use the same vertical padding (${pads[0].replace('/', 'px top, ')}px bottom): let dense and loose sections differ`); }
+
+
+  // ---- BIGHIT: a link or button that covers most of the first viewport (an invisible hero-sized hit target) ----
+  // Large pictures and bands are never controls (hero.md): only explicit, labelled controls open or navigate.
+  { const VWa = innerWidth, VHa = innerHeight; const big = [...document.querySelectorAll('a[href],button,[role=button],[onclick]')].filter(e => !e.closest('nav,header nav,footer,dialog,[hidden]') && !e.disabled).map(e => { const b = e.getBoundingClientRect(); const w = Math.max(0, Math.min(b.right, VWa) - Math.max(b.left, 0)), h = Math.max(0, Math.min(b.bottom, VHa) - Math.max(b.top, 0)); return { e, share: (w * h) / (VWa * VHa) }; }).filter(x => x.share > .5 && cs(x.e).visibility !== 'hidden' && cs(x.e).display !== 'none');
+    if (big.length) F.push(`BIGHIT ${tag(big[0].e)} covers ${Math.round(big[0].share * 100)}% of the first screen and is a link or button: a large picture or band must not be a click target (it opens things by accident); use a small labelled control instead`); }
+
+  // ---- WIDEFACE: ultra-wide display face on a headline or giant numerals ----
+  { const probe = cv; const seen = new Set(); const wide = [];
+    const widthPerEm = (font) => { probe.font = font; return probe.measureText('nnnnnnnnnn').width / 10 / parseFloat(font.match(/(\d+(?:\.\d+)?)px/)[1]); };
+    for (const e of document.querySelectorAll('h1,h2,h3,p,span,b,strong,div,a')) { if (!shown(e) || srOnly(e) || [...e.children].some(c => c.tagName !== 'BR' && !/^(SPAN|B|I|EM|STRONG|SUP|SUB|SMALL|A|MARK)$/.test(c.tagName))) continue;
+      const t = (e.textContent || '').trim(); if (!t) continue; const s = cs(e), fs = px(s.fontSize); const lines = e.getBoundingClientRect().height / (px(s.lineHeight) || fs * 1.2);
+      const bigNumber = /^[$€£]?\s*[\d.,]+$/.test(t) && fs >= 80, headline = isHeading(e) && fs >= 40 && lines > 1.6; if (!bigNumber && !headline) continue;
+      const key = s.fontFamily + s.fontWeight; if (seen.has(key)) continue; seen.add(key);
+      const r = widthPerEm(`${s.fontStyle} ${s.fontWeight} 100px ${s.fontFamily}`); if (r > .64) wide.push(`${tag(e)} ${clip(t, 20)} (${r.toFixed(2)}em per letter in ${s.fontFamily.split(',')[0]})`); }
+    if (wide.length) F.push(`WIDEFACE an extended display face at display size: ${wide[0]}. Ultra-wide faces are hard to read over 2 lines and make giant numerals into slabs: use a readable serif or a normal-width grotesk (polish.md §3)`); }
 
   return [...new Set(F)];
 })();

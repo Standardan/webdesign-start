@@ -136,6 +136,11 @@ These slipped past even strong pages. Look for them specifically:
 - **Unstable labels:** a toggle whose accessible name doesn't change with its state, and hints that promise interactions that behave differently.
 - **Wasted work:** animation loops that never stop, full repaints every frame, filters repainting large areas.
 - **Low-contrast muted text** (for example 2.9:1 captions).
+- **Hero art that is a picture of nothing:** a white screen, a flat colour or a lone empty card (run `scripts/blank_check.py`, then look).
+- **Hidden big hit targets:** click the background picture and every large area. Nothing may navigate or open a dialog (`hero.md`).
+- **Compare/wipe captions** that stay whole while the line passes over them, or a wipe that stops following the pointer after a drag starts on an image (`techniques.md` §7).
+- **Extended display faces** on multi-line headlines or giant numerals, and headlines over images that fail the legibility check at 390 and 1440 (`polish.md` §3). Keep to review: only name matching and a width measure can be automated.
+- **Tooling in the marketing copy:** headings, lane labels or meta descriptions that lead with AI, agents or automation (`human-copy.md` §3b).
 - **Fonts that exist on one OS only,** leaving the display type to a weak fallback elsewhere.
 
 ## Better every time (the final gate)

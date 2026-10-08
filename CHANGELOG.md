@@ -2,6 +2,17 @@
 
 All notable changes to the webdesign-start skill. Versions follow semver: major = workflow-breaking restructure, minor = new rules/sections/capabilities, patch = fixes and wording.
 
+## 2.6.2 — 2026-10-08
+
+Six notes from an owner review of a studio's own live site, written back as general rules. The site passed every audit and still had a hero picture that opened a dialog on any click, a white-screen hero frame, a wipe whose caption stayed whole under the line, an ultra-wide face on the headline and the price, and process copy that led with the studio's tooling.
+
+- **`hero.md`: large areas are never click targets.** A hero picture or background never navigates or opens a dialog; only explicit, labelled controls and visible prints do. New audit code `BIGHIT` in `layout_audit.js` (a link or button covering more than half the first screen). `techniques.md` §7 repeats it for the hand of cards.
+- **`polish.md` §4b + new `scripts/blank_check.py`:** art made from screenshots or generated is checked for near-blank frames (low variance or one tone over half the frame) before use, then looked at.
+- **`techniques.md` §7: before and after wipe.** Captions belong to their side and are clipped with it (no z-index above the clipping layer); drags must survive native image drag (`-webkit-user-drag: none`, `preventDefault` on pointerdown); pick a sample the viewer wants to look at.
+- **`polish.md` §3: wide and extended display faces** are not for multi-line headlines or giant numerals (readable serif or normal-width grotesk, lining figures, sensible numeral size); a headline over imagery passes a legibility check at 390 and 1440. New audit code `WIDEFACE` (measured letter width over 0.64em at display size) plus a review item for what cannot be detected.
+- **`human-copy.md` §3b: do not advertise the tooling.** Marketing copy, headings, lane labels and meta descriptions do not lead with AI or automation unless the client asks; process copy is in the plural first person; stay truthful and brief when asked directly.
+- `review.md` failure list, `layout-cadence.md` table, README, AGENTS.md and SKILL.md Phase 7 updated.
+
 ## 2.6.1 — 2026-10-08
 
 Written back from rebuilding a studio's own site (a fan of the studio's sample sites as the hero), which ranked fourth of five in a blind first-frame review before it was fixed.
