@@ -55,6 +55,10 @@ Every frame must look finished, because every frame is a screenshot someone migh
 - **Large type alignment:** big display type is optically aligned. Pull round letters and quote marks slightly past the edge, so the stem, not the side bearing, lines up with the text below.
 - **Consistent tracking** per role (display, text, labels). Never track lowercase text.
 
+## 3b. Never fade reading text by opacity
+
+Do not animate `opacity` on paragraphs, captions, descriptions or any text a visitor has to read (swap-in details, route steps, tab panels). A fade that starts at 0 is caught invisible by screenshots, slow devices, a throttled tab and reduced-motion emulation, and it reads as faint grey text. Animate `transform` (a few pixels of slide) or `clip-path`, give the text its full colour at rest, and wrap even that in `prefers-reduced-motion: no-preference`. Fades are for pictures and decoration. `layout_audit.js` flags readable text caught part-way faded (`FADED`).
+
 ## 4. Every control, every state
 
 - **Style every control in the site's material:** selects, date and time inputs, checkboxes, radios, ranges and file inputs. No browser-default arrows, calendar icons or grey widgets. Hide the native control visually (keeping it accessible) behind a custom one, or style it fully (including `::-webkit-calendar-picker-indicator`).

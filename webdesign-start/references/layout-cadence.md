@@ -20,6 +20,7 @@ The sections' order is also a choice: put first what this visitor needs to decid
 |---|---|---|
 | `HERO` | The first frame is the formula: a big headline, a one-paragraph subline and one or two buttons in one block, with an image beside or behind (including a photograph with the same text block over it) | Make the first frame an experience from the concept: a product you can touch, a photograph with one line set into it, a working tool, a menu or board that is the hero, an editorial cover, a poster (`hero.md`). Trimming the subline is not a fix |
 | `HEADLINE2` | One or two words of the hero headline in another colour, a gradient or a dimmed half | One colour. Emphasis from size, weight, position or the art touching the letters |
+| `FADED` | Readable text (6+ words) caught part-way faded: computed opacity between 0.05 and 0.6 at load | Do not fade reading text; slide it with `transform`, full colour at rest (`polish.md` §3b) |
 | `BIGHIT` | A link or button covers most of the first viewport (an invisible hero-sized hit target) | The big picture is not a control (`hero.md`). Only labelled controls and small prints open things |
 | `WIDEFACE` | An ultra-wide or extended face at display size (a multi-line headline over 40px, or any text over 80px) | A readable serif or normal-width grotesk (`polish.md` §3). Extended faces only for a short label |
 | `PAPERDEV` | Two or more paper ticket, receipt, stamp or tag devices on the page | Take the device from the business's own objects, and use at most one. Check the portfolio ledger (`better-every-time.md`) |

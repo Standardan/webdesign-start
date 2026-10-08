@@ -2,6 +2,11 @@
 
 All notable changes to the webdesign-start skill. Versions follow semver: major = workflow-breaking restructure, minor = new rules/sections/capabilities, patch = fixes and wording.
 
+## 2.6.3 — 2026-10-08
+
+- **`techniques.md` §7 wipe:** each side of a compare image shows its whole composition (fit the full frame over a blurred copy, captions in their own strip, phone screenshot on phones), never a clipped crop with cut-off UI. Rest the line where both sides read.
+- **`polish.md` §3b:** never animate opacity on reading text; slide with `transform`, full colour at rest, only under `prefers-reduced-motion: no-preference`. New audit code `FADED` in `layout_audit.js` (6+ words of text at computed opacity 0.05 to 0.6 at load); `layout-cadence.md` table updated.
+
 ## 2.6.2 — 2026-10-08
 
 Six notes from an owner review of a studio's own live site, written back as general rules. The site passed every audit and still had a hero picture that opened a dialog on any click, a white-screen hero frame, a wipe whose caption stayed whole under the line, an ultra-wide face on the headline and the price, and process copy that led with the studio's tooling.

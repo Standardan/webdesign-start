@@ -3,7 +3,7 @@
 // scroll first: REVEAL needs to see what is hidden at load). Returns a promise of findings (empty array = clean).
 // Same convention as copy_audit.js, which covers the words; this covers the structure. All checks read computed styles.
 // Codes: HERO HEADLINE2 PAPERDEV EYEBROW SUBLINE OPENER HEADINGS TWOCOL PILLS TICKS NUMROW NUP TWIN FAQ CTABAND FOOTMARK
-//        HMONO SCALE REVEAL MOCKUP ALTERNATE TESTIMONIAL ORDER PADDING BIGHIT WIDEFACE. HERO, HEADLINE2 and PAPERDEV (v2.6.0) were calibrated
+//        HMONO SCALE REVEAL MOCKUP ALTERNATE TESTIMONIAL ORDER PADDING BIGHIT WIDEFACE FADED. HERO, HEADLINE2 and PAPERDEV (v2.6.0) were calibrated
 //        on a set of 16 shipped small-business sites (most fail HERO on purpose) and on posters/tools/photograph heroes. Thresholds were tuned on pages known to read as AI-made (many findings)
 // and on redesigned pages that read as human-made (clean or one or two). Don't tighten one without re-running both sets.
 (async () => {
@@ -241,6 +241,11 @@
       const key = s.fontFamily + s.fontWeight; if (seen.has(key)) continue; seen.add(key);
       const r = widthPerEm(`${s.fontStyle} ${s.fontWeight} 100px ${s.fontFamily}`); if (r > .64) wide.push(`${tag(e)} ${clip(t, 20)} (${r.toFixed(2)}em per letter in ${s.fontFamily.split(',')[0]})`); }
     if (wide.length) F.push(`WIDEFACE an extended display face at display size: ${wide[0]}. Ultra-wide faces are hard to read over 2 lines and make giant numerals into slabs: use a readable serif or a normal-width grotesk (polish.md §3)`); }
+
+
+  // ---- FADED: reading text caught mid-fade (opacity animated on text) ----
+  { const faded = [...document.querySelectorAll('p,li,dd,figcaption,blockquote,h1,h2,h3')].filter(e => shown(e) && !srOnly(e) && words(e.textContent) >= 6).map(e => { let o = 1; for (let n = e; n && n !== document.documentElement; n = n.parentElement) o *= +cs(n).opacity; return { e, o }; }).filter(x => x.o > .05 && x.o < .6);
+    if (faded.length) F.push(`FADED ${faded.length} block(s) of reading text sit at ${faded[0].o.toFixed(2)} opacity at load (${tag(faded[0].e)} ${clip(faded[0].e.textContent, 24)}): a fade-in on text is caught faint by screenshots, slow devices and reduced motion; slide with transform and keep full colour at rest`); }
 
   return [...new Set(F)];
 })();
